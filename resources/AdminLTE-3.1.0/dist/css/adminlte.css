@@ -11138,22 +11138,10 @@ a.text-dark:hover, a.text-dark:focus {
   animation: wobble 1500ms;
 }
 
-.preloader {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: #f4f6f9;
-  height: 100vh;
-  width: 100%;
-  transition: height 200ms linear;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 9999;
-}
+
 
 .dark-mode .preloader {
-  background-color: #454d55 !important;
+  background-color: #191308 !important;
   color: #fff;
 }
 

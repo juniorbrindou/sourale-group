@@ -73,6 +73,7 @@
 		{{-- rapport mensuel --}}
 		<div class="row">
 			<div class="col-md-12">
+				{{-- debut du card pour les charts --}}
 				<div class="card">
 					<div class="card-header">
 						<h5 class="card-title">Rapport récapitulatif mensuel</h5>
@@ -81,18 +82,7 @@
 							<button type="button" class="btn btn-tool" data-card-widget="collapse">
 								<i class="fas fa-minus"></i>
 							</button>
-							<div class="btn-group">
-								<button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-									<i class="fas fa-wrench"></i>
-								</button>
-								<div class="dropdown-menu dropdown-menu-right" role="menu">
-									<a href="#" class="dropdown-item">Action</a>
-									<a href="#" class="dropdown-item">Another action</a>
-									<a href="#" class="dropdown-item">Something else here</a>
-									<a class="dropdown-divider"></a>
-									<a href="#" class="dropdown-item">Separated link</a>
-								</div>
-							</div>
+							
 							<button type="button" class="btn btn-tool" data-card-widget="remove">
 								<i class="fas fa-times"></i>
 							</button>
@@ -106,16 +96,18 @@
 									<strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
 								</p>
 
+								{{-- debut de chart --}}
 								<div class="chart">
-									<!-- Sales Chart Canvas -->
 									<canvas id="salesChart" height="180" style="height: 180px;"></canvas>
 								</div>
 								<!-- /.chart-responsive -->
 							</div>
 							<!-- /.col -->
+
+							{{-- objectif et accomplissements --}}
 							<div class="col-md-4">
 								<p class="text-center">
-									<strong>Goal Completion</strong>
+									<strong>Objectifs et accomplissements</strong>
 								</p>
 
 								<div class="progress-group">
@@ -164,7 +156,7 @@
 							<div class="col-sm-3 col-6">
 								<div class="description-block border-right">
 									<span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-									<h5 class="description-header">$35,210.43</h5>
+									<h5 class="description-header">12.315.100 F CFA</h5>
 									<span class="description-text">TOTAL REVENUE</span>
 								</div>
 								<!-- /.description-block -->
@@ -587,8 +579,8 @@
 					<span class="info-box-icon"><i class="fas fa-tag"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Inventory</span>
-						<span class="info-box-number">5,200</span>
+						<span class="info-box-text">Stock Pack Gold</span>
+						<span class="info-box-number">52</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -597,7 +589,7 @@
 					<span class="info-box-icon"><i class="far fa-heart"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Mentions</span>
+						<span class="info-box-text">Stock Pack Argent</span>
 						<span class="info-box-number">92,050</span>
 					</div>
 					<!-- /.info-box-content -->
@@ -607,7 +599,7 @@
 					<span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Downloads</span>
+						<span class="info-box-text">Stock Pack Luxe</span>
 						<span class="info-box-number">114,381</span>
 					</div>
 					<!-- /.info-box-content -->
@@ -624,75 +616,6 @@
 				</div>
 				<!-- /.info-box -->
 
-				<div class="card">
-					<div class="card-header">
-						<h3 class="card-title">Browser Usage</h3>
-
-						<div class="card-tools">
-							<button type="button" class="btn btn-tool" data-card-widget="collapse">
-								<i class="fas fa-minus"></i>
-							</button>
-							<button type="button" class="btn btn-tool" data-card-widget="remove">
-								<i class="fas fa-times"></i>
-							</button>
-						</div>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-8">
-								<div class="chart-responsive">
-									<canvas id="pieChart" height="150"></canvas>
-								</div>
-								<!-- ./chart-responsive -->
-							</div>
-							<!-- /.col -->
-							<div class="col-md-4">
-								<ul class="chart-legend clearfix">
-									<li><i class="far fa-circle text-danger"></i> Chrome</li>
-									<li><i class="far fa-circle text-success"></i> IE</li>
-									<li><i class="far fa-circle text-warning"></i> FireFox</li>
-									<li><i class="far fa-circle text-info"></i> Safari</li>
-									<li><i class="far fa-circle text-primary"></i> Opera</li>
-									<li><i class="far fa-circle text-secondary"></i> Navigator</li>
-								</ul>
-							</div>
-							<!-- /.col -->
-						</div>
-						<!-- /.row -->
-					</div>
-					<!-- /.card-body -->
-					<div class="card-footer bg-light p-0">
-						<ul class="nav nav-pills flex-column">
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									United States of America
-									<span class="float-right text-danger">
-										<i class="fas fa-arrow-down text-sm"></i>
-										12%</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									India
-									<span class="float-right text-success">
-										<i class="fas fa-arrow-up text-sm"></i> 4%
-									</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									China
-									<span class="float-right text-warning">
-										<i class="fas fa-arrow-left text-sm"></i> 0%
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<!-- /.footer -->
-				</div>
-				<!-- /.card -->
 
 				<!-- PRODUCT LIST -->
 				<div class="card">
