@@ -27,3 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('articles','ArticleController');
 // Route::resource('articles','ArticleController')->middleware('auth');
+
+Route::resource('utilisateurs','UserController');
+
+Route::resource('clients','ClientController');

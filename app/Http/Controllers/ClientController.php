@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('articles.index');
+        return view('clients.index');
     }
 
     /**
@@ -24,7 +23,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        //
     }
 
     /**
@@ -35,23 +34,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:3',
-            'qte' => 'required|min:0|numeric',
-            'caution' => 'required|numeric|min:0',
-            'categorie_article_id' => 'required|numeric',
-            'prix' => 'required|numeric',
-            'description' => 'required',
-            'article_photo' => 'required|file',
-        ]);
-
-        if ($request->validated()) {
-            
-            $article = Article::create($$request->validated());
-
-        }
-
-        return back()->with('success', 'User created successfully.');
+        //
     }
 
     /**
@@ -62,7 +45,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return view('articles.show');
+        //
     }
 
     /**

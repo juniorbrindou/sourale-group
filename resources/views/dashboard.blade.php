@@ -229,7 +229,7 @@
 							<table class="table m-0">
 								<thead>
 									<tr>
-										<th>numéro de commande</th>
+										<th>numéro de commande </th>
 										<th>Article</th>
 										<th>Statut</th>
 										<th>Autres</th>
@@ -427,7 +427,7 @@
 										<img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
 										<!-- /.direct-chat-img -->
 										<div class="direct-chat-text">
-											Working with AdminLTE on a great new app! Wanna join?
+											Working with Souralè-Group on a great new app! Wanna join?
 										</div>
 										<!-- /.direct-chat-text -->
 									</div>

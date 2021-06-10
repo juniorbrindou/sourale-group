@@ -56,11 +56,6 @@
 							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">Liste des articles </h3>
-
-									<a href="{{ route('articles.create')}}" class="btn float-right  btn-md btn-success">
-										<i class="fa fa-plus-circle"></i>
-										Ajouter
-									</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
@@ -252,7 +247,7 @@
 		$(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["excel", "pdf", "print"]
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
