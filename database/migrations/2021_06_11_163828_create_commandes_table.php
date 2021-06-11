@@ -15,6 +15,14 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
+            $table->integer('qte');
+            $table->date('date_commande');
+            $table->date('date_livraison');
+            $table->date('date_fin')->nullable();
+            $table->string('lieu_livraison')->nullable();
+            $table->integer('article_id')->unsigned();
+            $table->integer('client_id')->unsigned();
+            $table->integer('facture_id')->unsigned();
             $table->timestamps();
         });
     }

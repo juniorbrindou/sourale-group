@@ -34,6 +34,27 @@ class AddContraintesTable extends Migration
 			$table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade')->onUpdate('cascade');
 		});
 
+
+		Schema::table('clients', function (Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+		});
+
+
+		Schema::table('commandes', function (Blueprint $table) {
+			$table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('facture_id')->references('id')->on('factures')->onDelete('cascade')->onUpdate('cascade');
+		});
+
+		Schema::table('factures', function (Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
+		});
+
+		Schema::table('commentaires', function (Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+		});
+
 	}
 
 	/**
@@ -61,6 +82,25 @@ class AddContraintesTable extends Migration
 		Schema::table('package_articles', function (Blueprint $table) {
 			$table->dropForeign('package_articles_package_id_foreign');
 			$table->dropForeign('package_articles_article_id_foreign');
+		});
+
+		Schema::table('clients', function (Blueprint $table) {
+			$table->dropForeign('clients_user_id_foreign');
+		});
+
+		Schema::table('commandes', function (Blueprint $table) {
+			$table->dropForeign('commandes_article_id_foreign');
+			$table->dropForeign('commandes_client_id_foreign');
+			$table->dropForeign('commandes_facture_id_foreign');
+		});
+
+		Schema::table('commentaires', function (Blueprint $table) {
+			$table->dropForeign('commentaires_user_id_foreign');
+		});
+
+		Schema::table('factures', function (Blueprint $table) {
+			$table->dropForeign('factures_user_id_foreign');
+			$table->dropForeign('factures_client_id_foreign');
 		});
 
 	}
