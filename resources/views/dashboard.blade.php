@@ -10,13 +10,12 @@
 		<div class="row">
 			<div class="col-12 col-sm-6 col-md-3">
 				<div class="info-box">
-					<span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+					<span class="info-box-icon bg-danger elevation-2"><i class="fas fa-shipping-fast"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">CPU Traffic</span>
+						<span class="info-box-text">En cours de Location</span>
 						<span class="info-box-number">
 							10
-							<small>%</small>
 						</span>
 					</div>
 					<!-- /.info-box-content -->
@@ -26,11 +25,11 @@
 			<!-- /.col -->
 			<div class="col-12 col-sm-6 col-md-3">
 				<div class="info-box mb-3">
-					<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+					<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-archive"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Likes</span>
-						<span class="info-box-number">41,410</span>
+						<span class="info-box-text">Disponibles en Stock</span>
+						<span class="info-box-number">41410 Articles</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -46,7 +45,7 @@
 					<span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Sales</span>
+						<span class="info-box-text">Total des Locations</span>
 						<span class="info-box-number">760</span>
 					</div>
 					<!-- /.info-box-content -->
@@ -56,11 +55,11 @@
 			<!-- /.col -->
 			<div class="col-12 col-sm-6 col-md-3">
 				<div class="info-box mb-3">
-					<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+					<span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">New Members</span>
-						<span class="info-box-number">2,000</span>
+						<span class="info-box-text">Total des Clients</span>
+						<span class="info-box-number">200</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -79,12 +78,8 @@
 						<h5 class="card-title">Rapport récapitulatif mensuel</h5>
 
 						<div class="card-tools">
-							<button type="button" class="btn btn-tool" data-card-widget="collapse">
+							<button type="button" title="Réduire" class="btn btn-tool" data-card-widget="collapse">
 								<i class="fas fa-minus"></i>
-							</button>
-							
-							<button type="button" class="btn btn-tool" data-card-widget="remove">
-								<i class="fas fa-times"></i>
 							</button>
 						</div>
 					</div>
@@ -216,9 +211,6 @@
 							<button type="button" class="btn btn-tool" data-card-widget="collapse">
 								<i class="fas fa-minus"></i>
 							</button>
-							<button type="button" class="btn btn-tool" data-card-widget="remove">
-								<i class="fas fa-times"></i>
-							</button>
 						</div>
 					</div>
 					{{-- /.card-header  --}}
@@ -290,42 +282,42 @@
 
 			<div class="col-md-4">
 				<!-- Info Boxes Style 2 -->
-				<div class="info-box mb-3 bg-warning">
-					<span class="info-box-icon"><i class="fas fa-tag"></i></span>
+				<div class="info-box mb-3 bg-danger">
+					<span class="info-box-icon"><i class="fa fa-glass-cheers"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Stock Pack Gold</span>
-						<span class="info-box-number">52</span>
+						<span class="info-box-text">Package Luxieux</span>
+						<span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
 				<!-- /.info-box -->
-				<div class="info-box mb-3 bg-success">
+				<div class="info-box mb-3 bg-warning">
 					<span class="info-box-icon"><i class="far fa-heart"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Stock Pack Argent</span>
-						<span class="info-box-number">92,050</span>
+						<span class="info-box-text">Package doré</span>
+						<span class="info-box-number">52 <i class="fa fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
 				<!-- /.info-box -->
-				<div class="info-box mb-3 bg-danger">
-					<span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+				<div class="info-box mb-3 bg-gray">
+					<span class="info-box-icon"><i class="fa fa-adn"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Stock Pack Luxe</span>
-						<span class="info-box-number">114,381</span>
+						<span class="info-box-text">Package argenté</span>
+						<span class="info-box-number">52 <i class="fa fa-truck"></i> sur 122 <i class="fa fa-archive"></i></span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
 				<!-- /.info-box -->
-				<div class="info-box mb-3 bg-info">
-					<span class="info-box-icon"><i class="far fa-comment"></i></span>
+				<div class="info-box mb-3 bg-default">
+					<span class="info-box-icon"><i class="fa fa-feather-alt"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Direct Messages</span>
-						<span class="info-box-number">163,921</span>
+						<span class="info-box-text">Package plume</span>
+						<span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -336,7 +328,7 @@
 					<span class="info-box-icon"><i class="far fa-comment"></i></span>
 
 					<div class="info-box-content ">
-						<span class="info-box-text">Commande libres</span>
+						<span class="info-box-text">Commande sans Package</span>
 						<span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
 					</div>
 					<!-- /.info-box-content -->

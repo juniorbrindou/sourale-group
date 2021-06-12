@@ -26,7 +26,7 @@
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body" style="background-color: rgba(253, 253, 255, 0.299)">
-				<p class="login-box-msg">Connectez vous</p>
+				<p class="login-box-msg">Nouveau Compte</p>
 
 
 				<form method="POST" action="{{ route('register') }}">
