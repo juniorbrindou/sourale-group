@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Factures extends Model
 {
-    //
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'tire', 'code', 'user_id', 'client_id', 'total'
+	];
 }
