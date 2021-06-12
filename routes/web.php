@@ -12,14 +12,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// old
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+// Route::get('dashboard', function () {
+//     return view('dashboard');
+// });
+// old
+
+// from branch main
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->middleware('guest');
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+// from branch main
 
 Auth::routes();
 
