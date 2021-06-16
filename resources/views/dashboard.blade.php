@@ -75,7 +75,7 @@
 				{{-- debut du card pour les charts --}}
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title">Rapport récapitulatif mensuel</h5>
+						<h5 class="card-title">Rapport récapitulatif</h5>
 
 						<div class="card-tools">
 							<button type="button" title="Réduire" class="btn btn-tool" data-card-widget="collapse">
@@ -88,7 +88,7 @@
 						<div class="row">
 							<div class="col-md-8">
 								<p class="text-center">
-									<strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+									<strong>Locations: 1 Jan, 2021 - 16 Juil, 2021</strong>
 								</p>
 
 								{{-- debut de chart --}}
@@ -106,7 +106,7 @@
 								</p>
 
 								<div class="progress-group">
-									Add Products to Cart
+									Arcticles Ajoutés 
 									<span class="float-right"><b>160</b>/200</span>
 									<div class="progress progress-sm">
 										<div class="progress-bar bg-primary" style="width: 80%"></div>
@@ -115,8 +115,8 @@
 								<!-- /.progress-group -->
 
 								<div class="progress-group">
-									Complete Purchase
-									<span class="float-right"><b>310</b>/400</span>
+									Articles perdus/dégradés en location
+									<span class="float-right"><b>310</b></span>
 									<div class="progress progress-sm">
 										<div class="progress-bar bg-danger" style="width: 75%"></div>
 									</div>
@@ -133,8 +133,8 @@
 
 								<!-- /.progress-group -->
 								<div class="progress-group">
-									Send Inquiries
-									<span class="float-right"><b>250</b>/500</span>
+									Articles perdus/dégradés en location
+									<span class="float-right"><b>250</b></span>
 									<div class="progress progress-sm">
 										<div class="progress-bar bg-warning" style="width: 50%"></div>
 									</div>
@@ -152,7 +152,7 @@
 								<div class="description-block border-right">
 									<span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
 									<h5 class="description-header">12.315.100 F CFA</h5>
-									<span class="description-text">TOTAL REVENUE</span>
+									<span class="description-text">TOTAL REVENU</span>
 								</div>
 								<!-- /.description-block -->
 							</div>
@@ -160,8 +160,8 @@
 							<div class="col-sm-3 col-6">
 								<div class="description-block border-right">
 									<span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-									<h5 class="description-header">$10,390.90</h5>
-									<span class="description-text">TOTAL COST</span>
+									<h5 class="description-header">315.100F CFA</h5>
+									<span class="description-text">TOTAL PERTES</span>
 								</div>
 								<!-- /.description-block -->
 							</div>
@@ -169,8 +169,8 @@
 							<div class="col-sm-3 col-6">
 								<div class="description-block border-right">
 									<span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
-									<h5 class="description-header">$24,813.53</h5>
-									<span class="description-text">TOTAL PROFIT</span>
+									<h5 class="description-header">12.000.000F CFA</h5>
+									<span class="description-text">BÉNÉFICE BRUT</span>
 								</div>
 								<!-- /.description-block -->
 							</div>
@@ -205,7 +205,7 @@
 				<div class="card">
 					{{-- card header --}}
 					<div class="card-header border-transparent">
-						<h3 class="card-title">Dernières commandes</h3>
+						<h3 class="card-title">Dernières Locations</h3>
 
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool" data-card-widget="collapse">

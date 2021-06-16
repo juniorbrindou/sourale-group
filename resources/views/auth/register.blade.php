@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
 	<title>{{config('app.name')}} | Nouveau compte</title>
 
 	<!-- Google Font: Source Sans Pro -->

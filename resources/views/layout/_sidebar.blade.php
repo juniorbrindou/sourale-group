@@ -14,7 +14,7 @@
 				<img src="{{asset('dist/img/avatar3.png')}}" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="{{ route('utilisateurs.show',1) }}" class="d-block">{{ (Auth::user()->login)}}</a>
+				<a href="{{ route('utilisateurs.show', Auth::user()->id) }}" class="d-block">{{ (Auth::user()->login)}}</a>
 			</div>
 		</div>
 
@@ -70,48 +70,37 @@
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-copy"></i>
 						<p>
-							Layout Options
-							<i class="fas fa-angle-left right"></i>
-							<span class="badge badge-info right">6</span>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="pages/layout/boxed.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Boxed</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-
-				<li class="nav-header">EXAMPLES</li>
-
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-search"></i>
-						<p>
-							Search
+							Gestion des Packages
 							<i class="fas fa-angle-left right"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
+						{{-- packages --}}
 						<li class="nav-item">
-							<a href="pages/search/simple.html" class="nav-link">
+							<a href="{{route('clients.index')}}" class="nav-link {{ request()->is('clients*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Simple Search</p>
+								<p>Packages</p>
 							</a>
 						</li>
+						{{-- packages --}}
+						<li class="nav-item">
+							<a href="{{route('clients.index')}}" class="nav-link {{ request()->is('clients*') ? 'active' : ''}}">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Type de Packages</p>
+							</a>
+						</li>
+
 					</ul>
 				</li>
 
 
 				{{-- parametrage --}}
 				<li class="nav-header">paramétrage</li>
+								{{-- clients --}}
 				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="fas fa-tag nav-icon"></i>
-						<p>Articles</p>
+					<a href="{{route('clients.index')}}" class="nav-link ">
+						<i class="fas fa-user nav-icon"></i>
+						<p>Liste des Coptes</p>
 					</a>
 				</li>
 

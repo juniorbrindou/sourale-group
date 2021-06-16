@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<!-- left column -->
-			<div class="col-md-8 offset-md-2">
+			<div class="col-md-12 ">
 				<!-- general form elements -->
 				<div class="card card-primary">
 					<div class="card-header">
@@ -83,6 +83,7 @@
 											<option value="Argent">Argent</option>
 											<option value="Bois">Bois</option>
 											<option value="Plume">Plume</option>
+											<option value="Plume">Aucun</option>
 										</select>
 									</div>
 								</div>
@@ -126,7 +127,7 @@
 						<!-- /.card-body -->
 
 						<div class="card-footer">
-							<button type="submit" class="btn btn-primary">Enregistrer</button>
+							<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
 						</div>
 					</form>
 				</div>

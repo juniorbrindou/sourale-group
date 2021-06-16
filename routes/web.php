@@ -15,5 +15,12 @@ Route::group(
         Route::resource('articles', 'ArticleController');
         Route::resource('utilisateurs', 'UserController');
         Route::resource('clients', 'ClientController');
+        Route::get('newLocation',function(){
+            return 'test';
+        });
+        Route::get('facture',function(){
+            return view('facture.index');
+        });
+
     }
 );

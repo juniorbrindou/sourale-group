@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
 	<title>{{config('app.name')}} | Connexion</title>
 
 	<!-- Google Font: Source Sans Pro -->
@@ -20,7 +21,7 @@
 <body class="hold-transition login-page" style="background-image: url({{asset('dist/img/background.jpg')}}); background-size: 100Vh;">
 	<div class="login-box">
 		<div class="login-logo">
-			<img src="{{asset('dist/img/logo.png')}}" class="brand-image " height="150" alt="">
+			<img draggable="false" src="{{asset('dist/img/logo.png')}}" class="brand-image " height="150" alt="">
 		</div>
 		<!-- /.login-logo -->
 		<div class="card" >
