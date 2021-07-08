@@ -266,8 +266,8 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('evenements_type_evenement_id_foreign');
 			$table->dropForeign('evenements_package_id_foreign');
 		});
-		
-		Schema::table('entrees', function (Blueprint $table) {
+
+    Schema::table('entrees', function (Blueprint $table) {
 			$table->dropForeign('entrees_user_id_foreign');
 			$table->dropForeign('entrees_article_id_foreign');
 			$table->dropForeign('entrees_fournisseur_id_foreign');
