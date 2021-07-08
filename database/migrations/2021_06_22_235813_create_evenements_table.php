@@ -15,12 +15,14 @@ class CreateEvenementsTable extends Migration
     {
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->string('libelle');
+            $table->integer('nbr_personne')->nullable();
+            $table->string('lieu')->nullable();
             $table->string('description')->nullable();
-            $table->integer('lieu')->nullable();
-
-
-            $table->integer('client_id')->unsigned()->nullable();
+            $table->date('date_evenement')->nullable();
+			$table->integer('type_evenement_id')->unsigned();
+			$table->integer('package_id')->unsigned();
             $table->timestamps();
             // evenement(code libelle nbr_personne #package_id lieu date_evenement description #type_event_id)
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAutreDetailsTable extends Migration
+class CreateRemarquesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateAutreDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('autre_details', function (Blueprint $table) {
+        Schema::create('remarques', function (Blueprint $table) {
             $table->id();
-            $table->string('detail');
+            $table->string('titre');
+            $table->string('contenu');
+            
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateAutreDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('autre_details');
+        Schema::dropIfExists('remarques');
     }
 }

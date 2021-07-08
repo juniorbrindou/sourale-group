@@ -11,7 +11,7 @@ type_event(code libelle description)
 type_article(code libelle description)
 categorie_article(code libelle description)
 fornisseur(code, nom, contact )
-article(code libelle description #categorie_article_id caution *prix_moyen)
+article(code libelle description #categorie_article_id caution *prix_moyen *qte_article_en_stock)
 
 
-
+ 

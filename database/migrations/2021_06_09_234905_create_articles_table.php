@@ -23,10 +23,10 @@ class CreateArticlesTable extends Migration
 
             $table->integer('user_id')->unsigned();
             $table->integer('type_article_id')->unsigned()->nullable();
-            $table->integer('commentaire_id')->unsigned()->nullable();
+            $table->integer('remarque_id')->unsigned()->nullable();
             $table->integer('categorie_article_id')->unsigned()->nullable();
             $table->timestamps();
-            // champs calculés : qte_article_en_stock, 
+            // Vue : qte_article_en_stock,
             // champs ambigue : prix moyen 
 
         });
