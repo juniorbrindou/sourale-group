@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateLouersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,21 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('louers', function (Blueprint $table) {
             $table->id();
             $table->string('code')->nullable();
             $table->string('libelle');
             $table->string('description')->nullable();
-            $table->integer('caution')->nullable();
-
+            $table->integer('qte_loue')->nullable();
+            $table->integer('qte_retour')->nullable();
+            $table->date('date_location')->nullable();
+            $table->date('date_retour')->nullable();
 
             $table->integer('user_id')->unsigned();
-            $table->integer('type_article_id')->unsigned()->nullable();
-            $table->integer('commentaire_id')->unsigned()->nullable();
-            $table->integer('categorie_article_id')->unsigned()->nullable();
-            $table->timestamps();
-            // champs calculés : qte_article_en_stock, 
-            // champs ambigue : prix moyen 
+            $table->integer('article_id')->unsigned();
 
+            $table->timestamps();
+            // louer(#article_id qte_loue date_location date_retour qte_retour)
         });
     }
 
@@ -39,6 +38,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('louers');
     }
 }

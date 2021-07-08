@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypePackagesTable extends Migration
+class CreateEvenementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateTypePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_packages', function (Blueprint $table) {
+        Schema::create('evenements', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->nullable();
             $table->string('libelle');
             $table->string('description')->nullable();
+            $table->integer('lieu')->nullable();
 
+
+            $table->integer('client_id')->unsigned()->nullable();
             $table->timestamps();
-            // type_package(code libelle description)
+            // evenement(code libelle nbr_personne #package_id lieu date_evenement description #type_event_id)
         });
     }
 
@@ -31,6 +33,6 @@ class CreateTypePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_packages');
+        Schema::dropIfExists('evenements');
     }
 }

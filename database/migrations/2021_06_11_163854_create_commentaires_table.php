@@ -21,7 +21,7 @@ class CreateCommentairesTable extends Migration
 			$table->timestamps();
 		});
 	}
-
+                            
 	/**
 	 * Reverse the migrations.
 	 *
@@ -29,6 +29,6 @@ class CreateCommentairesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('commentaires');
+		Schema::dropIfExists('commentaires');  
 	}
 }

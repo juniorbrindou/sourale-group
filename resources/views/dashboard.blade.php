@@ -331,6 +331,17 @@
 				</div>
 				<!-- /.info-box -->
 
+				<!-- /.info-box -->
+				<div class="info-box mb-3 bg-success">
+					<span class="info-box-icon"><i class="far fa-comment"></i></span>
+
+					<div class="info-box-content ">
+						<span class="info-box-text">Commande libres</span>
+						<span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
+					</div>
+					<!-- /.info-box-content -->
+				</div>
+				<!-- /.info-box -->
 			</div>
 			<!-- /.col -->
 		</div>

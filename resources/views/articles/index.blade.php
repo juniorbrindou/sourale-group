@@ -67,7 +67,7 @@
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>Code Article</th>
+												<th>Code</th>
 												<th>Nom de l'article</th>
 												<th>Quantité</th>
 												<th>Caution</th>
@@ -76,12 +76,10 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>Trident</td>
-												<td>Internet
-													Explorer 4.0
-												</td>
-												<td>Win 95+</td>
-												<td> 4</td>
+												<td>Art-0014</td>
+												<td>Cuillere en or</td>
+												<td>2.050</td>
+												<td>300F CFA</td>
 												<td>
 													<a href="{{url('articles/1')}}" class="btn btn-primary btn-md">
 														<i class="fa fa-eye"></i>
@@ -96,12 +94,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>Trident</td>
-												<td>Internet
-													Explorer 5.0
-												</td>
-												<td>Win 95+</td>
-												<td>5</td>
+												<td>Art-0095</td>
+												<td>Chaise en argent</td>
+												<td>150</td>
+												<td>1000F CFA</td>
 												<td>
 													<button type="button" class="btn btn-primary btn-md">
 														<i class="fa fa-eye"></i>
@@ -115,10 +111,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>KHTML</td>
-												<td>Konqureror 3.1</td>
-												<td>KDE 3.1</td>
-												<td>3.1</td>
+												<td>Art-0012</td>
+												<td>Table en bois ronde courleur bleu</td>
+												<td>20</td>
+												<td>3000F CFA</td>
 												<td>
 													<button type="button" class="btn btn-primary btn-md">
 														<i class="fa fa-eye"></i>
@@ -132,10 +128,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>KHTML</td>
-												<td>Konqureror 3.3</td>
-												<td>KDE 3.3</td>
-												<td>3.3</td>
+												<td>Art-0078</td>
+												<td>Cuillere en jettables en plastique</td>
+												<td>5.000</td>
+												<td>0F CFA</td>
 												<td>
 													<button type="button" class="btn btn-primary btn-md">
 														<i class="fa fa-eye"></i>
@@ -149,10 +145,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>KHTML</td>
-												<td>Konqureror 3.5</td>
-												<td>KDE 3.5</td>
-												<td>3.5</td>
+												<td>Art-0045</td>
+												<td>Podium type bois</td>
+												<td>3</td>
+												<td>25.000F CFA</td>
 												<td>
 													<button type="button" class="btn btn-primary btn-md">
 														<i class="fa fa-eye"></i>
@@ -166,10 +162,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>Tasman</td>
-												<td>Internet Explorer 4.5</td>
-												<td>Mac OS 8-9</td>
-												<td>-</td>
+												<td>Art-0005</td>
+												<td>Plateau pour servir la nourriture</td>
+												<td>450</td>
+												<td>1.200F CFA</td>
 												<td>
 													<button type="button" class="btn btn-primary btn-md">
 														<i class="fa fa-eye"></i>
