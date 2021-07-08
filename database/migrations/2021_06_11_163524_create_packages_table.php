@@ -15,13 +15,19 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
             $table->string('code')->nullable();
+            $table->string('libelle');
+            $table->string('description')->nullable();
+            $table->string('nbr_personnes')->nullable();
+            $table->string('caution')->nullable();
+            $table->string('caution_saisie')->nullable();
+            $table->string('prix_location')->nullable();
 
             
             $table->integer('type_package_id')->unsigned()->nullable();
 
             $table->timestamps();
+            // package(code libelle description #type_package_id nbr_personne caution)
         });
     }
 

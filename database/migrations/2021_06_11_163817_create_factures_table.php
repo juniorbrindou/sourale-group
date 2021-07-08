@@ -15,12 +15,18 @@ class CreateFacturesTable extends Migration
 	{
 		Schema::create('factures', function (Blueprint $table) {
 			$table->id();
-			$table->string('tire');
 			$table->string('code')->nullable();
-			$table->integer('user_id');
-			$table->integer('client_id');
-			$table->integer('total')->nullable();
+			$table->string('libelle');
+			$table->date('date_creation');
+			// $table->integer('prix_location_recu');
+			// $table->integer('caution_recu');
+			// $table->integer('client_id');
+			// $table->integer('total')->nullable();
+
+			$table->integer('user_id')->unsigned();
+			$table->integer('evenement_id')->unsigned();
 			$table->timestamps();
+			// facture(code libelle #event_id)
 		});
 	}
 

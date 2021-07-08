@@ -1,0 +1,17 @@
+reglements(code libelle description #facture_id montant)
+facture(code libelle #event_id)
+client(nom prenoms contact1 contact1 adresse)
+type_package(code libelle description)
+entrer(article_id qte_recu date_reception #fournisseur_id prix_achat_unitaire)
+package(code libelle description #type_package_id nbr_personne caution)
+article_package(#article_id #package_id qte_article prix_unitaire_package)
+louer(#article_id qte_loue date_location date_retour qte_retour)
+evenement(code libelle nbr_personne #package_id lieu date_evenement description #type_event_id)
+type_event(code libelle description)
+type_article(code libelle description)
+categorie_article(code libelle description)
+fornisseur(code, nom, contact )
+article(code libelle description #categorie_article_id caution *prix_moyen)
+
+
+

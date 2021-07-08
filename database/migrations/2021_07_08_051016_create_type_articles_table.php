@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePackageArticlesTable extends Migration
+class CreateTypeArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,18 @@ class CreatePackageArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('package_articles', function (Blueprint $table) {
+        Schema::create('type_articles', function (Blueprint $table) {
             $table->id();
-            $table->integer('qte');
-            $table->integer('package_id')->unsigned();
-            $table->integer('article_id')->unsigned();
+            
+            $table->string('code')
+                    ->nullable();
+                    
+			$table->string('libelle')
+                    ->unique();
+
+			$table->string('description')
+                    ->nullable();
+                    
             $table->timestamps();
         });
     }
@@ -29,6 +36,6 @@ class CreatePackageArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('package_articles');
+        Schema::dropIfExists('type_articles');
     }
 }
