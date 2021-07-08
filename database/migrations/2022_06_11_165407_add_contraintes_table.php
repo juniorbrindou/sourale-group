@@ -78,15 +78,15 @@ class AddContraintesTable extends Migration
 					->onUpdate('cascade');
 
 			
-			$table->foreign('commentaire_id')
+			$table->foreign('remarque_id')
 					->references('id')
-					->on('commentaires')
+					->on('remarques')
 					->onDelete('cascade')
 					->onUpdate('cascade');
 
 			$table->foreign('type_article_id')
 					->references('id')
-					->on('commentaires')
+					->on('type_articles')
 					->onDelete('cascade')
 					->onUpdate('cascade');
 
@@ -142,6 +142,22 @@ class AddContraintesTable extends Migration
 					->onDelete('cascade')
 					->onUpdate('cascade');
 		});
+
+		//table evenements
+		Schema::table('evenements', function (Blueprint $table) {
+			$table->foreign('type_evenement_id')
+					->references('id')
+					->on('type_evenements')
+					->onDelete('cascade')
+					->onUpdate('cascade');
+
+			$table->foreign('package_id')
+					->references('id')
+					->on('packages')
+					->onDelete('cascade')
+					->onUpdate('cascade');
+		});
+
 
 		//table factures
 		Schema::table('factures', function (Blueprint $table) {
@@ -206,7 +222,7 @@ class AddContraintesTable extends Migration
 
 		Schema::table('articles', function (Blueprint $table) {
 			$table->dropForeign('articles_user_id_foreign');
-			$table->dropForeign('articles_commentaire_id_foreign');
+			$table->dropForeign('articles_remarque_id_foreign');
 			$table->dropForeign('articles_type_article_id_foreign');
 			$table->dropForeign('articles_categorie_article_id_foreign');
 		});
@@ -246,7 +262,12 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('louers_article_id_foreign');
 		});
 
-		Schema::table('entrees', function (Blueprint $table) {
+		Schema::table('evenements', function (Blueprint $table) {
+			$table->dropForeign('evenements_type_evenement_id_foreign');
+			$table->dropForeign('evenements_package_id_foreign');
+		});
+
+    Schema::table('entrees', function (Blueprint $table) {
 			$table->dropForeign('entrees_user_id_foreign');
 			$table->dropForeign('entrees_article_id_foreign');
 			$table->dropForeign('entrees_fournisseur_id_foreign');

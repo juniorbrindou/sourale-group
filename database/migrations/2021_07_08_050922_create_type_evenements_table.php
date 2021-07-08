@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateTypeEvenementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,14 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('type_evenements', function (Blueprint $table) {
             $table->id();
             $table->string('code')->nullable();
             $table->string('libelle');
             $table->string('description')->nullable();
-            $table->integer('caution')->nullable();
 
-
-            $table->integer('user_id')->unsigned();
-            $table->integer('type_article_id')->unsigned()->nullable();
-            $table->integer('remarque_id')->unsigned()->nullable();
-            $table->integer('categorie_article_id')->unsigned()->nullable();
             $table->timestamps();
-            // Vue : qte_article_en_stock,
-            // champs ambigue : prix moyen 
-
+            // type_event(code libelle description)
         });
     }
 
@@ -39,6 +31,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('type_evenements');
     }
 }
