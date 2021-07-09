@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('contact2')->nullable();
             $table->string('adresse')->nullable();
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->nullable()->unsigned();
             $table->timestamps();
         });
     }
