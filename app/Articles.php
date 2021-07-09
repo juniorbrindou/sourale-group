@@ -12,6 +12,6 @@ class Articles extends Model
      * @var array
      */
     protected $fillable = [
-        'nom', 'code', 'qte', 'caution', 'description', 'couleur', 'taille', 'prix', 'reduction', 'prix_reduit', 'user_id', 'autre_detail_id', 'commentaire_id', 'categorie_article_id',
+        'nom', 'code', 'qte', 'caution', 'description', 'couleur', 'taille', 'prix', 'reduction', 'prix_reduit', 'user_id', 'autre_detail_id', 'categorie_article_id',
     ];
 }

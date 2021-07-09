@@ -180,14 +180,7 @@ class AddContraintesTable extends Migration
 					->onUpdate('cascade');
 		});
 
-		//table commentaires
-		Schema::table('commentaires', function (Blueprint $table) {
-			$table->foreign('user_id')
-					->references('id')
-					->on('users')
-					->onDelete('cascade')
-					->onUpdate('cascade');
-		});
+		
 
 		//table louers
 		Schema::table('louers', function (Blueprint $table) {
@@ -242,9 +235,6 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('commandes_facture_id_foreign');
 		});
 
-		Schema::table('commentaires', function (Blueprint $table) {
-			$table->dropForeign('commentaires_user_id_foreign');
-		});
 
 		Schema::table('factures', function (Blueprint $table) {
 			$table->dropForeign('factures_user_id_foreign');

@@ -15,15 +15,9 @@ class CreateTypeArticlesTable extends Migration
     {
         Schema::create('type_articles', function (Blueprint $table) {
             $table->id();
-            
-            $table->string('code')
-                    ->nullable();
-                    
-			$table->string('libelle')
-                    ->unique();
-
-			$table->string('description')
-                    ->nullable();
+            $table->string('code')->nullable();
+			$table->string('libelle')->unique();
+			$table->string('description')->nullable();
                     
             $table->timestamps();
         });

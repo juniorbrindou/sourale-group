@@ -21,8 +21,8 @@ class CreateEvenementsTable extends Migration
             $table->string('lieu')->nullable();
             $table->string('description')->nullable();
             $table->date('date_evenement')->nullable();
-			      $table->integer('type_evenement_id')->unsigned();
-			      $table->integer('package_id')->unsigned();
+            $table->integer('type_evenement_id')->nullable()->unsigned();
+			$table->integer('package_id')->nullable()->unsigned();
             $table->timestamps();
             // evenement(code libelle nbr_personne #package_id lieu date_evenement description #type_event_id)
         });
