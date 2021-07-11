@@ -11268,7 +11268,7 @@
 		 *      } );
 		 *    } )
 		 */
-		"iDisplayLength": 10,
+		"iDisplayLength": 8,
 	
 	
 		/**
@@ -11540,7 +11540,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Affichage de _START_ à _END_ sur _TOTAL_ lignes",
 	
 	
 			/**
@@ -13711,11 +13711,11 @@
 		"iDrawError": -1,
 	
 		/**
-		 * Paging display length
+		 * Nombre de ligne
 		 *  @type int
 		 *  @default 10
 		 */
-		"_iDisplayLength": 10,
+		"_iDisplayLength": 8,
 	
 		/**
 		 * Paging start point - aiDisplay index

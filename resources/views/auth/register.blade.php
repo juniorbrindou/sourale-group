@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
 	<title>{{config('app.name')}} | Nouveau compte</title>
 
 	<!-- Google Font: Source Sans Pro -->
@@ -26,7 +27,7 @@
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body" style="background-color: rgba(253, 253, 255, 0.299)">
-				<p class="login-box-msg">Connectez vous</p>
+				<p class="login-box-msg">Nouveau Compte</p>
 
 
 				<form method="POST" action="{{ route('register') }}">

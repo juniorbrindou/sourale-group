@@ -2,41 +2,31 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-// old
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('dashboard', function () {
-//     return view('dashboard');
-// });
-// old
-
-// from branch main
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
-
-Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
-// from branch main
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        
+        Route::get('/', 'DashboardController@dashboard')->name('dashboard');
+        Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('articles', 'ArticleController');
+        Route::resource('utilisateurs', 'UserController');
 
-Route::resource('articles','ArticleController');
-// Route::resource('articles','ArticleController')->middleware('auth');
+        // Parametrage
+        Route::resource('categorieArticles', 'CategorieArticleController');
+        Route::resource('clients', 'ClientController');
+        Route::resource('fournisseurs', 'FournisseursController');
+        Route::resource('typeArticles', 'TypeArticlesController');
+        Route::resource('typeEvenements', 'TypeEvenementsController');
+        Route::resource('typePackages', 'TypePackageController');
+        Route::resource('users', 'UserController');
 
-Route::resource('utilisateurs','UserController');
+        Route::get('facture',function(){
+            return view('facture.index');
+        });
 
-Route::resource('clients','ClientController');
+    }
+);

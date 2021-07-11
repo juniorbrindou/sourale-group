@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Categorie_articles;
 use Illuminate\Http\Request;
-use App\User;
-class UserController extends Controller
+
+class CategorieArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $categorieArticles = Categorie_articles::all();
+        return view('parametrage.categorieArticles.index', compact('categorieArticles'));
     }
 
     /**
@@ -23,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('parametrage.categorieArticles.create');
     }
 
     /**
@@ -45,8 +47,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::whereId($id)->first();
-        return view('users.profile', compact('user'));
+        //
     }
 
     /**

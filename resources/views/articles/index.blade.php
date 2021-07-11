@@ -4,19 +4,20 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Souralè-Group | DataTables</title>
+	<link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
+	<title>Souralè-Group | Articles</title>
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
 	<!-- DataTables -->
-	<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-	<link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+	<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+	<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+	<link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -181,20 +182,11 @@
 										</tbody>
 										<tfoot>
 											<tr>
-												<th>Rendering engine</th>
-												<th>Browser</th>
+												<th>Code Article</th>
+												<th>Nom de l'article</th>
 												<th>Quantité</th>
-												<th>Engine version</th>
+												<th>Caution</th>
 												<th>
-													<button type="button" class="btn btn-primary btn-md">
-														<i class="fa fa-eye"></i>
-														voir
-													</button>
-
-													<button type="button" class="btn btn-danger btn-md">
-														<i class="fa fa-trash"></i>
-														Suprimer
-													</button>
 												</th>
 											</tr>
 										</tfoot>

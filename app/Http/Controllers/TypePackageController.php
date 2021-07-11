@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Type_packages;
 use Illuminate\Http\Request;
-use App\User;
-class UserController extends Controller
+
+class TypePackageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $typePackages = Type_packages::all();
+        return view('parametrage.typePackages.index', compact('typePackages'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,8 +50,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::whereId($id)->first();
-        return view('users.profile', compact('user'));
+        //
     }
 
     /**
