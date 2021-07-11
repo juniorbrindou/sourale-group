@@ -7,15 +7,7 @@
 	<link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
 	<title>{{ config('app.name') }}</title>
 
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.css')}}">
-	<!-- overlayScrollbars -->
-	<link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="{{asset('dist/css/adminlte.css')}}">
+	@stack('styles')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -71,32 +63,7 @@
 	<!-- ./wrapper -->
 
 	<!-- REQUIRED SCRIPTS -->
-	<!-- jQuery -->
-	<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-	<!-- Bootstrap -->
-	<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-	<!-- overlayScrollbars -->
-	<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-	<!-- AdminLTE App -->
-	<script src="{{asset('dist/js/adminlte.js')}}"></script>
-
-	<!-- PAGE PLUGINS -->
-	<!-- jQuery Mapael -->
-	<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-	<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
-	<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-	<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
-
-	<script src="{{asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
-	
-	<!-- ChartJS -->
-	<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-
-	<!-- AdminLTE for demo purposes -->
-	<script src="{{asset('dist/js/demo.js')}}"></script>
-	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
-
+	@stack('scripts')
 
 </body>
 </html>

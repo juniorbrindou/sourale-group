@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Clients;
+use App\Type_packages;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class TypePackageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,12 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Clients::all();
-        return view('parametrage.clients.index', compact('clients'));
+        $typePackages = Type_packages::all();
+        return view('parametrage.typePackages.index', compact('typePackages'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.

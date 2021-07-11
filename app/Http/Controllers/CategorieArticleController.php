@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Clients;
+use App\Categorie_articles;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class CategorieArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Clients::all();
-        return view('parametrage.clients.index', compact('clients'));
+        $categorieArticles = Categorie_articles::all();
+        return view('parametrage.categorieArticles.index', compact('categorieArticles'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('parametrage.categorieArticles.create');
     }
 
     /**
