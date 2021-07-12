@@ -28,8 +28,11 @@ class TypePackageController extends Controller
      */
     public function create()
     {
-        //
+        return view('parametrage.clients.create');
     }
+
+    
+
 
     /**
      * Store a newly created resource in storage.
@@ -84,6 +87,8 @@ class TypePackageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Type_packages::destroy($id);
+        return back()->with('success', 'Action Effectuée!');
     }
 }
+

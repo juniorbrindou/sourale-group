@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Clients;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -26,6 +27,7 @@ class ClientController extends Controller
     public function create()
     {
         //
+        return view('parametrage.clients.create');
     }
 
     /**
@@ -36,7 +38,22 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => 'required|string|min:1',
+            'prenoms' => 'nullable|min:0',
+            'contact1' => 'nullable|min:0',
+            'contact2' => 'nullable|min:0',
+            'addresse' => 'nullable|min:0',
+        ],[
+            'nom.required' => 'Le nom du client est obligatoire'
+        ]);
+        Clients::create(array_merge($request->all(),['user_id' => Auth::id()]));
+
+        if (isset($request->encore)) {
+            return back()->with('success', 'Action Effectuée!');
+        }else{
+            return redirect()->route('clients.index')->with('success', 'Action Effectuée!');
+        }
     }
 
     /**
@@ -81,6 +98,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Clients::destroy($id);
+        return back()->with('success', 'Action Effectuée!');
     }
 }

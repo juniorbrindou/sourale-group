@@ -12,7 +12,7 @@ class Categorie_articles extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'nom', 'code'
+		'code', 'libelle', 'description'
 	];
 
 }
