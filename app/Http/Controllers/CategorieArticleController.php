@@ -73,7 +73,9 @@ class CategorieArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorieArticle = Categorie_articles::whereId($id)->find(); 
+        dd($categorieArticle);
+        return view('parametrage.categorieArticles.edit',compact('categorieArticle'));
     }
 
     /**

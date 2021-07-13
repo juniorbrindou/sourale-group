@@ -6,59 +6,49 @@
 	<div class="container-fluid">
 		<div class="row">
 			<!-- left column -->
-			<div class="col-md-12">
+			<div class="col-md-12 ">
 				<!-- general form elements -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Nouveau type de package</h3>
+						<h3 class="card-title">Nouvelle Catégorie</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('typePackages.store')}}">
+					<form method="POST" action="{{ route('categorieArticles.store')}}">
 						@csrf
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">libéllé *</label>
+										<label for="libelle">Nom de la catégorie</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ old('libelle') }}" name="libelle" id="code"
-											placeholder="Entrer le libelle" autofocus>
+											value="{{ old('libelle') }}" name="libelle" id="libelle"
+											placeholder="Entrer le nom de la catégorie">
 									</div>
 									@error('libelle')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-										role="alert">
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
-								</div>
-
-								<div class="col-md-6">
-
-									<div class="form-group">
-										<label for="addresse">Description</label>
-										<textarea class="form-control" rows="3" name="description"
-											placeholder="Ecrivez ici ..."></textarea>
-									</div>
-
 								</div>
 							</div>
 
 
 							<div class="row">
-
-								<div class="col-md-4">
-									{{-- libelle --}}
+								{{-- description --}}
+								<div class="col-md-12">
 									<div class="form-group">
-										<label for="switch">Enregistrer Encore</label>
-										<input type="checkbox" name="encore" checked data-bootstrap-switch
-											data-off-color="danger" data-on-color="success">
+										<label>Ajouter une description à l'article</label>
+										<textarea class="form-control @error('description') is-invalid @enderror"
+											name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
 									</div>
 								</div>
-
 							</div>
+							<label for="switch">Enregistrer Encore</label>
+							<input type="checkbox" name="encore" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+
 						</div>
 						<!-- /.card-body -->
 
