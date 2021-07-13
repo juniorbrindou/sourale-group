@@ -60,7 +60,41 @@ class TypeEvenementsController extends Controller
         }
     }
     
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $typeEvenement = typeEvenements::whereId($id)->find(); 
+        return view('parametrage.typeEvenements.edit',compact('typeEvenement'));
+    }
     
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'libelle.required' =>'Le libéllé est obligatoire'
+        ]);
+        Type_evenements::whereId($id)->update($request->all());
+
+        return redirect()->route('typeEvenements.index')->with('success', 'Action Effectuée!');
+    }
     
     
 

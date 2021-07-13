@@ -14,8 +14,9 @@
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('categorieArticles.store')}}">
+					<form method="POST" action="{{ route('categorieArticles.update', $categorieArticle->id)}}">
 						@csrf
+						@method('UPDATE')
 						<div class="card-body">
 
 							<div class="row">

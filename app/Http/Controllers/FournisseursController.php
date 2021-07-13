@@ -57,15 +57,39 @@ class FournisseursController extends Controller
     }
 
 
+
     /**
-     * Remove the specified resource from storage.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function edit($id)
     {
-        Fournisseurs::destroy($id);
-        return back()->with('success', 'Action Effectuée!');
+        $fournisseur = Fournisseurs::whereId($id)->find(); 
+        return view('parametrage.fournisseurs.edit',compact('fournisseur'));
+    }
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nom' => 'nullable|min:0',
+            'contact' => 'nullable|min:0',
+            'addresse' => 'nullable|min:0',
+        ],[
+            'libelle.required' =>'Le nom  du fournisseur est obligatoire'
+        ]);
+        Fournisseurs::whereId($id)->update($request->all());
+
+        return redirect()->route('fournisseurs.index')->with('success', 'Action Effectuée!');
     }
 }

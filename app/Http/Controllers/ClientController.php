@@ -26,7 +26,6 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
         return view('parametrage.clients.create');
     }
 
@@ -75,7 +74,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Clients::whereId($id)->find(); 
+        return view('parametrage.clients.edit',compact('client'));
     }
 
     /**
@@ -87,7 +87,18 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nom' => 'required|string|min:1',
+            'prenoms' => 'nullable|min:0',
+            'contact1' => 'nullable|min:0',
+            'contact2' => 'nullable|min:0',
+            'addresse' => 'nullable|min:0',
+        ],[
+            'nom.required' => 'Le nom du client est obligatoire'
+        ]);
+        Clients::whereId($id)->update($request->all());
+
+        return redirect()->route('clients.index')->with('success', 'Action Effectuée!');
     }
 
     /**

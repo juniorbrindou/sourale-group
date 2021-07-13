@@ -57,8 +57,43 @@ class TypeArticlesController extends Controller
         }
     }
     
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $typeAticle = TypeAticles::whereId($id)->find(); 
+        return view('parametrage.typeAticles.edit',compact('typeAticle'));
+    }
     
     
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'nom.required' => 'Le libéllé est obligatoire'
+        ]);
+        Type_articles::whereId($id)->update($request->all());
+
+        return redirect()->route('typeAticles.index')->with('success', 'Action Effectuée!');
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
