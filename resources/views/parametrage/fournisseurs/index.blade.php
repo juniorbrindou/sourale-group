@@ -11,7 +11,7 @@
 								<div class="card-header">
 									<h3 class="card-title">Liste des fournisseurs</h3>
 
-									<a href="{{ route('articles.create')}}" class="btn float-right  btn-md btn-success">
+									<a href="{{ route('fournisseurs.create')}}" class="btn float-right  btn-md btn-success">
 										<i class="fa fa-plus-circle"></i>
 										Ajouter
 									</a>
@@ -35,16 +35,20 @@
 													<td>{{ $fournisseur->code }} </td>
 													<td>{{ $fournisseur->nom }} </td>
 													<td>{{ $fournisseur->contact }} </td>
-													<td>{{ $fournisseur->adresse }} </td>
+													<td>{{ $fournisseur->addresse }} </td>
 													<td>
 														<a href="#" class="btn btn-primary btn-md">
 															<i class="fa fa-eye"></i>
 															voir
 														</a>
-														<button type="button" class="btn btn-danger btn-md">
-															<i class="fa fa-trash"></i>
-															Suprimer
-														</button>
+														<form method="POST" style="display: inline" action="{{ route('fournisseurs.destroy', $fournisseur->id ) }}">
+															@csrf
+															@method('DELETE')
+															<button type="submit" class="btn btn-danger btn-md">
+																<i class="fa fa-trash"></i>
+																Suprimer
+															</button>
+														  </form>
 													</td>
 												</tr>
 

@@ -29,6 +29,37 @@ class TypeArticlesController extends Controller
         return view('parametrage.typeArticles.create');
     }
 
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'nom.required' => 'Le libéllé est obligatoire'
+        ]);
+        $data = Type_articles::create($request->all());
+
+        // creation du code
+        $data->update(['code' => 'ART-0'.$data->id]);
+
+        if (isset($request->encore)) {
+            return back()->with('success', 'Action Effectuée!');
+        }else{
+            return redirect()->route('typeArticles.index')->with('success', 'Action Effectuée!');
+        }
+    }
+    
+    
+    
+
     /**
      * Remove the specified resource from storage.
      *

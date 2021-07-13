@@ -6,123 +6,55 @@
 	<div class="container-fluid">
 		<div class="row">
 			<!-- left column -->
-			<div class="col-md-12 ">
+			<div class="col-md-12">
 				<!-- general form elements -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Nouvel Article</h3>
+						<h3 class="card-title">Nouveau type d'article</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('articles.store')}}">
+					<form method="POST" action="{{ route('typeArticles.store')}}">
 						@csrf
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-8 col-xs-12">
-
-									{{-- name --}}
+								<div class="col-md-6">
+									{{-- libelle --}}
 									<div class="form-group">
-										<label for="name">Nom de l'article</label>
-										<input type="text" class="form-control @error('name') is-invalid @enderror"
-											value="{{ old('name') }}" name="name" id="name"
-											placeholder="Entrer le nom de l'article">
+										<label for="libelle">libéllé *</label>
+										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
+											value="{{ old('libelle') }}" name="libelle" id="code"
+											placeholder="Entrer le type de l'article" autofocus>
 									</div>
-									@error('name')
-									<span class="invalid-feedback" role="alert">
+									@error('libelle')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
 								</div>
 
-								{{-- qte --}}
-								<div class="col-md-4 col-xs-12">
+								<div class="col-md-6">
+									
 									<div class="form-group">
-										<label for="qte">Quantité</label>
-										<input type="number" min="0"
-											class="form-control @error('qte') is-invalid @enderror" name="qte" id="qte"
-											placeholder="la quantité de l'article" value="{{ old('qte')}}">
+										<label for="addresse">addresse</label>
+										<textarea class="form-control" rows="3" name="addresse" placeholder="Ecrivez ici ..."></textarea>
 									</div>
-									@error('qte')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
+
+								</div>								
 							</div>
-
-
-
-
 
 
 							<div class="row">
-
-								{{-- caution --}}
-								<div class="col-md-4 col-xs-12">
+								
+								<div class="col-md-4">
+									{{-- libelle --}}
 									<div class="form-group">
-										<label for="caution">Caution de l'article</label>
-										<input type="number" class="form-control @error('caution') is-invalid @enderror"
-											name="caution" id="caution" placeholder="Entrer la caution de l'article"
-											value="{{ old('caution')}}">
-									</div>
-									@error('caution')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-
-								{{-- categorie_article_id --}}
-								<div class="col-md-4 col-xs-12">
-									<div class="form-group">
-										<label>Catégorie de l'article</label>
-										<select class="form-control" name="categorie_article_id">
-											<option value="Luxe">Luxe</option>
-											<option value="Gold">Gold</option>
-											<option value="Argent">Argent</option>
-											<option value="Bois">Bois</option>
-											<option value="Plume">Plume</option>
-											<option value="Plume">Aucun</option>
-										</select>
+									<label for="switch">Enregistrer Encore</label>
+									<input type="checkbox" name="encore" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
 									</div>
 								</div>
 
-								{{-- prix --}}
-								<div class="col-md-4 col-xs-12">
-									<div class="form-group">
-										<label for="prix">Prix</label>
-										<input type="number" min="0"
-											class="form-control @error('prix') is-invalid @enderror"
-											placeholder="le prix de location" value="{{ old('prix')}}" name="prix"
-											id="prix">
-									</div>
-									@error('prix')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-							</div>
-
-							{{-- description --}}
-							<div class="form-group">
-								<label>Ajouter une description à l'article</label>
-								<textarea class="form-control @error('description') is-invalid @enderror"
-									name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
-							</div>
-
-
-							{{-- article_photo --}}
-							<div class="form-group">
-								<label for="exampleInputFile">J'ai une photo de l'article</label>
-								<div class="input-group">
-									<div>
-										<input type="file" accept="image/gif, image/jpeg, image/png"
-											name="article_photo" id="article_photo">
-									</div>
-								</div>
-							</div>
 						</div>
 						<!-- /.card-body -->
 
@@ -134,10 +66,206 @@
 				<!-- /.card -->
 
 			</div>
-			<!--/.col (left) -->
+			<!-- /.col -->
+
+
 		</div>
 		<!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section>
 
 @endsection
+
+@push('styles')
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+<!-- daterange picker -->
+<link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<!-- BS Stepper -->
+<link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
+<!-- dropzonejs -->
+<link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+@endpush
+
+
+@push('scripts')
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="../../plugins/moment/moment.min.js"></script>
+<script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- date-range-picker -->
+<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<!-- BS-Stepper -->
+<script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<!-- dropzonejs -->
+<script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+	$(function () {
+	//Initialize Select2 Elements
+	$('.select2').select2()
+
+	//Initialize Select2 Elements
+	$('.select2bs4').select2({
+	  theme: 'bootstrap4'
+	})
+
+	//Datemask dd/mm/yyyy
+	$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+	//Datemask2 mm/dd/yyyy
+	$('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+	//Money Euro
+	$('[data-mask]').inputmask()
+
+	//Date picker
+	$('#reservationdate').datetimepicker({
+		format: 'L'
+	});
+
+	//Date and time picker
+	$('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+	//Date range picker
+	$('#reservation').daterangepicker()
+	//Date range picker with time picker
+	$('#reservationtime').daterangepicker({
+	  timePicker: true,
+	  timePickerIncrement: 30,
+	  locale: {
+		format: 'MM/DD/YYYY hh:mm A'
+	  }
+	})
+	//Date range as a button
+	$('#daterange-btn').daterangepicker(
+	  {
+		ranges   : {
+		  'Today'       : [moment(), moment()],
+		  'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+		  'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+		  'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+		  'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+		  'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+		},
+		startDate: moment().subtract(29, 'days'),
+		endDate  : moment()
+	  },
+	  function (start, end) {
+		$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+	  }
+	)
+
+	//Timepicker
+	$('#timepicker').datetimepicker({
+	  format: 'LT'
+	})
+
+	//Bootstrap Duallistbox
+	$('.duallistbox').bootstrapDualListbox()
+
+	//Colorpicker
+	$('.my-colorpicker1').colorpicker()
+	//color picker with addon
+	$('.my-colorpicker2').colorpicker()
+
+	$('.my-colorpicker2').on('colorpickerChange', function(event) {
+	  $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+	})
+
+	$("input[data-bootstrap-switch]").each(function(){
+	  $(this).bootstrapSwitch('state', $(this).prop('checked'));
+	})
+
+  })
+  // BS-Stepper Init
+  document.addEventListener('DOMContentLoaded', function () {
+	window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+  })
+
+  // DropzoneJS Demo Code Start
+  Dropzone.autoDiscover = false
+
+  // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+  var previewNode = document.querySelector("#template")
+  previewNode.id = ""
+  var previewTemplate = previewNode.parentNode.innerHTML
+  previewNode.parentNode.removeChild(previewNode)
+
+  var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+	url: "/target-url", // Set the url
+	thumbnailWidth: 80,
+	thumbnailHeight: 80,
+	parallelUploads: 20,
+	previewTemplate: previewTemplate,
+	autoQueue: false, // Make sure the files aren't queued until manually added
+	previewsContainer: "#previews", // Define the container to display the previews
+	clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+  })
+
+  myDropzone.on("addedfile", function(file) {
+	// Hookup the start button
+	file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+  })
+
+  // Update the total progress bar
+  myDropzone.on("totaluploadprogress", function(progress) {
+	document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+  })
+
+  myDropzone.on("sending", function(file) {
+	// Show the total progress bar when upload starts
+	document.querySelector("#total-progress").style.opacity = "1"
+	// And disable the start button
+	file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+  })
+
+  // Hide the total progress bar when nothing's uploading anymore
+  myDropzone.on("queuecomplete", function(progress) {
+	document.querySelector("#total-progress").style.opacity = "0"
+  })
+
+  // Setup the buttons for all transfers
+  // The "add files" button doesn't need to be setup because the config
+  // `clickable` has already been specified.
+  document.querySelector("#actions .start").onclick = function() {
+	myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+  }
+  document.querySelector("#actions .cancel").onclick = function() {
+	myDropzone.removeAllFiles(true)
+  }
+  // DropzoneJS Demo Code End
+</script>
+@endpush

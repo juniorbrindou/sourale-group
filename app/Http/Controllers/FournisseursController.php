@@ -40,7 +40,7 @@ class FournisseursController extends Controller
         $request->validate([
             'nom' => 'nullable|min:0',
             'contact' => 'nullable|min:0',
-            'adresse' => 'nullable|min:0',
+            'addresse' => 'nullable|min:0',
         ],[
             'libelle.required' =>'Le nom  du fournisseur est obligatoire'
         ]);
@@ -52,7 +52,7 @@ class FournisseursController extends Controller
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
         }else{
-            return redirect()->route('categorieArticles.index')->with('success', 'Action Effectuée!');
+            return redirect()->route('fournisseurs.index')->with('success', 'Action Effectuée!');
         }
     }
 

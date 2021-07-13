@@ -128,7 +128,7 @@
 				<li class="nav-item">
 					<a href="{{route('typeEvenements.index')}}" class="nav-link {{ request()->is('typeEvenements*') ? 'active' : ''}}">
 						<i class="far fa-circle nav-icon"></i>
-						<p>Type d'événements</p>
+						<p>Catégories d'événements</p>
 					</a>
 				</li>
 
