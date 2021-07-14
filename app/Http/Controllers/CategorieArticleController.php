@@ -73,7 +73,7 @@ class CategorieArticleController extends Controller
      */
     public function edit($id)
     {
-        $categorieArticle = Categorie_articles::whereId($id)->find(); 
+        $categorieArticle = Categorie_articles::whereId($id)->first(); 
         return view('parametrage.categorieArticles.edit',compact('categorieArticle'));
     }
 
@@ -93,7 +93,10 @@ class CategorieArticleController extends Controller
             'libelle.required' =>'Le nom  de la catégorie est obligatoire'
         ]);
 
-        Categorie_articles::whereId($id)->update($request->all());
+        Categorie_articles::whereId($id)->update([
+            'libelle' => $request->libelle,
+            'description' => $request->description,
+        ]);
 
         return redirect()->route('categorieArticles.index')->with('success', 'Action Effectuée!');
     }

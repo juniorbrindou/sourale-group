@@ -10,11 +10,11 @@
 				<!-- general form elements -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Modification Catégorie : <b>{{ $categorieArticle->libelle }}</b> </h3>
+						<h3 class="card-title">Modification Catégorie : <b>{{ $typeEvenement->libelle }}</b> </h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('categorieArticles.update', $categorieArticle->id)}}">
+					<form method="POST" action="{{ route('typeEvenements.update', $typeEvenement->id)}}">
 						@csrf
 						@method('PATCH')
 						<div class="card-body">
@@ -23,9 +23,9 @@
 								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Nom de la catégorie</label>
+										<label for="libelle">Libéllé</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ $categorieArticle->libelle }}" name="libelle" id="libelle">
+											value="{{ $typeEvenement->libelle }}" name="libelle" id="libelle">
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
@@ -40,9 +40,9 @@
 								{{-- description --}}
 								<div class="col-md-12">
 									<div class="form-group">
-										<label>Ajouter une description à l'article</label>
+										<label>Ajouter une description</label>
 										<textarea class="form-control @error('description') is-invalid @enderror"
-											name="description" rows="3" placeholder="Ecrivez ici...">{{ $categorieArticle->description }}</textarea>
+											name="description" rows="3" placeholder="Ecrivez ici...">{{ $typeEvenement->description }}</textarea>
 									</div>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 						<div class="card-footer">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<a href="{{ route('categorieArticles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
+									<a href="{{ route('typeEvenements.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>

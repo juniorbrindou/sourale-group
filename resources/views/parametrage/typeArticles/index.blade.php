@@ -36,19 +36,22 @@
 									<td>{{ isset($typeArticle->description) ? $typeArticle->description : 'Aucune description' }}
 									</td>
 									<td>
-										<a href="#" class="btn btn-primary btn-md">
+										<button class="btn btn-warning btn-md" data-toggle="modal"
+											data-target="#modal-see-{{$typeArticle->id}}">
 											<i class="fa fa-eye"></i>
-											voir
+										</button>
+										<a href="{{ route('typeArticles.edit', $typeArticle->id) }}" title="Modiffier"
+											class="btn btn-primary btn-md">
+											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
 											data-target="#modal-danger">
 											<i class="fa fa-trash"></i>
-											Suprimer
 										</button>
 									</td>
 								</tr>
 
-								<div class="modal fade" id="modal-danger">
+								<div class="modal fade" id="modal-danger-{{$typeArticle->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -72,6 +75,40 @@
 													<button type="submit" class="btn btn-outline-danger">Je
 														Confirme</button>
 												</form>
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+
+
+
+								<div class="modal fade" id="modal-see-{{$typeArticle->id}}">
+									<div class="modal-dialog">
+										<div class="modal-content bg-default">
+											<div class="modal-header">
+												<p>Détail</p>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+
+											<div class="modal-body">
+												<p>
+													<b>LIBELLE : </b>{{ $typeArticle->libelle }}
+												</p>
+												<hr>
+												<p>
+													<b>DESCRIPTION : </b>{{ $typeArticle->description }}
+												</p>
+											</div>
+
+											<div class="modal-footer justify-content-between">
+												<button type="button" class="btn btn-primary btn-block"
+													data-dismiss="modal">Fermer</button>
 											</div>
 										</div>
 										<!-- /.modal-content -->

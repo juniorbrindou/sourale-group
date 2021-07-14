@@ -66,7 +66,7 @@ class FournisseursController extends Controller
      */
     public function edit($id)
     {
-        $fournisseur = Fournisseurs::whereId($id)->find(); 
+        $fournisseur = Fournisseurs::whereId($id)->first(); 
         return view('parametrage.fournisseurs.edit',compact('fournisseur'));
     }
 

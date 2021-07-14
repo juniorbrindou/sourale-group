@@ -67,8 +67,8 @@ class TypeArticlesController extends Controller
      */
     public function edit($id)
     {
-        $typeAticle = TypeAticles::whereId($id)->find(); 
-        return view('parametrage.typeAticles.edit',compact('typeAticle'));
+        $typeArticle = Type_articles::whereId($id)->first(); 
+        return view('parametrage.typeArticles.edit',compact('typeArticle'));
     }
     
     
@@ -88,9 +88,12 @@ class TypeArticlesController extends Controller
         ],[
             'nom.required' => 'Le libéllé est obligatoire'
         ]);
-        Type_articles::whereId($id)->update($request->all());
+        Type_articles::whereId($id)->update([
+            'libelle'=> $request->libelle,
+            'description'=> $request->description,
+        ]);
 
-        return redirect()->route('typeAticles.index')->with('success', 'Action Effectuée!');
+        return redirect()->route('typeArticles.index')->with('success', 'Action Effectuée!');
     }
 
 

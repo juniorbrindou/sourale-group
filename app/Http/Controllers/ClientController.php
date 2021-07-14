@@ -74,7 +74,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Clients::whereId($id)->find(); 
+        $client = Clients::whereId($id)->first(); 
         return view('parametrage.clients.edit',compact('client'));
     }
 

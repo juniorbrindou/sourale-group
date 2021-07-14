@@ -70,7 +70,7 @@ class TypeEvenementsController extends Controller
      */
     public function edit($id)
     {
-        $typeEvenement = typeEvenements::whereId($id)->find(); 
+        $typeEvenement = type_evenements::whereId($id)->first(); 
         return view('parametrage.typeEvenements.edit',compact('typeEvenement'));
     }
     
@@ -91,7 +91,10 @@ class TypeEvenementsController extends Controller
         ],[
             'libelle.required' =>'Le libéllé est obligatoire'
         ]);
-        Type_evenements::whereId($id)->update($request->all());
+        Type_evenements::whereId($id)->update([
+            'libelle'=> $request->libelle,
+            'description'=> $request->description,
+        ]);
 
         return redirect()->route('typeEvenements.index')->with('success', 'Action Effectuée!');
     }

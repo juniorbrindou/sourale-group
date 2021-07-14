@@ -79,7 +79,7 @@ class TypePackageController extends Controller
      */
     public function edit($id)
     {
-        $typePackage = TypePackages::whereId($id)->find(); 
+        $typePackage = Type_packages::whereId($id)->first(); 
         return view('parametrage.typePackages.edit',compact('typePackage'));
     }
 
@@ -98,7 +98,10 @@ class TypePackageController extends Controller
         ],[
             'libelle.required' =>'Le libéllé est obligatoire'
         ]);
-        Type_packages::whereId($id)->update($request->all());
+        Type_packages::whereId($id)->update([
+            'libelle'=> $request->libelle,
+            'description'=> $request->description,
+        ]);
 
         return redirect()->route('typePackages.index')->with('success', 'Action Effectuée!');
     }

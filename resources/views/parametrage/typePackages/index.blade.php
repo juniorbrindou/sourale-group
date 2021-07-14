@@ -36,14 +36,17 @@
 									<td>{{ isset($typePackage->description) ? $typePackage->description : 'Aucune description' }}
 									</td>
 									<td>
-										<a href="#" class="btn btn-primary btn-md">
+										<button class="btn btn-warning btn-md" data-toggle="modal"
+											data-target="#modal-see-{{$typePackage->id}}">
 											<i class="fa fa-eye"></i>
-											voir
+										</button>
+										<a href="{{ route('typePackages.edit', $typePackage->id) }}" title="Modiffier"
+											class="btn btn-primary btn-md">
+											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
 											data-target="#modal-danger">
 											<i class="fa fa-trash"></i>
-											Suprimer
 										</button>
 									</td>
 								</tr>
@@ -73,6 +76,40 @@
 													<button type="submit" class="btn btn-outline-danger">Je
 														Confirme</button>
 												</form>
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+
+
+
+								<div class="modal fade" id="modal-see-{{$typePackage->id}}">
+									<div class="modal-dialog">
+										<div class="modal-content bg-default">
+											<div class="modal-header">
+												<p>Détail</p>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+
+											<div class="modal-body">
+												<p>
+													<b>LIBELLE : </b>{{ $typePackage->libelle }}
+												</p>
+												<hr>
+												<p>
+													<b>DESCRIPTION : </b>{{ $typePackage->description }}
+												</p>
+											</div>
+
+											<div class="modal-footer justify-content-between">
+												<button type="button" class="btn btn-primary btn-block"
+													data-dismiss="modal">Fermer</button>
 											</div>
 										</div>
 										<!-- /.modal-content -->
