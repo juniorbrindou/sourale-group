@@ -35,7 +35,7 @@
 									<td>{{ $fournisseur->code }} </td>
 									<td>{{ $fournisseur->nom }} </td>
 									<td>{{ $fournisseur->contact }} </td>
-									<td>{{ $fournisseur->addresse }} </td>
+									<td>{{ $fournisseur->adresse }} </td>
 									<td>
 										<button class="btn btn-warning btn-md" data-toggle="modal"
 											data-target="#modal-see-{{$fournisseur->id}}">
@@ -64,7 +64,7 @@
 											</div>
 											<div class="modal-body">
 												<p class="text-danger">Voulez vous vraiment supprimer le fournisseur
-													<b>{{ $fournisseur->libelle }}</b></p>
+													<b>{{ $fournisseur->nom }}</b></p>
 											</div>
 											<div class="modal-footer justify-content-between">
 												<button type="button" class="btn btn-primary"
@@ -99,6 +99,10 @@
 
 											<div class="modal-body">
 												<p>
+													<b>CODE : </b>{{ $fournisseur->code }}
+												</p>
+												<hr>
+												<p>
 													<b>NOM : </b>{{ $fournisseur->nom }}
 												</p>
 												<hr>
@@ -107,7 +111,7 @@
 												</p>
 												<hr>
 												<p>
-													<b>ADRESSE : </b>{{ $fournisseur->addresse }}
+													<b>ADRESSE : </b>{{ $fournisseur->adresse }}
 												</p>
 											</div>
 

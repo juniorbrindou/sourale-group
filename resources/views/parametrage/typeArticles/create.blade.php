@@ -37,8 +37,8 @@
 								<div class="col-md-6">
 									
 									<div class="form-group">
-										<label for="addresse">addresse</label>
-										<textarea class="form-control" rows="3" name="addresse" placeholder="Ecrivez ici ..."></textarea>
+										<label for="adresse">adresse</label>
+										<textarea class="form-control" rows="3" name="adresse" placeholder="Ecrivez ici ..."></textarea>
 									</div>
 
 								</div>								

@@ -42,7 +42,7 @@ class ClientController extends Controller
             'prenoms' => 'nullable|min:0',
             'contact1' => 'nullable|min:0',
             'contact2' => 'nullable|min:0',
-            'addresse' => 'nullable|min:0',
+            'adresse' => 'nullable|min:0',
         ],[
             'nom.required' => 'Le nom du client est obligatoire'
         ]);
@@ -92,11 +92,17 @@ class ClientController extends Controller
             'prenoms' => 'nullable|min:0',
             'contact1' => 'nullable|min:0',
             'contact2' => 'nullable|min:0',
-            'addresse' => 'nullable|min:0',
+            'adresse' => 'nullable|min:0',
         ],[
             'nom.required' => 'Le nom du client est obligatoire'
         ]);
-        Clients::whereId($id)->update($request->all());
+        Clients::whereId($id)->update([
+            'nom' => $request->nom,
+            'prenoms' => $request->prenoms,
+            'contact1' => $request->contact1,
+            'contact2' => $request->contact2,
+            'adresse' => $request->adresse,
+        ]);
 
         return redirect()->route('clients.index')->with('success', 'Action Effectuée!');
     }

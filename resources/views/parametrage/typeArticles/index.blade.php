@@ -45,7 +45,7 @@
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger">
+											data-target="#modal-danger-{{$typeArticle->id}}">
 											<i class="fa fa-trash"></i>
 										</button>
 									</td>

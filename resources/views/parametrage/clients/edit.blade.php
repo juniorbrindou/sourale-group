@@ -10,49 +10,89 @@
 				<!-- general form elements -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Modification Catégorie : <b>{{ $categorieArticle->libelle }}</b> </h3>
+						<h3 class="card-title">Modification Client : <b>{{ $client->nom }} {{ $client->prenoms }}</b> </h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('categorieArticles.update', $categorieArticle->id)}}">
+					<form method="POST" action="{{ route('clients.update', $client->id)}}">
 						@csrf
 						@method('PATCH')
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-3">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Nom de la catégorie</label>
-										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ $categorieArticle->libelle }}" name="libelle" id="libelle">
+										<label for="nom">Nom </label>
+										<input type="text" class="form-control @error('nom') is-invalid @enderror"
+											value="{{ $client->nom }}" name="nom" id="nom">
 									</div>
-									@error('libelle')
+									@error('nom')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
 								</div>
+
+							<div class="col-md-9">
+								{{-- libelle --}}
+								<div class="form-group">
+									<label for="prenoms">Prénoms </label>
+									<input type="text" class="form-control @error('prenoms') is-invalid @enderror"
+										value="{{ $client->prenoms }}" name="prenoms" id="prenoms">
+								</div>
+								@error('prenoms')
+								<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Téléphone 1</label>
+				
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fas fa-phone"></i></span>
+										</div>
+										<input type="text" class="form-control" name="contact1" value="{{ old('contact1') }}" data-inputmask='"mask": "(999) 99-99-99-99-99"' name="contact1" data-mask>
+									</div>
+									<!-- /.input group -->
+								</div>
 							</div>
 
-
-							<div class="row">
-								{{-- description --}}
-								<div class="col-md-12">
-									<div class="form-group">
-										<label>Ajouter une description à l'article</label>
-										<textarea class="form-control @error('description') is-invalid @enderror"
-											name="description" rows="3" placeholder="Ecrivez ici...">{{ $categorieArticle->description }}</textarea>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Téléphone 1</label>
+				
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fas fa-phone"></i></span>
+										</div>
+										<input type="text" class="form-control" name="contact2" value="{{ old('contact2') }}" data-inputmask='"mask": "(999) 99-99-99-99-99"' name="contact2" data-mask>
 									</div>
+									<!-- /.input group -->
+								</div>
+							</div>
+
+							{{-- description --}}
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Adresse</label>
+									<textarea class="form-control @error('adresse') is-invalid @enderror"
+										name="adresse" rows="3" placeholder="Ecrivez ici...">{{ $client->adresse }}</textarea>
 								</div>
 							</div>
 						</div>
-						<!-- /.card-body -->
+
 
 						<div class="card-footer">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<a href="{{ route('categorieArticles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
+									<a href="{{ route('clients.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>

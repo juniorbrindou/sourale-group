@@ -38,16 +38,16 @@ class FournisseursController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'nullable|min:0',
+            'nom' => 'required|min:0',
             'contact' => 'nullable|min:0',
-            'addresse' => 'nullable|min:0',
+            'adresse' => 'nullable|min:0',
         ],[
-            'libelle.required' =>'Le nom  du fournisseur est obligatoire'
+            'nom.required' =>'Le nom  du fournisseur est obligatoire'
         ]);
         $data = Fournisseurs::create($request->all());
 
         // creation du code
-        $data->update(['code' => 'cat00'.$data->id]);
+        $data->update(['code' => 'four-0'.$data->id]);
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
@@ -82,14 +82,32 @@ class FournisseursController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nom' => 'nullable|min:0',
+            'nom' => 'required|min:0',
             'contact' => 'nullable|min:0',
-            'addresse' => 'nullable|min:0',
+            'adresse' => 'nullable|min:0',
         ],[
-            'libelle.required' =>'Le nom  du fournisseur est obligatoire'
+            'nom.required' =>'Le nom  du fournisseur est obligatoire'
         ]);
-        Fournisseurs::whereId($id)->update($request->all());
+        Fournisseurs::whereId($id)->update([
+            'nom' => $request->nom,
+            'contact' => $request->contact,
+            'adresse' => $request->adresse,
+        ]);
 
         return redirect()->route('fournisseurs.index')->with('success', 'Action Effectuée!');
+    }
+
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Fournisseurs::destroy($id);
+        return back()->with('success', 'Action Effectuée!');
     }
 }

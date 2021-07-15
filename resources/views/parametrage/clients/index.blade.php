@@ -47,14 +47,14 @@
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger">
+											data-target="#modal-danger-{{$client->id}}">
 											<i class="fa fa-trash"></i>
 											Suprimer
 										</button>
 									</td>
 								</tr>
 
-								<div class="modal fade" id="modal-danger">
+								<div class="modal fade" id="modal-danger-{{$client->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -66,7 +66,7 @@
 											</div>
 											<div class="modal-body">
 												<p class="text-danger">Voulez vous vraiment supprimer le client
-													<b>{{ $client->libelle }}</b></p>
+													<b>{{ $client->nom }} {{ $client->prenoms }}</b></p>
 											</div>
 											<div class="modal-footer justify-content-between">
 												<button type="button" class="btn btn-primary"
