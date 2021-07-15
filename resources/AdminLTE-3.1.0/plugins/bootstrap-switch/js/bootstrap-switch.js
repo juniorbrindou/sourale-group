@@ -84,7 +84,7 @@
       this.$wrapper = $('<div>', {
         class: function _class() {
           var classes = [];
-          classes.push(_this.options.state ? 'on' : 'off');
+          classes.push(_this.options.state ? 'Oui' : 'Non');
           if (_this.options.size) {
             classes.push(_this.options.size);
           }
@@ -771,8 +771,8 @@
     radioAllOff: false,
     onColor: 'primary',
     offColor: 'default',
-    onText: 'ON',
-    offText: 'OFF',
+    onText: 'Oui',
+    offText: 'Non',
     labelText: '&nbsp',
     handleWidth: 'auto',
     labelWidth: 'auto',

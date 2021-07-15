@@ -10,41 +10,25 @@
 				<!-- general form elements -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Nouvel Article</h3>
+						<h3 class="card-title">Modification Catégorie : <b>{{ $typeArticle->libelle }}</b> </h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('articles.store')}}">
+					<form method="POST" action="{{ route('typeArticles.update', $typeArticle->id)}}">
 						@csrf
+						@method('PATCH')
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-8 col-xs-12">
-
+								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Nom de l'article</label>
+										<label for="libelle">Libéllé</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ old('libelle') }}" name="libelle" id="libelle"
-											placeholder="Entrer le nom de l'article">
+											value="{{ $typeArticle->libelle }}" name="libelle" id="libelle">
 									</div>
 									@error('libelle')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-
-								{{-- caution --}}
-								<div class="col-md-4 col-xs-12">
-									<div class="form-group">
-										<label for="caution">Caution de l'article</label>
-										<input type="number" class="form-control @error('caution') is-invalid @enderror"
-											name="caution" id="caution" placeholder="Entrer la caution de l'article"
-											value="{{ old('caution')}}">
-									</div>
-									@error('caution')
-									<span class="invalid-feedback" role="alert">
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
@@ -52,56 +36,13 @@
 							</div>
 
 
-
 							<div class="row">
-								<div class="col-md-3 ">
-									<div class="form-group">
-										<label>Type d'article</label>
-										<select class="form-control select2" style="width: 100%;">
-											<option selected="selected">Alabama</option>
-											<option>Alaska</option>
-											<option>California</option>
-											<option>Delaware</option>
-											<option>Tennessee</option>
-											<option>Texas</option>
-											<option>Washington</option>
-										</select>
-									</div>
-									<!-- /.form-group -->
-								</div>
-
-								{{-- categorie_article_id --}}
-								<div class="col-md-3 ">
-									<div class="form-group">
-										<label>Catégorie d'article</label>
-										<select class="form-control select2" style="width: 100%;" name="categorie_article_id">
-											<option value="Luxe">Luxe</option>
-											<option value="Gold">Gold</option>
-											<option value="Argent">Argent</option>
-											<option value="Bois">Bois</option>
-											<option value="Plume">Plume</option>
-											<option value="Plume">Aucun</option>
-										</select>
-									</div>
-								</div>
-
 								{{-- description --}}
-								<div class="col-md-6 ">
+								<div class="col-md-12">
 									<div class="form-group">
 										<label>Ajouter une description à l'article</label>
 										<textarea class="form-control @error('description') is-invalid @enderror"
-											name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
-									</div>
-								</div>
-
-
-							{{-- article_photo --}}
-							<div class="form-group">
-								<label for="exampleInputFile">J'ai une photo de l'article</label>
-								<div class="input-group">
-									<div>
-										<input type="file" accept="image/gif, image/jpeg, image/png"
-											name="article_photo" id="article_photo">
+											name="description" rows="3" placeholder="Ecrivez ici...">{{ $typeArticle->description }}</textarea>
 									</div>
 								</div>
 							</div>
@@ -109,7 +50,14 @@
 						<!-- /.card-body -->
 
 						<div class="card-footer">
-							<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<a href="{{ route('typeArticles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -174,7 +122,7 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Bootstrap Switch -->
-<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
 <!-- BS-Stepper -->
 <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- dropzonejs -->

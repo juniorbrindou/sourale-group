@@ -19,7 +19,7 @@ class FournisseurSeeder extends Seeder
 				'code' => $faker->name(),
 				'nom' => $faker->lastName(),
 				'contact' => $faker->phoneNumber(),
-				'addresse' => $faker->streetName(),
+				'adresse' => $faker->streetName(),
 			]);
 		}
     }

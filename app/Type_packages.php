@@ -12,6 +12,6 @@ class Type_packages extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'nom', 'code'
+		'code', 'libelle', 'description',
 	];
 }

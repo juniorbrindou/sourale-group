@@ -36,7 +36,22 @@ class CategorieArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'libelle.required' =>'Le nom  de la catégorie est obligatoire'
+        ]);
+        $data = Categorie_articles::create($request->all());
+
+        // creation du code
+        $data->update(['code' => 'cat00'.$data->id]);
+
+        if (isset($request->encore)) {
+            return back()->with('success', 'Action Effectuée!');
+        }else{
+            return redirect()->route('categorieArticles.index')->with('success', 'Action Effectuée!');
+        }
     }
 
     /**
@@ -58,7 +73,8 @@ class CategorieArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorieArticle = Categorie_articles::whereId($id)->first(); 
+        return view('parametrage.categorieArticles.edit',compact('categorieArticle'));
     }
 
     /**
@@ -70,7 +86,19 @@ class CategorieArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'libelle.required' =>'Le nom  de la catégorie est obligatoire'
+        ]);
+
+        Categorie_articles::whereId($id)->update([
+            'libelle' => $request->libelle,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('categorieArticles.index')->with('success', 'Action Effectuée!');
     }
 
     /**
@@ -81,6 +109,7 @@ class CategorieArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categorie_articles::destroy($id);
+        return back()->with('success', 'Action Effectuée!');
     }
 }

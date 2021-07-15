@@ -25,9 +25,9 @@ class CreateLouersTable extends Migration
 
             $table->integer('user_id')->unsigned();
             $table->integer('article_id')->unsigned();
+            $table->integer('evenement_id')->unsigned();
 
             $table->timestamps();
-            // louer(#article_id qte_loue date_location date_retour qte_retour)
         });
     }
 

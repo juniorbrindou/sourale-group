@@ -18,7 +18,7 @@ class CreateFournisseursTable extends Migration
             $table->string('code')->nullable();
 			$table->string('nom');
 			$table->string('contact')->nullable();
-			$table->string('addresse')->nullable();
+			$table->string('adresse')->nullable();
 
             $table->timestamps();
         });

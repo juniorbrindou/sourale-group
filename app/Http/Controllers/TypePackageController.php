@@ -28,8 +28,11 @@ class TypePackageController extends Controller
      */
     public function create()
     {
-        //
+        return view('parametrage.typePackages.create');
     }
+
+    
+
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +42,22 @@ class TypePackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'libelle.required' =>'Le libéllé est obligatoire'
+        ]);
+        $data = Type_packages::create($request->all());
+
+        // creation du code
+        $data->update(['code' => 'PACK-0'.$data->id]);
+
+        if (isset($request->encore)) {
+            return back()->with('success', 'Action Effectuée!');
+        }else{
+            return redirect()->route('typePackages.index')->with('success', 'Action Effectuée!');
+        }
     }
 
     /**
@@ -61,7 +79,8 @@ class TypePackageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $typePackage = Type_packages::whereId($id)->first(); 
+        return view('parametrage.typePackages.edit',compact('typePackage'));
     }
 
     /**
@@ -73,7 +92,18 @@ class TypePackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'libelle.required' =>'Le libéllé est obligatoire'
+        ]);
+        Type_packages::whereId($id)->update([
+            'libelle'=> $request->libelle,
+            'description'=> $request->description,
+        ]);
+
+        return redirect()->route('typePackages.index')->with('success', 'Action Effectuée!');
     }
 
     /**
@@ -84,6 +114,8 @@ class TypePackageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Type_packages::destroy($id);
+        return back()->with('success', 'Action Effectuée!');
     }
 }
+

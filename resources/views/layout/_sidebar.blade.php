@@ -128,7 +128,7 @@
 				<li class="nav-item">
 					<a href="{{route('typeEvenements.index')}}" class="nav-link {{ request()->is('typeEvenements*') ? 'active' : ''}}">
 						<i class="far fa-circle nav-icon"></i>
-						<p>Type d'articles</p>
+						<p>Catégories d'événements</p>
 					</a>
 				</li>
 
@@ -143,7 +143,7 @@
 				{{-- users --}}
 				<li class="nav-item">
 					<a href="{{route('users.index')}}" class="nav-link {{ request()->is('users*') ? 'active' : ''}}">
-						<i class="fas fa-users nav-icon"></i>
+						<i class="far fa-circle nav-icon"></i>
 						<p>le personnel</p>
 					</a>
 				</li>

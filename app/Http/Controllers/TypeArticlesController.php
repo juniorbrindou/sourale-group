@@ -19,5 +19,94 @@ class TypeArticlesController extends Controller
         return view('parametrage.typeArticles.index', compact('typeArticles'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('parametrage.typeArticles.create');
+    }
 
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'nom.required' => 'Le libéllé est obligatoire'
+        ]);
+        $data = Type_articles::create($request->all());
+
+        // creation du code
+        $data->update(['code' => 'ART-0'.$data->id]);
+
+        if (isset($request->encore)) {
+            return back()->with('success', 'Action Effectuée!');
+        }else{
+            return redirect()->route('typeArticles.index')->with('success', 'Action Effectuée!');
+        }
+    }
+    
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $typeArticle = Type_articles::whereId($id)->first(); 
+        return view('parametrage.typeArticles.edit',compact('typeArticle'));
+    }
+    
+    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'libelle' => 'required|string|min:1',
+            'description' => 'nullable|min:0',
+        ],[
+            'nom.required' => 'Le libéllé est obligatoire'
+        ]);
+        Type_articles::whereId($id)->update([
+            'libelle'=> $request->libelle,
+            'description'=> $request->description,
+        ]);
+
+        return redirect()->route('typeArticles.index')->with('success', 'Action Effectuée!');
+    }
+
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Type_articles::destroy($id);
+        return back()->with('success', 'Action Effectuée!');
+    }
 }

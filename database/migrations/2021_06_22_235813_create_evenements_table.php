@@ -20,6 +20,7 @@ class CreateEvenementsTable extends Migration
             $table->integer('nbr_personne')->nullable();
             $table->string('lieu')->nullable();
             $table->string('description')->nullable();
+			$table->integer('caution')->nullable();
             $table->date('date_evenement')->nullable();
             $table->integer('type_evenement_id')->nullable()->unsigned();
 			$table->integer('package_id')->nullable()->unsigned();

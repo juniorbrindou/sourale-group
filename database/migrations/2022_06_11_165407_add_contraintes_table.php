@@ -122,26 +122,7 @@ class AddContraintesTable extends Migration
 		});
 
 
-		//table commandes
-		Schema::table('commandes', function (Blueprint $table) {
-			$table->foreign('article_id')
-					->references('id')
-					->on('articles')
-					->onDelete('cascade')
-					->onUpdate('cascade');
-
-			$table->foreign('client_id')
-					->references('id')
-					->on('clients')
-					->onDelete('cascade')
-					->onUpdate('cascade');
-
-			$table->foreign('facture_id')
-					->references('id')
-					->on('factures')
-					->onDelete('cascade')
-					->onUpdate('cascade');
-		});
+		
 
 		//table evenements
 		Schema::table('evenements', function (Blueprint $table) {
@@ -167,11 +148,6 @@ class AddContraintesTable extends Migration
 					->onDelete('cascade')
 					->onUpdate('cascade');
 
-			// $table->foreign('client_id')
-			// 		->references('id')
-			// 		->on('clients')
-			// 		->onDelete('cascade')
-			// 		->onUpdate('cascade');
 
 			$table->foreign('evenement_id')
 					->references('id')
@@ -193,6 +169,12 @@ class AddContraintesTable extends Migration
 			$table->foreign('article_id')
 					->references('id')
 					->on('articles')
+					->onDelete('cascade')
+					->onUpdate('cascade');
+
+			$table->foreign('evenement_id')
+					->references('id')
+					->on('evenements')
 					->onDelete('cascade')
 					->onUpdate('cascade');
 		});
@@ -229,17 +211,11 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('clients_user_id_foreign');
 		});
 
-		Schema::table('commandes', function (Blueprint $table) {
-			$table->dropForeign('commandes_article_id_foreign');
-			$table->dropForeign('commandes_client_id_foreign');
-			$table->dropForeign('commandes_facture_id_foreign');
-		});
 
 
 		Schema::table('factures', function (Blueprint $table) {
 			$table->dropForeign('factures_user_id_foreign');
 			$table->dropForeign('factures_evenement_id_foreign');
-			// $table->dropForeign('factures_client_id_foreign');
 		});
 
 		Schema::table('reglements', function (Blueprint $table) {
@@ -250,6 +226,7 @@ class AddContraintesTable extends Migration
 		Schema::table('louers', function (Blueprint $table) {
 			$table->dropForeign('louers_user_id_foreign');
 			$table->dropForeign('louers_article_id_foreign');
+			$table->dropForeign('louers_evenement_id_foreign');
 		});
 
 		Schema::table('evenements', function (Blueprint $table) {

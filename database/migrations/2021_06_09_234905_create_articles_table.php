@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('type_article_id')->unsigned()->nullable();
             $table->integer('remarque_id')->unsigned()->nullable();
+            // Errreur : a corriger c'est plutot la table remarque qui doit avoir l'identifiant de l'article
             $table->integer('categorie_article_id')->unsigned()->nullable();
             $table->timestamps();
             // Vue : qte_article_en_stock,
