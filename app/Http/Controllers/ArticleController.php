@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Articles;
+use App\Type_articles;
+use App\Categorie_articles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -14,7 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('articles.index');
+        return view('parametrage.articles.index');
     }
 
     /**
@@ -24,7 +28,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categorie_articles = Categorie_articles::all();
+        $type_articles = Type_articles::all();
+        return view('parametrage.articles.create', compact('categorie_articles', 'type_articles'));
     }
 
     /**
@@ -36,22 +42,34 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:3',
-            'qte' => 'required|min:0|numeric',
+            'libelle' => 'required|string|min:3',
             'caution' => 'required|numeric|min:0',
             'categorie_article_id' => 'required|numeric',
-            'prix' => 'required|numeric',
-            'description' => 'required',
-            'article_photo' => 'required|file',
+            'type_article_id' => 'required|numeric',
+            'description' => 'nullable',
+            'article_photo' => 'nullable|file',
+        ],[
+            'libelle.required' => 'Le champ libéllé est obligatoire',
+            'categorie_article_id.required' => 'Le champ catégorie est obligatoire',
+            'type_article_id.required' => 'Le champ Type est obligatoire',
+            'caution.required' => 'Le champ caution est obligatoire',
         ]);
 
-        if ($request->validated()) {
-            
-            $article = Article::create($$request->validated());
+        $data = Articles::create(array_merge($request->all(), ['user_id' => Auth::user()->id]));
 
+        
+        if ($request->has('article_photo')) {
+            // creation du code
+            $data->update(['code' => 'Art0-'.$data->id, 'article_photo' => $request->article_photo]);
+        }else{
+            $data->update(['code' => 'Art0-'.$data->id]);
         }
 
-        return back()->with('success', 'User created successfully.');
+        if (isset($request->encore)) {
+            return back()->with('success', 'Action Effectuée!');
+        }else{
+            return redirect()->route('articles.index')->with('success', 'Action Effectuée!');
+        }
     }
 
     /**
@@ -62,7 +80,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return view('articles.show');
+        return view('parametrage.articles.show');
     }
 
     /**
