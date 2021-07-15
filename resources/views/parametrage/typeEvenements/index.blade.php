@@ -91,7 +91,7 @@
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
-												<p>Détail</p>
+												<p>Détails</p>
 												<button type="button" class="close" data-dismiss="modal"
 													aria-label="Close">
 													<span aria-hidden="true">&times;</span>
