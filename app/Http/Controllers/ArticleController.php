@@ -18,7 +18,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('parametrage.articles.index');
+        $articles = Articles::all();
+        return view('parametrage.articles.index', compact('articles'));
     }
 
     /**
@@ -41,13 +42,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'libelle' => 'required|string|min:3',
             'caution' => 'required|numeric|min:0',
             'categorie_article_id' => 'required|numeric',
             'type_article_id' => 'required|numeric',
             'description' => 'nullable',
-            'article_photo' => 'nullable|file',
+            'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
         ],[
             'libelle.required' => 'Le champ libéllé est obligatoire',
             'categorie_article_id.required' => 'Le champ catégorie est obligatoire',
@@ -55,14 +57,23 @@ class ArticleController extends Controller
             'caution.required' => 'Le champ caution est obligatoire',
         ]);
 
+        
+
         $data = Articles::create(array_merge($request->all(), ['user_id' => Auth::user()->id]));
 
-        
-        if ($request->has('article_photo')) {
-            // creation du code
-            $data->update(['code' => 'Art0-'.$data->id, 'article_photo' => $request->article_photo]);
+        if ($request->hasFile('article_photo')) {
+            // stockage du nom du fichier et ses infos dans la variable file
+            $file = $request->file('article_photo');
+            // generer un nouveau nom de fichier avec l'extention : 2021 0 id _ libele.jpg
+            $fileName = date('Y').'0'.$data->id .'_'. $request->libelle.'.'.$file->getClientOriginalExtension();
+            // Save the file
+            $path = $file->storeAs('articles', $fileName);
+            
+            // creation du code et ajout du lien de l'image dans la bd
+            $data->update(['code' => date('Y').'0'.$data->id, 'article_photo' => $path]);
+
         }else{
-            $data->update(['code' => 'Art0-'.$data->id]);
+            $data->update(['code' => '00'.$data->id]);
         }
 
         if (isset($request->encore)) {
@@ -81,7 +92,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         return view('parametrage.articles.show');
-    }
+    } 
 
     /**
      * Show the form for editing the specified resource.
@@ -103,7 +114,27 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'libelle' => 'required|min:0',
+            'caution' => 'nullable|min:0',
+            'description' => 'nullable|min:0',
+            'article_photo' => 'nullable|min:0',
+            'type_article_id' => 'nullable|min:0',
+            'categorie_article_id' => 'nullable|min:0',
+        ],[
+            'libelle.required' =>'Le libelle  du fournisseur est obligatoire'
+        ]);
+        Fournisseurs::whereId($id)->update([
+            'user_id' => Auth::user()->id,
+            'caution' => $request->caution,
+            'libelle' => $request->libelle,
+            'description' => $request->description,
+            'article_photo' => $request->article_photo,
+            'type_article_id' => $request->type_article_id,
+            'categorie_article_id' => $request->categorie_article_id,
+        ]);
+
+        return redirect()->route('fournisseurs.index')->with('success', 'Action Effectuée!');
     }
 
     /**
@@ -114,6 +145,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Articles::destroy($id);
+        return back()->with('success', 'Action Effectuée!');
     }
 }

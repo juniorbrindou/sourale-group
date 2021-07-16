@@ -52416,3 +52416,15 @@ a.text-muted:hover {
   color: #3f474e;
 }
 /*# sourceMappingURL=adminlte.css.map */
+
+/* perso */
+.box-perso{
+  box-shadow: 6px 8px 6px 3px rgb(0 0 0 / 30%), 0 1px 3px rgb(0 0 0 / 20%) !important;
+}
+.img-perso{
+  height: 50px;
+  transition-duration: .2s
+}
+.img-perso:hover {
+  transform: scale(1.5);
+}

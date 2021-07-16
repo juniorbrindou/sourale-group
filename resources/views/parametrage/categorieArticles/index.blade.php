@@ -98,7 +98,7 @@
 												<p>
 													<b>CODE : </b>{{ $categorieArticle->code }}
 												</p>
-												<hr>
+												<hr>	
 												<p>
 													<b>LIBÉLLÉ : </b>{{ $categorieArticle->libelle }}
 												</p>

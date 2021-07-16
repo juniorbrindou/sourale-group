@@ -22,126 +22,126 @@
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
+									<th>Image</th>
 									<th>Code</th>
-									<th>Nom de l'article</th>
-									<th>Quantité</th>
+									<th>Libéllé</th>
 									<th>Caution</th>
-									<th>Actions</th>
+									<th>Quantité</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
+								
+								@foreach ($articles as $article)									
 								<tr>
-									<td>Art-0014</td>
-									<td>Cuillere en or</td>
-									<td>2.050</td>
-									<td>300F CFA</td>
 									<td>
-										<a href="{{url('articles/1')}}" class="btn btn-primary btn-md">
+										@if($article->article_photo)
+											<img alt="Avatar" class="img-perso" src="{{asset('storage/'.$article->article_photo)}}">
+										@else
+  											<img alt="Avatar" class="img-perso" src="{{asset('storage/'.$article->article_photo)}}">
+										@endif
+											
+									</td>
+
+									<td>{{$article->code}}</td>
+									<td>{{$article->libelle}}</td>
+									<td>{{$article->caution}}</td>
+									<td>1000</td>
+									<td>
+										<button class="btn btn-warning btn-md" data-toggle="modal"
+											data-target="#modal-see-{{$article->id}}">
 											<i class="fa fa-eye"></i>
-											voir
+										</button>
+										<a href="{{ route('articles.edit', $article->id) }}"
+											title="Modiffier" class="btn btn-primary btn-md">
+											<i class="fa fa-pen"></i>
 										</a>
-
-										<button type="button" class="btn btn-danger btn-md">
+										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+											data-target="#modal-danger-{{$article->id}}">
 											<i class="fa fa-trash"></i>
-											Suprimer
-										</button>
-
-									</td>
-								</tr>
-								<tr>
-									<td>Art-0095</td>
-									<td>Chaise en argent</td>
-									<td>150</td>
-									<td>1000F CFA</td>
-									<td>
-										<button type="button" class="btn btn-primary btn-md">
-											<i class="fa fa-eye"></i>
-											voir
-										</button>
-
-										<button type="button" class="btn btn-danger btn-md">
-											<i class="fa fa-trash"></i>
-											Suprimer
 										</button>
 									</td>
 								</tr>
-								<tr>
-									<td>Art-0012</td>
-									<td>Table en bois ronde courleur bleu</td>
-									<td>20</td>
-									<td>3000F CFA</td>
-									<td>
-										<button type="button" class="btn btn-primary btn-md">
-											<i class="fa fa-eye"></i>
-											voir
-										</button>
+								<div class="modal fade" id="modal-danger-{{$article->id}}"">
+									<div class="modal-dialog">
+										<div class="modal-content bg-default">
+											<div class="modal-header">
+												<h4 class="modal-title">Attention ! Action Irréversible !</h4>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p class="text-danger">Voulez vous vraiment supprimer la catégorie
+													<b>{{ $article->libelle }}</b></p>
+											</div>
+											<div class="modal-footer justify-content-between">
+												<button type="button" class="btn btn-primary"
+													data-dismiss="modal">Annuler</button>
+												<form method="POST" style="display: inline"
+													action="{{ route('articles.destroy', $article->id ) }}">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="btn btn-outline-danger">Je
+														Confirme</button>
+												</form>
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
 
-										<button type="button" class="btn btn-danger btn-md">
-											<i class="fa fa-trash"></i>
-											Suprimer
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Art-0078</td>
-									<td>Cuillere en jettables en plastique</td>
-									<td>5.000</td>
-									<td>0F CFA</td>
-									<td>
-										<button type="button" class="btn btn-primary btn-md">
-											<i class="fa fa-eye"></i>
-											voir
-										</button>
 
-										<button type="button" class="btn btn-danger btn-md">
-											<i class="fa fa-trash"></i>
-											Suprimer
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Art-0045</td>
-									<td>Podium type bois</td>
-									<td>3</td>
-									<td>25.000F CFA</td>
-									<td>
-										<button type="button" class="btn btn-primary btn-md">
-											<i class="fa fa-eye"></i>
-											voir
-										</button>
 
-										<button type="button" class="btn btn-danger btn-md">
-											<i class="fa fa-trash"></i>
-											Suprimer
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Art-0005</td>
-									<td>Plateau pour servir la nourriture</td>
-									<td>450</td>
-									<td>1.200F CFA</td>
-									<td>
-										<button type="button" class="btn btn-primary btn-md">
-											<i class="fa fa-eye"></i>
-											voir
-										</button>
+								<div class="modal fade" id="modal-see-{{$article->id}}">
+									<div class="modal-dialog">
+										<div class="modal-content bg-default">
+											<div class="modal-header">
+												<p>Détails</p>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
 
-										<button type="button" class="btn btn-danger btn-md">
-											<i class="fa fa-trash"></i>
-											Suprimer
-										</button>
-									</td>
-								</tr>
+											<div class="modal-body">
+												<p>
+													<b>CODE : </b>{{ $article->code }}
+												</p>
+												<hr>
+												<p>
+													<b>LIBÉLLÉ : </b>{{ $article->libelle }}
+												</p>
+												<hr>
+												<p>
+													<b>DESCRIPTION : </b>{{ $article->description }}
+												</p>
+											</div>
+
+											<div class="modal-footer justify-content-between">
+												<button type="button" class="btn btn-primary btn-block"
+													data-dismiss="modal">Fermer</button>
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+								@endforeach
+								
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Code Article</th>
-									<th>Nom de l'article</th>
+									<th>Image</th>
+									<th>Code</th>
+									<th>Libéllé</th>
 									<th>Quantité</th>
 									<th>Caution</th>
-									<th>
-									</th>
+									<th></th>
 								</tr>
 							</tfoot>
 						</table>

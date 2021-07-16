@@ -8,7 +8,7 @@
 			<!-- left column -->
 			<div class="col-md-12 ">
 				<!-- general form elements -->
-				<div class="card card-primary">
+				<div class="card card-primary box-perso">
 					<div class="card-header">
 						<h3 class="card-title">Modification Catégorie : <b>{{ $typeEvenement->libelle }}</b> </h3>
 					</div>
