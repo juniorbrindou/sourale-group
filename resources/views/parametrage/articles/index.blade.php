@@ -22,11 +22,10 @@
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>Image</th>
 									<th>Code</th>
+									<th>Image</th>
 									<th>Libéllé</th>
 									<th>Caution</th>
-									<th>Quantité</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -34,19 +33,17 @@
 								
 								@foreach ($articles as $article)									
 								<tr>
+									<td>{{$article->code}}</td>
+									
 									<td>
 										@if($article->article_photo)
 											<img alt="Avatar" class="img-perso" src="{{asset('storage/'.$article->article_photo)}}">
 										@else
-  											<img alt="Avatar" class="img-perso" src="{{asset('storage/'.$article->article_photo)}}">
+											<img alt="Avatar" class="img-perso" src="{{asset('storage/articles/default_article.png')}}">
 										@endif
-											
 									</td>
-
-									<td>{{$article->code}}</td>
 									<td>{{$article->libelle}}</td>
 									<td>{{$article->caution}}</td>
-									<td>1000</td>
 									<td>
 										<button class="btn btn-warning btn-md" data-toggle="modal"
 											data-target="#modal-see-{{$article->id}}">
@@ -97,7 +94,7 @@
 
 
 								<div class="modal fade" id="modal-see-{{$article->id}}">
-									<div class="modal-dialog">
+									<div class="modal-dialog modal-lg">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
 												<p>Détails</p>
@@ -108,17 +105,21 @@
 											</div>
 
 											<div class="modal-body">
-												<p>
-													<b>CODE : </b>{{ $article->code }}
-												</p>
-												<hr>
-												<p>
-													<b>LIBÉLLÉ : </b>{{ $article->libelle }}
-												</p>
-												<hr>
-												<p>
-													<b>DESCRIPTION : </b>{{ $article->description }}
-												</p>
+												<div class="row">
+													<div class="col-md-3">
+														@if($article->article_photo)
+															<img alt="Avatar" style="max-height: 243px;max-width: 323px;" src="{{asset('storage/'.$article->article_photo)}}">
+														@else
+															<img alt="Avatar" style="max-height: 243px;max-width: 323px;"class="img-perso" src="{{asset('storage/articles/default_article.png')}}">
+														@endif
+													</div>
+													<div class="col-md-3">
+														<b>CODE : </b>{{ $article->code }} <br>
+														<b>LIBÉLLÉ : </b>{{ $article->libelle }} <br>
+														<b>DESCRIPTION : </b>{{ $article->description }}
+													</div>
+													<div class="col-md-3"></div>
+												</div>
 											</div>
 
 											<div class="modal-footer justify-content-between">
@@ -136,10 +137,9 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Image</th>
 									<th>Code</th>
+									<th>Image</th>
 									<th>Libéllé</th>
-									<th>Quantité</th>
 									<th>Caution</th>
 									<th></th>
 								</tr>

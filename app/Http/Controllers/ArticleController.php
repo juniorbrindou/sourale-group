@@ -44,7 +44,7 @@ class ArticleController extends Controller
     {
         
         $request->validate([
-            'libelle' => 'required|string|min:3',
+            'libelle' => 'required|string|min:3|unique:articles',
             'caution' => 'required|numeric|min:0',
             'categorie_article_id' => 'required|numeric',
             'type_article_id' => 'required|numeric',
@@ -52,6 +52,7 @@ class ArticleController extends Controller
             'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
         ],[
             'libelle.required' => 'Le champ libéllé est obligatoire',
+            'libelle.unique' => 'La valeur de ce champ est ',
             'categorie_article_id.required' => 'Le champ catégorie est obligatoire',
             'type_article_id.required' => 'Le champ Type est obligatoire',
             'caution.required' => 'Le champ caution est obligatoire',
@@ -73,7 +74,7 @@ class ArticleController extends Controller
             $data->update(['code' => date('Y').'0'.$data->id, 'article_photo' => $path]);
 
         }else{
-            $data->update(['code' => '00'.$data->id]);
+            $data->update(['code' => date('Y').'0'.$data->id]);
         }
 
         if (isset($request->encore)) {
@@ -102,7 +103,10 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Articles::whereId($id)->first();
+        $categorie_articles = Categorie_articles::where('id', '<>', $article->categorie_article->id)->get();
+        $type_articles = Type_articles::where('id', '<>', $article->type_article->id)->get();
+        return view('parametrage.articles.edit',compact('article', 'categorie_articles', 'type_articles'));
     }
 
     /**
@@ -114,27 +118,57 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // function has_yet_image($id)
+        // {
+        //     $article = Articles::whereId($id)->get('article_photo');
+        //     dd($article);
+        // }
+        // has_yet_image($id);
+        
         $request->validate([
-            'libelle' => 'required|min:0',
-            'caution' => 'nullable|min:0',
-            'description' => 'nullable|min:0',
-            'article_photo' => 'nullable|min:0',
-            'type_article_id' => 'nullable|min:0',
-            'categorie_article_id' => 'nullable|min:0',
+            'libelle' => 'required|string|min:3|unique:articles,libelle,'.$id,
+            'caution' => 'required|numeric|min:0',
+            'categorie_article_id' => 'required|numeric',
+            'type_article_id' => 'required|numeric',
+            'description' => 'nullable',
+            'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
         ],[
-            'libelle.required' =>'Le libelle  du fournisseur est obligatoire'
-        ]);
-        Fournisseurs::whereId($id)->update([
-            'user_id' => Auth::user()->id,
-            'caution' => $request->caution,
-            'libelle' => $request->libelle,
-            'description' => $request->description,
-            'article_photo' => $request->article_photo,
-            'type_article_id' => $request->type_article_id,
-            'categorie_article_id' => $request->categorie_article_id,
+            'libelle.required' => 'Le champ libéllé est obligatoire',
+            'libelle.unique' => 'Ce nom d\'article existe déjà',
+            'categorie_article_id.required' => 'Le champ catégorie est obligatoire',
+            'type_article_id.required' => 'Le champ Type est obligatoire',
+            'caution.required' => 'Le champ caution est obligatoire',
         ]);
 
-        return redirect()->route('fournisseurs.index')->with('success', 'Action Effectuée!');
+
+        $data = Articles::whereId($id)->update([
+            'libelle' => $request->libelle,
+            'caution' => $request->caution,
+            'categorie_article_id' => $request->categorie_article_id,
+            'type_article_id' => $request->type_article_id,
+            'description' => $request->description,
+        ]);
+        // $file_path = app_path().'/images/news/'.$news->photo;
+            
+        if ($request->hasFile('article_photo')) {
+            // suppression de l'ancienne image
+            // unlink(public_path().$data->article_photo);
+
+            // stockage du nom du fichier et ses infos dans la variable file
+            $file = $request->file('article_photo');
+
+            // generer un nouveau nom de fichier avec l'extention : 2021 0 id _ libele.jpg
+            $fileName = date('Y').'0'.$data->id .'_'. $request->libelle.'.'.$file->getClientOriginalExtension();
+
+            // Save the file
+            $path = $file->storeAs('articles', $fileName);
+            
+            // creation du code et ajout du lien de l'image dans la bd
+            $data->update(['article_photo' => $path]);
+
+        }
+        
+        return redirect()->route('articles.index')->with('success', 'Action Effectuée!');
     }
 
     /**
@@ -148,4 +182,11 @@ class ArticleController extends Controller
         Articles::destroy($id);
         return back()->with('success', 'Action Effectuée!');
     }
+
+    /**
+     * Return true if the article has image yet
+     * @param int $id
+     * @return boolean
+     */
+    
 }

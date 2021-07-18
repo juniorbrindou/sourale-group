@@ -26,6 +26,15 @@ class Articles extends Model
         return $this->belongsTo(Categorie_articles::class);
     }
 
+    /**
+     * Type article
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function type_article()
+    {
+        return $this->belongsTo(Type_articles::class);
+    }
+
 
     /**
      * les attributs qui doivent etre converties en type natif.

@@ -47,7 +47,7 @@
 										<!-- /.input group -->
 									</div>
 								</div>
-
+								
 								<div class="col-md-6">
 									{{-- libelle --}}
 									<div class="form-group">

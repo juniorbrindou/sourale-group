@@ -29,7 +29,8 @@
 											placeholder="Entrer le nom de l'article">
 									</div>
 									@error('libelle')
-									<span  class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
@@ -44,7 +45,8 @@
 											value="{{ old('caution')}}">
 									</div>
 									@error('caution')
-									<span  class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
@@ -57,8 +59,9 @@
 								<div class="col-md-3 ">
 									<div class="form-group">
 										<label>Type d'article</label>
-										<select class="form-control select2" name="type_article_id" style="width: 100%;">
-											
+										<select class="form-control select2" name="type_article_id"
+											style="width: 100%;">
+
 											@foreach ($type_articles as $type_article)
 											<option @if ($loop->first) selected="selected" @endif
 												value="{{$type_article->id}}"> {{$type_article->libelle}}
@@ -75,7 +78,7 @@
 										<label>Catégorie d'article</label>
 										<select class="form-control select2" style="width: 100%;"
 											name="categorie_article_id">
-											
+
 											@foreach ($categorie_articles as $categorie_article)
 											<option @if ($loop->first) selected="selected" @endif
 												value="{{$categorie_article->id}}"> {{$categorie_article->libelle}}
@@ -97,15 +100,27 @@
 
 
 								{{-- article_photo --}}
-								<div class="form-group">
-									<label for="exampleInputFile">J'ai une photo de l'article</label>
-									<div class="input-group">
-										<div>
-											<input type="file" accept="image/gif, image/jpeg, image/png"
-												name="article_photo" id="article_photo">
+								<div class="col-md-3 ">
+									<div class="form-group">
+										<label for="exampleInputFile">J'ai une photo de l'article</label>
+										<div class="input-group">
+											<div>
+												<input type="file" accept="image/gif, image/jpeg, image/png"
+													name="article_photo" id="article_photo">
+											</div>
 										</div>
 									</div>
+
 								</div>
+								<div class="col-md-3">
+									{{-- libelle --}}
+									<div class="form-group mt-3">
+										<label for="switch">Enregistrer Encore</label>
+										<input type="checkbox" name="encore" checked data-bootstrap-switch
+											data-off-color="danger" data-on-color="success">
+									</div>
+								</div>
+
 							</div>
 							<!-- /.card-body -->
 
