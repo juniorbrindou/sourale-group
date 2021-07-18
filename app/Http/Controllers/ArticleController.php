@@ -92,6 +92,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+        $article = Articles::whereId($id)->firstOrFail();
         return view('parametrage.articles.show');
     } 
 
@@ -103,7 +104,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = Articles::whereId($id)->first();
+        $article = Articles::whereId($id)->firstOrFail();
         $categorie_articles = Categorie_articles::where('id', '<>', $article->categorie_article->id)->get();
         $type_articles = Type_articles::where('id', '<>', $article->type_article->id)->get();
         return view('parametrage.articles.edit',compact('article', 'categorie_articles', 'type_articles'));
@@ -118,13 +119,6 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // function has_yet_image($id)
-        // {
-        //     $article = Articles::whereId($id)->get('article_photo');
-        //     dd($article);
-        // }
-        // has_yet_image($id);
-        
         $request->validate([
             'libelle' => 'required|string|min:3|unique:articles,libelle,'.$id,
             'caution' => 'required|numeric|min:0',
@@ -141,7 +135,8 @@ class ArticleController extends Controller
         ]);
 
 
-        $data = Articles::whereId($id)->update([
+        $data = Articles::whereId($id)->firstOrFail();
+        $data->update([
             'libelle' => $request->libelle,
             'caution' => $request->caution,
             'categorie_article_id' => $request->categorie_article_id,
@@ -151,9 +146,6 @@ class ArticleController extends Controller
         // $file_path = app_path().'/images/news/'.$news->photo;
             
         if ($request->hasFile('article_photo')) {
-            // suppression de l'ancienne image
-            // unlink(public_path().$data->article_photo);
-
             // stockage du nom du fichier et ses infos dans la variable file
             $file = $request->file('article_photo');
 
@@ -165,7 +157,6 @@ class ArticleController extends Controller
             
             // creation du code et ajout du lien de l'image dans la bd
             $data->update(['article_photo' => $path]);
-
         }
         
         return redirect()->route('articles.index')->with('success', 'Action Effectuée!');
@@ -182,11 +173,4 @@ class ArticleController extends Controller
         Articles::destroy($id);
         return back()->with('success', 'Action Effectuée!');
     }
-
-    /**
-     * Return true if the article has image yet
-     * @param int $id
-     * @return boolean
-     */
-    
 }
