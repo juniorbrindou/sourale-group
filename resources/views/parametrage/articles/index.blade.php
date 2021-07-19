@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('main')
+
 <!-- Main content -->
 <section class="content">
 	<div class="container-fluid">
@@ -9,9 +10,9 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Liste des catégories d'articles</h3>
+						<h3 class="card-title">Liste des articles </h3>
 
-						<a href="{{ route('categorieArticles.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('articles.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</a>
@@ -22,34 +23,42 @@
 							<thead>
 								<tr>
 									<th>Code</th>
-									<th>Nom de la catégorie</th>
-									<th>Description</th>
-									<th>Actions</th>
+									<th>Image</th>
+									<th>Libéllé</th>
+									<th>Caution</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($categorieArticles as $categorieArticle)
-
+								
+								@foreach ($articles as $article)									
 								<tr>
-									<td>{{ $categorieArticle->code }}</td>
-									<td>{{ substr($categorieArticle->libelle,0,35) }}...</td>
-									<td>{{ substr($categorieArticle->description,0,70) }}...</td>
+									<td>{{$article->code}}</td>
+									
 									<td>
-										<button class="btn btn-warning btn-md" data-toggle="modal"
-											data-target="#modal-see-{{$categorieArticle->id}}">
+										@if($article->article_photo)
+											<img alt="Avatar" class="img-perso" src="{{asset('storage/'.$article->article_photo)}}">
+										@else
+											<img alt="Avatar" class="img-perso" src="{{asset('storage/articles/default_article.png')}}">
+										@endif
+									</td>
+									<td>{{ ucwords($article->libelle)}}</td>
+									<td>{{$article->caution}}</td>
+									<td>
+										<a href="{{ route('articles.show', $article->id) }}" class="btn btn-warning btn-md">
 											<i class="fa fa-eye"></i>
 										</button>
-										<a href="{{ route('categorieArticles.edit', $categorieArticle->id) }}"
+										<a href="{{ route('articles.edit', $article->id) }}"
 											title="Modiffier" class="btn btn-primary btn-md">
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$categorieArticle->id}}">
+											data-target="#modal-danger-{{$article->id}}">
 											<i class="fa fa-trash"></i>
 										</button>
 									</td>
 								</tr>
-								<div class="modal fade" id="modal-danger-{{$categorieArticle->id}}"">
+								<div class="modal fade" id="modal-danger-{{$article->id}}"">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -60,14 +69,14 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer la catégorie
-													<b>{{ $categorieArticle->libelle }}</b></p>
+												<p class="text-danger">Voulez vous vraiment supprimer l'article
+													<b>{{ ucwords($article->libelle) }}</b></p>
 											</div>
 											<div class="modal-footer justify-content-between">
 												<button type="button" class="btn btn-primary"
 													data-dismiss="modal">Annuler</button>
 												<form method="POST" style="display: inline"
-													action="{{ route('categorieArticles.destroy', $categorieArticle->id ) }}">
+													action="{{ route('articles.destroy', $article->id ) }}">
 													@csrf
 													@method('DELETE')
 													<button type="submit" class="btn btn-outline-danger">Je
@@ -80,54 +89,16 @@
 									<!-- /.modal-dialog -->
 								</div>
 								<!-- /.modal -->
-
-
-
-								<div class="modal fade" id="modal-see-{{$categorieArticle->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<p>Détails</p>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-
-											<div class="modal-body">
-												<p>
-													<b>CODE : </b>{{ $categorieArticle->code }}
-												</p>
-												<hr>	
-												<p>
-													<b>LIBÉLLÉ : </b>{{ $categorieArticle->libelle }}
-												</p>
-												<hr>
-												<p>
-													<b>DESCRIPTION : </b>{{ $categorieArticle->description }}
-												</p>
-											</div>
-
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary btn-block"
-													data-dismiss="modal">Fermer</button>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
-
 								@endforeach
-
+								
 							</tbody>
 							<tfoot>
 								<tr>
 									<th>Code</th>
-									<th>Nom de la catégorie</th>
-									<th>Description</th>
-									<th>Action</th>
+									<th>Image</th>
+									<th>Libéllé</th>
+									<th>Caution</th>
+									<th></th>
 								</tr>
 							</tfoot>
 						</table>
@@ -146,6 +117,7 @@
 @endsection
 
 @push('styles')
+<!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
@@ -159,16 +131,13 @@
 @endpush
 
 
-
-
 @push('scripts')
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
-
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- DataTables  & Plugins -->
-<script src="{{ asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
@@ -188,19 +157,18 @@
 <script>
 	$(function () {
 		$("#example1").DataTable({
-		"responsive": true, "lengthChange": false, "autoWidth": false,
-		"buttons": ["excel", "pdf", "print"]
+		  "responsive": true, "lengthChange": true, "autoWidth": true,
+		  "buttons": ["excel", "pdf", "print"]
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		$('#example2').DataTable({
-		"paging": true,
-		"lengthChange": false,
-		"searching": false,
-		"ordering": true,
-		"info": true,
-		"autoWidth": false,
-		"responsive": true,
+		  "paging": true,
+		  "lengthChange": false,
+		  "searching": false,
+		  "ordering": true,
+		  "info": true,
+		  "autoWidth": false,
+		  "responsive": true,
 		});
-	});
-
+	  });
 </script>
 @endpush

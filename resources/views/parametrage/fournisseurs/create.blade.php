@@ -8,7 +8,7 @@
 			<!-- left column -->
 			<div class="col-md-12">
 				<!-- general form elements -->
-				<div class="card card-primary">
+				<div class="card card-primary box-perso">
 					<div class="card-header">
 						<h3 class="card-title">Nouveau Fournisseur</h3>
 					</div>
@@ -47,7 +47,7 @@
 										<!-- /.input group -->
 									</div>
 								</div>
-
+								
 								<div class="col-md-6">
 									{{-- libelle --}}
 									<div class="form-group">

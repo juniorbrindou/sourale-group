@@ -46,7 +46,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::whereId($id)->first();
-        return view('users.profile', compact('user'));
+        return view('parametrage.users.profile', compact('user'));
     }
 
     /**

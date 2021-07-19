@@ -51,7 +51,7 @@
 				<li class="nav-item">
 					<a href="{{route('articles.index')}}" class="nav-link {{ request()->is('article*') ? 'active' : ''}}">
 						<i class="fas fa-tag nav-icon"></i>
-						<p>Articles</p>
+						<p>Articles en Stock</p>
 					</a>
 				</li>
 				
@@ -91,6 +91,13 @@
 
 		{{-- parametrage --}}
 				<li class="nav-header">paramétrage</li>
+				{{-- categorieArticles --}}
+				<li class="nav-item">
+					<a href="{{route('articles.index')}}" class="nav-link {{ request()->is('articles*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Articles</p>
+					</a>
+				</li>
 
 				{{-- categorieArticles --}}
 				<li class="nav-item">

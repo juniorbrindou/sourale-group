@@ -6,26 +6,27 @@
 	<div class="container-fluid">
 		<div class="row">
 			<!-- left column -->
-			<div class="col-md-12">
+			<div class="col-md-12 ">
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Nouveau type de package</h3>
+						<h3 class="card-title">modification Article</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('typePackages.store')}}">
+					<form method="POST" action="{{ route('articles.update', $article->id)}}" enctype="multipart/form-data">
 						@csrf
+						@method('PATCH')
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-8 col-xs-12">
+
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">libéllé *</label>
+										<label for="libelle">Nom de l'article</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ old('libelle') }}" name="libelle" id="code"
-											placeholder="Entrer le libelle" autofocus>
+											value="{{ $article->libelle }}" name="libelle" id="libelle">
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
@@ -35,36 +36,102 @@
 									@enderror
 								</div>
 
-								<div class="col-md-6">
-
+								{{-- caution --}}
+								<div class="col-md-4 col-xs-12">
 									<div class="form-group">
-										<label for="adresse">Description</label>
-										<textarea class="form-control" rows="3" name="description"
-											placeholder="Ecrivez ici ..."></textarea>
+										<label for="caution">Caution de l'article</label>
+										<input type="number" class="form-control @error('caution') is-invalid @enderror"
+											name="caution" id="caution" value="{{ $article->caution }}">
 									</div>
-
+									@error('caution')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
 								</div>
 							</div>
+
 
 
 							<div class="row">
-
-								<div class="col-md-4">
-									{{-- libelle --}}
+								<div class="col-md-3 ">
 									<div class="form-group">
-										<label for="switch">Enregistrer Encore</label>
-										<input type="checkbox" name="encore" checked data-bootstrap-switch
-											data-off-color="danger" data-on-color="success">
+										<label>Type d'article</label>
+										<select class="form-control select2" name="type_article_id">
+											
+											<option value="{{$article->type_article_id}}">
+												{{$article->type_article->libelle}}
+											</option>
+
+											@foreach ($type_articles as $type_article)
+												<option value="{{$type_article->id}}">
+													{{$type_article->libelle}}
+												</option>
+											@endforeach
+
+										</select>
+									</div>
+									<!-- /.form-group -->
+								</div>
+
+								{{-- categorie_article_id --}}
+								<div class="col-md-3 ">
+									<div class="form-group">
+										<label>Catégorie d'article</label>
+										<select class="form-control select2" style="width: 100%;"
+											name="categorie_article_id">
+
+											<option value="{{$article->categorie_article_id}}">
+												{{$article->categorie_article->libelle}}
+											</option>
+
+											@foreach ($type_articles as $type_article)
+												<option value="{{$type_article->id}}">
+													{{$type_article->libelle}}
+												</option>
+											@endforeach
+
+										</select>
 									</div>
 								</div>
 
-							</div>
-						</div>
-						<!-- /.card-body -->
+								{{-- description --}}
+								<div class="col-md-6 ">
+									<div class="form-group">
+										<label>Ajouter une description à l'article</label>
+										<textarea class="form-control @error('description') is-invalid @enderror"
+											name="description" rows="3" placeholder="Ecrivez ici...">{{ $article->description }}</textarea>
+									</div>
+								</div>
 
-						<div class="card-footer">
-							<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
-						</div>
+
+								{{-- article_photo --}}
+								<div class="col-md-3 ">
+									<div class="form-group">
+										<label for="exampleInputFile">J'ai une photo de l'article</label>
+										<div class="input-group">
+											<div>
+												<input type="file" accept="image/gif, image/jpeg, image/png"
+													name="article_photo" id="article_photo">
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+							<!-- /.card-body -->
+							<div class="card-footer">
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+									</div>
+								</div>
+							</div>
 					</form>
 				</div>
 				<!-- /.card -->
@@ -85,58 +152,58 @@
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
-<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
 <!-- daterange picker -->
-<link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}">
 <!-- iCheck for checkboxes and radio inputs -->
-<link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 <!-- Bootstrap Color Picker -->
-<link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
 <!-- Tempusdominus Bootstrap 4 -->
-<link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
 <!-- Select2 -->
-<link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
-<link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 <!-- Bootstrap4 Duallistbox -->
-<link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
 <!-- BS Stepper -->
-<link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css')}}">
 <!-- dropzonejs -->
-<link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css')}}">
 <!-- Theme style -->
-<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 @endpush
 
 
 @push('scripts')
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- Select2 -->
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<script src="{{ asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
 <!-- InputMask -->
-<script src="../../plugins/moment/moment.min.js"></script>
-<script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="{{ asset('plugins/moment/moment.min.js')}}"></script>
+<script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <!-- date-range-picker -->
-<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- bootstrap color picker -->
-<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Bootstrap Switch -->
-<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <!-- BS-Stepper -->
-<script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
-<script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+<script src="{{ asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
 	$(function () {
