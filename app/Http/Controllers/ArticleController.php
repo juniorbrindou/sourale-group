@@ -93,7 +93,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Articles::whereId($id)->firstOrFail();
-        return view('parametrage.articles.show');
+        return view('parametrage.articles.show', compact('article'));
     } 
 
     /**

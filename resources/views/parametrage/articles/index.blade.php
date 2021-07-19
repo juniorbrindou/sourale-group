@@ -45,7 +45,7 @@
 									<td>{{ ucwords($article->libelle)}}</td>
 									<td>{{$article->caution}}</td>
 									<td>
-										<a href="{{ reoute('articles.show', $article->id) }}" class="btn btn-warning btn-md">
+										<a href="{{ route('articles.show', $article->id) }}" class="btn btn-warning btn-md">
 											<i class="fa fa-eye"></i>
 										</button>
 										<a href="{{ route('articles.edit', $article->id) }}"

@@ -35,6 +35,15 @@ class Articles extends Model
         return $this->belongsTo(Type_articles::class);
     }
 
+    /**
+     * Utilisateur update article
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     /**
      * les attributs qui doivent etre converties en type natif.
