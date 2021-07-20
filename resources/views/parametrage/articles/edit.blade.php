@@ -124,7 +124,7 @@
 							<!-- /.card-body -->
 							<div class="card-footer">
 								<div class="row">
-									<div class="col-md-6 col-sm-6">
+									<div class="col-md-6 col-sm-6 mb-2">
 										<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
 									</div>
 									<div class="col-md-6 col-sm-6">

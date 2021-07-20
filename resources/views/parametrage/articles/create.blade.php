@@ -123,9 +123,15 @@
 
 							</div>
 							<!-- /.card-body -->
-
 							<div class="card-footer">
-								<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block mb-2 text-light">Retour</a>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+									</div>
+								</div>
 							</div>
 					</form>
 				</div>

@@ -106,10 +106,17 @@
 
 						</div>
 						<!-- /.card-body -->
-
 						<div class="card-footer">
-							<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<a href="{{ route('clients.index') }}" class="btn btn-warning btn-block text-light mb-2">Retour</a>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+								</div>
+							</div>
 						</div>
+
 					</form>
 				</div>
 				<!-- /.card -->

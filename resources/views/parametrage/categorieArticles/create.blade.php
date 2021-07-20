@@ -28,7 +28,8 @@
 											placeholder="Entrer le nom de la catégorie">
 									</div>
 									@error('libelle')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
@@ -47,13 +48,20 @@
 								</div>
 							</div>
 							<label for="switch">Enregistrer Encore</label>
-							<input type="checkbox" name="encore" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+							<input type="checkbox" name="encore" checked data-bootstrap-switch data-off-color="danger"
+								data-on-color="success">
 
 						</div>
 						<!-- /.card-body -->
-
 						<div class="card-footer">
-							<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block text-light mb-2">Retour</a>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
