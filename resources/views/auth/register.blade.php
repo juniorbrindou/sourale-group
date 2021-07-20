@@ -36,7 +36,7 @@
 					{{-- login --}}
 					<div class="input-group mb-3">
 						<input type="text" id="login" name="login" class="form-control @error('login') is-invalid @enderror"
-							id="login" placeholder="Nom de l'utilisateur" value="{{ old('login') }}" autofocus>
+							id="login" placeholder="login" required value="{{ old('login') }}" autofocus>
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>
@@ -52,7 +52,7 @@
 
 					{{-- mot de passe  --}}
 					<div class="input-group mb-3">
-						<input type="password" id="password"
+						<input type="password" id="password" required
 							class="form-control @error('password') is-invalid @enderror" name="password"
 							autocomplete="current-password" placeholder="Mot de passe">
 						<div class="input-group-append">
