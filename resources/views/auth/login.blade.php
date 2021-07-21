@@ -77,9 +77,6 @@
 						<a class="btn btn-link" href="{{ route('password.request') }}">Mot de passe Oublié</a>
 					@endif
 				</p>
-				<p class="mb-0 text-center">
-					<a href="{{route('register')}}" class="text-center">Créer un nouveau compte</a>
-				</p>
 			</div>
 			<!-- /.login-card-body -->
 		</div>
