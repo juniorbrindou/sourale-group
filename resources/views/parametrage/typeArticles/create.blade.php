@@ -106,6 +106,13 @@
 <link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css')}}">
 <!-- dropzonejs -->
 <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css')}}">
+{{-- modal --}}
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+<!-- Toastr -->
+<link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css')}}">
+
+
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 @endpush
@@ -136,6 +143,13 @@
 <script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
 <script src="{{ asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
+
+<!-- SweetAlert2 -->
+<script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
+
+
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
@@ -275,4 +289,27 @@
   }
   // DropzoneJS Demo Code End
 </script>
+
+{{-- message flash enregistrement --}}
+@if (session('success'))
+<script>
+	$(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			'timerProgressBar':true,
+			timer: 4000
+		}); 
+		
+		$(function() {
+			Toast.fire({
+				icon: 'success',
+				title: 'Action Effectuée!'
+			})
+		});
+	});
+</script>
+@endif
+
 @endpush

@@ -7,7 +7,7 @@
 	<!-- Default box -->
 	<div class="card">
 		<div class="card-header">
-			<h3 class="card-title">Projects</h3>
+			<h3 class="card-title">Liste des Utilisateurs</h3>
 
 			<div class="card-tools">
 				<a href="{{ route('users.create')}}" class="btn float-right  btn-md btn-success">
@@ -20,9 +20,6 @@
 			<table class="table table-striped projects">
 				<thead>
 					<tr>
-						<th style="width: 1%">
-							#
-						</th>
 						<th style="width: 5%">
 							Photo
 						</th>
@@ -33,74 +30,53 @@
 							Nom et Prenoms
 						</th>
 						<th style="width: 10%" class="text-center">
+							Téléphone
+						</th>
+						<th style="width: 10%" class="text-center">
 							Role
 						</th>
-						<th style="width: 20%">
+						<th style="width: 25%">
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					@for ($i = 0; $i < 1; $i++) 
-						<tr>
-							<td>#</td>
-							<td>
-								<img alt="Avatar" class="table-avatar" src="../../dist/img/avatar.png">
-							</td>
-							<td>
-								<a>AdminLTE v3</a><br /><small>Created 01.01.2019</small>
-							</td>
-							<td class="project_progress">
-								Lorem ipsum dolor sit 
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Success</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="#">
-									<i class="fas fa-folder">
-									</i>
-									View
-								</a>
-								<a class="btn btn-info btn-sm" href="#">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Edit
-								</a>
-								<a class="btn btn-danger btn-sm" href="#">
-									<i class="fas fa-trash"></i>Delete
-								</a>
-							</td>
-						</tr>
-					@endfor 
 
 					@foreach ($users as $user)
 					<tr>
-						<td>{{ $user->id }}</td>
 						<td>
 							<img alt="Avatar" class="table-avatar" src="../../dist/img/avatar.png">
 						</td>
+						
 						<td>
 							<a>{{ $user->login }}</a><br/><small>Compte Créé Le {{ $user->created_at }}</small>
 						</td>
-						<td class="project_progress">
-							{{ $user->nom }} {{ $user->prenoms }}
+						
+						<td>
+							@if ($user->nom && $user->prenoms)
+								{{ $user->nom .' '. $user->prenoms }}
+							@else
+								<span class="badge badge-danger">Aucun nom (ce compte est incomplet)  </span>
+							@endif
 						</td>
+
+						<td>
+							{{ $user->tel1 }} <br> {{ $user->tel2 }}
+						</td>
+
 						<td class="project-state">
-							<span class="badge badge-success">Success</span>
+							<span class="badge badge-success">{{($user->role) ? $user->role : 'Sécretaire'}}</span>
 						</td>
+
 						<td class="project-actions text-right">
 							<a class="btn btn-primary btn-sm" href="#">
-								<i class="fas fa-folder">
-								</i>
-								View
+								<i class="fas fa-eye"></i>Voir
 							</a>
 							<a class="btn btn-info btn-sm" href="#">
 								<i class="fas fa-pencil-alt">
-								</i>
-								Edit
+								</i>Editer
 							</a>
 							<a class="btn btn-danger btn-sm" href="#">
-								<i class="fas fa-trash"></i>Delete
+								<i class="fas fa-trash"></i>Supprimer
 							</a>
 						</td>
 					</tr>
@@ -137,9 +113,37 @@
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- SweetAlert2 -->
+<script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
+
+
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 
+{{-- message flash enregistrement --}}
+@if (session('success'))
+<script>
+	$(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			'timerProgressBar':true,
+			timer: 4000
+		}); 
+		
+		$(function() {
+			Toast.fire({
+				icon: 'success',
+				title: 'Action Effectuée!'
+			})
+		});
+	});
+</script>
+@endif 
 @endpush
