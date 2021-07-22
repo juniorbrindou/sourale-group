@@ -236,4 +236,5 @@
 		});
 	});
 </script>
+@endif
 @endpush

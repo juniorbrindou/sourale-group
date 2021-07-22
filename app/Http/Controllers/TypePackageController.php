@@ -51,7 +51,7 @@ class TypePackageController extends Controller
         $data = Type_packages::create($request->all());
 
         // creation du code
-        $data->update(['code' => 'PACK-0'.$data->id]);
+        $data->update(['code' => date("Ymd").'0'.$data->id]);
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');

@@ -97,11 +97,12 @@
 											name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
 									</div>
 								</div>
+							</div>
 
 
 								{{-- article_photo --}}
-								<div class="col-md-3 ">
-									<div class="form-group">
+								{{--<div class="col-md-3 ">
+									 <div class="form-group">
 										<label for="exampleInputFile">J'ai une photo de l'article</label>
 										<div class="input-group">
 											<div>
@@ -109,9 +110,42 @@
 													name="article_photo" id="article_photo">
 											</div>
 										</div>
+									</div> --}}
+									<div class="row">
+ 										<div class="col-md-5">
+											<span class="btn btn-success fileinput-button">
+												<i class="fas fa-plus"></i>
+												<input>Ajouter Photo</span>
+											</span>
+											  <div class="files" id="previews">
+												<div id="template" class="row mt-2">
+												  <div class="col-auto">
+													  <span class="preview"><img src="data:," alt="" data-dz-thumbnail /></span>
+												  </div>
+												  <div class="col d-flex align-items-center">
+													  <p class="mb-0">
+														<span class="lead" data-dz-name></span>
+														(<span data-dz-size></span>)
+													  </p>
+													  <strong class="error text-danger" data-dz-errormessage></strong>
+												  </div>
+												  <div class="col-auto d-flex align-items-center">
+													<div class="btn-group">
+													  <button id="actions" class="btn btn-primary start">
+														<i class="fas fa-upload"></i>
+														<span>Start</span>
+													  </button>
+													  <button id="actions" data-dz-remove class="btn btn-danger delete">
+														<i class="fas fa-trash"></i>
+														<span>Suprimer</span>
+													  </button>
+													</div>
+												  </div>
+												</div>
+											  </div>
+										</div>
 									</div>
 
-								</div>
 								<div class="col-md-3">
 									{{-- libelle --}}
 									<div class="form-group mt-3">
@@ -133,6 +167,7 @@
 									</div>
 								</div>
 							</div>
+								
 					</form>
 				</div>
 				<!-- /.card -->
@@ -167,8 +202,6 @@
 <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
-<!-- BS Stepper -->
-<link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css')}}">
 <!-- dropzonejs -->
 <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css')}}">
 {{-- modal --}}
@@ -204,10 +237,8 @@
 <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Bootstrap Switch -->
 <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
-<!-- BS-Stepper -->
-<script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
-<script src="{{ asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
+<script src="{{ asset('plugins/dropzone/dropzone.js')}}"></script>
 
 <!-- SweetAlert2 -->
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
@@ -222,84 +253,10 @@
 <!-- Page specific script -->
 <script>
 	$(function () {
-	//Initialize Select2 Elements
-	$('.select2').select2()
-
-	//Initialize Select2 Elements
-	$('.select2bs4').select2({
-	  theme: 'bootstrap4'
-	})
-
-	//Datemask dd/mm/yyyy
-	$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-	//Datemask2 mm/dd/yyyy
-	$('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-	//Money Euro
-	$('[data-mask]').inputmask()
-
-	//Date picker
-	$('#reservationdate').datetimepicker({
-		format: 'L'
-	});
-
-	//Date and time picker
-	$('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
-
-	//Date range picker
-	$('#reservation').daterangepicker()
-	//Date range picker with time picker
-	$('#reservationtime').daterangepicker({
-	  timePicker: true,
-	  timePickerIncrement: 30,
-	  locale: {
-		format: 'MM/DD/YYYY hh:mm A'
-	  }
-	})
-	//Date range as a button
-	$('#daterange-btn').daterangepicker(
-	  {
-		ranges   : {
-		  'Today'       : [moment(), moment()],
-		  'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-		  'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-		  'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-		  'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-		  'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-		},
-		startDate: moment().subtract(29, 'days'),
-		endDate  : moment()
-	  },
-	  function (start, end) {
-		$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-	  }
-	)
-
-	//Timepicker
-	$('#timepicker').datetimepicker({
-	  format: 'LT'
-	})
-
-	//Bootstrap Duallistbox
-	$('.duallistbox').bootstrapDualListbox()
-
-	//Colorpicker
-	$('.my-colorpicker1').colorpicker()
-	//color picker with addon
-	$('.my-colorpicker2').colorpicker()
-
-	$('.my-colorpicker2').on('colorpickerChange', function(event) {
-	  $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-	})
-
-	$("input[data-bootstrap-switch]").each(function(){
-	  $(this).bootstrapSwitch('state', $(this).prop('checked'));
-	})
-
-  })
-  // BS-Stepper Init
-  document.addEventListener('DOMContentLoaded', function () {
-	window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-  })
+		$("input[data-bootstrap-switch]").each(function(){
+	  	$(this).bootstrapSwitch('state', $(this).prop('checked'));
+		})
+  	})
 
   // DropzoneJS Demo Code Start
   Dropzone.autoDiscover = false
@@ -321,15 +278,12 @@
 	clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
   })
 
-  myDropzone.on("addedfile", function(file) {
-	// Hookup the start button
-	file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
-  })
-
-  // Update the total progress bar
-  myDropzone.on("totaluploadprogress", function(progress) {
-	document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-  })
+	myDropzone.on("addedfile", function(file) {
+		// Hookup the start button
+		file.previewElement.querySelector(".start").onclick = function() {
+			 myDropzone.enqueueFile(file)
+			}
+	})
 
   myDropzone.on("sending", function(file) {
 	// Show the total progress bar when upload starts
@@ -338,21 +292,6 @@
 	file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
   })
 
-  // Hide the total progress bar when nothing's uploading anymore
-  myDropzone.on("queuecomplete", function(progress) {
-	document.querySelector("#total-progress").style.opacity = "0"
-  })
-
-  // Setup the buttons for all transfers
-  // The "add files" button doesn't need to be setup because the config
-  // `clickable` has already been specified.
-  document.querySelector("#actions .start").onclick = function() {
-	myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-  }
-  document.querySelector("#actions .cancel").onclick = function() {
-	myDropzone.removeAllFiles(true)
-  }
-  // DropzoneJS Demo Code End
 </script>
 {{-- message flash enregistrement --}}
 @if (session('success'))

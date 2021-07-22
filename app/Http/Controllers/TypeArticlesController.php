@@ -48,7 +48,7 @@ class TypeArticlesController extends Controller
         $data = Type_articles::create($request->all());
 
         // creation du code
-        $data->update(['code' => 'ART-0'.$data->id]);
+        $data->update(['code' => date("Ymd").'0'.$data->id]);
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
@@ -106,7 +106,15 @@ class TypeArticlesController extends Controller
      */
     public function destroy($id)
     {
-        Type_articles::destroy($id);
+        // $typeArticle = Type_articles::findOrFail($id);
+        
+        try {
+            Type_articles::destroy($id);
+            Session::flash('success', 'Action Effectuée!');
+        } catch (Illuminate\Database\QueryException $e) {
+            Session::flash('error', 'Impossible de Supprimer cet Article');
+        }
+        return back();
         return back()->with('success', 'Action Effectuée!');
     }
 }

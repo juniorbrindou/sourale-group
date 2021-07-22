@@ -42,6 +42,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->file('article_photo'));
         
         $request->validate([
             'libelle' => 'required|string|min:3|unique:articles',
@@ -66,15 +67,15 @@ class ArticleController extends Controller
             // stockage du nom du fichier et ses infos dans la variable file
             $file = $request->file('article_photo');
             // generer un nouveau nom de fichier avec l'extention : 2021 0 id _ libele.jpg
-            $fileName = date('Y').'0'.$data->id .'_'. $request->libelle.'.'.$file->getClientOriginalExtension();
+            $fileName =  date("Ymd").'0'.$data->id .'_'. $request->libelle.'.'.$file->getClientOriginalExtension();
             // Save the file
             $path = $file->storeAs('articles', $fileName);
             
             // creation du code et ajout du lien de l'image dans la bd
-            $data->update(['code' => date('Y').'0'.$data->id, 'article_photo' => $path]);
+            $data->update(['code' => date("Ymd").'0'.$data->id, 'article_photo' => $path]);
 
         }else{
-            $data->update(['code' => date('Y').'0'.$data->id]);
+            $data->update(['code' => date("Ymd").'0'.$data->id]);
         }
 
         if (isset($request->encore)) {
@@ -170,7 +171,13 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        Articles::destroy($id);
-        return back()->with('success', 'Action Effectuée!');
+        $article = Articles::findOrFail($id);
+        try {
+            $article->delete();
+            Session::flash('success', 'Action Effectuée!');
+        } catch (Illuminate\Database\QueryException $e) {
+            Session::flash('error', 'Impossible de Supprimer cet Article');
+        }
+        return back();
     }
 }

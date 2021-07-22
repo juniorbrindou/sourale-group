@@ -47,7 +47,7 @@ class AddContraintesTable extends Migration
 
 			$table->foreign('article_id')
 					->references('id')
-					->on('factures')
+					->on('articles')
 					->onDelete('cascade')
 					->onUpdate('cascade');
 
@@ -87,7 +87,7 @@ class AddContraintesTable extends Migration
 			$table->foreign('type_article_id')
 					->references('id')
 					->on('type_articles')
-					->onDelete('cascade')
+					->onDelete('restrict')
 					->onUpdate('cascade');
 
 			$table->foreign('categorie_article_id')
@@ -239,7 +239,5 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('entrees_article_id_foreign');
 			$table->dropForeign('entrees_fournisseur_id_foreign');
 		});
-
-
 	}
 }
