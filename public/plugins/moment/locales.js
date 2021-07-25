@@ -2734,7 +2734,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-au', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2799,7 +2799,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-ca', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2860,7 +2860,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-gb', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2925,7 +2925,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-ie', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -2990,7 +2990,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-il', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -3051,7 +3051,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-in', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -3116,7 +3116,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-nz', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -3181,7 +3181,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('en-sg', {
-        months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+        months: 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),

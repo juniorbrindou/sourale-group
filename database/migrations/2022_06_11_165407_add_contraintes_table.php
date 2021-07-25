@@ -37,8 +37,8 @@ class AddContraintesTable extends Migration
 					->onUpdate('cascade');
 		});
 
-		//table entrees
-		Schema::table('entrees', function (Blueprint $table) {
+		//table entrers
+		Schema::table('entrers', function (Blueprint $table) {
 			$table->foreign('user_id')
 					->references('id')
 					->on('users')
@@ -234,10 +234,10 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('evenements_package_id_foreign');
 		});
 
-    Schema::table('entrees', function (Blueprint $table) {
-			$table->dropForeign('entrees_user_id_foreign');
-			$table->dropForeign('entrees_article_id_foreign');
-			$table->dropForeign('entrees_fournisseur_id_foreign');
+    Schema::table('entrers', function (Blueprint $table) {
+			$table->dropForeign('entrers_user_id_foreign');
+			$table->dropForeign('entrers_article_id_foreign');
+			$table->dropForeign('entrers_fournisseur_id_foreign');
 		});
 	}
 }

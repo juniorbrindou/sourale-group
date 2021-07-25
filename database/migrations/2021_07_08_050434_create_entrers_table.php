@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEntreesTable extends Migration
+class CreateEntrersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateEntreesTable extends Migration
      */
     public function up()
     {
-        Schema::create('entrees', function (Blueprint $table) {
+        Schema::create('entrers', function (Blueprint $table) {
             $table->id();
             $table->string('code')->nullable();
             $table->integer('qte_recu')->nullable();
             $table->integer('prix_achat_unitaire')->nullable();
-            $table->date('date_reception')->nullable();
+            $table->date('date_reception')->useCurrent();
 
             $table->integer('user_id')->unsigned();
             $table->integer('article_id')->unsigned();

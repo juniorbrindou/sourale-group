@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('main')
+
 <!-- Main content -->
 <section class="content">
 	<div class="container-fluid">
@@ -9,9 +10,9 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Liste des categories d'événements</h3>
+						<h3 class="card-title">Approvisionner le stock</h3>
 
-						<a href="{{ route('typeEvenements.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</a>
@@ -22,111 +23,97 @@
 							<thead>
 								<tr>
 									<th>Code</th>
-									<th>Libelle</th>
-									<th>description</th>
+									<th>Image</th>
+									<th>Désignation</th>
+									<th>Qte</th>
+									<th>Fournisseur</th>
+									<th>PU</th>
+									<th>Date d'ajout</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($typeEvenements as $typeEvenement)
-
+								
+								@foreach ($entrers as $entrers)									
 								<tr>
-									<td>{{ $typeEvenement->code }} </td>
-									<td>{{ $typeEvenement->libelle }} </td>
-									<td>{{ isset($typeEvenement->description) ? $typeEvenement->description : 'Aucune description' }}
-									</td>
+									<td>{{$entrers->code}}</td>
+									
 									<td>
-										<button class="btn btn-warning btn-md" data-toggle="modal"
-											data-target="#modal-see-{{$typeEvenement->id}}">
+										@if($entrers->article->article_photo)
+											<img alt="Avatar" class="img-perso" src="{{asset('storage/'. $entrers->article->article_photo)}}">
+										@else
+											<img alt="Avatar" class="img-perso" src="{{asset('storage/articles/default_article.png')}}">
+										@endif
+									</td>
+									<td>{{$entrers->article->libelle}}</td>
+									<td>{{$entrers->qte_recu}}</td>
+									<td>{{$entrers->fournisseur->nom?? "Non Défini" }}</td>
+									<td>{{$entrers->prix_achat_unitaire ?? "Non Défini"}}</td>
+									<td>{{$entrers->date_reception}}</td>
+									<td>
+										<a href="{{ route('approvisionnement.show', $entrers->id) }}" class="btn btn-warning btn-md mr-1">
 											<i class="fa fa-eye"></i>
 										</button>
-										<a href="{{ route('typeEvenements.edit', $typeEvenement->id) }}" title="Modiffier"
-											class="btn btn-primary btn-md">
+										<a href="{{ route('approvisionnement.edit', $entrers->id) }}"
+											title="Modiffier" class="btn btn-primary btn-md">
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$typeEvenement->id}}">
+											data-target="#modal-danger-{{$entrers->id}}">
 											<i class="fa fa-trash"></i>
 										</button>
+										<button type="submit" class="btn btn-success btn-md" data-toggle="modal">
+											<i class="fa fa-check"></i>
+										</button>
+
 									</td>
+
+									<div class="modal fade" id="modal-danger-{{$entrers->id}}"">
+										<div class="modal-dialog">
+											<div class="modal-content bg-default">
+												<div class="modal-header">
+													<h4 class="modal-title">Attention ! Action Irréversible !</h4>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<p class="text-danger">Voulez vous vraiment supprimer l'article
+														<b>{{ ucwords($entrers->libelle) }}</b></p>
+												</div>
+												<div class="modal-footer justify-content-between">
+													<button type="button" class="btn btn-primary"
+														data-dismiss="modal">Annuler</button>
+													<form method="POST" style="display: inline"
+														action="{{ route('approvisionnement.destroy', $entrers->id ) }}">
+														@csrf
+														@method('DELETE')
+														<button type="submit" class="btn btn-outline-danger">Je
+															Confirme</button>
+													</form>
+												</div>
+											</div>
+											<!-- /.modal-content -->
+										</div>
+										<!-- /.modal-dialog -->
+									</div>
+									<!-- /.modal -->
+									
 								</tr>
-
-								<div class="modal fade" id="modal-danger-{{$typeEvenement->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<h4 class="modal-title">Attention ! Action Irréversible !</h4>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer le type de
-													l'événement
-													<b>{{ $typeEvenement->libelle }}</b></p>
-											</div>
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Annuler</button>
-												<form method="POST" style="display: inline"
-													action="{{ route('typeEvenements.destroy', $typeEvenement->id ) }}">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="btn btn-outline-danger">Je
-														Confirme</button>
-												</form>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
-
-
-
 								
-								<div class="modal fade" id="modal-see-{{$typeEvenement->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<p>Détails</p>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-
-											<div class="modal-body">
-												<p>
-													<b>LIBELLE : </b>{{ $typeEvenement->libelle }}
-												</p>
-												<hr>
-												<p>
-													<b>DESCRIPTION : </b>{{ $typeEvenement->description }}
-												</p>
-											</div>
-
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary btn-block"
-													data-dismiss="modal">Fermer</button>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
-
 								@endforeach
-
+								
 							</tbody>
 							<tfoot>
 								<tr>
 									<th>Code</th>
-									<th>Libelle</th>
-									<th>description</th>
+									<th>Image</th>
+									<th>Désignation</th>
+									<th>Qte</th>
+									<th>Fournisseur</th>
+									<th>PU</th>
+									<th>Date d'ajout</th>
 									<th></th>
 								</tr>
 							</tfoot>
@@ -146,6 +133,7 @@
 @endsection
 
 @push('styles')
+<!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
@@ -159,12 +147,11 @@
 <!-- Toastr -->
 <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css')}}">
 
+
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 
 @endpush
-
-
 
 
 @push('scripts')
@@ -199,21 +186,20 @@
 <!-- Page specific script -->
 <script>
 	$(function () {
-			$("#example1").DataTable({
-			"responsive": true, "lengthChange": false, "autoWidth": false,
-			"buttons": ["excel", "pdf", "print"]
-			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-			$('#example2').DataTable({
-			"paging": true,
-			"lengthChange": false,
-			"searching": false,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true,
-			});
+		$("#example1").DataTable({
+		  "responsive": true, "lengthChange": true, "autoWidth": true,
+		  "buttons": ["excel", "pdf", "print"]
+		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+		$('#example2').DataTable({
+		  "paging": true,
+		  "lengthChange": false,
+		  "searching": false,
+		  "ordering": true,
+		  "info": true,
+		  "autoWidth": false,
+		  "responsive": true,
 		});
-
+	  });
 </script>
 {{-- message flash enregistrement --}}
 @if (session('success'))
@@ -235,5 +221,26 @@
 		});
 	});
 </script>
-@endif 
+
+@elseif(session('error'))
+<script>
+	$(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			'timerProgressBar':true,
+			timer: 4000
+		}); 
+		
+		$(function() {
+			Toast.fire({
+				icon: 'error',
+				title: 'L\'action à échouée!'
+			})
+		});
+	});
+</script>
+
+@endif
 @endpush

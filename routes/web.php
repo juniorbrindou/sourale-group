@@ -12,21 +12,23 @@ Route::group(
         Route::get('/', 'DashboardController@dashboard')->name('dashboard');
         Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
         Route::get('/home', 'HomeController@index')->name('home');
-        Route::resource('articles', 'ArticleController');
         Route::resource('utilisateurs', 'UserController');
+        Route::resource('approvisionnement', 'EntrersController');
 
         // Parametrage
-        Route::resource('categorieArticles', 'CategorieArticleController');
-        Route::resource('clients', 'ClientController');
-        Route::resource('fournisseurs', 'FournisseursController');
-        Route::resource('typeArticles', 'TypeArticlesController');
-        Route::resource('typeEvenements', 'TypeEvenementsController');
-        Route::resource('typePackages', 'TypePackageController');
-        Route::resource('users', 'UserController');
+        Route::group(['prefix' => 'parametrage'], function(){
+            Route::resource('articles', 'ArticleController');
+            Route::resource('categorieArticles', 'CategorieArticleController');
+            Route::resource('clients', 'ClientController');
+            Route::resource('fournisseurs', 'FournisseursController');
+            Route::resource('typeArticles', 'TypeArticlesController');
+            Route::resource('typeEvenements', 'TypeEvenementsController');
+            Route::resource('typePackages', 'TypePackageController');
+            Route::resource('users', 'UserController');
+        });
 
         Route::get('facture',function(){
             return view('facture.index');
         });
-
     }
 );

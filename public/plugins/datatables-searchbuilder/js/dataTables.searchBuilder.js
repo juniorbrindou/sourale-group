@@ -1358,7 +1358,7 @@
 		i18n: {
 			previous: 'Previous',
 			next:     'Next',
-			months:   [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
+			months:   [ 'Janvier', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
 			weekdays: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
 			amPm:     [ 'am', 'pm' ],
 			hours:    'Hour',

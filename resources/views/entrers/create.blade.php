@@ -6,82 +6,28 @@
 	<div class="container-fluid">
 		<div class="row">
 			<!-- left column -->
-			<div class="col-md-12 ">
+			<div class="col-md-12">
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Nouvel Article</h3>
+						<h3 class="card-title">Approvisionnement</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('articles.store')}}" enctype="multipart/form-data">
+					<form method="POST" action="{{ route('approvisionnement.store')}}">
 						@csrf
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-8 col-xs-12">
-
-									{{-- libelle --}}
+								<div class="col-md-6">
 									<div class="form-group">
-										<label for="libelle">Nom de l'article</label>
-										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ old('libelle') }}" name="libelle" id="libelle"
-											placeholder="Entrer le nom de l'article">
-									</div>
-									@error('libelle')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-										role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-
-								{{-- caution --}}
-								<div class="col-md-4 col-xs-12">
-									<div class="form-group">
-										<label for="caution">Caution de l'article</label>
-										<input type="number" class="form-control @error('caution') is-invalid @enderror"
-											name="caution" id="caution" placeholder="Entrer la caution de l'article"
-											value="{{ old('caution')}}">
-									</div>
-									@error('caution')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-										role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-							</div>
-
-
-
-							<div class="row">
-								<div class="col-md-3 ">
-									<div class="form-group">
-										<label>Type d'article</label>
-										<select class="form-control select2" name="type_article_id"
-											style="width: 100%;">
-
-											@foreach ($type_articles as $type_article)
-											<option @if ($loop->first) selected="selected" @endif
-												value="{{$type_article->id}}"> {{$type_article->libelle}}
-											</option> @endforeach
-
-										</select>
-									</div>
-									<!-- /.form-group -->
-								</div>
-
-								{{-- categorie_article_id --}}
-								<div class="col-md-3 ">
-									<div class="form-group">
-										<label>Catégorie d'article</label>
+										<label>Article Concerné *</label>
 										<select class="form-control select2" style="width: 100%;"
-											name="categorie_article_id">
+											name="article_id">
 
-											@foreach ($categorie_articles as $categorie_article)
+											@foreach ($articles as $article)
 											<option @if ($loop->first) selected="selected" @endif
-												value="{{$categorie_article->id}}"> {{$categorie_article->libelle}}
+												value="{{$article->id}}"> {{$article->libelle}}
 											</option>
 											@endforeach
 
@@ -89,66 +35,88 @@
 									</div>
 								</div>
 
-								{{-- description --}}
-								<div class="col-md-6 ">
+								{{-- qte_recu --}}
+								<div class="col-md-3 col-xs-12">
 									<div class="form-group">
-										<label>Ajouter une description à l'article</label>
-										<textarea class="form-control @error('description') is-invalid @enderror"
-											name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
+										<label for="qte_recu">Quantité *</label>
+										<input type="number"
+											class="form-control @error('qte_recu') is-invalid @enderror" name="qte_recu"
+											id="qte_recu" placeholder="Entrer la quantité d'article"
+											value="{{ old('qte_recu')}}">
 									</div>
+									@error('qte_recu')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+
+								{{-- prix_achat_unitaire --}}
+								<div class="col-md-3 col-xs-12">
+									<div class="form-group">
+										<label for="prix_achat_unitaire">Prix Unitaire</label>
+										<input type="number"
+											class="form-control @error('prix_achat_unitaire') is-invalid @enderror"
+											name="prix_achat_unitaire" id="prix_achat_unitaire"
+											placeholder="Entrer le prix unitaire de l'article"
+											value="{{ old('prix_achat_unitaire')}}">
+									</div>
+									@error('prix_achat_unitaire')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
 								</div>
 							</div>
 
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Fournisseur</label>
+										<select class="form-control select2" style="width: 100%;"
+											name="fournisseur_id">
 
-								{{-- article_photo --}}
-								<div class="col-md-3 ">
-									 <div class="form-group">
-										<label for="exampleInputFile">J'ai une photo de l'article</label>
-										<div class="input-group">
-											<div>
-												<input type="file" accept="image/gif, image/jpeg, image/png"
-													name="article_photo" id="article_photo">
-											</div>
-										</div>
+											<option selected="selected"> Aucun Fournisseur</option>
+
+											@foreach ($fournisseurs as $fournisseur)
+											<option value="{{$fournisseur->id}}">
+												{{$fournisseur->nom}}
+											</option>
+											@endforeach
+
+										</select>
 									</div>
-									{{-- <div class="row">
- 										<div class="col-md-5">
-											<span class="btn btn-success fileinput-button">
-												<i class="fas fa-plus"></i>
-												<input>Ajouter Photo</span>
-											</span>
-											  <div class="files" id="previews">
-												<div id="template" class="row mt-2">
-												  <div class="col-auto">
-													  <span class="preview"><img src="data:," alt="" data-dz-thumbnail /></span>
-												  </div>
-												  <div class="col d-flex align-items-center">
-													  <p class="mb-0">
-														<span class="lead" data-dz-name></span>
-														(<span data-dz-size></span>)
-													  </p>
-													  <strong class="error text-danger" data-dz-errormessage></strong>
-												  </div>
-												  <div class="col-auto d-flex align-items-center">
-													<div class="btn-group">
-													  <button id="actions" class="btn btn-primary start">
-														<i class="fas fa-upload"></i>
-														<span>Start</span>
-													  </button>
-													  <button id="actions" data-dz-remove class="btn btn-danger delete">
-														<i class="fas fa-trash"></i>
-														<span>Suprimer</span>
-													  </button>
-													</div>
-												  </div>
-												</div>
-											  </div>
-										</div> --}}
-									</div> 
+								</div>
 
-								<div class="col-md-3">
+								{{-- date_reception --}}
+								<div class="col-md-3 col-xs-12">
+									<div class="form-group">
+
+										  <!-- Date and time -->
+										  <div class="form-group">
+											<label>Date Approvionnement:</label>
+											  <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+												  <input type="datetime-local" name="date_reception" class="form-control" datetime-local="mm-dd-yyyy hh:mm"/>
+											  </div>
+										  </div>
+
+									</div>
+									@error('date_reception')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+							</div>
+
+							<div class="row">
+
+								<div class="col-md-4">
 									{{-- libelle --}}
-									<div class="form-group mt-3">
+									<div class="form-group">
 										<label for="switch">Enregistrer Encore</label>
 										<input type="checkbox" name="encore" checked data-bootstrap-switch
 											data-off-color="danger" data-on-color="success">
@@ -160,14 +128,14 @@
 							<div class="card-footer">
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
-										<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block mb-2 text-light">Retour</a>
+										<a href="{{ route('approvisionnement.index') }}"
+											class="btn btn-warning btn-block text-light mb-2">Retour</a>
 									</div>
 									<div class="col-md-6 col-sm-6">
 										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
 									</div>
 								</div>
 							</div>
-								
 					</form>
 				</div>
 				<!-- /.card -->
@@ -202,6 +170,8 @@
 <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+<!-- BS Stepper -->
+<link rel="stylesheet" href="{{ asset('plugins/bs-stepper/css/bs-stepper.min.css')}}">
 <!-- dropzonejs -->
 <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css')}}">
 {{-- modal --}}
@@ -236,9 +206,11 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Bootstrap Switch -->
-<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.js')}}"></script>
+<!-- BS-Stepper -->
+<script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
-<script src="{{ asset('plugins/dropzone/dropzone.js')}}"></script>
+<script src="{{ asset('plugins/dropzone/min/dropzone.min.js')}}"></script>
 
 <!-- SweetAlert2 -->
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
@@ -253,10 +225,26 @@
 <!-- Page specific script -->
 <script>
 	$(function () {
-		$("input[data-bootstrap-switch]").each(function(){
-	  	$(this).bootstrapSwitch('state', $(this).prop('checked'));
-		})
-  	})
+		
+	//Date and time picker
+	moment.locale('fr_fr')
+	$('#reservationdatetime').datetimepicker({ 
+		icons: { time: 'far fa-clock', 
+		format:'DD/MM/YYYY HH:mm:ss',
+		format: 'LT'
+	}
+	});
+
+
+	$("input[data-bootstrap-switch]").each(function(){
+	  $(this).bootstrapSwitch('state', $(this).prop('checked'));
+	})
+
+  })
+  // BS-Stepper Init
+  document.addEventListener('DOMContentLoaded', function () {
+	window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+  })
 
   // DropzoneJS Demo Code Start
   Dropzone.autoDiscover = false
@@ -278,12 +266,15 @@
 	clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
   })
 
-	myDropzone.on("addedfile", function(file) {
-		// Hookup the start button
-		file.previewElement.querySelector(".start").onclick = function() {
-			 myDropzone.enqueueFile(file)
-			}
-	})
+  myDropzone.on("addedfile", function(file) {
+	// Hookup the start button
+	file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+  })
+
+  // Update the total progress bar
+  myDropzone.on("totaluploadprogress", function(progress) {
+	document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+  })
 
   myDropzone.on("sending", function(file) {
 	// Show the total progress bar when upload starts
@@ -292,6 +283,21 @@
 	file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
   })
 
+  // Hide the total progress bar when nothing's uploading anymore
+  myDropzone.on("queuecomplete", function(progress) {
+	document.querySelector("#total-progress").style.opacity = "0"
+  })
+
+  // Setup the buttons for all transfers
+  // The "add files" button doesn't need to be setup because the config
+  // `clickable` has already been specified.
+  document.querySelector("#actions .start").onclick = function() {
+	myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+  }
+  document.querySelector("#actions .cancel").onclick = function() {
+	myDropzone.removeAllFiles(true)
+  }
+  // DropzoneJS Demo Code End
 </script>
 {{-- message flash enregistrement --}}
 @if (session('success'))

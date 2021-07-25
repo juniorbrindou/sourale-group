@@ -58,45 +58,19 @@
 					</a>
 				</li>
 
-
-
-
-
-
-
-				<li class="nav-item {{ request()->is('clients*') ? 'menu-is-opening' : ''}}">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-copy"></i>
-						<p>
-							Gestion des Packages
-							<i class="fas fa-angle-left right"></i>
-						</p>
+				<li class="nav-item">
+					<a href="{{route('approvisionnement.index')}}"
+						class="nav-link {{ request()->is('approvisionnement*') ? 'active' : ''}}">
+						<i class="fas fa-tag nav-icon"></i>
+						<p>Ajout d'article</p>
 					</a>
-					<ul class="nav nav-treeview">
-						{{-- packages --}}
-						<li class="nav-item">
-							<a href="{{route('clients.index')}}"
-								class="nav-link {{ request()->is('clients*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Packages</p>
-							</a>
-						</li>
-						{{-- packages --}}
-						<li class="nav-item">
-							<a href="{{route('clients.index')}}"
-								class="nav-link {{ request()->is('clients*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Type de Packages</p>
-							</a>
-						</li>
-
-					</ul>
 				</li>
+
 
 
 				{{-- parametrage --}}
 
-				<li class="nav-item {{ request()->is('clients*') ? 'menu-is-opening' : ''}}">
+				<li class="nav-item {{ request()->is('parametrage/*') ? 'menu-is-opening menu-open' : ''}}">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-copy"></i>
 						<p>
@@ -109,7 +83,7 @@
 						{{-- categorieArticles --}}
 						<li class="nav-item">
 							<a href="{{route('articles.index')}}"
-								class="nav-link {{ request()->is('articles*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/articles*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Articles</p>
 							</a>
@@ -118,7 +92,7 @@
 						{{-- categorieArticles --}}
 						<li class="nav-item">
 							<a href="{{route('categorieArticles.index')}}"
-								class="nav-link {{ request()->is('categorieArticles*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/categorieArticles*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Catégories d'articles</p>
 							</a>
@@ -127,7 +101,7 @@
 						{{-- clients --}}
 						<li class="nav-item">
 							<a href="{{route('clients.index')}}"
-								class="nav-link {{ request()->is('clients*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/clients*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Clients</p>
 							</a>
@@ -136,7 +110,7 @@
 						{{-- fournisseurs --}}
 						<li class="nav-item">
 							<a href="{{route('fournisseurs.index')}}"
-								class="nav-link {{ request()->is('fournisseurs*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/fournisseurs*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Fournisseurs</p>
 							</a>
@@ -145,7 +119,7 @@
 						{{-- typeArticles --}}
 						<li class="nav-item">
 							<a href="{{route('typeArticles.index')}}"
-								class="nav-link {{ request()->is('typeArticles*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/typeArticles*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Type d'articles</p>
 							</a>
@@ -154,7 +128,7 @@
 						{{-- typeEvenements --}}
 						<li class="nav-item">
 							<a href="{{route('typeEvenements.index')}}"
-								class="nav-link {{ request()->is('typeEvenements*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/typeEvenements*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Catégories d'événements</p>
 							</a>
@@ -163,7 +137,7 @@
 						{{-- typePackages --}}
 						<li class="nav-item">
 							<a href="{{route('typePackages.index')}}"
-								class="nav-link {{ request()->is('typePackages*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/typePackages*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Type de packages</p>
 							</a>
@@ -172,7 +146,7 @@
 						{{-- users --}}
 						<li class="nav-item">
 							<a href="{{route('users.index')}}"
-								class="nav-link {{ request()->is('users*') ? 'active' : ''}}">
+								class="nav-link {{ request()->is('parametrage/users*') ? 'active' : ''}}">
 								<i class="fa fa-users nav-icon"></i>
 								<p>Utilisateurs</p>
 							</a>
