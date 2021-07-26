@@ -23,5 +23,12 @@ class UserSeeder extends Seeder
             'tel2' => $faker->phoneNumber(),
             'password' => Hash::make('sourale-group'),
         ]);
+
+        User::create([
+            'login' => 'root',
+            'nom' => 'Dev',
+            'prenoms' => 'Dev',
+            'password' => Hash::make('Inges@2021'),
+        ]);
     }
 }

@@ -16,6 +16,7 @@ class ClientSeeder extends Seeder
 
 		for ($i = 0; $i < 100; $i++){
 			Clients::create([
+				'code' =>  date("Ymd").'-0'.$i,
 				'nom' => $faker->name(),
 				'prenoms' => $faker->lastName(),
 				'contact1' => $faker->phoneNumber(),
