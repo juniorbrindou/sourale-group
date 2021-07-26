@@ -18,7 +18,7 @@ class CreateEntrersTable extends Migration
             $table->string('code')->nullable();
             $table->integer('qte_recu')->nullable();
             $table->integer('prix_achat_unitaire')->nullable();
-            $table->date('date_reception')->useCurrent();
+            $table->dateTime('date_reception')->useCurrent();
 
             $table->integer('user_id')->unsigned();
             $table->integer('article_id')->unsigned();

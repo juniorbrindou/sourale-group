@@ -25,7 +25,7 @@
 										<label for="libelle">libéllé *</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="code"
-											placeholder="Entrer le type de l'article" autofocus>
+											placeholder="Entrer le type de l'article" autofocus required>
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">

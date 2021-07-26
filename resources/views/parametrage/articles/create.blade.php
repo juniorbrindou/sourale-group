@@ -23,8 +23,8 @@
 
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Nom de l'article</label>
-										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
+										<label for="libelle">Nom de l'article *</label>
+										<input type="text" required class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="libelle"
 											placeholder="Entrer le nom de l'article">
 									</div>
@@ -39,8 +39,8 @@
 								{{-- caution --}}
 								<div class="col-md-4 col-xs-12">
 									<div class="form-group">
-										<label for="caution">Caution de l'article</label>
-										<input type="number" class="form-control @error('caution') is-invalid @enderror"
+										<label for="caution">Caution de l'article *</label>
+										<input type="number" required class="form-control @error('caution') is-invalid @enderror"
 											name="caution" id="caution" placeholder="Entrer la caution de l'article"
 											value="{{ old('caution')}}">
 									</div>
@@ -58,8 +58,8 @@
 							<div class="row">
 								<div class="col-md-3 ">
 									<div class="form-group">
-										<label>Type d'article</label>
-										<select class="form-control select2" name="type_article_id"
+										<label>Type d'article *</label>
+										<select required class="form-control select2" name="type_article_id"
 											style="width: 100%;">
 
 											@foreach ($type_articles as $type_article)
@@ -75,8 +75,8 @@
 								{{-- categorie_article_id --}}
 								<div class="col-md-3 ">
 									<div class="form-group">
-										<label>Catégorie d'article</label>
-										<select class="form-control select2" style="width: 100%;"
+										<label>Catégorie d'article *</label>
+										<select required class="form-control select2" style="width: 100%;"
 											name="categorie_article_id">
 
 											@foreach ($categorie_articles as $categorie_article)

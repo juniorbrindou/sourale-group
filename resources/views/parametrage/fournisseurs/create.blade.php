@@ -25,7 +25,7 @@
 										<label for="nom">Nom *</label>
 										<input type="text" class="form-control @error('nom') is-invalid @enderror"
 											value="{{ old('nom') }}" name="nom" id="nom"
-											placeholder="Entrer le nom du client" autofocus>
+											placeholder="Entrer le nom du client" autofocus required>
 									</div>
 									@error('nom')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">

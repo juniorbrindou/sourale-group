@@ -56,7 +56,15 @@ class EntrersController extends Controller
             'prix_achat_unitaire.numeric' => 'Le prix d\'achat doit être un montant',
             'date_reception.date' => 'Le type de date n\'est pas correcte',
         ]);
-        Entrers::create(array_merge($request->all(),['user_id' => Auth::id()]));
+        
+        if($request->date_reception){
+            $data = Entrers::create(array_merge($request->all(),['user_id' => Auth::id()]));
+        }else{
+            $data = Entrers::create(array_merge($request->all(),['user_id' => Auth::id(),'date_reception'=>date("Y-m-d H:i:s")]));
+        }
+
+        $data->update(['code' => date("Ymd").'0'.$data->id]);
+
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
