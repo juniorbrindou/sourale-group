@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('login','<>','root')->get();
         return view('parametrage.users.index', compact('users'));
     }
 
@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('parametrage.users.create', compact('users'));
     }
 
     /**

@@ -67,3 +67,22 @@ if (! function_exists('getTile')) {
 		}
 	}
 }
+
+if (! function_exists('userAvatar')) {
+	/**
+	 * Recoit le genre de l'utilisateur, retourne un avatar en fonction du genre
+	 * @return avatar @string 
+	*/
+	function userAvatar(string $GenreUser){
+		if ($GenreUser === 'Mme') {
+			$avatar = asset('dist/img/avatar3.png');
+		}elseif ($GenreUser === 'M') {
+			$avatar = asset('dist/img/avatar.png');
+		}elseif ($GenreUser === 'Mlle') {
+				$avatar = asset('dist/img/34.jpg');
+		}else{
+			$avatar = asset('dist/img/25.jpg');
+		}
+		return $avatar;
+	}
+}

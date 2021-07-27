@@ -20,12 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('prenoms')->nullable();
             $table->string('tel1')->nullable();
             $table->string('tel2')->nullable();
-            // $table->string('email')->nullable()->unique();
+            $table->string('genre')->default('Mme');
             $table->integer('role_id')->unsigned()->nullable();
 
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

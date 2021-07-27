@@ -20,19 +20,19 @@
 			<table class="table table-striped projects">
 				<thead>
 					<tr>
-						<th style="width: 5%">
-							Photo
-						</th>
-						<th style="width: 15%">
+						<th style="width: 25%">
 							Login
+						</th>
+						<th style="width: 5%">
+							Image
 						</th>
 						<th>
 							Nom et Prenoms
 						</th>
-						<th style="width: 10%" class="text-center">
+						<th style="width: 15%">
 							Téléphone
 						</th>
-						<th style="width: 10%" class="text-center">
+						<th style="width: 5%">
 							Role
 						</th>
 						<th style="width: 25%">
@@ -44,11 +44,11 @@
 					@foreach ($users as $user)
 					<tr>
 						<td>
-							<img alt="Avatar" class="table-avatar" src="../../dist/img/avatar.png">
-						</td>
-						
-						<td>
 							<a>{{ $user->login }}</a><br/><small>Compte Créé Le {{ $user->created_at }}</small>
+						</td>
+
+						<td>
+							<img alt="Avatar" class="table-avatar" src="{{ userAvatar($user->genre)}}">
 						</td>
 						
 						<td>
