@@ -367,7 +367,7 @@
 @endpush
 
 @push('scripts')
-		<!-- jQuery -->
+	<!-- jQuery -->
 	<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 	<!-- Bootstrap -->
 	<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -392,4 +392,11 @@
 	<script src="{{asset('dist/js/demo.js')}}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
+@endpush
+
+@push('preloader')
+	<!-- Preloader -->
+	<div class="preloader flex-column justify-content-center align-items-center">
+		<img class="animation__wobble" src="{{asset ('dist/img/logo.png')}}" alt="AdminLTELogo" height="200" width="320">
+	</div>
 @endpush
