@@ -68,18 +68,54 @@
 						</td>
 
 						<td class="project-actions text-right">
-							<a class="btn btn-primary btn-sm" href="#">
+							<a class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}">
 								<i class="fas fa-eye"></i>Voir
 							</a>
-							<a class="btn btn-info btn-sm" href="#">
+							<a class="btn btn-info btn-sm" href="{{route('users.edit', $user->id)}}">
 								<i class="fas fa-pencil-alt">
 								</i>Editer
 							</a>
-							<a class="btn btn-danger btn-sm" href="#">
+							
+							<a class="btn btn-danger btn-sm" data-toggle="modal"
+							data-target="#modal-danger-{{$user->id}}">
 								<i class="fas fa-trash"></i>Supprimer
 							</a>
 						</td>
 					</tr>
+
+					{{-- modal danger --}}
+					<div class="modal fade" id="modal-danger-{{$user->id}}">
+						<div class="modal-dialog">
+							<div class="modal-content bg-default">
+								<div class="modal-header">
+									<h4 class="modal-title">Attention ! Action Irréversible !</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p class="text-danger">Voulez vous vraiment supprimer l'Utilisateur
+										<b>{{ $user->nom.' '. $user->prenoms }}</b></p>
+								</div>
+								<div class="modal-footer justify-content-between">
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal">Annuler</button>
+									<form method="POST" style="display: inline"
+										action="{{ route('users.destroy', $user->id) }}">
+										@csrf
+										@method('DELETE')
+										<button type="submit" class="btn btn-outline-danger">Je
+											Confirme
+										</button>
+									</form>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
 					@endforeach
 
 

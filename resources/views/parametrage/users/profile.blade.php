@@ -12,19 +12,23 @@
 				<div class="card card-primary card-outline">
 					<div class="card-body box-profile">
 						<div class="text-center">
-							<img class="profile-user-img img-fluid img-circle"
-								src="{{ asset('dist/img/user4-128x128.jpg')}}" alt="User profile picture">
+							<img class="profile-user-img img-fluid img-circle" src="{{ userAvatar($user->genre)}}"
+								alt="User profile picture">
 						</div>
 
 						<h3 class="profile-username text-center">{{Auth::user()->login}}</h3>
 
-						<p class="text-muted text-center">Software Engineer</p>
+						<p class="text-muted text-center">{{$user->nom .' '. $user->prenoms}}</p>
+
+						@if (Auth::user()->login === $user->login)
 
 						<form method="POST" action="{{ route('logout') }}" accept-charset="UTF-8" name="logout-form"
 							id="logout-form">
 							{{ csrf_field() }}
 							<button class="btn btn-primary btn-block" type="submit">Déconnexion</button>
 						</form>
+
+						@endif
 					</div>
 					<!-- /.card-body -->
 				</div>
@@ -35,87 +39,91 @@
 				<div class="card">
 					<div class="card-header p-2">
 						<ul class="nav nav-pills">
-							<li class="nav-item"><a class="nav-link active" href="#activity"
+							{{-- <li class="nav-item"><a class="nav-link " href="#activity"
 									data-toggle="tab">Activity</a></li>
 							<li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a>
+							</li> --}}
+							<li class="nav-item"><a class="nav-link active" href="#settings"
+									data-toggle="tab">Settings</a>
 							</li>
 						</ul>
 					</div><!-- /.card-header -->
 					<div class="card-body">
 						<div class="tab-content">
-							<div class="tab-pane active" id="activity">
+
+
+							{{-- <div class="tab-pane active" id="activity">
 								<!-- Post -->
 								<div class="post">
 									<div class="user-block">
 										<img class="img-circle img-bordered-sm"
 											src="{{ asset('dist/img/user1-128x128.jpg')}}" alt="user image">
-										<span class="username">
-											<a href="#">Jonathan Burke Jr.</a>
-										</span>
-										<span class="description">Shared publicly - 7:30 PM today</span>
-									</div>
-									<!-- /.user-block -->
-									<p>
-										Lorem ipsum represents a long-held tradition for designers,
-										typographers and the like. Some people hate it and argue for
-										its demise, but others ignore the hate as they create awesome
-										tools to help create filler text for everyone from bacon lovers
-										to Charlie Sheen fans.
-									</p>
+							<span class="username">
+								<a href="#">Jonathan Burke Jr.</a>
+							</span>
+							<span class="description">Shared publicly - 7:30 PM today</span>
+						</div>
+						<!-- /.user-block -->
+						<p>
+							Lorem ipsum represents a long-held tradition for designers,
+							typographers and the like. Some people hate it and argue for
+							its demise, but others ignore the hate as they create awesome
+							tools to help create filler text for everyone from bacon lovers
+							to Charlie Sheen fans.
+						</p>
 
-									<p>
-										<a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i>
-											Share</a>
-										<a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i>
-											Like</a>
-										<span class="float-right">
-											<a href="#" class="link-black text-sm">
-												<i class="far fa-comments mr-1"></i> Comments (5)
-											</a>
-										</span>
-									</p>
+						<p>
+							<a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i>
+								Share</a>
+							<a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i>
+								Like</a>
+							<span class="float-right">
+								<a href="#" class="link-black text-sm">
+									<i class="far fa-comments mr-1"></i> Comments (5)
+								</a>
+							</span>
+						</p>
 
-									<input class="form-control form-control-sm" type="text"
-										placeholder="Type a comment">
+						<input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+					</div>
+					<!-- /.post -->
+
+					<!-- Post -->
+					<div class="post clearfix">
+						<div class="user-block">
+							<img class="img-circle img-bordered-sm" src="{{ asset('dist/img/user7-128x128.jpg')}}"
+								alt="User Image">
+							<span class="username">
+								<a href="#">Sarah Ross</a>
+								<a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+							</span>
+							<span class="description">Sent you a message - 3 days ago</span>
+						</div>
+						<!-- /.user-block -->
+						<p>
+							Lorem ipsum represents a long-held tradition for designers,
+							typographers and the like. Some people hate it and argue for
+							its demise, but others ignore the hate as they create awesome
+							tools to help create filler text for everyone from bacon lovers
+							to Charlie Sheen fans.
+						</p>
+
+						<form class="form-horizontal">
+							<div class="input-group input-group-sm mb-0">
+								<input class="form-control form-control-sm" placeholder="Response">
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-danger">Send</button>
 								</div>
-								<!-- /.post -->
-
-								<!-- Post -->
-								<div class="post clearfix">
-									<div class="user-block">
-										<img class="img-circle img-bordered-sm"
-											src="{{ asset('dist/img/user7-128x128.jpg')}}" alt="User Image">
-										<span class="username">
-											<a href="#">Sarah Ross</a>
-											<a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-										</span>
-										<span class="description">Sent you a message - 3 days ago</span>
-									</div>
-									<!-- /.user-block -->
-									<p>
-										Lorem ipsum represents a long-held tradition for designers,
-										typographers and the like. Some people hate it and argue for
-										its demise, but others ignore the hate as they create awesome
-										tools to help create filler text for everyone from bacon lovers
-										to Charlie Sheen fans.
-									</p>
-
-									<form class="form-horizontal">
-										<div class="input-group input-group-sm mb-0">
-											<input class="form-control form-control-sm" placeholder="Response">
-											<div class="input-group-append">
-												<button type="submit" class="btn btn-danger">Send</button>
-											</div>
-										</div>
-									</form>
-								</div>
-								<!-- /.post -->
-
 							</div>
-							<!-- /.tab-pane -->
-							<div class="tab-pane" id="timeline">
+						</form>
+					</div>
+					<!-- /.post -->
+
+				</div> --}}
+
+
+				<!-- /.tab-pane -->
+				{{-- <div class="tab-pane" id="timeline">
 								<!-- The timeline -->
 								<div class="timeline timeline-inverse">
 									<!-- timeline time label -->
@@ -212,82 +220,154 @@
 										<i class="far fa-clock bg-gray"></i>
 									</div>
 								</div>
+							</div> --}}
+				<!-- /.tab-pane -->
+
+
+
+				<div class="tab-pane active" id="settings">
+
+					<!-- formulaire de modiffication de profile -->
+					<form class="form-horizontal" action="{{route('users.update',$user->id)}}" method="POST">
+						@csrf
+						@method('PATCH')
+						{{-- login --}}
+						<div class="form-group row">
+							<label for="inputName" class="col-sm-2 col-form-label">Login</label>
+							<div class="col-sm-10">
+								<input type="text" name="login" value="{{$user->login}}"
+									class="form-control @error('login') is-invalid @enderror" id="inputName">
+
+								@error('login')
+								<span class="text-danger" style="margin-top: -1.rem;display: block; font-size:80%"
+									role="alert">
+									<strong>{{$message}} </strong>
+								</span>
+								@enderror
 							</div>
-							<!-- /.tab-pane -->
 
-							<div class="tab-pane" id="settings">
-
-								<!-- formulaire de modiffication de profile -->
-								<form class="form-horizontal">
-									@csrf
-
-									{{-- login --}}
-									<div class="form-group row">
-										<label for="inputName" class="col-sm-2 col-form-label">Login</label>
-										<div class="col-sm-10">
-											<input type="text" value="{{$user->login}}" class="form-control" id="inputName">
-										</div>
-									</div>
-
-									{{-- nom --}}
-									<div class="form-group row">
-										<label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-										<div class="col-sm-10">
-											<input type="email" class="form-control" id="inputEmail" value="{{ $user->login}}">
-										</div>
-									</div>
-
-									{{-- prenoms --}}
-									<div class="form-group row">
-										<label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control" id="inputName2" placeholder="Name">
-										</div>
-									</div>
-
-									{{-- tel1 --}}
-									<div class="form-group row">
-										<label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-										<div class="col-sm-10">
-											<textarea class="form-control" id="inputExperience"
-												placeholder="Experience"></textarea>
-										</div>
-									</div>
-
-									{{-- role --}}
-									<div class="form-group row">
-										<label for="inputSkills" class="col-sm-2 col-form-label">Role</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control" value="Manager" id="inputSkills" disabled>
-										</div>
-									</div>
-									<div class="form-group row">
-										<div class="offset-sm-2 col-sm-10">
-											<div class="checkbox">
-												<label>
-													<input type="checkbox"> I agree to the <a href="#">terms and
-														conditions</a>
-												</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group row">
-										<div class="offset-sm-2 col-sm-10">
-											<button type="submit" class="btn btn-danger">Submit</button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<!-- /.tab-pane -->
 						</div>
-						<!-- /.tab-content -->
-					</div><!-- /.card-body -->
+
+						{{-- nom --}}
+						<div class="form-group row">
+							<label for="nom" class="col-sm-2 col-form-label">Nom</label>
+							<div class="col-sm-10">
+								<input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"
+									id="nom" value="{{ $user->nom}}">
+
+								@error('nom')
+								<span class="text-danger" style="margin-top: -1.rem;display: block; font-size:80%"
+									role="alert">
+									<strong>{{$message}} </strong>
+								</span>
+								@enderror
+
+
+							</div>
+						</div>
+
+						{{-- prenoms --}}
+						<div class="form-group row">
+							<label for="prenoms" class="col-sm-2 col-form-label">Prenoms</label>
+							<div class="col-sm-10">
+								<input type="text" name="prenoms"
+									class="form-control @error('prenoms') is-invalid @enderror" id="prenoms"
+									value="{{ $user->prenoms}}">
+
+								@error('prenoms')
+								<span class="text-danger" style="margin-top: -1.rem;display: block; font-size:80%"
+									role="alert">
+									<strong>{{$message}} </strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+
+						{{-- tel1 --}}
+						<div class="form-group row">
+							<label for="tel1" class="col-sm-2 col-form-label">Contact 1</label>
+							<div class="col-sm-10">
+								<input type="tel" name="tel1" class="form-control @error('tel1') is-invalid @enderror"
+									id="tel1" value="{{ $user->tel1}}">
+
+								@error('tel1')
+								<span class="text-danger" style="margin-top: -1.rem;display: block; font-size:80%"
+									role="alert">
+									<strong>{{$message}} </strong>
+								</span>
+								@enderror
+
+							</div>
+						</div>
+
+						{{-- tel2 --}}
+						<div class="form-group row">
+							<label for="tel2" class="col-sm-2 col-form-label">Contact 2</label>
+							<div class="col-sm-10">
+								<input type="tel" name="tel2" class="form-control @error('tel2') is-invalid @enderror"
+									id="tel2" value="{{ $user->tel2}}">
+
+								@error('tel2')
+								<span class="text-danger" style="margin-top: -1.rem;display: block; font-size:80%"
+									role="alert">
+									<strong>{{$message}} </strong>
+								</span>
+								@enderror
+
+							</div>
+						</div>
+
+						{{-- genre --}}
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Genre</label>
+							<div class="col-sm-10">
+								<select required class="form-control select2 @error('genre') is-invalid @enderror"
+									name="genre" style="width: 100%;">
+									<option selected="selected" value="Mme">Mme</option>
+									<option value="Mlle">Mlle</option>
+									<option value="M">M</option>
+								</select>
+								@error('genre')
+								<span class="text-danger" style="margin-top: -1.rem;display: block; font-size:80%"
+									role="alert">
+									<strong>{{$message}} </strong>
+								</span>
+								@enderror
+
+							</div>
+						</div>
+
+						{{-- role --}}
+						<div class="form-group row">
+							<label for="inputSkills"
+								class="col-sm-2 col-form-label @error('role_id') is-invalid @enderror">Role</label>
+							<div class="col-sm-10">
+								{{-- name="role_id" --}}
+								<input type="text" class="form-control" value="1" id="inputSkills" disabled>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="offset-sm-2 col-sm-4">
+								<input type="reset" class="btn btn-block btn-danger" value="Annuler">
+							</div>
+
+							<div class="offset-sm-1 col-sm-4">
+								<button type="submit" class="btn btn-block btn-primary">Enregistrer</button>
+							</div>
+						</div>
+					</form>
 				</div>
-				<!-- /.card -->
+				<!-- /.tab-pane -->
 			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
+			<!-- /.tab-content -->
+		</div><!-- /.card-body -->
+	</div>
+	<!-- /.card -->
+	</div>
+	<!-- /.col -->
+	</div>
+	<!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
