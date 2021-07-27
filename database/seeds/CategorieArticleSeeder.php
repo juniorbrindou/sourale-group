@@ -18,7 +18,7 @@ class CategorieArticleSeeder extends Seeder
 
 		foreach ($datas as $data =>$value){
 			Categorie_articles::create([
-				'code' => 'cat00'.$data,
+				'code' => date("Ymd").'-0'.$data,
 				'libelle' => $value,
 				'description' => $faker->realText()
 			]);

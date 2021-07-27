@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -96,6 +97,32 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'Action Effectuée!');
     }
+
+
+
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+            'oldPassword' => 'required',
+        ], [
+            'password.required' => 'Le champ nouveau mot de passe est obligatoire',
+            'oldPassword.required' => 'Le champ ancien mot de passe est obligatoire',
+            'password.min' => 'Le mot de passe doit avoir au moins 8 caractères',
+            'password.confirmed' => 'Le champ de confirmation est different du mot de passe',
+        ]);
+
+        $user = User::whereId($id)->first();
+
+        if (!Hash::check($request->oldPassword, $user->password)) {
+            return redirect()->back()->with('error', 'Mot de passe erroné');
+        }
+        $newPassword = Hash::make($request->password);
+        $user->update(['password' => $newPassword]);
+        return redirect()->back()->with('success', 'Le mot de passe a été modifié!');
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

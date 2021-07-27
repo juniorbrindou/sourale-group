@@ -24,7 +24,8 @@
 									{{-- libelle --}}
 									<div class="form-group">
 										<label for="libelle">Nom de l'article *</label>
-										<input type="text" required class="form-control @error('libelle') is-invalid @enderror"
+										<input type="text" required
+											class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="libelle"
 											placeholder="Entrer le nom de l'article">
 									</div>
@@ -40,8 +41,9 @@
 								<div class="col-md-4 col-xs-12">
 									<div class="form-group">
 										<label for="caution">Caution de l'article *</label>
-										<input type="number" required class="form-control @error('caution') is-invalid @enderror"
-											name="caution" id="caution" placeholder="Entrer la caution de l'article"
+										<input type="number" required
+											class="form-control @error('caution') is-invalid @enderror" name="caution"
+											id="caution" placeholder="Entrer la caution de l'article"
 											value="{{ old('caution')}}">
 									</div>
 									@error('caution')
@@ -100,18 +102,18 @@
 							</div>
 
 
-								{{-- article_photo --}}
-								<div class="col-md-3 ">
-									 <div class="form-group">
-										<label for="exampleInputFile">J'ai une photo de l'article</label>
-										<div class="input-group">
-											<div>
-												<input type="file" accept="image/gif, image/jpeg, image/png"
-													name="article_photo" id="article_photo">
-											</div>
+							{{-- article_photo --}}
+							<div class="col-md-3 ">
+								<div class="form-group">
+									<label for="exampleInputFile">J'ai une photo de l'article</label>
+									<div class="input-group">
+										<div>
+											<input type="file" accept="image/gif, image/jpeg, image/png"
+												name="article_photo" id="article_photo">
 										</div>
 									</div>
-									{{-- <div class="row">
+								</div>
+								{{-- <div class="row">
  										<div class="col-md-5">
 											<span class="btn btn-success fileinput-button">
 												<i class="fas fa-plus"></i>
@@ -144,30 +146,31 @@
 												</div>
 											  </div>
 										</div> --}}
-									</div> 
-
-								<div class="col-md-3">
-									{{-- libelle --}}
-									<div class="form-group mt-3">
-										<label for="switch">Enregistrer Encore</label>
-										<input type="checkbox" name="encore" checked data-bootstrap-switch
-											data-off-color="danger" data-on-color="success">
-									</div>
-								</div>
-
 							</div>
-							<!-- /.card-body -->
-							<div class="card-footer">
-								<div class="row">
-									<div class="col-md-6 col-sm-6">
-										<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block mb-2 text-light">Retour</a>
-									</div>
-									<div class="col-md-6 col-sm-6">
-										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
-									</div>
+
+							<div class="col-md-3">
+								{{-- libelle --}}
+								<div class="form-group mt-3">
+									<label for="switch">Enregistrer Encore</label>
+									<input type="checkbox" name="encore" checked data-bootstrap-switch
+										data-off-color="danger" data-on-color="success">
 								</div>
 							</div>
-								
+
+						</div>
+						<!-- /.card-body -->
+						<div class="card-footer">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<a href="{{ route('articles.index') }}"
+										class="btn btn-warning btn-block mb-2 text-light">Retour</a>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+								</div>
+							</div>
+						</div>
+
 					</form>
 				</div>
 				<!-- /.card -->
@@ -253,6 +256,16 @@
 <!-- Page specific script -->
 <script>
 	$(function () {
+
+		//Initialize Select2 Elements
+		$('.select2').select2()
+
+		//Initialize Select2 Elements
+		$('.select2bs4').select2({
+		theme: 'bootstrap4'
+		})
+		
+		
 		$("input[data-bootstrap-switch]").each(function(){
 	  	$(this).bootstrapSwitch('state', $(this).prop('checked'));
 		})

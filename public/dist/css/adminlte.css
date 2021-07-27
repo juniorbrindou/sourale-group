@@ -52423,8 +52423,8 @@ a.text-muted:hover {
 }
 .img-perso{
   height: 50px;
-  transition-duration: .2s
+  transition-duration: .3s
 }
 .img-perso:hover {
-  transform: scale(1.5);
+  transform: scale(3, 4);
 }

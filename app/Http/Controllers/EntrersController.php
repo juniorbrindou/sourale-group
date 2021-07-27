@@ -57,10 +57,10 @@ class EntrersController extends Controller
             'date_reception.date' => 'Le type de date n\'est pas correcte',
         ]);
         
-        if($request->date_reception){
-            $data = Entrers::create(array_merge($request->all(),['user_id' => Auth::id()]));
-        }else{
+        if($request->date_reception==null){
             $data = Entrers::create(array_merge($request->all(),['user_id' => Auth::id(),'date_reception'=>date("Y-m-d H:i:s")]));
+        }else{
+            $data = Entrers::create(array_merge($request->all(),['user_id' => Auth::id()]));
         }
 
         $data->update(['code' => date("Ymd").'0'.$data->id]);

@@ -26,6 +26,8 @@
 									<th>Image</th>
 									<th>Libéllé</th>
 									<th>Caution</th>
+									<th>Type</th>
+									<th>Categorie</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -39,11 +41,13 @@
 										@if($article->article_photo)
 											<img alt="Avatar" class="img-perso" src="{{asset('storage/'.$article->article_photo)}}">
 										@else
-											<img alt="Avatar" class="img-perso" src="{{asset('storage/articles/default_article.png')}}">
+											<img alt="Avatar" class="img-perso" src="{{asset('storage/articles/default_article100x100.png')}}">
 										@endif
 									</td>
 									<td>{{ ucwords($article->libelle)}}</td>
 									<td>{{$article->caution}}</td>
+									<td>{{$article->type_article->libelle}}</td>
+									<td>{{$article->categorie_article->libelle}}</td>
 									<td>
 										<a href="{{ route('articles.show', $article->id) }}" class="btn btn-warning btn-md mr-1">
 											<i class="fa fa-eye"></i>
@@ -98,6 +102,8 @@
 									<th>Image</th>
 									<th>Libéllé</th>
 									<th>Caution</th>
+									<th>Type</th>
+									<th>Categorie</th>
 									<th></th>
 								</tr>
 							</tfoot>

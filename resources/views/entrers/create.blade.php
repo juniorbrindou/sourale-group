@@ -10,7 +10,7 @@
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Approvisionnement</h3>
+						<h3 class="card-title">Entrée de Stock</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
@@ -22,8 +22,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Article Concerné *</label>
-										<select class="form-control select2" style="width: 100%;"
-											name="article_id">
+										<select class="form-control select2" style="width: 100%;" name="article_id">
 
 											@foreach ($articles as $article)
 											<option @if ($loop->first) selected="selected" @endif
@@ -75,10 +74,9 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Fournisseur</label>
-										<select class="form-control select2" style="width: 100%;"
-											name="fournisseur_id">
+										<select class="form-control select2" style="width: 100%;" name="fournisseur_id">
 
-											<option selected="selected"> Aucun Fournisseur</option>
+											<option selected="selected" value=""> Aucun Fournisseur</option>
 
 											@foreach ($fournisseurs as $fournisseur)
 											<option value="{{$fournisseur->id}}">
@@ -94,13 +92,16 @@
 								<div class="col-md-3 col-xs-12">
 									<div class="form-group">
 
-										  <!-- Date and time -->
-										  <div class="form-group">
-											<label>Date Approvionnement:</label>
-											  <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
-												  <input type="datetime-local" name="date_reception" class="form-control" datetime-local="mm-dd-yyyy hh:mm"/>
-											  </div>
-										  </div>
+										<!-- Date and time -->
+										<div class="form-group">
+											<label>Date :</label>
+											<div class="input-group date" id="reservationdatetime"
+												data-target-input="nearest">
+												<input type="datetime-local" name="date_reception"
+													class="form-control" />
+											</div>
+										</div>
+
 
 									</div>
 									@error('date_reception')
@@ -225,7 +226,20 @@
 <!-- Page specific script -->
 <script>
 	$(function () {
-		
+
+		//Initialize Select2 Elements
+		$('.select2').select2()
+
+		//Initialize Select2 Elements
+		$('.select2bs4').select2({
+		theme: 'bootstrap4'
+		})
+
+		$("input[data-bootstrap-switch]").each(function(){
+  			$(this).bootstrapSwitch('state', $(this).prop('checked'));
+		})
+	})
+	$(function () {
 	//Date and time picker
 	moment.locale('fr_fr')
 	$('#reservationdatetime').datetimepicker({ 
@@ -319,6 +333,26 @@
 		});
 	});
 </script>
-@endif
 
+@elseif(session('error'))
+<script>
+	$(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			'timerProgressBar':true,
+			timer: 4000
+		}); 
+		
+		$(function() {
+			Toast.fire({
+				icon: 'error',
+				title: 'L\'action à échouée!'
+			})
+		});
+	});
+</script>
+
+@endif
 @endpush

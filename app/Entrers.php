@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Entrers extends Model
 {
     protected $fillable = [
-		'code', 'qte_recu', 'prix_achat_unitaire', 'date_reception', 'user_id', 'article_id', 'fournisseur_id'
-	];
+        'code', 'qte_recu', 'prix_achat_unitaire', 'date_reception', 'isValidated', 'user_id', 'article_id', 'fournisseur_id'
+    ];
 
-	
+
     /**
      * fournisseur
      * @return Illuminate\Database\Eloquent\Model

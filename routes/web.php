@@ -24,6 +24,7 @@ Route::group(
             Route::resource('typeArticles', 'TypeArticlesController');
             Route::resource('typeEvenements', 'TypeEvenementsController');
             Route::resource('typePackages', 'TypePackageController');
+            Route::PATCH('users.updatePassword/{user}', 'UserController@updatePassword')->name('users.updatePassword');
             Route::resource('users', 'UserController');
         });
 

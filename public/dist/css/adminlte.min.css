@@ -17,8 +17,8 @@
   .img-perso{
     height: 40px;
     width:100px;
-    transition-duration: .2s
+    transition-duration: .3s
   }
   .img-perso:hover {
-    transform: scale(1.5);
+    transform: scale(3, 4);
   }
