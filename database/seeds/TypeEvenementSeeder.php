@@ -18,7 +18,7 @@ class TypeEvenementSeeder extends Seeder
         
         foreach ($datas as $data =>$value){
 			Type_evenements::create([
-				'code' =>  date("Ymd").'-0'.$data,
+				'code' =>  date("Ymd").'0'.$data,
 				'libelle' => $value,
 			]);
 		}

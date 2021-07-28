@@ -16,7 +16,7 @@ class FournisseurSeeder extends Seeder
 
 		for ($i = 0; $i < 10; $i++){
 			Fournisseurs::create([
-				'code' =>  date("Ymd").'-0'.$i,
+				'code' =>  date("Ymd").'0'.$i,
 				'nom' => $faker->name().' '.$faker->lastName(),
 				'contact' => $faker->phoneNumber(),
 				'adresse' => $faker->streetName(),

@@ -18,7 +18,7 @@ class TypeArticleSeeder extends Seeder
         
         foreach ($datas as $data =>$value){
 			Type_articles::create([
-				'code' =>  date("Ymd").'-0'.$data,
+				'code' =>  date("Ymd").'0'.$data,
 				'libelle' => $value,
 			]);
 		}
