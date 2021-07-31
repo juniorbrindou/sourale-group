@@ -46,7 +46,6 @@ class ArticleController extends Controller
         
         $request->validate([
             'libelle' => 'required|string|min:3|unique:articles',
-            'caution' => 'required|numeric|min:0',
             'categorie_article_id' => 'required|numeric',
             'type_article_id' => 'required|numeric',
             'description' => 'nullable',
@@ -56,7 +55,6 @@ class ArticleController extends Controller
             'libelle.unique' => 'La valeur de ce champ est ',
             'categorie_article_id.required' => 'Le champ catégorie est obligatoire',
             'type_article_id.required' => 'Le champ Type est obligatoire',
-            'caution.required' => 'Le champ caution est obligatoire',
         ]);
 
         
@@ -122,7 +120,6 @@ class ArticleController extends Controller
     {
         $request->validate([
             'libelle' => 'required|string|min:3|unique:articles,libelle,'.$id,
-            'caution' => 'required|numeric|min:0',
             'categorie_article_id' => 'required|numeric',
             'type_article_id' => 'required|numeric',
             'description' => 'nullable',
@@ -132,14 +129,12 @@ class ArticleController extends Controller
             'libelle.unique' => 'Ce nom d\'article existe déjà',
             'categorie_article_id.required' => 'Le champ catégorie est obligatoire',
             'type_article_id.required' => 'Le champ Type est obligatoire',
-            'caution.required' => 'Le champ caution est obligatoire',
         ]);
 
 
         $data = Articles::whereId($id)->firstOrFail();
         $data->update([
             'libelle' => $request->libelle,
-            'caution' => $request->caution,
             'categorie_article_id' => $request->categorie_article_id,
             'type_article_id' => $request->type_article_id,
             'description' => $request->description,

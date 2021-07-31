@@ -25,7 +25,6 @@
 									<th>Code</th>
 									<th>Image</th>
 									<th>Libéllé</th>
-									<th>Caution</th>
 									<th>Type</th>
 									<th>Categorie</th>
 									<th></th>
@@ -45,7 +44,6 @@
 										@endif
 									</td>
 									<td>{{ ucwords($article->libelle)}}</td>
-									<td>{{$article->caution}}</td>
 									<td>{{$article->type_article->libelle}}</td>
 									<td>{{$article->categorie_article->libelle}}</td>
 									<td>
@@ -101,7 +99,6 @@
 									<th>Code</th>
 									<th>Image</th>
 									<th>Libéllé</th>
-									<th>Caution</th>
 									<th>Type</th>
 									<th>Categorie</th>
 									<th></th>

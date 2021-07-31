@@ -36,23 +36,6 @@
 									</span>
 									@enderror
 								</div>
-
-								{{-- caution --}}
-								<div class="col-md-4 col-xs-12">
-									<div class="form-group">
-										<label for="caution">Caution de l'article *</label>
-										<input type="number" required
-											class="form-control @error('caution') is-invalid @enderror" name="caution"
-											id="caution" placeholder="Entrer la caution de l'article"
-											value="{{ old('caution')}}">
-									</div>
-									@error('caution')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-										role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
 							</div>
 
 

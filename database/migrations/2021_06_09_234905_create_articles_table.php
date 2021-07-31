@@ -19,8 +19,6 @@ class CreateArticlesTable extends Migration
             $table->string('libelle');
             $table->string('description')->nullable();
             $table->string('article_photo')->nullable();
-            $table->integer('caution')->nullable();
-
 
             $table->integer('user_id')->unsigned();
             $table->integer('type_article_id')->unsigned()->nullable();
@@ -30,7 +28,7 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
             // Vue : qte_article_en_stock,
             // champs ambigue : prix moyen
- 
+
 
         });
     }

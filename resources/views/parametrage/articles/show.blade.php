@@ -27,10 +27,6 @@
           <hr>
 
           <div class="bg-gray py-2 px-3 mt-4">
-            <h3 class="mb-0">
-              Caution : {{ $article->caution }} F CFA
-            </h3>
-
             <hr>
             Type : <h4 class="d-inline">{{$article->type_article->libelle}} </h4> <br>
             <hr>
