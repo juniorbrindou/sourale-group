@@ -23,7 +23,6 @@ Route::group(
             Route::resource('fournisseurs', 'FournisseursController');
             Route::resource('typeArticles', 'TypeArticlesController');
             Route::resource('typeEvenements', 'TypeEvenementsController');
-            Route::resource('typePackages', 'TypePackageController');
             Route::resource('packages', 'PackageController');
             Route::PATCH('users.updatePassword/{user}', 'UserController@updatePassword')->name('users.updatePassword');
             Route::resource('users', 'UserController');
