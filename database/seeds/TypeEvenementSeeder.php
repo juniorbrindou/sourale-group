@@ -15,12 +15,12 @@ class TypeEvenementSeeder extends Seeder
         $faker = Faker\Factory::create('fr_FR');
 
         $datas = ['Mariage', 'Bapteme', 'Divorce'];
-        
-        foreach ($datas as $data =>$value){
-			Type_evenements::create([
-				'code' =>  date("Ymd").'0'.$data,
-				'libelle' => $value,
-			]);
-		}
+
+        foreach ($datas as $data => $value) {
+            Type_evenements::create([
+                'code' =>  date("Ymd") . '0' . $data,
+                'libelle' => $value,
+            ]);
+        }
     }
 }

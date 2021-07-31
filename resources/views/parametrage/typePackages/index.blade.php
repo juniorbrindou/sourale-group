@@ -20,10 +20,10 @@
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>Code</th>
-									<th>Libelle</th>
-									<th>description</th>
-									<th></th>
+									<th width="10%">Code</th>
+									<th width="25%">Libelle</th>
+									<th width="*">description</th>
+									<th width="15%"></th>
 								</tr>
 							</thead>
 							<tbody>

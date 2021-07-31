@@ -15,13 +15,13 @@ class TypePackageSeeder extends Seeder
         $faker = Faker\Factory::create('fr_FR');
 
         $datas = ['Gold', 'Standart', 'Plume'];
-        
-        foreach ($datas as $data =>$value){
-			Type_packages::create([
-				'code' =>  date("Ymd").'0'.$data,
-				'libelle' => $value,
-				'description' => $faker->realText()
-			]);
-		}
+
+        foreach ($datas as $data => $value) {
+            Type_packages::create([
+                'code' =>  date("Ymd") . '0' . $data,
+                'libelle' => $value,
+                'description' => $faker->realText()
+            ]);
+        }
     }
 }

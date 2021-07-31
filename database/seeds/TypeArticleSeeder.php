@@ -12,15 +12,12 @@ class TypeArticleSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create('fr_FR');
-
-        $datas = ['Gold', 'Standart', 'Plume'];
-        
-        foreach ($datas as $data =>$value){
-			Type_articles::create([
-				'code' =>  date("Ymd").'0'.$data,
-				'libelle' => $value,
-			]);
-		}
+        $datas = ['Bronze', 'Silver', 'Millénium'];
+        foreach ($datas as $data => $value) {
+            Type_articles::create([
+                'code' =>  date("Ymd") . '0' . $data,
+                'libelle' => $value,
+            ]);
+        }
     }
 }

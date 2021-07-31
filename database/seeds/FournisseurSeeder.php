@@ -14,13 +14,13 @@ class FournisseurSeeder extends Seeder
     {
         $faker = Faker\Factory::create('fr_FR');
 
-		for ($i = 0; $i < 10; $i++){
-			Fournisseurs::create([
-				'code' =>  date("Ymd").'0'.$i,
-				'nom' => $faker->name().' '.$faker->lastName(),
-				'contact' => $faker->phoneNumber(),
-				'adresse' => $faker->streetName(),
-			]);
-		}
+        for ($i = 0; $i < 10; $i++) {
+            Fournisseurs::create([
+                'code' =>  date("Ymd") . '0' . $i,
+                'nom' => $faker->name() . ' ' . $faker->lastName(),
+                'contact' => $faker->phoneNumber(),
+                'adresse' => $faker->streetName(),
+            ]);
+        }
     }
 }
