@@ -10,11 +10,11 @@
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Nouvelle Catégorie</h3>
+						<h3 class="card-title">Nouveau Type</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('categorieArticles.store')}}">
+					<form method="POST" action="{{ route('typeArticles.store')}}">
 						@csrf
 						<div class="card-body">
 
@@ -22,10 +22,10 @@
 								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Nom de la catégorie</label>
+										<label for="libelle">Nom du Type</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="libelle"
-											placeholder="Entrer le nom de la catégorie">
+											placeholder="Entrer le nom du Type">
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
@@ -56,7 +56,8 @@
 						<div class="card-footer">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block text-light mb-2">Retour</a>
+									<a href="{{ route('articles.index') }}"
+										class="btn btn-warning btn-block text-light mb-2">Retour</a>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>

@@ -12,11 +12,15 @@ class TypeArticleSeeder extends Seeder
      */
     public function run()
     {
-        $datas = ['Bronze', 'Silver', 'Millénium'];
+        $faker = Faker\Factory::create('fr_FR');
+
+        $datas = ['Chaise', 'Table', 'Accessoires de décoration', 'Lounge', 'Buffets et mange-debout', 'Equip', 'Matériel d\'animation', 'Luminaires', 'Nappes et Serviettes', 'Plantes artificielles', 'Paravents, cloisons, vestiaires et maquillage', 'Matériel d\'accueil et accessoires conférence', 'Moquette, pistes de danse et éclairage'];
+
         foreach ($datas as $data => $value) {
             Type_articles::create([
-                'code' =>  date("Ymd") . '0' . $data,
+                'code' => date("Ymd") . '0' . $data,
                 'libelle' => $value,
+                'description' => $faker->realText()
             ]);
         }
     }

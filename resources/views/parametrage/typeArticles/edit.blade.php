@@ -10,11 +10,11 @@
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Modification Catégorie : <b>{{ $categorieArticle->libelle }}</b> </h3>
+						<h3 class="card-title">Modification Catégorie : <b>{{ $typeArticle->libelle }}</b> </h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('categorieArticles.update', $categorieArticle->id)}}">
+					<form method="POST" action="{{ route('typeArticles.update', $typeArticle->id)}}">
 						@csrf
 						@method('PATCH')
 						<div class="card-body">
@@ -25,7 +25,7 @@
 									<div class="form-group">
 										<label for="libelle">Nom de la catégorie</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ $categorieArticle->libelle }}" name="libelle" id="libelle">
+											value="{{ $typeArticle->libelle }}" name="libelle" id="libelle">
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
@@ -42,7 +42,7 @@
 									<div class="form-group">
 										<label>Ajouter une description à l'article</label>
 										<textarea class="form-control @error('description') is-invalid @enderror"
-											name="description" rows="3" placeholder="Ecrivez ici...">{{ $categorieArticle->description }}</textarea>
+											name="description" rows="3" placeholder="Ecrivez ici...">{{ $typeArticle->description }}</textarea>
 									</div>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 						<div class="card-footer">
 							<div class="row">
 								<div class="col-md-6 col-sm-6 mb-2">
-									<a href="{{ route('categorieArticles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
+									<a href="{{ route('typeArticles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>

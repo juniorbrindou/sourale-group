@@ -9,9 +9,9 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Liste des catégories d'articles</h3>
+						<h3 class="card-title">Liste des Types d'articles</h3>
 
-						<a href="{{ route('categorieArticles.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('typeArticles.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</a>
@@ -22,34 +22,34 @@
 							<thead>
 								<tr>
 									<th>Code</th>
-									<th>Nom de la catégorie</th>
+									<th>Nom du Type</th>
 									<th>Description</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($categorieArticles as $categorieArticle)
+								@foreach ($typeArticles as $typeArticle)
 
 								<tr>
-									<td>{{ $categorieArticle->code }}</td>
-									<td>{{ substr($categorieArticle->libelle,0,35) }}...</td>
-									<td>{{ substr($categorieArticle->description,0,70) }}...</td>
+									<td>{{ $typeArticle->code }}</td>
+									<td>{{ substr($typeArticle->libelle,0,35) }}...</td>
+									<td>{{ substr($typeArticle->description,0,70) }}...</td>
 									<td>
 										<button class="btn btn-warning btn-md" data-toggle="modal"
-											data-target="#modal-see-{{$categorieArticle->id}}">
+											data-target="#modal-see-{{$typeArticle->id}}">
 											<i class="fa fa-eye"></i>
 										</button>
-										<a href="{{ route('categorieArticles.edit', $categorieArticle->id) }}"
+										<a href="{{ route('typeArticles.edit', $typeArticle->id) }}"
 											title="Modiffier" class="btn btn-primary btn-md">
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$categorieArticle->id}}">
+											data-target="#modal-danger-{{$typeArticle->id}}">
 											<i class="fa fa-trash"></i>
 										</button>
 									</td>
 								</tr>
-								<div class="modal fade" id="modal-danger-{{$categorieArticle->id}}"">
+								<div class="modal fade" id="modal-danger-{{$typeArticle->id}}"">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -60,14 +60,14 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer la catégorie
-													<b>{{ $categorieArticle->libelle }}</b></p>
+												<p class="text-danger">Voulez vous vraiment supprimer le Type
+													<b>{{ $typeArticle->libelle }}</b></p>
 											</div>
 											<div class="modal-footer justify-content-between">
 												<button type="button" class="btn btn-primary"
 													data-dismiss="modal">Annuler</button>
 												<form method="POST" style="display: inline"
-													action="{{ route('categorieArticles.destroy', $categorieArticle->id ) }}">
+													action="{{ route('typeArticles.destroy', $typeArticle->id ) }}">
 													@csrf
 													@method('DELETE')
 													<button type="submit" class="btn btn-outline-danger">Je
@@ -83,7 +83,7 @@
 
 
 
-								<div class="modal fade" id="modal-see-{{$categorieArticle->id}}">
+								<div class="modal fade" id="modal-see-{{$typeArticle->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -96,15 +96,15 @@
 
 											<div class="modal-body">
 												<p>
-													<b>CODE : </b>{{ $categorieArticle->code }}
+													<b>CODE : </b>{{ $typeArticle->code }}
 												</p>
 												<hr>	
 												<p>
-													<b>LIBÉLLÉ : </b>{{ $categorieArticle->libelle }}
+													<b>LIBÉLLÉ : </b>{{ $typeArticle->libelle }}
 												</p>
 												<hr>
 												<p>
-													<b>DESCRIPTION : </b>{{ $categorieArticle->description }}
+													<b>DESCRIPTION : </b>{{ $typeArticle->description }}
 												</p>
 											</div>
 
@@ -125,7 +125,7 @@
 							<tfoot>
 								<tr>
 									<th>Code</th>
-									<th>Nom de la catégorie</th>
+									<th>Nom du Type</th>
 									<th>Description</th>
 									<th>Action</th>
 								</tr>
