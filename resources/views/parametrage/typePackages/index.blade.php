@@ -9,7 +9,7 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Liste des types de packages</h3>
+						<h3 class="card-title">Liste des Catégorie de packages</h3>
 						<a href="{{ route('typePackages.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter

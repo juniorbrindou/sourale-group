@@ -9,9 +9,9 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Liste des types d'articles</h3>
+						<h3 class="card-title">Liste des catégories d'articles</h3>
 
-						<a href="{{ route('typeArticles.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('categorieArticles.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</a>
@@ -22,36 +22,34 @@
 							<thead>
 								<tr>
 									<th>Code</th>
-									<th>Libelle</th>
-									<th>description</th>
-									<th></th>
+									<th>Nom de la catégorie</th>
+									<th>Description</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($typeArticles as $typeArticle)
+								@foreach ($categorieArticles as $categorieArticle)
 
 								<tr>
-									<td>{{ $typeArticle->code }} </td>
-									<td>{{ $typeArticle->libelle }} </td>
-									<td>{{ isset($typeArticle->description) ? $typeArticle->description : 'Aucune description' }}
-									</td>
+									<td>{{ $categorieArticle->code }}</td>
+									<td>{{ substr($categorieArticle->libelle,0,35) }}...</td>
+									<td>{{ substr($categorieArticle->description,0,70) }}...</td>
 									<td>
 										<button class="btn btn-warning btn-md" data-toggle="modal"
-											data-target="#modal-see-{{$typeArticle->id}}">
+											data-target="#modal-see-{{$categorieArticle->id}}">
 											<i class="fa fa-eye"></i>
 										</button>
-										<a href="{{ route('typeArticles.edit', $typeArticle->id) }}" title="Modiffier"
-											class="btn btn-primary btn-md">
+										<a href="{{ route('categorieArticles.edit', $categorieArticle->id) }}"
+											title="Modiffier" class="btn btn-primary btn-md">
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$typeArticle->id}}">
+											data-target="#modal-danger-{{$categorieArticle->id}}">
 											<i class="fa fa-trash"></i>
 										</button>
 									</td>
 								</tr>
-
-								<div class="modal fade" id="modal-danger-{{$typeArticle->id}}">
+								<div class="modal fade" id="modal-danger-{{$categorieArticle->id}}"">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -62,14 +60,14 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer le type d'artcle
-													<b>{{ $typeArticle->libelle }}</b></p>
+												<p class="text-danger">Voulez vous vraiment supprimer la catégorie
+													<b>{{ $categorieArticle->libelle }}</b></p>
 											</div>
 											<div class="modal-footer justify-content-between">
 												<button type="button" class="btn btn-primary"
 													data-dismiss="modal">Annuler</button>
 												<form method="POST" style="display: inline"
-													action="{{ route('typeArticles.destroy', $typeArticle->id ) }}">
+													action="{{ route('categorieArticles.destroy', $categorieArticle->id ) }}">
 													@csrf
 													@method('DELETE')
 													<button type="submit" class="btn btn-outline-danger">Je
@@ -85,7 +83,7 @@
 
 
 
-								<div class="modal fade" id="modal-see-{{$typeArticle->id}}">
+								<div class="modal fade" id="modal-see-{{$categorieArticle->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -98,11 +96,15 @@
 
 											<div class="modal-body">
 												<p>
-													<b>LIBELLE : </b>{{ $typeArticle->libelle }}
+													<b>CODE : </b>{{ $categorieArticle->code }}
+												</p>
+												<hr>	
+												<p>
+													<b>LIBÉLLÉ : </b>{{ $categorieArticle->libelle }}
 												</p>
 												<hr>
 												<p>
-													<b>DESCRIPTION : </b>{{ $typeArticle->description }}
+													<b>DESCRIPTION : </b>{{ $categorieArticle->description }}
 												</p>
 											</div>
 
@@ -123,9 +125,9 @@
 							<tfoot>
 								<tr>
 									<th>Code</th>
-									<th>Libelle</th>
-									<th>description</th>
-									<th></th>
+									<th>Nom de la catégorie</th>
+									<th>Description</th>
+									<th>Action</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -168,22 +170,23 @@
 
 @push('scripts')
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+
 <!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- DataTables  & Plugins -->
-<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.print.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.js')}}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
 <!-- SweetAlert2 -->
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
@@ -192,26 +195,26 @@
 
 
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+<script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
+<script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
 	$(function () {
-			$("#example1").DataTable({
-			"responsive": true, "lengthChange": false, "autoWidth": false,
-			"buttons": ["excel", "pdf", "print"]
-			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-			$('#example2').DataTable({
-			"paging": true,
-			"lengthChange": false,
-			"searching": false,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true,
-			});
+		$("#example1").DataTable({
+		"responsive": true, "lengthChange": true, "autoWidth": false,
+		"buttons": ["excel", "pdf", "print"]
+		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+		$('#example2').DataTable({
+		"paging": true,
+		"lengthChange": false,
+		"searching": false,
+		"ordering": true,
+		"info": true,
+		"autoWidth": false,
+		"responsive": true,
 		});
+	});
 </script>
 {{-- message flash enregistrement --}}
 @if (session('success'))
