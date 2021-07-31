@@ -13,15 +13,6 @@ class AddContraintesTable extends Migration
 	 */
 	public function up()
 	{
-		//table packages
-		Schema::table('packages', function (Blueprint $table) {
-			$table->foreign('type_package_id')
-					->references('id')
-					->on('type_packages')
-					->onDelete('cascade')
-					->onUpdate('cascade');
-		});
-
 		//table reglements
 		Schema::table('reglements', function (Blueprint $table) {
 			$table->foreign('user_id')
@@ -158,8 +149,8 @@ class AddContraintesTable extends Migration
 
 		
 
-		//table louers
-		Schema::table('louers', function (Blueprint $table) {
+		//table locations
+		Schema::table('locations', function (Blueprint $table) {
 			$table->foreign('user_id')
 					->references('id')
 					->on('users')
@@ -187,10 +178,6 @@ class AddContraintesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::table('packages', function (Blueprint $table) {
-			$table->dropForeign('packages_type_package_id_foreign');
-		});
-
 		Schema::table('users', function (Blueprint $table) {
 			$table->dropForeign('users_role_id_foreign');
 		});
@@ -223,10 +210,10 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('reglements_facture_id_foreign');
 		});
 
-		Schema::table('louers', function (Blueprint $table) {
-			$table->dropForeign('louers_user_id_foreign');
-			$table->dropForeign('louers_article_id_foreign');
-			$table->dropForeign('louers_evenement_id_foreign');
+		Schema::table('locations', function (Blueprint $table) {
+			$table->dropForeign('locations_user_id_foreign');
+			$table->dropForeign('locations_article_id_foreign');
+			$table->dropForeign('locations_evenement_id_foreign');
 		});
 
 		Schema::table('evenements', function (Blueprint $table) {
