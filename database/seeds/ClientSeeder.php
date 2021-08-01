@@ -5,18 +5,18 @@ use Illuminate\Database\Seeder;
 
 class ClientSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $faker = Faker\Factory::create('fr_FR');
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		$faker = Faker\Factory::create('fr_FR');
 
-		for ($i = 0; $i < 100; $i++){
+		for ($i = 0; $i < 100; $i++) {
 			Clients::create([
-				'code' =>  date("Ymd").'0'.$i,
+				'code' =>  date("Ymd") . '0' . $i,
 				'nom' => $faker->name(),
 				'prenoms' => $faker->lastName(),
 				'contact1' => $faker->phoneNumber(),
@@ -25,5 +25,5 @@ class ClientSeeder extends Seeder
 				'user_id' => 1,
 			]);
 		}
-    }
+	}
 }

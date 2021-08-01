@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Packages;
-use App\Type_packages;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -29,8 +28,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        $type_packages = Type_packages::all();
-        return view('parametrage.packages.create', compact('type_packages'));
+        return view('parametrage.packages.create');
     }
 
 
@@ -81,8 +79,7 @@ class PackageController extends Controller
      */
     public function edit($id)
     {
-        $typePackage = Packages::whereId($id)->first();
-        return view('parametrage.packages.edit', compact('typePackage'));
+        return view('parametrage.packages.edit');
     }
 
     /**

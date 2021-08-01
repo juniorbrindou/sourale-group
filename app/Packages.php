@@ -12,6 +12,6 @@ class Packages extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'nom', 'code', 'type_package_id'
+		'libelle', 'code'
 	];
 }

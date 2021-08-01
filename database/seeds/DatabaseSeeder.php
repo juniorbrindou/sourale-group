@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorieArticleSeeder::class,
             ClientSeeder::class,
-            TypePackageSeeder::class,
             TypeEvenementSeeder::class,
             TypeArticleSeeder::class,
             FournisseurSeeder::class,

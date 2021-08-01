@@ -6,11 +6,11 @@
 	<div class="container-fluid">
 		<div class="row">
 			<!-- left column -->
-			<div class="col-md-12 ">
+			<div class="col-md-12">
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Nouvelle Catégorie</h3>
+						<h3 class="card-title">Nouvelle Catégorie d'article</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
@@ -19,13 +19,13 @@
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-6">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Nom de la catégorie</label>
+										<label for="libelle">libéllé *</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ old('libelle') }}" name="libelle" id="libelle"
-											placeholder="Entrer le nom de la catégorie">
+											value="{{ old('libelle') }}" name="libelle" id="code"
+											placeholder="Entrer la catégorie de l'article" autofocus required>
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
@@ -34,35 +34,43 @@
 									</span>
 									@enderror
 								</div>
+
+								<div class="col-md-6">
+
+									<div class="form-group">
+										<label for="description">Description</label>
+										<textarea class="form-control" rows="3" name="description"
+											placeholder="Ecrivez ici ..."></textarea>
+									</div>
+
+								</div>
 							</div>
 
 
 							<div class="row">
-								{{-- description --}}
-								<div class="col-md-12">
+
+								<div class="col-md-4">
+									{{-- libelle --}}
 									<div class="form-group">
-										<label>Ajouter une description à l'article</label>
-										<textarea class="form-control @error('description') is-invalid @enderror"
-											name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
+										<label for="switch">Enregistrer Encore</label>
+										<input type="checkbox" name="encore" checked data-bootstrap-switch
+											data-off-color="danger" data-on-color="success">
+									</div>
+								</div>
+
+							</div>
+							<!-- /.card-body -->
+							<div class="card-footer">
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<a href="{{ route('categorieArticles.index') }}"
+											class="btn btn-warning btn-block text-light mb-2">Retour</a>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
 									</div>
 								</div>
 							</div>
-							<label for="switch">Enregistrer Encore</label>
-							<input type="checkbox" name="encore" checked data-bootstrap-switch data-off-color="danger"
-								data-on-color="success">
-
-						</div>
-						<!-- /.card-body -->
-						<div class="card-footer">
-							<div class="row">
-								<div class="col-md-6 col-sm-6">
-									<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block text-light mb-2">Retour</a>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
-								</div>
-							</div>
-						</div>
 					</form>
 				</div>
 				<!-- /.card -->
@@ -79,6 +87,7 @@
 @endsection
 
 @push('styles')
+
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -106,8 +115,6 @@
 <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 <!-- Toastr -->
 <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css')}}">
-
-
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
 @endpush
@@ -133,7 +140,7 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Bootstrap Switch -->
-<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.js')}}"></script>
+<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <!-- BS-Stepper -->
 <script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
@@ -284,6 +291,7 @@
   }
   // DropzoneJS Demo Code End
 </script>
+
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>

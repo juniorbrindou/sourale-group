@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
 use App\Articles;
 use App\Type_articles;
 use App\Categorie_articles;

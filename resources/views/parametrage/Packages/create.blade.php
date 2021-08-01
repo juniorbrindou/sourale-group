@@ -19,10 +19,11 @@
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-6">
-									{{-- libelle --}}
+
+								{{-- libelle --}}
+								<div class="col-md-8">
 									<div class="form-group">
-										<label for="libelle">libéllé *</label>
+										<label for="libelle">Libéllé *</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="code"
 											placeholder="Entrer le libelle" autofocus>
@@ -35,8 +36,53 @@
 									@enderror
 								</div>
 
-								<div class="col-md-6">
+								{{-- nombre de personne --}}
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="nbr_personnes">Nombre de personnes *</label>
+										<input type="number"
+											class="form-control @error('nbr_personnes') is-invalid @enderror"
+											value="{{ old('nbr_personnes') }}" name="nbr_personnes" id="code"
+											placeholder="Nombre de personnes">
+									</div>
+									@error('nbr_personnes')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+							</div>
 
+
+							<div class="row">
+
+								{{-- Prix de location --}}
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="prix_location">Prix de Location *</label>
+										<input type="number"
+											class="form-control @error('prix_location') is-invalid @enderror"
+											value="{{ old('prix_location') }}" name="prix_location" id="prix_location"
+											placeholder="Prix de location">
+									</div>
+									@error('prix_location')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+							</div>
+
+
+
+
+
+							<div class="row">
+
+								{{-- description --}}
+								<div class="col-md-6">
 									<div class="form-group">
 										<label for="adresse">Description</label>
 										<textarea class="form-control" rows="3" name="description"
@@ -48,7 +94,6 @@
 
 
 							<div class="row">
-
 								<div class="col-md-4">
 									{{-- libelle --}}
 									<div class="form-group">

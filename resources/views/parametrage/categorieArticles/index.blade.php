@@ -9,7 +9,7 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Liste des catégories d'articles</h3>
+						<h3 class="card-title">Liste des Catégorie d'articles</h3>
 
 						<a href="{{ route('categorieArticles.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
@@ -22,18 +22,19 @@
 							<thead>
 								<tr>
 									<th>Code</th>
-									<th>Nom de la catégorie</th>
-									<th>Description</th>
-									<th>Actions</th>
+									<th>Libelle</th>
+									<th>description</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($categorieArticles as $categorieArticle)
 
 								<tr>
-									<td>{{ $categorieArticle->code }}</td>
-									<td>{{ substr($categorieArticle->libelle,0,35) }}...</td>
-									<td>{{ substr($categorieArticle->description,0,70) }}...</td>
+									<td>{{ $categorieArticle->code }} </td>
+									<td>{{ $categorieArticle->libelle }} </td>
+									<td>{{ isset($categorieArticle->description) ? $categorieArticle->description : 'Aucune description' }}
+									</td>
 									<td>
 										<button class="btn btn-warning btn-md" data-toggle="modal"
 											data-target="#modal-see-{{$categorieArticle->id}}">
@@ -49,7 +50,8 @@
 										</button>
 									</td>
 								</tr>
-								<div class="modal fade" id="modal-danger-{{$categorieArticle->id}}"">
+
+								<div class="modal fade" id="modal-danger-{{$categorieArticle->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -60,7 +62,7 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer la catégorie
+												<p class="text-danger">Voulez vous vraiment supprimer la Catégorie
 													<b>{{ $categorieArticle->libelle }}</b></p>
 											</div>
 											<div class="modal-footer justify-content-between">
@@ -96,11 +98,7 @@
 
 											<div class="modal-body">
 												<p>
-													<b>CODE : </b>{{ $categorieArticle->code }}
-												</p>
-												<hr>	
-												<p>
-													<b>LIBÉLLÉ : </b>{{ $categorieArticle->libelle }}
+													<b>LIBELLE : </b>{{ $categorieArticle->libelle }}
 												</p>
 												<hr>
 												<p>
@@ -125,9 +123,9 @@
 							<tfoot>
 								<tr>
 									<th>Code</th>
-									<th>Nom de la catégorie</th>
-									<th>Description</th>
-									<th>Action</th>
+									<th>Libelle</th>
+									<th>description</th>
+									<th></th>
 								</tr>
 							</tfoot>
 						</table>
@@ -170,23 +168,22 @@
 
 @push('scripts')
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
-
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- DataTables  & Plugins -->
-<script src="{{ asset('plugins/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{ asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src="{{ asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.js')}}"></script>
-<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.print.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
 <!-- SweetAlert2 -->
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
@@ -195,26 +192,26 @@
 
 
 <!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js')}}"></script>
+<script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
 	$(function () {
-		$("#example1").DataTable({
-		"responsive": true, "lengthChange": true, "autoWidth": false,
-		"buttons": ["excel", "pdf", "print"]
-		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-		$('#example2').DataTable({
-		"paging": true,
-		"lengthChange": false,
-		"searching": false,
-		"ordering": true,
-		"info": true,
-		"autoWidth": false,
-		"responsive": true,
+			$("#example1").DataTable({
+			"responsive": true, "lengthChange": false, "autoWidth": false,
+			"buttons": ["excel", "pdf", "print"]
+			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+			$('#example2').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			});
 		});
-	});
 </script>
 {{-- message flash enregistrement --}}
 @if (session('success'))

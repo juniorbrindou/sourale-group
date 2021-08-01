@@ -34,7 +34,9 @@
 
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
-			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+			{{-- class : nav-child-indent --}}
+			<ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu"
+				data-accordion="false">
 				<li class="nav-item">
 					<a href="{{url('dashboard')}}" class="nav-link {{ request()->is('dashboard') ? 'active' : ''}}">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
@@ -43,9 +45,9 @@
 				</li>
 
 				<li class="nav-item">
-					<a href="{{route('articles.index')}}" class="nav-link {{ request()->is('stock*') ? 'active' : ''}}">
-						<i class="fas fa-archive nav-icon"></i>
-						<p>Magasin</p>
+					<a href="#" class="nav-link {{ request()->is('stock*') ? 'active' : ''}}">
+						<i class="fas fa-shipping-fast nav-icon"></i>
+						<p>Locations</p>
 					</a>
 				</li>
 
@@ -61,7 +63,8 @@
 
 				{{-- parametrage --}}
 
-				<li class="nav-item {{ request()->is('parametrage/*') ? 'menu-is-opening menu-open' : ''}}">
+				<li
+					class="nav-item {{ request()->is('parametrage/*') ? 'menu-is-opening menu-open' : ''}} menu-is-opening menu-open">
 					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-copy"></i>
 						<p>
@@ -82,12 +85,33 @@
 
 						{{-- categorieArticles --}}
 						<li class="nav-item">
+							<a href="{{route('typeArticles.index')}}"
+								class="nav-link {{ request()->is('parametrage/typeArticles*') ? 'active' : ''}}">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Type d'articles</p>
+							</a>
+						</li>
+						{{-- typeArticles --}}
+						<li class="nav-item">
 							<a href="{{route('categorieArticles.index')}}"
 								class="nav-link {{ request()->is('parametrage/categorieArticles*') ? 'active' : ''}}">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Catégories d'articles</p>
+								<p>Catégorie d'articles</p>
 							</a>
 						</li>
+
+						{{-- package --}}
+						<li class="nav-item">
+							<a href="{{route('packages.index')}}"
+								class="nav-link {{ request()->is('parametrage/packages*') ? 'active' : ''}}">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Packages</p>
+							</a>
+						</li>
+
+
+
+
 
 						{{-- clients --}}
 						<li class="nav-item">
@@ -107,14 +131,7 @@
 							</a>
 						</li>
 
-						{{-- typeArticles --}}
-						<li class="nav-item">
-							<a href="{{route('typeArticles.index')}}"
-								class="nav-link {{ request()->is('parametrage/typeArticles*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Type d'articles</p>
-							</a>
-						</li>
+
 
 						{{-- typeEvenements --}}
 						<li class="nav-item">
@@ -125,14 +142,9 @@
 							</a>
 						</li>
 
-						{{-- typePackages --}}
-						<li class="nav-item">
-							<a href="{{route('typePackages.index')}}"
-								class="nav-link {{ request()->is('parametrage/typePackages*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Type de packages</p>
-							</a>
-						</li>
+
+
+
 
 						{{-- users --}}
 						<li class="nav-item">

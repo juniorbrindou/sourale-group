@@ -56,9 +56,6 @@ if (! function_exists('getTile')) {
 		}else if (request()->is('typeEvenements*')){
 			return 'Type d\'événements';
 
-		}else if (request()->is('typePackages*')){
-			return 'Type de package';
-
 		}else if (request()->is('users*')){
 			return 'Utilisateurs';
 

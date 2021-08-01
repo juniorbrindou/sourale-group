@@ -23,7 +23,6 @@ class CreatePackagesTable extends Migration
             $table->string('caution_saisie')->nullable();
             $table->string('prix_location')->nullable();
             
-            $table->integer('type_package_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
