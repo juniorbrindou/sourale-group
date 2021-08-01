@@ -4,7 +4,6 @@
 
 <!-- Main content -->
 <section class="content">
-
   <!-- Default box -->
   <div class="card card-solid">
     <div class="card-body">
