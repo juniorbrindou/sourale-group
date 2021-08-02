@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Entrers extends Model
 {
     protected $fillable = [
-        'code', 'qte_recu', 'prix_achat_unitaire', 'date_reception', 'isValidated', 'user_id', 'article_id', 'fournisseur_id'
+        'code', 'qte_recu', 'prix_achat_unitaire', 'date_reception', 'isValidated', 'user_id', 'fournisseur_id'
     ];
 
 
@@ -18,15 +18,6 @@ class Entrers extends Model
     public function fournisseur()
     {
         return $this->belongsTo(Fournisseurs::class);
-    }
-
-    /**
-     * Type article
-     * @return Illuminate\Database\Eloquent\Model
-     */
-    public function article()
-    {
-        return $this->belongsTo(Articles::class);
     }
 
     /**

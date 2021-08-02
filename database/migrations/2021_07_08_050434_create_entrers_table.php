@@ -17,13 +17,12 @@ class CreateEntrersTable extends Migration
             $table->id();
             $table->string('code')->nullable();
             $table->integer('qte_recu')->nullable();
-            $table->integer('prix_achat_unitaire')->nullable();
+            $table->integer('prix_achat_unitaire')->nullable()->comment('Inutile maintenant');
             $table->dateTime('date_reception')->useCurrent();
             $table->boolean('isValidated')->default(0);
 
             $table->integer('user_id')->unsigned();
-            $table->integer('article_id')->unsigned();
-            $table->integer('fournisseur_id')->nullable()->unsigned();
+            $table->integer('fournisseur_id')->nullable()->unsigned()->comment('Inutile maintenant');
 
             $table->timestamps();
         });
@@ -36,6 +35,6 @@ class CreateEntrersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entrees');
+        Schema::dropIfExists('entrers');
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EntrersController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +33,7 @@ class EntrersController extends Controller
     {
         $articles = Articles::all();
         $fournisseurs = Fournisseurs::all();
-        return view('entrers.create',\compact('fournisseurs', 'articles'));
+        return view('entrers.create', \compact('fournisseurs', 'articles'));
     }
 
     /**
@@ -45,30 +45,28 @@ class EntrersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'article_id' => 'required|numeric',
             'qte_recu' => 'required|numeric|min:1',
             'prix_achat_unitaire' => 'nullable|numeric|min:1',
             'fournisseur_id' => 'nullable|numeric|min:1',
             'date_reception' => 'nullable|date',
-        ],[
-            'article_id.required' => 'Le nom du client est obligatoire',
+        ], [
             'qte_recu.required' => 'La quantité est obligatoire',
             'prix_achat_unitaire.numeric' => 'Le prix d\'achat doit être un montant',
             'date_reception.date' => 'Le type de date n\'est pas correcte',
         ]);
-        
-        if($request->date_reception==null){
-            $data = Entrers::create(array_merge($request->all(),['user_id' => Auth::id(),'date_reception'=>date("Y-m-d H:i:s")]));
-        }else{
-            $data = Entrers::create(array_merge($request->all(),['user_id' => Auth::id()]));
+
+        if ($request->date_reception == null) {
+            $data = Entrers::create(array_merge($request->all(), ['user_id' => Auth::id(), 'date_reception' => date("Y-m-d H:i:s")]));
+        } else {
+            $data = Entrers::create(array_merge($request->all(), ['user_id' => Auth::id()]));
         }
 
-        $data->update(['code' => date("Ymd").'0'.$data->id]);
+        $data->update(['code' => date("Ymd") . '0' . $data->id]);
 
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
-        }else{
+        } else {
             return redirect()->route('approvisionnement.index')->with('success', 'Action Effectuée!');
         }
     }

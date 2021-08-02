@@ -36,12 +36,6 @@ class AddContraintesTable extends Migration
 				->onDelete('cascade')
 				->onUpdate('cascade');
 
-			$table->foreign('article_id')
-				->references('id')
-				->on('articles')
-				->onDelete('cascade')
-				->onUpdate('cascade');
-
 			$table->foreign('fournisseur_id')
 				->references('id')
 				->on('fournisseurs')
@@ -177,6 +171,30 @@ class AddContraintesTable extends Migration
 				->onDelete('cascade')
 				->onUpdate('cascade');
 		});
+
+		//table destockages
+		Schema::table('destockages', function (Blueprint $table) {
+			$table->foreign('article_id')
+				->references('id')
+				->on('articles')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+		});
+
+		//table ligne_entrers
+		Schema::table('ligne_entrers', function (Blueprint $table) {
+			$table->foreign('article_id')
+				->references('id')
+				->on('articles')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+
+			$table->foreign('entrer_id')
+				->references('id')
+				->on('entrers')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+		});
 	}
 
 	/**
@@ -231,12 +249,20 @@ class AddContraintesTable extends Migration
 
 		Schema::table('entrers', function (Blueprint $table) {
 			$table->dropForeign('entrers_user_id_foreign');
-			$table->dropForeign('entrers_article_id_foreign');
 			$table->dropForeign('entrers_fournisseur_id_foreign');
 		});
 
 		Schema::table('packages', function (Blueprint $table) {
 			$table->dropForeign('packages_categorie_id_foreign');
+		});
+
+		Schema::table('destockages', function (Blueprint $table) {
+			$table->dropForeign('destockages_article_id_foreign');
+		});
+
+		Schema::table('ligne_entrers', function (Blueprint $table) {
+			$table->dropForeign('ligne_entrers_article_id_foreign');
+			$table->dropForeign('ligne_entrers_entrer_id_foreign');
 		});
 	}
 }
