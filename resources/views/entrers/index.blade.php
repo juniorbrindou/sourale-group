@@ -23,10 +23,8 @@
 							<thead>
 								<tr>
 									<th>Code</th>
-									<th></th>
 									<th>Désignation</th>
 									<th>Qte</th>
-									<th>Fournisseur</th>
 									<th>PU</th>
 									<th>Date d'ajout</th>
 									<th></th>
@@ -38,19 +36,8 @@
 
 								<tr class="{{($entrer->isValidated)?'table-secondary':''}}">
 									<td>{{$entrer->code}}</td>
-
-									<td>
-										@if($entrer->article->article_photo)
-										<img alt="Avatar" class="img-perso"
-											src="{{asset('storage/'. $entrer->article->article_photo)}}">
-										@else
-										<img alt="Avatar" class="img-perso"
-											src="{{asset('storage/articles/default_article100x100.png')}}">
-										@endif
-									</td>
 									<td>{{$entrer->article->libelle}}</td>
 									<td>{{$entrer->qte_recu}}</td>
-									<td>{{$entrer->fournisseur->nom?? "Non Défini" }}</td>
 									<td>{{$entrer->prix_achat_unitaire ?? "Non Défini"}}</td>
 									<td>{{$entrer->date_reception}}</td>
 									<td>
@@ -144,10 +131,8 @@
 							<tfoot>
 								<tr>
 									<th>Code</th>
-									<th></th>
 									<th>Désignation</th>
 									<th>Qte</th>
-									<th>Fournisseur</th>
 									<th>PU</th>
 									<th>Date d'ajout</th>
 									<th></th>
