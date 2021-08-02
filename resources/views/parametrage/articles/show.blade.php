@@ -4,7 +4,6 @@
 
 <!-- Main content -->
 <section class="content">
-  <!-- Default box -->
   <div class="card card-solid">
     <div class="card-body">
       <div class="row">
@@ -29,7 +28,7 @@
             <hr>
             Type : <h4 class="d-inline">{{$article->type_article->libelle}} </h4> <br>
             <hr>
-            Catégorie : <h4 class="d-inline"> {{$article->categorie_article->libelle}} </h4>
+            Catégorie : <h4 class="d-inline"> {{$article->categorie->libelle}} </h4>
           </div>
 
           <nav class="w-100 mt-2">

@@ -12,7 +12,7 @@ class Articles extends Model
      * @var array
      */
     protected $fillable = [
-        'libelle', 'code', 'description', 'prix', 'user_id', 'categorie_article_id', 'type_article_id', 'article_photo',
+        'libelle', 'code', 'description', 'prix', 'user_id', 'categorie_id', 'type_article_id', 'article_photo',
 
     ];
 
@@ -21,9 +21,9 @@ class Articles extends Model
      * Categorie  article
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function categorie_article()
+    public function categorie()
     {
-        return $this->belongsTo(Categorie_articles::class);
+        return $this->belongsTo(Categories::class);
     }
 
     /**

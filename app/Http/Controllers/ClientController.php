@@ -46,7 +46,10 @@ class ClientController extends Controller
         ],[
             'nom.required' => 'Le nom du client est obligatoire'
         ]);
-        Clients::create(array_merge($request->all(),['user_id' => Auth::id()]));
+        $data = Clients::create(array_merge($request->all(),['user_id' => Auth::id()]));
+        // creation du code
+        $data->update(['code' => date("Ymd") . '0' . $data->id]);
+
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');

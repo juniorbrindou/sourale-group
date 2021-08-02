@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
 use App\Packages;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class PackageController extends Controller
      */
     public function create()
     {
-        return view('parametrage.packages.create');
+        $categories = Categories::all();
+        return view('parametrage.packages.create', compact('categories'));
     }
 
 
@@ -41,13 +43,20 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+     {   //dd(request());
         $request->validate([
             'libelle' => 'required|string|min:1',
+            'nbr_personnes' => 'required|numeric',
+            'categorie_id' => 'nullable',
+            'prix_location' => 'nullable|numeric',
             'description' => 'nullable|min:0',
         ], [
-            'libelle.required' => 'Le libéllé est obligatoire'
+            'libelle.required' => 'Le libéllé est obligatoire',
+            'nbr_personnes.required' => 'Ce champ est obligatoire',
+            'prix_location.numeric' => 'Ce champ doit etre un nombre',
+            'nbr_personnes.numeric' => 'Ce champ doit etre un nombre',
         ]);
+
         $data = Packages::create($request->all());
 
         // creation du code
@@ -68,7 +77,8 @@ class PackageController extends Controller
      */
     public function show($id)
     {
-        //
+        // $categorie_articles = Categorie_articles::where('id', '<>', $article->categorie_article->id)->get();
+        // $type_articles = Type_articles::where('id', '<>', $article->type_article->id)->get();
     }
 
     /**
@@ -79,7 +89,11 @@ class PackageController extends Controller
      */
     public function edit($id)
     {
-        return view('parametrage.packages.edit');
+        $package = Packages::whereId($id)->firstOrFail();
+        $categories = Categories::all();
+
+
+        return view('parametrage.packages.edit', compact('package'));
     }
 
     /**

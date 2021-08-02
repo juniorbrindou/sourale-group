@@ -14,7 +14,8 @@
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('articles.update', $article->id)}}" enctype="multipart/form-data">
+					<form method="POST" action="{{ route('articles.update', $article->id)}}"
+						enctype="multipart/form-data">
 						@csrf
 						@method('PATCH')
 						<div class="card-body">
@@ -44,15 +45,15 @@
 									<div class="form-group">
 										<label>Type d'article</label>
 										<select class="form-control select2" name="type_article_id">
-											
+
 											<option value="{{$article->type_article_id}}">
 												{{$article->type_article->libelle}}
 											</option>
 
 											@foreach ($type_articles as $type_article)
-												<option value="{{$type_article->id}}">
-													{{$type_article->libelle}}
-												</option>
+											<option value="{{$type_article->id}}">
+												{{$type_article->libelle}}
+											</option>
 											@endforeach
 
 										</select>
@@ -60,21 +61,20 @@
 									<!-- /.form-group -->
 								</div>
 
-								{{-- categorie_article_id --}}
+								{{-- categorie_id --}}
 								<div class="col-md-3 ">
 									<div class="form-group">
 										<label>Catégorie d'article</label>
-										<select class="form-control select2" style="width: 100%;"
-											name="categorie_article_id">
+										<select class="form-control select2" style="width: 100%;" name="categorie_id">
 
-											<option value="{{$article->categorie_article_id}}">
-												{{$article->categorie_article->libelle}}
+											<option value="{{$article->categorie_id}}">
+												{{$article->categorie->libelle}}
 											</option>
 
 											@foreach ($type_articles as $type_article)
-												<option value="{{$type_article->id}}">
-													{{$type_article->libelle}}
-												</option>
+											<option value="{{$type_article->id}}">
+												{{$type_article->libelle}}
+											</option>
 											@endforeach
 
 										</select>
@@ -86,7 +86,8 @@
 									<div class="form-group">
 										<label>Ajouter une description à l'article</label>
 										<textarea class="form-control @error('description') is-invalid @enderror"
-											name="description" rows="3" placeholder="Ecrivez ici...">{{ $article->description }}</textarea>
+											name="description" rows="3"
+											placeholder="Ecrivez ici...">{{ $article->description }}</textarea>
 									</div>
 								</div>
 
@@ -110,7 +111,8 @@
 							<div class="card-footer">
 								<div class="row">
 									<div class="col-md-6 col-sm-6 mb-2">
-										<a href="{{ route('articles.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
+										<a href="{{ route('articles.index') }}"
+											class="btn btn-warning btn-block text-light">Retour</a>
 									</div>
 									<div class="col-md-6 col-sm-6">
 										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>

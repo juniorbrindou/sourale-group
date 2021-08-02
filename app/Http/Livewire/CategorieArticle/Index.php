@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\CategorieArticle;
 
 use Livewire\Component;
-use App\Categorie_articles;
+use App\Categories;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -15,7 +15,7 @@ class Index extends Component
 
     public function render()
     {
-        $categorieArticles = Categorie_articles::paginate(5);
+        $categorieArticles = Categories::paginate(5);
         
         return view('livewire.categorie-article.index',compact('categorieArticles'));
     }

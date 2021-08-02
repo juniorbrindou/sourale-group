@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Categorie_articles;
+use App\Categories;
 use Illuminate\Http\Request;
 
 class CategorieArticleController extends Controller
@@ -14,7 +14,7 @@ class CategorieArticleController extends Controller
      */
     public function index()
     {
-        $categorieArticles = Categorie_articles::all();
+        $categorieArticles = Categories::all();
         return view('parametrage.categorieArticles.index', compact('categorieArticles'));
     }
 
@@ -42,7 +42,7 @@ class CategorieArticleController extends Controller
         ],[
             'libelle.required' =>'Le nom  de la catégorie est obligatoire'
         ]);
-        $data = Categorie_articles::create($request->all());
+        $data = Categories::create($request->all());
 
         // creation du code
         $data->update(['code' => date("Ymd").'0'.$data->id]);
@@ -73,7 +73,7 @@ class CategorieArticleController extends Controller
      */
     public function edit($id)
     {
-        $categorieArticle = Categorie_articles::whereId($id)->first(); 
+        $categorieArticle = Categories::whereId($id)->first(); 
         return view('parametrage.categorieArticles.edit',compact('categorieArticle'));
     }
 
@@ -93,7 +93,7 @@ class CategorieArticleController extends Controller
             'libelle.required' =>'Le nom  de la catégorie est obligatoire'
         ]);
 
-        Categorie_articles::whereId($id)->update([
+        Categories::whereId($id)->update([
             'libelle' => $request->libelle,
             'description' => $request->description,
         ]);
@@ -109,7 +109,7 @@ class CategorieArticleController extends Controller
      */
     public function destroy($id)
     {
-        Categorie_articles::destroy($id);
+        Categories::destroy($id);
         return back()->with('success', 'Action Effectuée!');
     }
 }

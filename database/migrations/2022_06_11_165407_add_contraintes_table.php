@@ -16,158 +16,166 @@ class AddContraintesTable extends Migration
 		//table reglements
 		Schema::table('reglements', function (Blueprint $table) {
 			$table->foreign('user_id')
-					->references('id')
-					->on('users')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 			$table->foreign('facture_id')
-					->references('id')
-					->on('factures')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('factures')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 		//table entrers
 		Schema::table('entrers', function (Blueprint $table) {
 			$table->foreign('user_id')
-					->references('id')
-					->on('users')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 			$table->foreign('article_id')
-					->references('id')
-					->on('articles')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('articles')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 			$table->foreign('fournisseur_id')
-					->references('id')
-					->on('fournisseurs')
-					->onDelete('cascade')
-					->onUpdate('cascade');
-
+				->references('id')
+				->on('fournisseurs')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 		//table users
 		Schema::table('users', function (Blueprint $table) {
 			$table->foreign('role_id')
-					->references('id')
-					->on('roles')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('roles')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 
 		//table articles
 		Schema::table('articles', function (Blueprint $table) {
 			$table->foreign('user_id')
-					->references('id')
-					->on('users')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
-			
+
 			$table->foreign('remarque_id')
-					->references('id')
-					->on('remarques')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('remarques')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 			$table->foreign('type_article_id')
-					->references('id')
-					->on('type_articles')
-					->onDelete('restrict')
-					->onUpdate('cascade');
+				->references('id')
+				->on('type_articles')
+				->onDelete('restrict')
+				->onUpdate('cascade');
 
-			$table->foreign('categorie_article_id')
-					->references('id')
-					->on('categorie_articles')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+			$table->foreign('categorie_id')
+				->references('id')
+				->on('categories')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 		//table article_packages
 		Schema::table('article_packages', function (Blueprint $table) {
 			$table->foreign('package_id')
-					->references('id')
-					->on('packages')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('packages')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 			$table->foreign('article_id')
-					->references('id')
-					->on('articles')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('articles')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 		//table clients
 		Schema::table('clients', function (Blueprint $table) {
 			$table->foreign('user_id')
-					->references('id')
-					->on('users')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 
-		
+
 
 		//table evenements
 		Schema::table('evenements', function (Blueprint $table) {
 			$table->foreign('type_evenement_id')
-					->references('id')
-					->on('type_evenements')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('type_evenements')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 			$table->foreign('package_id')
-					->references('id')
-					->on('packages')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('packages')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 
 		//table factures
 		Schema::table('factures', function (Blueprint $table) {
 			$table->foreign('user_id')
-					->references('id')
-					->on('users')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 
 			$table->foreign('evenement_id')
-					->references('id')
-					->on('evenements')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('evenements')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
-		
+
 
 		//table locations
 		Schema::table('locations', function (Blueprint $table) {
 			$table->foreign('user_id')
-					->references('id')
-					->on('users')
-					->onDelete('cascade')
-					->onUpdate('cascade');
-			
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+
 			$table->foreign('article_id')
-					->references('id')
-					->on('articles')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('articles')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 
 			$table->foreign('evenement_id')
-					->references('id')
-					->on('evenements')
-					->onDelete('cascade')
-					->onUpdate('cascade');
+				->references('id')
+				->on('evenements')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+		});
+
+		//table packages
+		Schema::table('packages', function (Blueprint $table) {
+			$table->foreign('categorie_id')
+				->references('id')
+				->on('categories')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 	}
 
@@ -186,7 +194,7 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('articles_user_id_foreign');
 			$table->dropForeign('articles_remarque_id_foreign');
 			$table->dropForeign('articles_type_article_id_foreign');
-			$table->dropForeign('articles_categorie_article_id_foreign');
+			$table->dropForeign('articles_categorie_id_foreign');
 		});
 
 		Schema::table('article_packages', function (Blueprint $table) {
@@ -221,10 +229,14 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('evenements_package_id_foreign');
 		});
 
-    Schema::table('entrers', function (Blueprint $table) {
+		Schema::table('entrers', function (Blueprint $table) {
 			$table->dropForeign('entrers_user_id_foreign');
 			$table->dropForeign('entrers_article_id_foreign');
 			$table->dropForeign('entrers_fournisseur_id_foreign');
+		});
+
+		Schema::table('packages', function (Blueprint $table) {
+			$table->dropForeign('packages_categorie_id_foreign');
 		});
 	}
 }

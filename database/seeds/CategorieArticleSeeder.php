@@ -1,6 +1,6 @@
 <?php
 
-use App\Categorie_articles;
+use App\Categories;
 use Illuminate\Database\Seeder;
 
 class CategorieArticleSeeder extends Seeder
@@ -14,7 +14,7 @@ class CategorieArticleSeeder extends Seeder
     {
         $datas = ['Bronze', 'Silver', 'Millénium'];
         foreach ($datas as $data => $value) {
-            Categorie_articles::create([
+            Categories::create([
                 'code' =>  date("Ymd") . '0' . $data,
                 'libelle' => $value,
             ]);

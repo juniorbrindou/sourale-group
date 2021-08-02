@@ -57,16 +57,16 @@
 									<!-- /.form-group -->
 								</div>
 
-								{{-- categorie_article_id --}}
+								{{-- categorie_id --}}
 								<div class="col-md-3 ">
 									<div class="form-group">
 										<label>Catégorie d'article *</label>
 										<select required class="form-control select2" style="width: 100%;"
-											name="categorie_article_id">
+											name="categorie_id">
 
-											@foreach ($categorie_articles as $categorie_article)
+											@foreach ($Categories as $categorie)
 											<option @if ($loop->first) selected="selected" @endif
-												value="{{$categorie_article->id}}"> {{$categorie_article->libelle}}
+												value="{{$categorie->id}}"> {{$categorie->libelle}}
 											</option>
 											@endforeach
 

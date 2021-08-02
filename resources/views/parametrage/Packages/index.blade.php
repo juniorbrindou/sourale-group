@@ -22,8 +22,11 @@
 								<tr>
 									<th width="10%">Code</th>
 									<th width="25%">Libelle</th>
+									<th width="%">Nombre de Personne</th>
+									<th width="%">Prix de Location</th>
+									<th width="">Catégorie</th>
 									<th width="*">description</th>
-									<th width="15%"></th>
+									<th width="50%"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -32,6 +35,9 @@
 								<tr>
 									<td>{{ $package->code }} </td>
 									<td>{{ $package->libelle }} </td>
+									<td>{{ $package->nbr_personnes }} </td>
+									<td>{{ $package->prix_location }} </td>
+									<td>{{ $package->categorie->libelle }} </td>
 									<td>{{ isset($package->description) ? $package->description : 'Aucune description' }}
 									</td>
 									<td>
@@ -44,14 +50,14 @@
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger">
+											data-target="#modal-danger-{{$package->id}}">
 											<i class="fa fa-trash"></i>
 										</button>
 									</td>
 								</tr>
 
 
-								<div class="modal fade" id="modal-danger">
+								<div class="modal fade" id="modal-danger-{{$package->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
@@ -62,7 +68,7 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer le type de package
+												<p class="text-danger">Voulez vous vraiment supprimer le package
 													<b>{{ $package->libelle }}</b></p>
 											</div>
 											<div class="modal-footer justify-content-between">
@@ -122,10 +128,13 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Code</th>
-									<th>Libelle</th>
-									<th>description</th>
-									<th></th>
+									<th width="10%">Code</th>
+									<th width="25%">Libelle</th>
+									<th width="25%">Nombre de Personne</th>
+									<th width="25%">Prix de Location</th>
+									<th width="25%">Catégorie</th>
+									<th width="*">description</th>
+									<th width="15%"></th>
 								</tr>
 							</tfoot>
 						</table>

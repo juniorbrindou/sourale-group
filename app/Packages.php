@@ -12,6 +12,15 @@ class Packages extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'libelle', 'code'
+		'libelle', 'code', 'categorie_id', 'prix_location', 'description', 'nbr_personnes'
 	];
+
+	/**
+	 * Categorie 
+	 * @return Illuminate\Database\Eloquent\Model
+	 */
+	public function categorie()
+	{
+		return $this->belongsTo(Categories::class);
+	}
 }

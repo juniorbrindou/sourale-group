@@ -31,88 +31,90 @@
 								</tr>
 							</thead>
 							<tbody>
-								
-								@foreach ($articles as $article)									
+
+								@foreach ($articles as $article)
 								<tr>
 									<td>{{$article->code}}</td>
-									
+
 									<td>
 										@if($article->article_photo)
-											<img alt="Avatar" class="img-perso" src="{{asset('storage/'.$article->article_photo)}}">
+										<img alt="Avatar" class="img-perso"
+											src="{{asset('storage/'.$article->article_photo)}}">
 										@else
-											<img alt="Avatar" class="img-perso" src="{{asset('storage/articles/default_article100x100.png')}}">
+										<img alt="Avatar" class="img-perso"
+											src="{{asset('storage/articles/default_article100x100.png')}}">
 										@endif
 									</td>
 									<td>{{ ucwords($article->libelle)}}</td>
 									<td>{{$article->type_article->libelle}}</td>
-									<td>{{$article->categorie_article->libelle}}</td>
+									<td>{{$article->categorie->libelle}}</td>
 									<td>
-										<a href="{{ route('articles.show', $article->id) }}" class="btn btn-warning btn-md mr-1">
+										<a href="{{ route('articles.show', $article->id) }}"
+											class="btn btn-warning btn-md mr-1">
 											<i class="fa fa-eye"></i>
-										</button>
-										<a href="{{ route('articles.edit', $article->id) }}"
-											title="Modiffier" class="btn btn-primary btn-md">
-											<i class="fa fa-pen"></i>
-										</a>
-										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$article->id}}">
-											<i class="fa fa-trash"></i>
-										</button>
+											</button>
+											<a href="{{ route('articles.edit', $article->id) }}" title="Modiffier"
+												class="btn btn-primary btn-md">
+												<i class="fa fa-pen"></i>
+											</a>
+											<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+												data-target="#modal-danger-{{$article->id}}">
+												<i class="fa fa-trash"></i>
+											</button>
 									</td>
 								</tr>
 								<div class="modal fade" id="modal-danger-{{$article->id}}"">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<h4 class="modal-title">Attention ! Action Irréversible !</h4>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer l'article
-													<b>{{ ucwords($article->libelle) }}</b></p>
-											</div>
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Annuler</button>
-												<form method="POST" style="display: inline"
-													action="{{ route('articles.destroy', $article->id ) }}">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="btn btn-outline-danger">Je
-														Confirme</button>
-												</form>
-											</div>
+									<div class=" modal-dialog">
+									<div class="modal-content bg-default">
+										<div class="modal-header">
+											<h4 class="modal-title">Attention ! Action Irréversible !</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
 										</div>
-										<!-- /.modal-content -->
+										<div class="modal-body">
+											<p class="text-danger">Voulez vous vraiment supprimer l'article
+												<b>{{ ucwords($article->libelle) }}</b></p>
+										</div>
+										<div class="modal-footer justify-content-between">
+											<button type="button" class="btn btn-primary"
+												data-dismiss="modal">Annuler</button>
+											<form method="POST" style="display: inline"
+												action="{{ route('articles.destroy', $article->id ) }}">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-outline-danger">Je
+													Confirme</button>
+											</form>
+										</div>
 									</div>
-									<!-- /.modal-dialog -->
+									<!-- /.modal-content -->
 								</div>
-								<!-- /.modal -->
-								@endforeach
-								
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Code</th>
-									<th>Image</th>
-									<th>Libéllé</th>
-									<th>Type</th>
-									<th>Categorie</th>
-									<th></th>
-								</tr>
-							</tfoot>
-						</table>
+								<!-- /.modal-dialog -->
 					</div>
-					<!-- /.card-body -->
+					<!-- /.modal -->
+					@endforeach
+
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Code</th>
+							<th>Image</th>
+							<th>Libéllé</th>
+							<th>Type</th>
+							<th>Categorie</th>
+							<th></th>
+						</tr>
+					</tfoot>
+					</table>
 				</div>
-				<!-- /.card -->
+				<!-- /.card-body -->
 			</div>
-			<!-- /.col -->
+			<!-- /.card -->
 		</div>
-		<!-- /.row -->
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
 	</div>
 	<!-- /.container-fluid -->
 </section>

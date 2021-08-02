@@ -22,7 +22,8 @@ class CreatePackagesTable extends Migration
             $table->string('caution')->nullable();
             $table->string('caution_saisie')->nullable();
             $table->string('prix_location')->nullable();
-            
+            $table->integer('categorie_id')->unsigned()->nullable();
+
             $table->timestamps();
         });
     }

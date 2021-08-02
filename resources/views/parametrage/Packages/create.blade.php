@@ -26,7 +26,7 @@
 										<label for="libelle">Libéllé *</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="code"
-											placeholder="Entrer le libelle" autofocus>
+											placeholder="Entrer le libelle" required autofocus>
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
@@ -40,7 +40,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="nbr_personnes">Nombre de personnes *</label>
-										<input type="number"
+										<input type="number" required
 											class="form-control @error('nbr_personnes') is-invalid @enderror"
 											value="{{ old('nbr_personnes') }}" name="nbr_personnes" id="code"
 											placeholder="Nombre de personnes">
@@ -56,11 +56,27 @@
 
 
 							<div class="row">
+								{{-- categorie--}}
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>Catégorie</label>
+										<select class="form-control select2" name="categorie_id" style="width: 100%;">
+											<option selected="selected" value="">Aucune Catégorie</option>
+											@foreach ($categories as $categorie)
+											<option value="{{$categorie->id}}">
+												{{$categorie->libelle}}
+											</option> @endforeach
+
+										</select>
+									</div>
+									<!-- /.form-group -->
+								</div>
+
 
 								{{-- Prix de location --}}
-								<div class="col-md-4">
+								<div class="col-md-3">
 									<div class="form-group">
-										<label for="prix_location">Prix de Location *</label>
+										<label for="prix_location">Prix de Location</label>
 										<input type="number"
 											class="form-control @error('prix_location') is-invalid @enderror"
 											value="{{ old('prix_location') }}" name="prix_location" id="prix_location"
@@ -73,13 +89,6 @@
 									</span>
 									@enderror
 								</div>
-							</div>
-
-
-
-
-
-							<div class="row">
 
 								{{-- description --}}
 								<div class="col-md-6">
@@ -90,7 +99,9 @@
 									</div>
 
 								</div>
+
 							</div>
+
 
 
 							<div class="row">
