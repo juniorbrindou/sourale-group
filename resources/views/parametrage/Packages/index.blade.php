@@ -22,11 +22,11 @@
 								<tr>
 									<th width="10%">Code</th>
 									<th width="25%">Libelle</th>
-									<th width="%">Nombre de Personne</th>
-									<th width="%">Prix de Location</th>
-									<th width="">Catégorie</th>
+									<th width="10%">Nbre Personne</th>
+									<th width="10%">Prix de Location</th>
+									<th width="10%">Catégorie</th>
 									<th width="*">description</th>
-									<th width="50%"></th>
+									<th width="15%"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -128,13 +128,13 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th width="10%">Code</th>
-									<th width="25%">Libelle</th>
-									<th width="25%">Nombre de Personne</th>
-									<th width="25%">Prix de Location</th>
-									<th width="25%">Catégorie</th>
-									<th width="*">description</th>
-									<th width="15%"></th>
+									<th>Code</th>
+									<th>Libelle</th>
+									<th>Nombre de Personne</th>
+									<th>Prix de Location</th>
+									<th>Catégorie</th>
+									<th>Description</th>
+									<th></th>
 								</tr>
 							</tfoot>
 						</table>

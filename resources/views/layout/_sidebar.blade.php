@@ -123,39 +123,39 @@
 						</li>
 
 						{{-- fournisseurs --}}
-						<li class="nav-item">
+						{{-- <li class="nav-item">
 							<a href="{{route('fournisseurs.index')}}"
-								class="nav-link {{ request()->is('parametrage/fournisseurs*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Fournisseurs</p>
-							</a>
-						</li>
+						class="nav-link {{ request()->is('parametrage/fournisseurs*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Fournisseurs</p>
+						</a>
+				</li> --}}
 
 
 
-						{{-- typeEvenements --}}
-						<li class="nav-item">
-							<a href="{{route('typeEvenements.index')}}"
-								class="nav-link {{ request()->is('parametrage/typeEvenements*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Catégories d'événements</p>
-							</a>
-						</li>
-
-
-
-
-
-						{{-- users --}}
-						<li class="nav-item">
-							<a href="{{route('users.index')}}"
-								class="nav-link {{ request()->is('parametrage/users*') ? 'active' : ''}}">
-								<i class="fa fa-users nav-icon"></i>
-								<p>Utilisateurs</p>
-							</a>
-						</li>
-					</ul>
+				{{-- typeEvenements --}}
+				<li class="nav-item">
+					<a href="{{route('typeEvenements.index')}}"
+						class="nav-link {{ request()->is('parametrage/typeEvenements*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Catégories d'événements</p>
+					</a>
 				</li>
+
+
+
+
+
+				{{-- users --}}
+				<li class="nav-item">
+					<a href="{{route('users.index')}}"
+						class="nav-link {{ request()->is('parametrage/users*') ? 'active' : ''}}">
+						<i class="fa fa-users nav-icon"></i>
+						<p>Utilisateurs</p>
+					</a>
+				</li>
+			</ul>
+			</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
