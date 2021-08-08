@@ -4,6 +4,15 @@
  * Fonction utili
  **/
 
+if (!function_exists('format_no_array')) {
+
+	function format_no_array($array)
+	{
+		$skips = ["[", "]", "\""];
+		return str_replace($skips, ' ', $array);
+	}
+}
+
 if (!function_exists('page_title')) {
 	function page_title()
 	{

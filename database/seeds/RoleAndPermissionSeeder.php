@@ -52,7 +52,7 @@ class RoleAndPermissionSeeder extends Seeder
 
         // manager
         $role = Role::create(['name' => 'manager'])
-            ->givePermissionTo(['create articles', 'edit articles', 'delete articles', 'create users', 'delete users', 'edit users', 'edit parametrage', 'create parametrage', 'delete parametrage', 'show parametrage', 'articles', 'parametrage']);
+            ->givePermissionTo(['create articles', 'edit articles', 'delete articles', 'create users', 'delete users', 'edit users', 'edit parametrage', 'create parametrage', 'delete parametrage', 'show parametrage', 'articles', 'parametrage', 'users']);
 
         // super-admin
         $role = Role::create(['name' => 'super-admin']);

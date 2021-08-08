@@ -154,7 +154,7 @@
 
 
 
-				@can('show users')
+				@can('users')
 				{{-- users --}}
 				<li class="nav-item">
 					<a href="{{route('users.index')}}"
