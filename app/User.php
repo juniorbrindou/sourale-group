@@ -2,12 +2,14 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable
 {
-	use Notifiable;
+	use Notifiable, HasRoles;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -15,8 +17,17 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'login', 'email', 'password', 'noms', 'prenoms', 'tel1', 'tel2', 'role_id','genre'
+		'login', 'email', 'password', 'noms', 'prenoms', 'tel1', 'tel2', 'genre'
 	];
+
+	/**
+	 * Categorie 
+	 * @return Illuminate\Database\Eloquent\Model
+	 */
+	public function role()
+	{
+		return $this->belongsTo(Role::class);
+	}
 
 	/**
 	 * The attributes that should be hidden for arrays.

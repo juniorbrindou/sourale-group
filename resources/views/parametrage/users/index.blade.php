@@ -64,7 +64,8 @@
 						</td>
 
 						<td class="project-state">
-							<span class="badge badge-success">{{($user->role) ? $user->role : 'Sécretaire'}}</span>
+							<span
+								class="badge badge-success">{{($user->roles) ? format_no_array($user->roles->pluck('name')) : 'Sécretaire'}}</span>
 						</td>
 
 						<td class="project-actions text-right">

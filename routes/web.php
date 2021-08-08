@@ -8,7 +8,7 @@ Auth::routes();
 Route::group(
     ['middleware' => 'auth'],
     function () {
-        
+
         Route::get('/', 'DashboardController@dashboard')->name('dashboard');
         Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
         Route::get('/home', 'HomeController@index')->name('home');
@@ -16,7 +16,7 @@ Route::group(
         Route::resource('approvisionnement', 'EntrersController');
 
         // Parametrage
-        Route::group(['prefix' => 'parametrage'], function(){
+        Route::group(['prefix' => 'parametrage'], function () {
             Route::resource('articles', 'ArticleController');
             Route::resource('categorieArticles', 'CategorieArticleController');
             Route::resource('clients', 'ClientController');
@@ -28,8 +28,12 @@ Route::group(
             Route::resource('users', 'UserController');
         });
 
-        Route::get('facture',function(){
+        Route::get('facture', function () {
             return view('facture.index');
+        });
+
+        Route::fallback(function () {
+            return view('dashboard')->with(['error' => 'Désolé, Cette page n\'exitste pas.']);
         });
     }
 );

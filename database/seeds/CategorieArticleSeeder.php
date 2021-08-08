@@ -13,6 +13,8 @@ class CategorieArticleSeeder extends Seeder
     public function run()
     {
         $datas = ['Bronze', 'Silver', 'Millénium'];
+        Categories::truncate();
+
         foreach ($datas as $data => $value) {
             Categories::create([
                 'code' =>  date("Ymd") . '0' . $data,

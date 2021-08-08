@@ -50,6 +50,26 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof AccessDeniedHttpException) {
+            return view('dashboard')->with(['error' => 'Désolé, Cette page n\'exitste pas.']);
+        }
         return parent::render($request, $exception);
+    }
+
+
+
+
+
+    public function register()
+    {
+        $this->renderable(function (\Spatie\Permission\Exceptions\UnauthorizedException $e, $request) {
+
+            return back()->with('Error', 'Désolé, Vous n\'avez pas l\'autorisation');
+
+            // return response()->json([
+            //     'responseMessage' => 'You do not have the required authorization.',
+            //     'responseStatus'  => 403,
+            // ]);
+        });
     }
 }

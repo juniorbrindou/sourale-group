@@ -41,8 +41,6 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->file('article_photo'));
-
         $request->validate([
             'libelle' => 'required|string|min:3|unique:articles',
             'categorie_id' => 'required|numeric',
@@ -55,8 +53,6 @@ class ArticleController extends Controller
             'categorie_id.required' => 'Le champ catégorie est obligatoire',
             'type_article_id.required' => 'Le champ Type est obligatoire',
         ]);
-
-
 
         $data = Articles::create(array_merge($request->all(), ['user_id' => Auth::user()->id]));
 

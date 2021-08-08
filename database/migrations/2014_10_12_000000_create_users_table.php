@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('tel1')->nullable();
             $table->string('tel2')->nullable();
             $table->string('genre')->default('Mme');
-            $table->integer('role_id')->unsigned()->nullable();
 
             $table->string('password');
             $table->rememberToken();

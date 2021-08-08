@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             TypeEvenementSeeder::class,
             TypeArticleSeeder::class,
             FournisseurSeeder::class,
+            RoleAndPermissionSeeder::class,
+            AssignRoleSeeder::class,
         ]);
     }
 }

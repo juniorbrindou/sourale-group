@@ -16,6 +16,8 @@ class TypeArticleSeeder extends Seeder
 
         $datas = ['Chaise', 'Table', 'Accessoires de décoration', 'Lounge', 'Buffets et mange-debout', 'Equip', 'Matériel d\'animation', 'Luminaires', 'Nappes et Serviettes', 'Plantes artificielles', 'Paravents, cloisons, vestiaires et maquillage', 'Matériel d\'accueil et accessoires conférence', 'Moquette, pistes de danse et éclairage'];
 
+        Type_articles::truncate();
+
         foreach ($datas as $data => $value) {
             Type_articles::create([
                 'code' => date("Ymd") . '0' . $data,

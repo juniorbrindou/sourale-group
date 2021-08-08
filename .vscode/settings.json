@@ -1,0 +1,4 @@
+{
+    "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
+    "intelephense.phpdoc.useFullyQualifiedNames": true
+}
