@@ -14,6 +14,8 @@ class ClientSeeder extends Seeder
 	{
 		$faker = Faker\Factory::create('fr_FR');
 
+		// Client::truncate();
+
 		for ($i = 0; $i < 100; $i++) {
 			Clients::create([
 				'code' =>  date("Ymd") . '0' . $i,

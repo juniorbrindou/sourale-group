@@ -14,6 +14,8 @@ class FournisseurSeeder extends Seeder
     {
         $faker = Faker\Factory::create('fr_FR');
 
+        Fournisseurs::truncate();
+
         for ($i = 0; $i < 10; $i++) {
             Fournisseurs::create([
                 'code' =>  date("Ymd") . '0' . $i,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -26,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('parametrage.users.create');
+        $roles = Role::where('name', '<>', 'super-admin')->get();
+        return view('parametrage.users.create', compact('roles'));
     }
 
     /**
@@ -37,7 +39,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'login' => 'required|string|min:1|unique:users,login',
+            'nom' => 'required|string|min:1',
+            'nom' => 'nullable|min:0',
+            'prenoms' => 'nullable|min:0',
+        ]);
+
+
+        $data = User::create($request->all());
+
+        $data->assignRole($request->role);
+
+        if (isset($request->encore)) {
+            return back()->with('success', 'Action Effectuée!');
+        } else {
+            return redirect()->route('users.index')->with('success', 'Action Effectuée!');
+        }
     }
 
     /**

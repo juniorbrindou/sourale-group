@@ -15,6 +15,17 @@ class UserSeeder extends Seeder
     {
         $faker = Faker\Factory::create('fr_FR');
 
+        User::truncate();
+
+        User::create([
+            'login' => 'secretaire',
+            'nom' => $faker->name(),
+            'prenoms' => $faker->lastName(),
+            'tel1' => $faker->phoneNumber(),
+            'tel2' => $faker->phoneNumber(),
+            'password' => Hash::make('sourale-group'),
+        ]);
+        
         User::create([
             'login' => 'manager',
             'nom' => $faker->name(),

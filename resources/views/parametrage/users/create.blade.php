@@ -10,63 +10,166 @@
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Nouveau type d'article</h3>
+						<h3 class="card-title">Nouvel Utilisateur</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="{{ route('typeArticles.store')}}">
+					<form method="POST" action="{{ route('users.store')}}">
 						@csrf
 						<div class="card-body">
 
 							<div class="row">
 								<div class="col-md-6">
-									{{-- libelle --}}
+									{{-- login --}}
 									<div class="form-group">
-										<label for="libelle">libéllé *</label>
-										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
-											value="{{ old('libelle') }}" name="libelle" id="code"
+										<label for="login">login *</label>
+										<input type="text" class="form-control @error('login') is-invalid @enderror"
+											value="{{ old('login') }}" name="login" id="login"
 											placeholder="Entrer le type de l'article" autofocus required>
 									</div>
-									@error('libelle')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+									@error('login')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 									@enderror
 								</div>
 
 								<div class="col-md-6">
-									
+									{{-- nom --}}
 									<div class="form-group">
-										<label for="adresse">adresse</label>
-										<textarea class="form-control" rows="3" name="adresse" placeholder="Ecrivez ici ..."></textarea>
+										<label for="nom">Nom *</label>
+										<input type="text" class="form-control @error('nom') is-invalid @enderror"
+											value="{{ old('nom') }}" name="nom" id="nom"
+											placeholder="Entrez le nom de famille" required>
 									</div>
+									@error('nom')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+							</div>
 
-								</div>								
+							<div class="row">
+								<div class="col-md-6">
+									{{-- prenoms --}}
+									<div class="form-group">
+										<label for="prenoms">prenoms</label>
+										<input type="text" class="form-control @error('prenoms') is-invalid @enderror"
+											value="{{ old('prenoms') }}" name="prenoms" id="prenoms"
+											placeholder="Entrez les prenoms">
+									</div>
+									@error('prenoms')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+
+								<div class="col-md-3">
+									{{-- password --}}
+									<div class="form-group">
+										<label for="password">Mot de passe *</label>
+										<input type="password"
+											class="form-control @error('password') is-invalid @enderror"
+											value="{{ old('password') }}" name="password" id="password"
+											placeholder="Entrez un mot de passe initial">
+									</div>
+									@error('password')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+
+								<div class="col-md-3 ">
+									<div class="form-group">
+										<label for="role">Role</label>
+										<select required class="form-control select2" name="role" style="width: 100%;">
+
+											@foreach ($roles as $role)
+											<option @if ($loop->first) selected="selected" @endif
+												value="{{$role->name}}"> {{$role->name}}
+											</option> @endforeach
+
+										</select>
+									</div>
+									<!-- /.form-group -->
+								</div>
+
+
+							</div>
+
+
+
+							<div class="row">
+								{{-- genre--}}
+								<div class="col-md-3 ">
+									<div class="form-group">
+										<label>Titre</label>
+										<select class="form-control select2" style="width: 100%;" name="genre">
+											<option selected="selected" value="Mlle">Mademoiselle</option>
+											<option value="M">Monsieur</option>
+											<option value="Mme">Madame</option>
+										</select>
+									</div>
+								</div>
+
+
+								{{-- tel1 --}}
+								<div class="col-md-2">
+									<div class="form-group">
+										<label for="tel1">Téléphone</label>
+
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fas fa-phone"></i></span>
+											</div>
+											<input type="text" class="form-control" value="{{ old('tel1') }}"
+												data-inputmask='"mask": "(999) 99-99-99-99-99"' name="tel1" data-mask>
+										</div>
+										@error('tel1')
+										<span class="text-danger"
+											style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+										<!-- /.input group -->
+									</div>
+								</div>
+
+
 							</div>
 
 
 							<div class="row">
-								
+
 								<div class="col-md-4">
 									{{-- libelle --}}
 									<div class="form-group">
-									<label for="switch">Enregistrer Encore</label>
-									<input type="checkbox" name="encore" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+										<label for="switch">Enregistrer Encore</label>
+										<input type="checkbox" name="encore" checked data-bootstrap-switch
+											data-off-color="danger" data-on-color="success">
 									</div>
 								</div>
 
-						</div>
-						<!-- /.card-body -->
-						<div class="card-footer">
-							<div class="row">
-								<div class="col-md-6 col-sm-6">
-									<a href="{{ route('typeArticles.index') }}" class="btn btn-warning btn-block text-light mb-2">Retour</a>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+							</div>
+							<!-- /.card-body -->
+							<div class="card-footer">
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<a href="{{ route('users.index') }}"
+											class="btn btn-warning btn-block text-light mb-2">Retour</a>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+									</div>
 								</div>
 							</div>
-						</div>
 					</form>
 				</div>
 				<!-- /.card -->

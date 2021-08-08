@@ -16,6 +16,8 @@ class TypeEvenementSeeder extends Seeder
 
         $datas = ['Mariage', 'Bapteme', 'Divorce'];
 
+        Type_evenements::truncate();
+
         foreach ($datas as $data => $value) {
             Type_evenements::create([
                 'code' =>  date("Ymd") . '0' . $data,
