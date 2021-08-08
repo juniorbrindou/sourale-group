@@ -64,7 +64,7 @@
 										<select required class="form-control select2" style="width: 100%;"
 											name="categorie_id">
 
-											@foreach ($Categories as $categorie)
+											@foreach ($categories as $categorie)
 											<option @if ($loop->first) selected="selected" @endif
 												value="{{$categorie->id}}"> {{$categorie->libelle}}
 											</option>

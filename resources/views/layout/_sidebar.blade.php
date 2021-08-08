@@ -59,6 +59,14 @@
 					</a>
 				</li>
 
+				<li class="nav-item">
+					<a href="{{route('approvisionnement.index')}}"
+						class="nav-link {{ request()->is('destockage*') ? 'active' : ''}}">
+						<i class="fa fa-door-open nav-icon"></i>
+						<p>Destockage</p>
+					</a>
+				</li>
+
 
 
 				{{-- parametrage --}}
