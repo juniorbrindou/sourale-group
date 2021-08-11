@@ -19,17 +19,16 @@ class CreateArticlesTable extends Migration
             $table->string('libelle');
             $table->string('description')->nullable();
             $table->string('article_photo')->nullable();
+            $table->integer('qte_en_stock')->default(0);
+            $table->integer('qte_stocker')->default(0);
+            $table->float('prix_tarification')->default(0);
 
             $table->integer('user_id')->unsigned();
             $table->integer('type_article_id')->unsigned()->nullable();
             $table->integer('remarque_id')->unsigned()->nullable();
-            // Errreur : a corriger c'est plutot la table remarque qui doit avoir l'identifiant de l'article
             $table->integer('categorie_id')->unsigned()->nullable();
+            $table->integer('tarification_id')->unsigned()->nullable();
             $table->timestamps();
-            // Vue : qte_article_en_stock,
-            // champs ambigue : prix moyen
-
-
         });
     }
 

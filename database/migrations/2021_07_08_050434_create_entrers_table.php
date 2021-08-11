@@ -16,13 +16,11 @@ class CreateEntrersTable extends Migration
         Schema::create('entrers', function (Blueprint $table) {
             $table->id();
             $table->string('code')->nullable();
-            $table->integer('qte_recu')->nullable();
-            $table->integer('prix_achat_unitaire')->nullable()->comment('Inutile maintenant');
-            $table->dateTime('date_reception')->useCurrent();
+            $table->dateTime('date_entre')->useCurrent();
             $table->boolean('isValidated')->default(0);
 
             $table->integer('user_id')->unsigned();
-            $table->integer('fournisseur_id')->nullable()->unsigned()->comment('Inutile maintenant');
+            // $table->integer('fournisseur_id')->nullable()->unsigned()->comment('Inutile maintenant');
 
             $table->timestamps();
         });
