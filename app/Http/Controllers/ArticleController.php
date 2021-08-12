@@ -169,4 +169,10 @@ class ArticleController extends Controller
         }
         return back();
     }
+
+
+    public function appliquerTarif(Article $article)
+    {
+        dd('ok');
+    }
 }

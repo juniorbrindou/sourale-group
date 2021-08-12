@@ -91,6 +91,12 @@ class AddContraintesTable extends Migration
 				->on('categories')
 				->onDelete('cascade')
 				->onUpdate('cascade');
+
+			$table->foreign('tarification_id')
+				->references('id')
+				->on('tarifications')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 		//table article_packages
@@ -229,6 +235,7 @@ class AddContraintesTable extends Migration
 			$table->dropForeign('articles_remarque_id_foreign');
 			$table->dropForeign('articles_type_article_id_foreign');
 			$table->dropForeign('articles_categorie_id_foreign');
+			$table->dropForeign('articles_tarification_id_foreign');
 		});
 
 		Schema::table('article_packages', function (Blueprint $table) {

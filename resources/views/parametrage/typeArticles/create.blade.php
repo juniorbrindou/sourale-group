@@ -22,10 +22,10 @@
 								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Nom du Type</label>
+										<label for="libelle">Libéllé</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="libelle"
-											placeholder="Entrer le nom du Type">
+											placeholder="Entrer le libelle du Type">
 									</div>
 									@error('libelle')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"

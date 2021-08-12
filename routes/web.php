@@ -29,6 +29,9 @@ Route::group(
             Route::resource('tarifications', 'TarificationController');
         });
 
+        // Route::PATCH('appliquerTarif', 'ArticleController@appliquerTarif');
+
+
         Route::get('facture', function () {
             return view('facture.index');
         });

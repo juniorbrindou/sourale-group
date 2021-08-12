@@ -22,11 +22,12 @@
 						<table id="example1" class="table table-bordered">
 							<thead>
 								<tr>
-									<th>Code</th>
-									<th>Qte</th>
-									<th>PU</th>
-									<th>Date d'ajout</th>
-									<th></th>
+									<th width="10%">Code</th>
+									<th width="10%">Qantité</th>
+									<th width="10%">PU</th>
+									<th width="15%">Date d'ajout</th>
+									<th width="20%">Auteur</th>
+									<th width="*"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -39,6 +40,7 @@
 									<th>Qte</th>
 									<th>PU</th>
 									<th>Date d'ajout</th>
+									<th>Auteur</th>
 									<th></th>
 								</tr>
 							</tfoot>
