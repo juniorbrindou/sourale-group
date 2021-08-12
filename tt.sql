@@ -1,0 +1,1 @@
+SELECT DISTINCT e.code as "CODE", e.qte_recu as "QTE", e.prix_achat_unitaire as "PRIX D'ACHAT", e.date_reception as "Date d'entrée", e.isValidated, e.user_id, a.libelle, a.article_photo, e.created_at as "créé le", e.updated_at as "Derniere modification" FROM `ligne_entrers` as l INNER JOIN articles as a INNER JOIN entrers as e

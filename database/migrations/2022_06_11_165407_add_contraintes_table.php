@@ -13,6 +13,23 @@ class AddContraintesTable extends Migration
 	 */
 	public function up()
 	{
+		//table tarifications
+		Schema::table('tarifications', function (Blueprint $table) {
+			$table->foreign('categorie_article_id')
+				->references('id')
+				->on('categories')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+
+			$table->foreign('type_article_id')
+				->references('id')
+				->on('type_articles')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+		});
+
+
+
 		//table reglements
 		Schema::table('reglements', function (Blueprint $table) {
 			$table->foreign('user_id')
@@ -36,11 +53,11 @@ class AddContraintesTable extends Migration
 				->onDelete('cascade')
 				->onUpdate('cascade');
 
-			$table->foreign('fournisseur_id')
-				->references('id')
-				->on('fournisseurs')
-				->onDelete('cascade')
-				->onUpdate('cascade');
+			// $table->foreign('fournisseur_id')
+			// 	->references('id')
+			// 	->on('fournisseurs')
+			// 	->onDelete('cascade')
+			// 	->onUpdate('cascade');
 		});
 
 		//table users
@@ -199,6 +216,11 @@ class AddContraintesTable extends Migration
 	 */
 	public function down()
 	{
+		Schema::table('tarifications', function (Blueprint $table) {
+			$table->dropForeign('tarifications_categorie_article_id_foreign');
+			$table->dropForeign('tarifications_type_article_id_foreign');
+		});
+
 		Schema::table('users', function (Blueprint $table) {
 		});
 
@@ -243,7 +265,7 @@ class AddContraintesTable extends Migration
 
 		Schema::table('entrers', function (Blueprint $table) {
 			$table->dropForeign('entrers_user_id_foreign');
-			$table->dropForeign('entrers_fournisseur_id_foreign');
+			// $table->dropForeign('entrers_fournisseur_id_foreign');
 		});
 
 		Schema::table('packages', function (Blueprint $table) {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLigneEntrersTable extends Migration
+class CreateTarificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateLigneEntrersTable extends Migration
      */
     public function up()
     {
-        Schema::create('ligne_entrers', function (Blueprint $table) {
+        Schema::create('tarifications', function (Blueprint $table) {
             $table->id();
-            $table->integer('article_id')->unsigned();
-            $table->integer('entrer_id')->unsigned();
-            $table->integer('qte')->default(0);
+            $table->integer('prix')->default(0);
+            $table->integer('categorie_article_id')->unsigned();
+            $table->integer('type_article_id')->unsigned();
+
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateLigneEntrersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ligne_entrers');
+        Schema::dropIfExists('tarifications');
     }
 }

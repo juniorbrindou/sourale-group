@@ -26,6 +26,7 @@ Route::group(
             Route::resource('packages', 'PackageController');
             Route::PATCH('users.updatePassword/{user}', 'UserController@updatePassword')->name('users.updatePassword');
             Route::resource('users', 'UserController');
+            Route::resource('tarifications', 'TarificationController');
         });
 
         Route::get('facture', function () {
