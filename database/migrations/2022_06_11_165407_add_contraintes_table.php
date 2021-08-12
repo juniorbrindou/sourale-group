@@ -13,7 +13,7 @@ class AddContraintesTable extends Migration
 	 */
 	public function up()
 	{
-	    //table tarifications
+		//table tarifications
 		Schema::table('tarifications', function (Blueprint $table) {
 			$table->foreign('categorie_article_id')
 				->references('id')
@@ -216,7 +216,7 @@ class AddContraintesTable extends Migration
 	 */
 	public function down()
 	{
-        Schema::table('tarifications', function (Blueprint $table) {
+		Schema::table('tarifications', function (Blueprint $table) {
 			$table->dropForeign('tarifications_categorie_article_id_foreign');
 			$table->dropForeign('tarifications_type_article_id_foreign');
 		});
