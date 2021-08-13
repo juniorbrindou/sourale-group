@@ -10,8 +10,17 @@ use Livewire\Component;
 class Index extends Component
 {
     public $tarifs;
+    public $prix;
     public $typeArticles;
     public $categorieArticles;
+
+    protected $rules = [
+        'prix' => 'required',
+    ];
+
+    public function delete()
+    {
+    }
 
     public function render()
     {

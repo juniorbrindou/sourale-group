@@ -26,6 +26,7 @@ class AddContraintesTable extends Migration
 				->on('type_articles')
 				->onDelete('cascade')
 				->onUpdate('cascade');
+   			$table->index(['categorie_article_id', 'type_article_id']);
 		});
 
 

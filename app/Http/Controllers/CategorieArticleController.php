@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Categories;
+use App\Tarification;
+use App\Type_articles;
 use Illuminate\Http\Request;
 
 class CategorieArticleController extends Controller
@@ -37,19 +39,27 @@ class CategorieArticleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'libelle' => 'required|string|min:1',
+            'libelle' => 'required|string|min:1|unique:categories,libelle',
             'description' => 'nullable|min:0',
-        ],[
-            'libelle.required' =>'Le nom  de la catégorie est obligatoire'
+        ], [
+            'libelle.required' => 'Le nom  de la catégorie est obligatoire'
         ]);
         $data = Categories::create($request->all());
 
         // creation du code
-        $data->update(['code' => date("Ymd").'0'.$data->id]);
+        $data->update(['code' => date("Ymd") . '0' . $data->id]);
+
+        // insertion dans la table de tarif avec pour prix 0
+        foreach (Type_articles::all() as $value) {
+            Tarification::create([
+                'categorie_article_id' => $data->id,
+                'type_article_id' => $value->id,
+            ]);
+        }
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
-        }else{
+        } else {
             return redirect()->route('categorieArticles.index')->with('success', 'Action Effectuée!');
         }
     }
@@ -73,8 +83,8 @@ class CategorieArticleController extends Controller
      */
     public function edit($id)
     {
-        $categorieArticle = Categories::whereId($id)->first(); 
-        return view('parametrage.categorieArticles.edit',compact('categorieArticle'));
+        $categorieArticle = Categories::whereId($id)->first();
+        return view('parametrage.categorieArticles.edit', compact('categorieArticle'));
     }
 
     /**
@@ -89,8 +99,8 @@ class CategorieArticleController extends Controller
         $request->validate([
             'libelle' => 'required|string|min:1',
             'description' => 'nullable|min:0',
-        ],[
-            'libelle.required' =>'Le nom  de la catégorie est obligatoire'
+        ], [
+            'libelle.required' => 'Le nom  de la catégorie est obligatoire'
         ]);
 
         Categories::whereId($id)->update([

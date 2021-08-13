@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
+use App\Tarification;
 use App\Type_articles;
 use Illuminate\Http\Request;
 
@@ -50,6 +52,13 @@ class TypeArticlesController extends Controller
 
         // creation du code
         $data->update(['code' => date("Ymd") . '0' . $data->id]);
+
+        foreach (Categories::all() as $value) {
+            Tarification::create([
+                'categorie_article_id' => $value->id,
+                'type_article_id' => $data->id,
+            ]);
+        }
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');

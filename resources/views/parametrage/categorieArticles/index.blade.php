@@ -11,11 +11,86 @@
 					<div class="card-header">
 						<h3 class="card-title">Liste des Catégorie d'articles</h3>
 
-						<a href="{{ route('categorieArticles.create')}}" class="btn float-right  btn-md btn-success">
+						<button data-toggle="modal" data-target="#modal-create"
+							class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
-						</a>
+						</button>
 					</div>
+
+
+
+
+					{{-- create type article --}}
+					<div class="modal fade" id="modal-create">
+						<div class="modal-dialog">
+							<div class="modal-content bg-default">
+								<div class="modal-header">
+									<h4>Nouveau</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
+								<form method="POST" action="{{ route('categorieArticles.store')}}">
+									@csrf
+									<div class="card-body">
+
+										<div class="col-md-12">
+											{{-- libelle --}}
+											<div class="form-group">
+												<label for="libelle">libéllé *</label>
+												<input type="text"
+													class="form-control @error('libelle') is-invalid @enderror"
+													value="{{ old('libelle') }}" name="libelle" id="code"
+													placeholder="Entrer la catégorie de l'article" autofocus required>
+											</div>
+											@error('libelle')
+											<span class="text-danger"
+												style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+
+										<div class="col-md-12">
+
+											<div class="form-group">
+												<label for="description">Description</label>
+												<textarea class="form-control" rows="3" name="description"
+													placeholder="Ecrivez ici ..."></textarea>
+											</div>
+
+										</div>
+
+									</div>
+									<!-- /.card-body -->
+									<div class="card-footer">
+										<div class="row">
+											<div class="col-md-6 col-sm-6">
+												<button type="button" class="btn btn-outline-secondary"
+													data-dismiss="modal">Annuler</button>
+											</div>
+											<div class="col-md-6 col-sm-6">
+												<button type="submit"
+													class="btn btn-primary btn-block">Enregistrer</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
+					{{-- fin create type article --}}
+
+
+
+
+
+
 					<!-- /.card-header -->
 					<div class="card-body">
 						<table id="example1" class="table table-bordered table-striped">
@@ -36,14 +111,12 @@
 									<td>{{ isset($categorieArticle->description) ? $categorieArticle->description : 'Aucune description' }}
 									</td>
 									<td>
-										<button class="btn btn-warning btn-md" data-toggle="modal"
-											data-target="#modal-see-{{$categorieArticle->id}}">
-											<i class="fa fa-eye"></i>
-										</button>
-										<a href="{{ route('categorieArticles.edit', $categorieArticle->id) }}"
-											title="Modiffier" class="btn btn-primary btn-md">
+										<button data-toggle="modal"
+											data-target="#modal-update-{{$categorieArticle->id}}" title="Modiffier"
+											class="btn btn-primary btn-md">
 											<i class="fa fa-pen"></i>
-										</a>
+										</button>
+
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
 											data-target="#modal-danger-{{$categorieArticle->id}}">
 											<i class="fa fa-trash"></i>
@@ -51,6 +124,9 @@
 									</td>
 								</tr>
 
+
+
+								{{-- suppression --}}
 								<div class="modal fade" id="modal-danger-{{$categorieArticle->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
@@ -82,40 +158,97 @@
 									<!-- /.modal-dialog -->
 								</div>
 								<!-- /.modal -->
+								{{-- suppression --}}
 
 
 
-								<div class="modal fade" id="modal-see-{{$categorieArticle->id}}">
+
+
+								{{-- update type article --}}
+								<div class="modal fade" id="modal-update-{{$categorieArticle->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
 											<div class="modal-header">
-												<p>Détails</p>
+												<h4>Modification</h4>
 												<button type="button" class="close" data-dismiss="modal"
 													aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
 											</div>
 
-											<div class="modal-body">
-												<p>
-													<b>LIBELLE : </b>{{ $categorieArticle->libelle }}
-												</p>
-												<hr>
-												<p>
-													<b>DESCRIPTION : </b>{{ $categorieArticle->description }}
-												</p>
-											</div>
+											<form method="POST" action="{{ route('categorieArticles.store')}}">
+												@csrf
+												<div class="card-body">
 
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary btn-block"
-													data-dismiss="modal">Fermer</button>
-											</div>
+													<div class="row">
+														<div class="col-md-6">
+															{{-- libelle --}}
+															<div class="form-group">
+																<label for="libelle">libéllé *</label>
+																<input type="text"
+																	class="form-control @error('libelle') is-invalid @enderror"
+																	value="{{ old('libelle') }}" name="libelle"
+																	id="code"
+																	placeholder="Entrer la catégorie de l'article"
+																	autofocus required>
+															</div>
+															@error('libelle')
+															<span class="text-danger"
+																style="margin-top: -1.25rem;display: block; font-size:80%"
+																role="alert">
+																<strong>{{ $message }}</strong>
+															</span>
+															@enderror
+														</div>
+
+														<div class="col-md-6">
+
+															<div class="form-group">
+																<label for="description">Description</label>
+																<textarea class="form-control" rows="3"
+																	name="description"
+																	placeholder="Ecrivez ici ..."></textarea>
+															</div>
+
+														</div>
+													</div>
+
+
+													<div class="row">
+
+														<div class="col-md-4">
+															{{-- libelle --}}
+															<div class="form-group">
+																<label for="switch">Enregistrer Encore</label>
+																<input type="checkbox" name="encore" checked
+																	data-bootstrap-switch data-off-color="danger"
+																	data-on-color="success">
+															</div>
+														</div>
+
+													</div>
+													<!-- /.card-body -->
+													<div class="card-footer">
+														<div class="row">
+															<div class="col-md-6 col-sm-6">
+																<button type="button" class="btn btn-primary"
+																	data-dismiss="modal">Annuler</button>
+															</div>
+															<div class="col-md-6 col-sm-6">
+																<button type="submit"
+																	class="btn btn-primary btn-block">Enregistrer</button>
+															</div>
+														</div>
+													</div>
+											</form>
 										</div>
 										<!-- /.modal-content -->
 									</div>
 									<!-- /.modal-dialog -->
 								</div>
 								<!-- /.modal -->
+								{{-- fin update type article --}}
+
 
 								@endforeach
 
