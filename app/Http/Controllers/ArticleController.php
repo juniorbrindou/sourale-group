@@ -17,8 +17,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        $categories = Categories::all();
+        $type_articles = Type_articles::all();
         $articles = Articles::all();
-        return view('parametrage.articles.index', compact('articles'));
+        return view('parametrage.articles.index', compact('articles', 'categories', 'type_articles'));
     }
 
     /**
