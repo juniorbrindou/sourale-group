@@ -5,10 +5,6 @@
 	<td>{{$tarif->type_article->libelle}}</td>
 	<td>{{$tarif->categorie_article->libelle}}</td>
 	<td>
-		{{--<a href="{{ route('tarifications.edit', $tarif->id) }}" title="Modiffier"
-		class="btn btn-primary btn-md">
-		<i class="fa fa-pen"></i>
-		</a>--}}
 		<button type="submit" class="btn btn-success btn-md" title="Modiffier" data-toggle="modal"
 			data-target="#modal-update-{{$tarif->id}}">
 			<i class="fa fa-pen"></i>
@@ -26,18 +22,21 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form wire:submit.prevent="update">
+			<form method="POST" action="{{ route('tarifications.update', $tarif->id)}}">
+				@csrf
+				@method('PATCH')
 				<div class="modal-body">
+					{{-- prix --}}
 					<div class="form-group">
-						<input type="number" wire:model="prix" class="form-control @error('prix') is-invalid @enderror"
-							placeholder="Modifier le prix">
+						<label for="prix">Prix *</label>
+						<input type="number" class="form-control @error('prix') is-invalid @enderror"
+							value="{{ $tarif->prix }}" required name="prix" id="prix" placeholder="Entrer le prix">
 					</div>
 					@error('prix')
 					<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
 						<strong>{{ $message }}</strong>
 					</span>
 					@enderror
-
 
 
 				</div>

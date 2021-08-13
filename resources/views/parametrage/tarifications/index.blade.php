@@ -11,11 +11,6 @@
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Liste des Prix </h3>
-
-						<a href="{{ route('tarifications.create')}}" class="btn float-right  btn-md btn-success">
-							<i class="fa fa-plus-circle"></i>
-							Ajouter
-						</a>
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
@@ -30,8 +25,8 @@
 								</tr>
 							</thead>
 							<tbody>
-                                <livewire:tarification.index />
 
+								<livewire:tarification.index />
 
 							</tbody>
 							<tfoot>

@@ -141,6 +141,7 @@
 								<th>Code</th>
 								<th>Image</th>
 								<th>Libéllé</th>
+								<th>Prix</th>
 								<th>Type</th>
 								<th>Categorie</th>
 								<th></th>
@@ -162,6 +163,7 @@
 									@endif
 								</td>
 								<td>{{ ucwords($article->libelle)}}</td>
+								<td>{{$article->prix_tarification}}</td>
 								<td>{{$article->type_article->libelle}}</td>
 								<td>{{$article->categorie->libelle}}</td>
 								<td>
@@ -169,10 +171,10 @@
 										class="btn btn-warning btn-md mr-1">
 										<i class="fa fa-eye"></i>
 									</a>
-									<a href="{{ route('articles.edit', $article->id) }}" title="Modiffier"
-										class="btn btn-primary btn-md">
+									<button data-toggle="modal" data-target="#modal-update-{{$article->id}}"
+										title="Modiffier" class="btn btn-primary btn-md">
 										<i class="fa fa-pen"></i>
-									</a>
+									</button>
 									<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
 										data-target="#modal-danger-{{$article->id}}">
 										<i class="fa fa-trash"></i>
@@ -257,7 +259,6 @@
 																{{$type_article->libelle}}
 															</option>
 															@endforeach
-
 														</select>
 													</div>
 												</div>
@@ -355,6 +356,7 @@
 						<th>Code</th>
 						<th>Image</th>
 						<th>Libéllé</th>
+						<th>Prix</th>
 						<th>Type</th>
 						<th>Categorie</th>
 						<th></th>

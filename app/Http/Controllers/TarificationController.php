@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Articles;
 use App\Categories;
 use App\Tarification;
 use App\Type_articles;
@@ -24,20 +25,6 @@ class TarificationController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $categories = Categories::all();
-        $type_articles = Type_articles::all();
-        return view('parametrage.tarifications.create', compact('categories', 'type_articles'));
-    }
-
-
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -45,12 +32,11 @@ class TarificationController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $request->validate([
-            'prix' => 'required|string|min:1',
-            'type_article_id' => 'required|numeric',
-            'categorie_article_id' => 'required|numeric',
+            'prix' => 'required|numeric|min:0',
         ], [
-            'prix.required' => 'ce champ est obligatoire',
+            'prix.required' => 'Le prix est obligatoire',
         ]);
 
         Tarification::create($request->all());
@@ -63,23 +49,6 @@ class TarificationController extends Controller
     }
 
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $tarif = Tarification::whereId($id)->firstOrFail();
-        $categories = Categories::where('id', '<>', $tarif->categorie_article_id)->get();
-        $type_articles = Type_articles::where('id', '<>', $tarif->type_article_id)->get();
-        return view('parametrage.tarifications.edit', compact('tarif', 'categories', 'type_articles'));
-    }
-
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -90,20 +59,22 @@ class TarificationController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'prix' => 'required|string|min:1',
-            'type_article_id' => 'required|numeric',
-            'categorie_article_id' => 'required|numeric',
+            'prix' => 'required|numeric|min:0',
         ], [
-            'prix.required' => 'ce champ est obligatoire',
+            'prix.required' => 'Le prix est obligatoire',
         ]);
+
 
         $data = Tarification::whereId($id)->firstOrFail();
         $data->update([
             'prix' => $request->prix,
-            'categorie_id' => $request->categorie_id,
-            'type_article_id' => $request->type_article_id,
-            'categorie_article_id' => $request->categorie_article_id,
         ]);
+
+        $articles = Articles::where('tarification_id', '=', $data->id)->get();
+
+        foreach ($articles as $value) {
+            $value->update(['prix_tarification' => $request->prix]);
+        }
 
         return redirect()->route('tarifications.index')->with('success', 'Action Effectuée!');
     }
