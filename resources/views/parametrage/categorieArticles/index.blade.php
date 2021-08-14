@@ -26,7 +26,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content bg-default">
 								<div class="modal-header">
-									<h4>Nouveau</h4>
+									<h4>Ajouter une Catégorie</h4>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -39,7 +39,7 @@
 										<div class="col-md-12">
 											{{-- libelle --}}
 											<div class="form-group">
-												<label for="libelle">libéllé *</label>
+												<label for="libelle">Nom de la catégorie *</label>
 												<input type="text"
 													class="form-control @error('libelle') is-invalid @enderror"
 													value="{{ old('libelle') }}" name="libelle" id="code"
@@ -181,10 +181,10 @@
 												<div class="card-body">
 
 													<div class="row">
-														<div class="col-md-6">
+														<div class="col-md-12">
 															{{-- libelle --}}
 															<div class="form-group">
-																<label for="libelle">libéllé *</label>
+																<label for="libelle">Nom de la catégorie *</label>
 																<input type="text"
 																	class="form-control @error('libelle') is-invalid @enderror"
 																	value="{{ old('libelle') }}" name="libelle"
@@ -201,7 +201,7 @@
 															@enderror
 														</div>
 
-														<div class="col-md-6">
+														<div class="col-md-12">
 
 															<div class="form-group">
 																<label for="description">Description</label>
@@ -213,25 +213,12 @@
 														</div>
 													</div>
 
-
-													<div class="row">
-
-														<div class="col-md-4">
-															{{-- libelle --}}
-															<div class="form-group">
-																<label for="switch">Enregistrer Encore</label>
-																<input type="checkbox" name="encore" checked
-																	data-bootstrap-switch data-off-color="danger"
-																	data-on-color="success">
-															</div>
-														</div>
-
-													</div>
 													<!-- /.card-body -->
 													<div class="card-footer">
 														<div class="row">
 															<div class="col-md-6 col-sm-6">
-																<button type="button" class="btn btn-primary"
+																<button type="button"
+																	class="btn btn-outline-warning btn-block"
 																	data-dismiss="modal">Annuler</button>
 															</div>
 															<div class="col-md-6 col-sm-6">

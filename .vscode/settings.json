@@ -1,4 +1,7 @@
 {
-    "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
-    "intelephense.phpdoc.useFullyQualifiedNames": true
+  "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
+  "intelephense.phpdoc.useFullyQualifiedNames": true,
+  "files.exclude": {
+    "resources\\views\\facture": true
+  }
 }

@@ -39,11 +39,11 @@
 											<div class="col-md-12">
 												{{-- libelle --}}
 												<div class="form-group">
-													<label for="libelle">Type d'article</label>
+													<label for="libelle">Non du Type</label>
 													<input type="text"
 														class="form-control @error('libelle') is-invalid @enderror"
 														value="{{ old('libelle') }}" name="libelle" id="libelle"
-														placeholder="ex:Couvert,Verre">
+														placeholder="ex:couvert,verre">
 												</div>
 												@error('libelle')
 												<span class="text-danger"
@@ -58,7 +58,7 @@
 											{{-- description --}}
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Ajouter une description à l'article</label>
+													<label>Ajouter une description</label>
 													<textarea
 														class="form-control @error('description') is-invalid @enderror"
 														name="description" rows="3"
@@ -67,11 +67,18 @@
 											</div>
 										</div>
 									</div>
-									<div class="modal-footer justify-content-between">
-										<button type="button" class="btn btn-outline-secondary"
-											data-dismiss="modal">Annuler</button>
-
-										<button type="submit" class="btn btn-success">Enregistrer</button>
+									<div class="card-footer">
+										<div class="row">
+											<div class="col-md-6 col-sm-6 mb-2">
+												<button type="button" class="btn btn-outline-warning btn-block"
+													data-dismiss="modal">Retour
+												</button>
+											</div>
+											<div class="col-md-6 col-sm-6">
+												<button type="submit"
+													class="btn btn-primary btn-block">Enregistrer</button>
+											</div>
+										</div>
 									</div>
 
 								</form>
@@ -102,7 +109,7 @@
 
 								<tr>
 									<td>{{ $typeArticle->code }}</td>
-									<td>{{ substr($typeArticle->libelle,0,35) }}</td>
+									<td class="text-uppercase">{{ substr($typeArticle->libelle,0,35) }}</td>
 									<td>{{ substr($typeArticle->description,0,70) }}</td>
 									<td>
 										<button data-toggle="modal" data-target="#modal-update-{{$typeArticle->id}}"
@@ -191,7 +198,7 @@
 													<textarea
 														class="form-control @error('description') is-invalid @enderror"
 														name="description" rows="3"
-														placeholder="Ecrivez ici (optionnelle)...">{{ $typeArticle->description }}</textarea>
+														placeholder="Ecrivez ici...">{{ $typeArticle->description }}</textarea>
 												</div>
 											</div>
 										</div>
@@ -201,7 +208,7 @@
 									<div class="card-footer">
 										<div class="row">
 											<div class="col-md-6 col-sm-6 mb-2">
-												<button type="button" class="btn btn-outline-secondary"
+												<button type="button" class="btn btn-outline-warning btn-block"
 													data-dismiss="modal">Retour
 												</button>
 											</div>

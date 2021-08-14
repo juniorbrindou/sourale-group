@@ -26,7 +26,7 @@ class AddContraintesTable extends Migration
 				->on('type_articles')
 				->onDelete('cascade')
 				->onUpdate('cascade');
-   			$table->index(['categorie_article_id', 'type_article_id']);
+			$table->index(['categorie_article_id', 'type_article_id']);
 		});
 
 
@@ -78,7 +78,7 @@ class AddContraintesTable extends Migration
 			$table->foreign('remarque_id')
 				->references('id')
 				->on('remarques')
-				->onDelete('cascade')
+				->onDelete('restrict')
 				->onUpdate('cascade');
 
 			$table->foreign('type_article_id')

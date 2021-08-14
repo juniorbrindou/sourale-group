@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Articles;
 use App\Type_articles;
 use App\Categories;
+use App\Tarification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +59,8 @@ class ArticleController extends Controller
 
         $data = Articles::create(array_merge($request->all(), ['user_id' => Auth::user()->id]));
 
+        $tarification = Tarification::where('categorie_article_id', '=', $request->categorie_id)->where('type_article_id', '=', $request->type_article_id)->first();
+
         if ($request->hasFile('article_photo')) {
             // stockage du nom du fichier et ses infos dans la variable file
             $file = $request->file('article_photo');
@@ -67,10 +70,20 @@ class ArticleController extends Controller
             $path = $file->storeAs('articles', $fileName);
 
             // creation du code et ajout du lien de l'image dans la bd
-            $data->update(['code' => date("Ymd") . '0' . $data->id, 'article_photo' => $path]);
+            $data->update([
+                'code' => date("Ymd") . '0' . $data->id,
+                'article_photo' => $path,
+                'prix_tarification' => $tarification->prix,
+                'tarification_id' => $tarification->id
+            ]);
         } else {
-            $data->update(['code' => date("Ymd") . '0' . $data->id]);
+            $data->update([
+                'code' => date("Ymd") . '0' . $data->id,
+                'prix_tarification' => $tarification->prix,
+                'tarification_id' => $tarification->id
+            ]);
         }
+
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
@@ -127,6 +140,7 @@ class ArticleController extends Controller
             'type_article_id.required' => 'Le champ Type est obligatoire',
         ]);
 
+        $tarification = Tarification::where('categorie_article_id', '=', $request->categorie_id)->where('type_article_id', '=', $request->type_article_id)->first();
 
         $data = Articles::whereId($id)->firstOrFail();
         $data->update([
@@ -134,8 +148,9 @@ class ArticleController extends Controller
             'categorie_id' => $request->categorie_id,
             'type_article_id' => $request->type_article_id,
             'description' => $request->description,
+            'prix_tarification' => $tarification->prix,
+            'tarification_id' => $tarification->id
         ]);
-        // $file_path = app_path().'/images/news/'.$news->photo;
 
         if ($request->hasFile('article_photo')) {
             // stockage du nom du fichier et ses infos dans la variable file
@@ -148,7 +163,12 @@ class ArticleController extends Controller
             $path = $file->storeAs('articles', $fileName);
 
             // creation du code et ajout du lien de l'image dans la bd
-            $data->update(['article_photo' => $path]);
+            $data->update([
+                'article_photo' => $path,
+                'prix_tarification' => $tarification->prix,
+                'tarification_id' => $tarification->id
+
+            ]);
         }
 
         return redirect()->route('articles.index')->with('success', 'Action Effectuée!');
@@ -165,9 +185,9 @@ class ArticleController extends Controller
         $article = Articles::findOrFail($id);
         try {
             $article->delete();
-            Session::flash('success', 'Action Effectuée!');
+            return back()->with('success', 'Action Effectuée!');
         } catch (Illuminate\Database\QueryException $e) {
-            Session::flash('error', 'Impossible de Supprimer cet Article');
+            return back()->with('error', 'Impossible de Supprimer cet Article');
         }
         return back();
     }

@@ -18,13 +18,14 @@
 	<link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page" style="background-image: url({{asset('dist/img/background.jpg')}}); background-size: 100Vh;">
+<body class="hold-transition login-page"
+	style="background-image: url({{asset('dist/img/background.jpg')}}); background-size: 100Vh;">
 	<div class="login-box">
 		<div class="login-logo">
 			<img draggable="false" src="{{asset('dist/img/logo.png')}}" class="brand-image " height="150" alt="">
 		</div>
 		<!-- /.login-logo -->
-		<div class="card" >
+		<div class="card">
 			<div class="card-body login-card-body" style="background-color: rgba(253, 253, 255, 0.299)">
 				<p class="login-box-msg">Connectez vous</p>
 
@@ -34,7 +35,8 @@
 
 					{{-- login --}}
 					<div class="input-group mb-3">
-						<input type="text" required class="form-control @error('login') is-invalid @enderror" id="login" placeholder="Nom de l'utilisateur" name="login" value="{{ old('login') }}" autofocus>
+						<input type="text" required class="form-control @error('login') is-invalid @enderror" id="login"
+							placeholder="Nom de l'utilisateur" name="login" value="{{ old('login') }}" autofocus>
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-user"></span>
@@ -50,17 +52,18 @@
 
 					{{-- mot de passe  --}}
 					<div class="input-group mb-3">
-						<input type="password" required class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="current-password" placeholder="Mot de passe">
+						<input type="password" required class="form-control @error('password') is-invalid @enderror"
+							name="password" autocomplete="current-password" placeholder="Mot de passe">
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-lock"></span>
 							</div>
 						</div>
-					@error('password')
+						@error('password')
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
 						</span>
-					@enderror
+						@enderror
 					</div>
 
 
@@ -74,7 +77,7 @@
 
 				<p class="mb-1 text-center">
 					@if (Route::has('password.request'))
-						<a class="btn btn-link" href="{{ route('password.request') }}">Mot de passe Oublié</a>
+					<a class="btn btn-link" href="{{ route('password.request') }}">Mot de passe oublié</a>
 					@endif
 				</p>
 			</div>

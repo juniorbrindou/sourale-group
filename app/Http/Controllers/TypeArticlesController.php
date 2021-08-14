@@ -43,7 +43,7 @@ class TypeArticlesController extends Controller
     {
         $request->validate([
             'libelle' => 'required|string|min:1|unique:type_articles,libelle',
-            'description' => 'nullable|min:0',
+            'description' => 'nullable|min:0|max:200',
         ], [
             'libelle.required' => 'Le libéllé est obligatoire',
             'libelle.unique' => 'Cette valeur existe déja',
@@ -94,7 +94,7 @@ class TypeArticlesController extends Controller
     {
         $request->validate([
             'libelle' => 'required|string|min:1|unique:type_articles,libelle,' . $id,
-            'description' => 'nullable|min:0',
+            'description' => 'nullable|min:0|max:200',
         ], [
             'libelle.required' => 'Le libéllé est obligatoire',
             'libelle.unique' => 'Cette valeur existe déja',
