@@ -20,7 +20,7 @@
 @endsection
 
 @push('styles')
-
+<livewire:styles />
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -55,7 +55,7 @@
 
 
 @push('scripts')
-
+<livewire:scripts />
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
