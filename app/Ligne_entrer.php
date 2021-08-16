@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ligne_entrer extends Model
 {
     protected $fillable = [
-        'code', 'article_id', 'entrer_id'
+        'code', 'qte', 'article_id', 'entrer_id'
     ];
 
     /**

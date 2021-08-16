@@ -14,7 +14,7 @@ class Create extends Component
 {
     public $fournisseurs;
     public $articles;
-    public $qte_recu;
+    public $qte;
     public $date_reception;
     public $article;
     public $article_categorie;
@@ -36,7 +36,7 @@ class Create extends Component
     public function updateLigne($item)
     {
         $data = $this->ligne[$item];
-        $this->qte_recu = $data['qte_recu'];
+        $this->qte = $data['qte'];
         $this->article = $data['article'];
         $this->addDeleteLigne($item);
     }
@@ -63,7 +63,7 @@ class Create extends Component
             [
                 'code' => $this->code,
                 'article' => $this->article,
-                'qte_recu' => $this->qte_recu,
+                'qte' => $this->qte,
                 'categorie' => $this->article_categorie,
                 'prix' => $this->article_prix,
             ]
@@ -80,6 +80,10 @@ class Create extends Component
         unset($this->ligne[$item]);
     }
 
+    /**
+     * Insertion en bd
+     * @return void
+     */
     public function addInBD()
     {
         if (!empty($this->ligne)) {
@@ -95,15 +99,14 @@ class Create extends Component
                 $article = Articles::whereLibelle($value['article'])->first();
                 $article_id = $article->id;
 
-
                 $this->article = $article->libelle;
                 $this->article_categorie = $article->categorie->libelle;
 
                 Ligne_entrer::create(
                     [
                         'article_id' => $article_id,
-                        'qte_recu' => $value['qte_recu'],
                         'entrer_id' => $entree->id,
+                        'qte' => $value['qte'],
                     ]
                 );
             }
@@ -127,14 +130,14 @@ class Create extends Component
 
 
     protected $rules = [
-        'qte_recu' => 'required|numeric|min:1',
+        'qte' => 'required|numeric|min:1',
         'article' => 'required|numeric',
     ];
     protected $messages = [
         'article.numeric' => 'Selectionnez l\'article.',
     ];
     protected $validationAttributes = [
-        'qte_recu' => 'quantité'
+        'qte' => 'quantité'
     ];
 
     public function render()

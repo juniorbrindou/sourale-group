@@ -37,15 +37,15 @@
                         @enderror
                     </div>
 
-                    {{-- qte_recu --}}
+                    {{-- qte --}}
                     <div class="col-md-3 col-xs-12">
                         <div class="form-group">
-                            <label for="qte_recu">Quantité *</label>
-                            <input type="number" wire:model="qte_recu"
-                                class="form-control @error('qte_recu') is-invalid @enderror" name="qte_recu"
-                                id="qte_recu" placeholder="Entrer la quantité d'article">
+                            <label for="qte">Quantité *</label>
+                            <input type="number" wire:model="qte"
+                                class="form-control @error('qte') is-invalid @enderror" name="qte" id="qte"
+                                placeholder="Entrer la quantité d'article">
                         </div>
-                        @error('qte_recu')
+                        @error('qte')
                         <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                             role="alert">
                             <strong>{{ $message }}</strong>
@@ -122,7 +122,7 @@
                                     <tr>
                                         <td>{{$value['code']}}</td>
                                         <td>{{$value['article']}}</td>
-                                        <td>{{$value['qte_recu']}}</td>
+                                        <td>{{$value['qte']}}</td>
                                         <td>{{$value['categorie']}}</td>
                                         <td>{{$value['prix']}}</td>
                                         <td>
