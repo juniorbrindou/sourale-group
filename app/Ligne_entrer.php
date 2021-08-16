@@ -14,7 +14,7 @@ class Ligne_entrer extends Model
      * article
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function article()
+    public function articles()
     {
         return $this->belongsTo(Articles::class);
     }
@@ -23,7 +23,7 @@ class Ligne_entrer extends Model
      * entrer
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function entrer()
+    public function entrers()
     {
         return $this->belongsTo(Entrers::class);
     }

@@ -8,19 +8,19 @@ use Livewire\Component;
 
 class EntrerListe extends Component
 {
-    public $ligneEntrers;
+    public $entrees;
 
 
     public function valider($id)
     {
-        Ligne_entrer::findOrFail($id)->delete();
+        Entrers::findOrFail($id)->delete();
         return view('livewire.entrer-liste');
     }
 
 
     public function render()
     {
-        $this->ligneEntrers = Ligne_entrer::all();
+        $this->entrees = Entrers::all();
         return view('livewire.entrer-liste');
     }
 }

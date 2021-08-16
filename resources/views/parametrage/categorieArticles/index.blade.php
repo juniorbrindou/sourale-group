@@ -43,7 +43,7 @@
 												<input type="text"
 													class="form-control @error('libelle') is-invalid @enderror"
 													value="{{ old('libelle') }}" name="libelle" id="code"
-													placeholder="Entrer la catégorie de l'article" autofocus required>
+													placeholder="ex:Silver, Millénium" autofocus required>
 											</div>
 											@error('libelle')
 											<span class="text-danger"
@@ -107,7 +107,8 @@
 
 								<tr>
 									<td>{{ $categorieArticle->code }} </td>
-									<td>{{ $categorieArticle->libelle }} </td>
+									<td class="text-uppercase">
+										{{ $categorieArticle->libelle }} </td>
 									<td>{{ isset($categorieArticle->description) ? $categorieArticle->description : 'Aucune description' }}
 									</td>
 									<td>

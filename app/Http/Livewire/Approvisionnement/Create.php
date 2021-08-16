@@ -2,9 +2,13 @@
 
 namespace App\Http\Livewire\Approvisionnement;
 
+use App\Entrers;
 use App\Articles;
+use Carbon\Carbon;
 use App\Fournisseurs;
+use App\Ligne_entrer;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
@@ -13,8 +17,12 @@ class Create extends Component
     public $qte_recu;
     public $date_reception;
     public $article;
+    public $article_categorie;
+    public $article_prix;
     public $ligne = [];
     public $item;
+    public $code;
+
 
     public function submit()
     {
@@ -27,8 +35,8 @@ class Create extends Component
     public function updateLigne($item)
     {
         $data = $this->ligne[$item];
-        // dd($data);
         $this->qte_recu = $data['qte_recu'];
+        $this->article = $data['article'];
         $this->addDeleteLigne($item);
     }
 
@@ -42,15 +50,21 @@ class Create extends Component
         // verifie la validation
         $this->validate();
 
+        // renvoie dans this->article le libelle
+        $article = Articles::whereId($this->article)->first();
+        $this->article_prix = $article->prix_tarification;
+        $this->article = $article->libelle;
+        $this->article_categorie = $article->categorie->libelle;
+
         // unshift pour une entréé en commençant par le bas
         array_unshift(
             $this->ligne,
             [
-                'code' => '0001',
+                'code' => $this->code,
                 'article' => $this->article,
                 'qte_recu' => $this->qte_recu,
-                'categorie' => 'Silver',
-                'prix' => '450',
+                'categorie' => $this->article_categorie,
+                'prix' => $this->article_prix,
             ]
         );
     }
@@ -64,21 +78,67 @@ class Create extends Component
         unset($this->ligne[$item]);
     }
 
+    public function addInBD()
+    {
+        if (!empty($this->ligne)) {
+            $entree = Entrers::create(
+                [
+                    'code' => $this->ligne[0]['code'],
+                    'user_id' => Auth::user()->id,
+                ]
+            );
+
+
+            foreach ($this->ligne as $value) {
+                $article = Articles::whereLibelle($value['article'])->first();
+                $article_id = $article->id;
+
+
+                $this->article = $article->libelle;
+                $this->article_categorie = $article->categorie->libelle;
+
+                Ligne_entrer::create(
+                    [
+                        'article_id' => $article_id,
+                        'qte_recu' => $value['qte_recu'],
+                        'entrer_id' => $entree->id,
+                    ]
+                );
+            }
+            $this->resetLigne();
+            return redirect()->route('approvisionnement.index');
+        } else {
+            return;
+        }
+    }
+
+
+    /**
+     * Rénitialise le tableau
+     * @return void
+     */
+    public function resetLigne()
+    {
+        $this->ligne = [];
+    }
+
 
 
     protected $rules = [
         'qte_recu' => 'required|numeric|min:1',
-        'date_reception' => 'nullable|date',
+        'article' => 'required|numeric',
     ];
-
+    protected $messages = [
+        'article.numeric' => 'Selectionnez l\'article.',
+    ];
     protected $validationAttributes = [
         'qte_recu' => 'quantité'
     ];
 
     public function render()
     {
+        $this->code = date('Ymd');
         $this->articles = Articles::all();
-        $this->fournisseurs = Fournisseurs::all();
         return view('livewire.approvisionnement.create');
     }
 }
