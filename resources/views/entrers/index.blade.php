@@ -10,7 +10,7 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Approvisionner le stock</h3>
+						<h3 class="card-title">Liste des Approvisionnements de stock</h3>
 
 						<a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
@@ -19,7 +19,7 @@
 					</div>
 					<!-- /.card-header -->
 
-					<livewire:entrer-liste />
+					<livewire:approvisionnement.index />
 
 				</div>
 				<!-- /.card -->

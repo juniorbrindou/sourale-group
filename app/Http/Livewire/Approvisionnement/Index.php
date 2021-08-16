@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Approvisionnement;
 
 use App\Entrers;
-use App\Ligne_entrer;
 use Livewire\Component;
 
-class EntrerListe extends Component
+class Index extends Component
 {
+
+
     public $entrees;
 
 
     public function valider($id)
     {
         Entrers::findOrFail($id)->delete();
-        return view('livewire.entrer-liste');
+        return view('livewire.approvisionnement.index');
     }
-
 
     public function render()
     {
         $this->entrees = Entrers::all();
-        return view('livewire.entrer-liste');
+        return view('livewire.approvisionnement.index');
     }
 }

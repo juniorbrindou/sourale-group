@@ -22,6 +22,7 @@ class Create extends Component
     public $ligne = [];
     public $item;
     public $code;
+    private $i;
 
 
     public function submit()
@@ -67,6 +68,7 @@ class Create extends Component
                 'prix' => $this->article_prix,
             ]
         );
+        session()->flash('success', 'Post successfully updated.');
     }
 
 
@@ -137,7 +139,8 @@ class Create extends Component
 
     public function render()
     {
-        $this->code = date('Ymd');
+        $this->code = date('ym') . Entrers::count();
+
         $this->articles = Articles::all();
         return view('livewire.approvisionnement.create');
     }
