@@ -66,14 +66,21 @@ class TarificationController extends Controller
 
 
         $data = Tarification::whereId($id)->firstOrFail();
+
         $data->update([
             'prix' => $request->prix,
         ]);
 
-        $articles = Articles::where('tarification_id', '=', $data->id)->get();
+        // mise a jour du prix dans la table des articles
+        $articlePrixToUpdate = Articles::where('categorie_id', '=', $data->categorie_article->id)->where('type_article_id', '=', $data->type_article->id)->get();
 
-        foreach ($articles as $value) {
-            $value->update(['prix_tarification' => $request->prix]);
+        foreach ($articlePrixToUpdate as $value) {
+            $value->update(
+                [
+                    'prix_tarification' => $request->prix,
+                    'tarification_id' => $id
+                ]
+            );
         }
 
         return redirect()->route('tarifications.index')->with('success', 'Action Effectuée!');

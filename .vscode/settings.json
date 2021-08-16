@@ -2,6 +2,18 @@
   "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
   "intelephense.phpdoc.useFullyQualifiedNames": true,
   "files.exclude": {
-    "resources\\views\\facture": true
+    "resources\\views\\facture": true,
+    "bootstrap": true,
+    "config": true,
+    "public": true,
+    "resources\\AdminLTE-3.1.0": true,
+    "resources\\js": true,
+    "app\\Http\\Livewire\\*Approvisionnement": true,
+    "app\\Http\\Livewire\\*Approvisionnement.*": true,
+    "app\\Http\\Livewire\\*Destockage.*": true,
+    "app\\Http\\Livewire\\*Tarification": true,
+    "app\\Http\\Livewire\\*Tarification.*": true,
+    "app\\Http\\Livewire\\*TarificationList": true,
+    "app\\Http\\Livewire\\*TarificationList.*": true
   }
 }
