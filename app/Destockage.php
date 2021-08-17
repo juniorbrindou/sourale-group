@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Destockage extends Model
 {
-    protected $fillable = ['qte', 'motif', 'article_id'];
+    protected $fillable = ['qte', 'motif', 'article_id', 'user_id', 'code'];
 
 
     /**
