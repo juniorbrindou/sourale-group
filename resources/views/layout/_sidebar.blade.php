@@ -54,24 +54,26 @@
 				<li class="nav-header">FLUX DE STOCK</li>
 
 				<li class="nav-item">
-					<a href="{{route('approvisionnement.index')}}" class="nav-link">
-						<i class="fas fa-tag nav-icon"></i>
+					<a href="{{route('approvisionnement.index')}}"
+						class="nav-link {{ request()->is('stock*') ? 'bg-info active' : ''}}">
+						<i class="fas  fa-box-open nav-icon"></i>
+
 						<p>Stock</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
 					<a href="{{route('approvisionnement.index')}}"
-						class="nav-link {{ request()->is('approvisionnement*') ? 'active' : ''}}">
-						<i class="fas fa-tag nav-icon"></i>
+						class="nav-link {{ request()->is('approvisionnement*') ? 'bg-success active' : ''}}">
+						<i class="fas fa-door-open nav-icon"></i>
 						<p>Entrée de Stock</p>
 					</a>
 				</li>
 
 				<li class="nav-item">
 					<a href="{{route('destockages.index')}}"
-						class="nav-link {{ request()->is('destockages*') ? 'active' : ''}}">
-						<i class="fa fa-door-open nav-icon"></i>
+						class="nav-link {{ request()->is('destockages*') ? 'bg-danger  active' : ''}}">
+						<i class="fa fa-trash-restore-alt nav-icon"></i>
 						<p>Sortie de stock</p>
 					</a>
 				</li>

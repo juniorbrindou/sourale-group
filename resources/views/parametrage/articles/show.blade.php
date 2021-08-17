@@ -15,7 +15,7 @@
               src="{{asset('storage/'.$article->article_photo)}}">
             @else
             <img alt="Avatar" class="product-image" alt="Product Image"
-              src="{{asset('storage/articles/default_article.png')}}">
+              src="{{asset('storage/articles/default_article100x100.png')}}">
             @endif
 
           </div>

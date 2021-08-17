@@ -5,12 +5,12 @@
 <section class="content">
 
 	<!-- Default box -->
-	<div class="card">
+	<div class="card card-primary">
 		<div class="card-header">
 			<h3 class="card-title">Liste des Utilisateurs</h3>
 
 			<div class="card-tools">
-				<a href="{{ route('users.create')}}" class="btn float-right  btn-md btn-success">
+				<a href="{{ route('users.create')}}" class="btn float-right  btn-md bg-dark">
 					<i class="fa fa-plus-circle"></i>
 					Ajouter
 				</a>

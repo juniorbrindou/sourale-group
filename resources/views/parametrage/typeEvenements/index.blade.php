@@ -7,11 +7,11 @@
 		<div class="row">
 			<div class="col-12">
 
-				<div class="card">
+				<div class="card card-primary">
 					<div class="card-header">
 						<h3 class="card-title">Liste des categories d'événements</h3>
 
-						<a href="{{ route('typeEvenements.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('typeEvenements.create')}}" class="btn float-right  btn-md bg-dark">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</a>
@@ -40,8 +40,8 @@
 											data-target="#modal-see-{{$typeEvenement->id}}">
 											<i class="fa fa-eye"></i>
 										</button>
-										<a href="{{ route('typeEvenements.edit', $typeEvenement->id) }}" title="Modiffier"
-											class="btn btn-primary btn-md">
+										<a href="{{ route('typeEvenements.edit', $typeEvenement->id) }}"
+											title="Modiffier" class="btn btn-primary btn-md">
 											<i class="fa fa-pen"></i>
 										</a>
 										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
@@ -86,7 +86,7 @@
 
 
 
-								
+
 								<div class="modal fade" id="modal-see-{{$typeEvenement->id}}">
 									<div class="modal-dialog">
 										<div class="modal-content bg-default">
@@ -235,5 +235,5 @@
 		});
 	});
 </script>
-@endif 
+@endif
 @endpush

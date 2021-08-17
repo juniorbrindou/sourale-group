@@ -8,7 +8,7 @@
 			<!-- left column -->
 			<div class="col-md-12">
 				<div>
-					<div class="card bg-light">
+					<div class="card bg-light card-success">
 						<div class="card-header">
 							<h3 class="card-title">Approvisionnement du {{$entrer->created_at}}</h3>
 						</div>

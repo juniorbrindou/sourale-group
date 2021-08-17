@@ -8,11 +8,11 @@
 		<div class="row">
 			<div class="col-12">
 
-				<div class="card">
+				<div class="card card-success">
 					<div class="card-header">
 						<h3 class="card-title">Liste des Approvisionnements de stock</h3>
 
-						<a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md bg-dark">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</a>

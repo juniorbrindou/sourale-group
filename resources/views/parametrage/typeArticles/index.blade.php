@@ -7,12 +7,11 @@
 		<div class="row">
 			<div class="col-12">
 
-				<div class="card">
+				<div class="card card-primary">
 					<div class="card-header">
 						<h3 class="card-title">Liste des Types d'articles</h3>
 
-						<button data-toggle="modal" data-target="#modal-create"
-							class="btn float-right  btn-md btn-success">
+						<button data-toggle="modal" data-target="#modal-create" class="btn float-right  btn-md bg-dark">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</button>

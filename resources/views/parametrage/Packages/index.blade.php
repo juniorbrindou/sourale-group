@@ -7,10 +7,10 @@
 		<div class="row">
 			<div class="col-12">
 
-				<div class="card">
+				<div class="card card-primary">
 					<div class="card-header">
 						<h3 class="card-title">Liste des packages</h3>
-						<a href="{{ route('packages.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('packages.create')}}" class="btn float-right  btn-md bg-dark">
 							<i class="fa fa-plus-circle"></i>
 							Ajouter
 						</a>
