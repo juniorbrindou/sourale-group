@@ -83,7 +83,7 @@
 
     <div class="card bg-light">
         <div class="card-header">
-            <h3 class="card-title">Approvisionnement du 12/06/2021</h3>
+            <h3 class="card-title">Approvisionnement du {{date('Y-m-d H:i')}}</h3>
         </div>
         <div class="card-body">
             <div wire:loading.delay wire:target="submit, addDeleteLigne, resetLigne, addInBD">

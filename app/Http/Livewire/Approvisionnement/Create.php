@@ -109,6 +109,7 @@ class Create extends Component
                         'qte' => $value['qte'],
                     ]
                 );
+                $article->update(['qte_stocker' => $article->qte_stocker + $value['qte']]);
             }
             $this->resetLigne();
             return redirect()->route('approvisionnement.index');
