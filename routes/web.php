@@ -15,6 +15,7 @@ Route::group(
         Route::resource('utilisateurs', 'UserController');
         Route::resource('approvisionnement', 'EntrersController');
         Route::resource('destockages', 'DestockageController');
+        Route::get('stock', 'StockController@gindex');
 
 
         // Parametrage
