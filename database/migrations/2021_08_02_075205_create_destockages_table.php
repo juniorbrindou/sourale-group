@@ -18,6 +18,7 @@ class CreateDestockagesTable extends Migration
             $table->integer('qte')->default(0);
             $table->string('motif')->nullable();
             $table->integer('article_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
             $table->timestamps();
         });

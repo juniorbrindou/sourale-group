@@ -17,4 +17,13 @@ class Destockage extends Model
     {
         return $this->belongsTo(Articles::class);
     }
+
+    /**
+     * Utilisateur update article
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

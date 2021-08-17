@@ -198,6 +198,12 @@ class AddContraintesTable extends Migration
 				->on('articles')
 				->onDelete('cascade')
 				->onUpdate('cascade');
+
+			$table->foreign('user_id')
+				->references('id')
+				->on('users')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 
 		//table ligne_entrers
@@ -282,6 +288,7 @@ class AddContraintesTable extends Migration
 
 		Schema::table('destockages', function (Blueprint $table) {
 			$table->dropForeign('destockages_article_id_foreign');
+			$table->dropForeign('destockages_user_id_foreign');
 		});
 
 		Schema::table('ligne_entrers', function (Blueprint $table) {
