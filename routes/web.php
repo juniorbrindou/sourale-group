@@ -14,6 +14,8 @@ Route::group(
         Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('utilisateurs', 'UserController');
         Route::resource('approvisionnement', 'EntrersController');
+        Route::resource('destockages', 'DestockageController');
+
 
         // Parametrage
         Route::group(['prefix' => 'parametrage'], function () {
@@ -28,9 +30,6 @@ Route::group(
             Route::resource('users', 'UserController');
             Route::resource('tarifications', 'TarificationController');
         });
-
-        // Route::PATCH('appliquerTarif', 'ArticleController@appliquerTarif');
-
 
         Route::get('facture', function () {
             return view('facture.index');

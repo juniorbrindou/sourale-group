@@ -14,7 +14,7 @@ class DestockageController extends Controller
      */
     public function index()
     {
-        //
+        return view('destockage.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class DestockageController extends Controller
      */
     public function show(Destockage $destockage)
     {
-        //
+        return view('destockages.show', compact('destockage'));
     }
 
     /**

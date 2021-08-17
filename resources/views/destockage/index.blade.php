@@ -12,14 +12,16 @@
 					<div class="card-header">
 						<h3 class="card-title">Liste des Sorties de stock</h3>
 
-						<a href="{{ route('destockage.create')}}" class="btn float-right  btn-md btn-success">
+						<a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md btn-success">
 							<i class="fa fa-plus-circle"></i>
-							Retirer du stock
+							Ajouter
 						</a>
 					</div>
 					<!-- /.card-header -->
 
+					{{-- <livewire:approvisionnement.index /> --}}
 					<livewire:destockage.index />
+
 
 				</div>
 				<!-- /.card -->

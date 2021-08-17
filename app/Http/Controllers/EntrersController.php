@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entrers;
 use App\Articles;
 use App\Fournisseurs;
+use App\Ligne_entrer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,5 +70,20 @@ class EntrersController extends Controller
         } else {
             return redirect()->route('approvisionnement.index')->with('success', 'Action Effectuée!');
         }
+    }
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Entrers  $entrers
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $entrer = Entrers::whereId($id)->first();
+        $lignes = Ligne_entrer::where('entrer_id', '=', $entrer->id)->get();
+        return view('entrers.show', compact('entrer', 'lignes'));
     }
 }

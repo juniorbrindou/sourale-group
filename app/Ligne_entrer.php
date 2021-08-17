@@ -14,7 +14,7 @@ class Ligne_entrer extends Model
      * article
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function articles()
+    public function article()
     {
         return $this->belongsTo(Articles::class);
     }

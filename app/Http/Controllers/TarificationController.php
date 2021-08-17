@@ -25,14 +25,13 @@ class TarificationController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Désactivé. cela se fait automatiquement
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        dd($request);
         $request->validate([
             'prix' => 'required|numeric|min:0',
         ], [

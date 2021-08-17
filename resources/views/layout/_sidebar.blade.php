@@ -51,6 +51,15 @@
 					</a>
 				</li>
 
+				<li class="nav-header">FLUX DE STOCK</li>
+
+				<li class="nav-item">
+					<a href="{{route('approvisionnement.index')}}" class="nav-link">
+						<i class="fas fa-tag nav-icon"></i>
+						<p>Stock</p>
+					</a>
+				</li>
+
 				<li class="nav-item">
 					<a href="{{route('approvisionnement.index')}}"
 						class="nav-link {{ request()->is('approvisionnement*') ? 'active' : ''}}">
@@ -60,92 +69,82 @@
 				</li>
 
 				<li class="nav-item">
-					<a href="{{route('approvisionnement.index')}}"
-						class="nav-link {{ request()->is('destockage*') ? 'active' : ''}}">
+					<a href="{{route('destockages.index')}}"
+						class="nav-link {{ request()->is('destockages*') ? 'active' : ''}}">
 						<i class="fa fa-door-open nav-icon"></i>
-						<p>Destockage</p>
+						<p>Sortie de stock</p>
+					</a>
+				</li>
+
+				<li class="nav-header">PARAMETRAGES</li>
+
+				{{-- parametrage --}}
+
+
+				{{-- tarifications --}}
+				<li class="nav-item">
+					<a href="{{route('tarifications.index')}}"
+						class="nav-link {{ request()->is('parametrage/tarification*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Tarification</p>
+					</a>
+				</li>
+
+				{{-- categorieArticles --}}
+				<li class="nav-item">
+					<a href="{{route('articles.index')}}"
+						class="nav-link {{ request()->is('parametrage/articles*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Articles</p>
+					</a>
+				</li>
+
+				{{-- categorieArticles --}}
+				<li class="nav-item">
+					<a href="{{route('typeArticles.index')}}"
+						class="nav-link {{ request()->is('parametrage/typeArticles*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Type d'articles</p>
+					</a>
+				</li>
+				{{-- typeArticles --}}
+				<li class="nav-item">
+					<a href="{{route('categorieArticles.index')}}"
+						class="nav-link {{ request()->is('parametrage/categorieArticles*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Catégorie d'articles</p>
+					</a>
+				</li>
+
+				{{-- package --}}
+				<li class="nav-item">
+					<a href="{{route('packages.index')}}"
+						class="nav-link {{ request()->is('parametrage/packages*') ? 'active' : ''}}">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Packages</p>
 					</a>
 				</li>
 
 
 
-				{{-- parametrage --}}
-
-				<li
-					class="nav-item {{ request()->is('parametrage/*') ? 'menu-is-opening menu-open' : ''}} menu-is-opening menu-open">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-copy"></i>
-						<p>
-							paramétrage
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-
-						{{-- tarifications --}}
-						<li class="nav-item">
-							<a href="{{route('tarifications.index')}}"
-								class="nav-link {{ request()->is('parametrage/tarification*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Tarification</p>
-							</a>
-						</li>
-
-						{{-- categorieArticles --}}
-						<li class="nav-item">
-							<a href="{{route('articles.index')}}"
-								class="nav-link {{ request()->is('parametrage/articles*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Articles</p>
-							</a>
-						</li>
-
-						{{-- categorieArticles --}}
-						<li class="nav-item">
-							<a href="{{route('typeArticles.index')}}"
-								class="nav-link {{ request()->is('parametrage/typeArticles*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Type d'articles</p>
-							</a>
-						</li>
-						{{-- typeArticles --}}
-						<li class="nav-item">
-							<a href="{{route('categorieArticles.index')}}"
-								class="nav-link {{ request()->is('parametrage/categorieArticles*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Catégorie d'articles</p>
-							</a>
-						</li>
-
-						{{-- package --}}
-						<li class="nav-item">
-							<a href="{{route('packages.index')}}"
-								class="nav-link {{ request()->is('parametrage/packages*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Packages</p>
-							</a>
-						</li>
 
 
-
-
-
-						{{-- clients --}}
-						<li class="nav-item">
-							<a href="{{route('clients.index')}}"
-								class="nav-link {{ request()->is('parametrage/clients*') ? 'active' : ''}}">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Clients</p>
-							</a>
-						</li>
-
-						{{-- fournisseurs --}}
-						{{-- <li class="nav-item">
-							<a href="{{route('fournisseurs.index')}}"
-						class="nav-link {{ request()->is('parametrage/fournisseurs*') ? 'active' : ''}}">
+				{{-- clients --}}
+				<li class="nav-item">
+					<a href="{{route('clients.index')}}"
+						class="nav-link {{ request()->is('parametrage/clients*') ? 'active' : ''}}">
 						<i class="far fa-circle nav-icon"></i>
-						<p>Fournisseurs</p>
-						</a>
+						<p>Clients</p>
+					</a>
+				</li>
+
+				{{-- fournisseurs --}}
+				{{-- <li class="nav-item">
+							<a href="{{route('fournisseurs.index')}}"
+				class="nav-link {{ request()->is('parametrage/fournisseurs*') ? 'active' : ''}}">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Fournisseurs</p>
+				</a>
 				</li> --}}
 
 
@@ -173,8 +172,6 @@
 					</a>
 				</li>
 				@endcan
-			</ul>
-			</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
