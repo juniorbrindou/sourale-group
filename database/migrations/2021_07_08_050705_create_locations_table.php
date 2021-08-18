@@ -26,6 +26,7 @@ class CreateLocationsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('article_id')->unsigned();
             $table->integer('evenement_id')->unsigned();
+            $table->integer('client_id')->unsigned();
 
             $table->timestamps();
         });
