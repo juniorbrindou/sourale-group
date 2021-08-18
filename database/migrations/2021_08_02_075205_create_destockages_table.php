@@ -15,6 +15,7 @@ class CreateDestockagesTable extends Migration
     {
         Schema::create('destockages', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->nullable();
             $table->integer('qte')->default(0);
             $table->string('motif')->nullable();
             $table->integer('article_id')->unsigned();

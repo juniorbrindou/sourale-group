@@ -45,7 +45,7 @@
 				</li>
 
 				<li class="nav-item">
-					<a href="#" class="nav-link {{ request()->is('stock*') ? 'active' : ''}}">
+					<a href="#" class="nav-link {{ request()->is('location*') ? 'active' : ''}}">
 						<i class="fas fa-shipping-fast nav-icon"></i>
 						<p>Locations</p>
 					</a>
@@ -54,8 +54,7 @@
 				<li class="nav-header">FLUX DE STOCK</li>
 
 				<li class="nav-item">
-					<a href="{{route('approvisionnement.index')}}"
-						class="nav-link {{ request()->is('stock*') ? 'bg-info active' : ''}}">
+					<a href="{{url('stock')}}" class="nav-link {{ request()->is('stock*') ? 'bg-info active' : ''}}">
 						<i class="fas  fa-box-open nav-icon"></i>
 
 						<p>Stock</p>

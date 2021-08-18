@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Destockage;
 use Illuminate\Http\Request;
 
-class DestockageController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class DestockageController extends Controller
      */
     public function index()
     {
-        return view('destockage.index');
+        //
     }
 
     /**
@@ -24,7 +23,7 @@ class DestockageController extends Controller
      */
     public function create()
     {
-        return view('destockage.create');
+        //
     }
 
     /**
@@ -41,21 +40,21 @@ class DestockageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Destockage  $destockage
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Destockage $destockage)
+    public function show($id)
     {
-        return view('destockages.show', compact('destockage'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Destockage  $destockage
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Destockage $destockage)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class DestockageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Destockage  $destockage
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Destockage $destockage)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class DestockageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Destockage  $destockage
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Destockage $destockage)
+    public function destroy($id)
     {
         //
     }

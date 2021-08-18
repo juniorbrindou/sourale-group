@@ -1,5 +1,5 @@
 <div>
-    <div class="card card-primary box-perso">
+    <div class="card card-success box-perso">
         <div class="card-header">
             <h3 class="card-title">Entrée de Stock</h3>
         </div>

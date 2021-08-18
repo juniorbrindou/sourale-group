@@ -8,23 +8,17 @@
                 <th>Date de sortie</th>
                 <th>Motif</th>
                 <th>Auteur</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($sorties as $sortie)
             <tr>
+                <td>{{$sortie->id}}</td>
                 <td>{{$sortie->qte}}</td>
-                <td>{{$sortie->article_id}}</td>
+                <td>{{$sortie->article->libelle}}</td>
+                <td>{{$sortie->created_at}} </td>
                 <td>{{$sortie->motif}} </td>
                 <td>{{$sortie->motif}} </td>
-                <td>{{$sortie->motif}} </td>
-                <td>
-                    <a href="{{ route('destockages.show', $sortie->id) }}" class="btn btn-warning btn-md mr-1">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                </td>
-
             </tr>
 
             @endforeach
@@ -39,7 +33,6 @@
                 <th>Date de sortie</th>
                 <th>Motif</th>
                 <th>Auteur</th>
-                <th></th>
             </tr>
         </tfoot>
     </table>

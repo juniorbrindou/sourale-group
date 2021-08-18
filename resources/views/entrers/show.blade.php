@@ -42,7 +42,7 @@
 														<th>Image</th>
 														<th>Libelle</th>
 														<th>Prix</th>
-														<th>Quantité</th>
+														<th>Quantité Ajoutée</th>
 														<th>Catégorie</th>
 													</tr>
 												</thead>
@@ -56,7 +56,7 @@
 															<img alt="Avatar" class="img-perso"
 																src="{{asset('storage/'.$ligne->article->article_photo)}}">
 															@else
-															<img alt="Avatar" class="img-perso"
+															<img alt="Avatar" class="img-perso" style="cursor:pointer"
 																src="{{asset('storage/articles/default_article100x100.png')}}">
 															@endif
 														</td>

@@ -1,5 +1,5 @@
 <div>
-    <div class="card card-primary box-perso">
+    <div class="card card-danger box-perso">
         <div class="card-header">
             <h3 class="card-title">Sortie de Stock</h3>
         </div>
@@ -13,11 +13,11 @@
 
         <form wire:submit.prevent="submit">
             @csrf
-            <div class="card-body">
+            <div class="card-body bg-light">
 
                 <div class="row">
                     {{-- articles --}}
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Article Concerné *</label>
                             <select class="form-control @error('article') is-invalid @enderror" name="article_id"
@@ -36,6 +36,31 @@
                         </span>
                         @enderror
                     </div>
+
+
+
+
+                    {{-- motif --}}
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Motif de Sortie*</label>
+                            <select class="form-control @error('motif') is-invalid @enderror" name="motif"
+                                wire:model="motif" style="width: 100%;">
+                                <option value="Mauvais Etat">Mauvais Etat</option>
+                                <option value="Brisé">Brisé</option>
+                                <option value="Autre">Autre</option>
+
+                            </select>
+                        </div>
+                        @error('motif')
+                        <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                            role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+
 
                     {{-- qte --}}
                     <div class="col-md-3 col-xs-12">
@@ -83,7 +108,7 @@
 
     <div class="card bg-light">
         <div class="card-header">
-            <h3 class="card-title">Approvisionnement du 12/06/2021</h3>
+            <h3 class="card-title">Sortie de stock {{date('Y-m-d')}} </h3>
         </div>
         <div class="card-body">
             <div wire:loading.delay wire:target="submit, addDeleteLigne, resetLigne, addInBD">
@@ -114,6 +139,7 @@
                                         <th>Quantité</th>
                                         <th>Catégorie</th>
                                         <th>Prix</th>
+                                        <th>Motif</th>
                                         <th>Ation</th>
                                     </tr>
                                 </thead>
@@ -125,6 +151,7 @@
                                         <td>{{$value['qte']}}</td>
                                         <td>{{$value['categorie']}}</td>
                                         <td>{{$value['prix']}}</td>
+                                        <td>{{$value['motif']}}</td>
                                         <td>
                                             <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                 class="btn btn-primary btn-md">
@@ -138,7 +165,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="6" class="text-center" style="background-color: darkgrey">Aucun
+                                        <td colspan="7" class="text-center" style="background-color: darkgrey">Aucun
                                             enregistrement</td>
                                     </tr>
                                     @endforelse

@@ -4,15 +4,12 @@ namespace App\Http\Livewire\Approvisionnement;
 
 use App\Entrers;
 use App\Articles;
-use Carbon\Carbon;
-use App\Fournisseurs;
 use App\Ligne_entrer;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
-    public $fournisseurs;
     public $articles;
     public $qte;
     public $date_reception;
@@ -22,8 +19,6 @@ class Create extends Component
     public $ligne = [];
     public $item;
     public $code;
-    private $i;
-
 
     public function submit()
     {
@@ -109,7 +104,12 @@ class Create extends Component
                         'qte' => $value['qte'],
                     ]
                 );
-                $article->update(['qte_stocker' => $article->qte_stocker + $value['qte']]);
+                $article->update(
+                    [
+                        'qte_stocker' => $article->qte_stocker + $value['qte'],
+                        'qte_en_stock' => $article->qte_stocker + $value['qte'],
+                    ]
+                );
             }
             $this->resetLigne();
             return redirect()->route('approvisionnement.index');
