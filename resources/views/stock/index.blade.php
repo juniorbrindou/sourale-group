@@ -21,8 +21,9 @@
 									<th>#</th>
 									<th>Image</th>
 									<th>Article</th>
-									<th>Quantité en stock</th>
-									<th>Quantité Disponible</th>
+									<th title="Somme de la quantité d'aticle disponible et en location">Quantité en
+										stock</th>
+									<th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -49,10 +50,11 @@
 							<tfoot>
 								<tr>
 									<th>#</th>
-									<th>Code</th>
-									<th>Date d'ajout</th>
-									<th>Auteur</th>
-									<th></th>
+									<th>Image</th>
+									<th>Article</th>
+									<th title="Somme de la quantité d'aticle disponible et en location">Quantité en
+										stock</th>
+									<th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
 								</tr>
 							</tfoot>
 						</table>

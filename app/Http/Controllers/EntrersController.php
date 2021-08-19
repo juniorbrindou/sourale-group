@@ -32,8 +32,6 @@ class EntrersController extends Controller
      */
     public function create()
     {
-        // $articles = Articles::all();
-        // $fournisseurs = Fournisseurs::all();
         return view('entrers.create');
     }
 

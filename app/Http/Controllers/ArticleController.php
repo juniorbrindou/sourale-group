@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Articles;
-use App\Type_articles;
 use App\Categories;
 use App\Tarification;
+use App\Type_articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArticleController extends Controller
 {
@@ -33,6 +34,7 @@ class ArticleController extends Controller
     {
         $categories = Categories::all();
         $type_articles = Type_articles::all();
+        Alert::success('Success Title', 'Success Message');
         return view('parametrage.articles.create', compact('categories', 'type_articles'));
     }
 

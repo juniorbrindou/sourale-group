@@ -103,6 +103,25 @@
 		  "info": true,
 		  "autoWidth": false,
 		  "responsive": true,
+		  "language": 
+            {
+                    "decimal":        ".",
+                    "emptyTable":     "Aucune donnée disponible",
+                    "info":           "Afficher  _START_ à _END_ sur _TOTAL_ lignes",
+                    "infoEmpty":      "Aucune information à afficher",
+                    "infoFiltered":   "(filtered from _MAX_ total entries)",
+                    "thousands":      ".",
+                    "loadingRecords": "chargement...",
+                    "processing":     "Enregistrement...",
+                    "search":         "Search:",
+                    "zeroRecords":    "Aucun résultat trouvé",
+                    "paginate": {
+                        "first":      "Premier",
+                        "last":       "Dernier",
+                        "next":       "Suivant",
+                        "previous":   "Précedent"
+                    },
+            },
 		});
 	  });
 </script>
