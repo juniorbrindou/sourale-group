@@ -316,68 +316,72 @@
 
 
 								{{-- suppression --}}
-								<div class="modal fade" id="modal-danger-{{$article->id}}"">
-								<div class=" modal-dialog">
-									<div class="modal-content bg-default">
-										<div class="modal-header">
-											<h4 class="modal-title">Attention ! Action Irréversible !</h4>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
+								<div class="modal fade" id="modal-danger-{{$article->id}}">
+									<div class=" modal-dialog">
+										<div class="modal-content bg-default">
+											<div class="modal-header">
+												<h4 class="modal-title">Attention ! Action Irréversible !</h4>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p class="text-danger">Voulez vous vraiment supprimer l'article
+													<b>{{ ucwords($article->libelle) }}</b></p>
+											</div>
+											<div class="modal-footer justify-content-between">
+												<button type="button" class="btn btn-primary"
+													data-dismiss="modal">Annuler</button>
+												<form method="POST" style="display: inline"
+													action="{{ route('articles.destroy', $article->id ) }}">
+													@csrf
+													@method('DELETE')
+													<button type="submit" class="btn btn-outline-danger">Je
+														Confirme</button>
+												</form>
+											</div>
 										</div>
-										<div class="modal-body">
-											<p class="text-danger">Voulez vous vraiment supprimer l'article
-												<b>{{ ucwords($article->libelle) }}</b></p>
-										</div>
-										<div class="modal-footer justify-content-between">
-											<button type="button" class="btn btn-primary"
-												data-dismiss="modal">Annuler</button>
-											<form method="POST" style="display: inline"
-												action="{{ route('articles.destroy', $article->id ) }}">
-												@csrf
-												@method('DELETE')
-												<button type="submit" class="btn btn-outline-danger">Je
-													Confirme</button>
-											</form>
-										</div>
+										<!-- /.modal-content -->
 									</div>
-									<!-- /.modal-content -->
 								</div>
-					</div>
-					<!-- /.modal-dialog -->
-					{{-- fin suppression --}}
-					@endforeach
+								<!-- /.modal-dialog -->
+								{{-- fin suppression --}}
+								@endforeach
 
-					</tbody>
-					<tfoot>
-						<tr>
-							<th>Code</th>
-							<th>Image</th>
-							<th>Libéllé</th>
-							<th>Prix</th>
-							<th>Type</th>
-							<th>Categorie</th>
-							<th></th>
-						</tr>
-					</tfoot>
-					</table>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Code</th>
+									<th>Image</th>
+									<th>Libéllé</th>
+									<th>Prix</th>
+									<th>Type</th>
+									<th>Categorie</th>
+									<th></th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<!-- /.card-body -->
 				</div>
-				<!-- /.card-body -->
+				<!-- /.card -->
 			</div>
-			<!-- /.card -->
+			<!-- /.col -->
 		</div>
-		<!-- /.col -->
+		<!-- /.row -->
 	</div>
-	<!-- /.row -->
 </section>
 <!-- /.content -->
 @endsection
 
 @push('styles')
-<!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
+
+
+
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -388,79 +392,50 @@
 <!-- Toastr -->
 <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css')}}">
 
-
-<!-- Theme style -->
-<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
-
-@endpush
-
-
-@push('scripts')
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
-<!-- daterange picker -->
-<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}">
-<!-- iCheck for checkboxes and radio inputs -->
-<link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-<!-- Bootstrap Color Picker -->
-<link rel="stylesheet" href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-<!-- Tempusdominus Bootstrap 4 -->
-<link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
 <!-- Select2 -->
 <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-<!-- Bootstrap4 Duallistbox -->
-<link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
-<!-- dropzonejs -->
-<link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css')}}">
-{{-- modal --}}
-<!-- SweetAlert2 -->
-<link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
-<!-- Toastr -->
-<link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css')}}">
 
 
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+
 @endpush
 
 
-@push('scripts')
 
+
+@push('scripts')
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.print.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <!-- Select2 -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js')}}"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
-<!-- InputMask -->
-<script src="{{ asset('plugins/moment/moment.min.js')}}"></script>
-<script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
-<!-- date-range-picker -->
-<script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- bootstrap color picker -->
-<script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<!-- Bootstrap Switch -->
-<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
-<!-- dropzonejs -->
-<script src="{{ asset('plugins/dropzone/dropzone.js')}}"></script>
-
 <!-- SweetAlert2 -->
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <!-- Toastr -->
 <script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
 
 
+
 <!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js')}}"></script>
+<script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
 	$(function () {
@@ -514,6 +489,24 @@
   })
 
 </script>
+
+<script>
+	$(function () {
+			$("#example1").DataTable({
+			"responsive": true, "lengthChange": true, "autoWidth": false,
+			"buttons": ["excel", "pdf", "print"]
+			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+			$('#example2').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			});
+		});
+</script>
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
@@ -535,5 +528,4 @@
 	});
 </script>
 @endif
-
 @endpush
