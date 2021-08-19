@@ -17,12 +17,13 @@ class CreateReglementsTable extends Migration
             $table->id();
             $table->string('code')->nullable();
             $table->string('libelle');
+            $table->float('montant');
+            $table->date('date_reglement');
             $table->string('description')->nullable();
 
             $table->integer('user_id')->unsigned();
             $table->integer('facture_id')->unsigned();
 
-            // reglements(code libelle description #facture_id montant)
             $table->timestamps();
         });
     }

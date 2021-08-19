@@ -15,11 +15,10 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->nullable();
-            $table->string('libelle');
-            $table->string('description')->nullable();
-            $table->integer('qte_loue')->nullable();
+            $table->integer('qte_loue');
             $table->integer('qte_retour')->nullable();
+            $table->float('prix_unitaire')->nullable();
+            $table->integer('status')->default(0)->comment('0:etatt initial pas de destockage, 1 : Validation. Appliquer le destockage, 2 : le retour de stock. restokage');
             $table->date('date_location')->nullable();
             $table->date('date_retour')->nullable();
 
