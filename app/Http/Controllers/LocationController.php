@@ -7,13 +7,22 @@ use Illuminate\Http\Request;
 class LocationController extends Controller
 {
     /**
+     * @return [type]
+     */
+    public function locationsCreateClient()
+    {
+        dd('dsds');
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('location.index');
     }
 
     /**
@@ -23,7 +32,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return \view('location.create');
     }
 
     /**
