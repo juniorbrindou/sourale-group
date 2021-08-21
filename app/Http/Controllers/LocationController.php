@@ -6,14 +6,6 @@ use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    /**
-     * @return [type]
-     */
-    public function locationsCreateClient()
-    {
-        dd('dsds');
-    }
-
 
     /**
      * Display a listing of the resource.

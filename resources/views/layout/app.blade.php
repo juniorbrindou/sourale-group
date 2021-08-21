@@ -62,6 +62,11 @@
 
 	<!-- REQUIRED SCRIPTS -->
 	@stack('scripts')
-
+	<script>
+		window.addEventListener('sweetAlert',function(e){ 
+			Swal.fire(e.detail);
+		});
+	</script>
 </body>
+
 </html>

@@ -165,10 +165,11 @@
 									<td>{{$article->type_article->libelle}}</td>
 									<td>{{$article->categorie->libelle}}</td>
 									<td>
-										<a href="{{ route('articles.show', $article->id) }}"
-											class="btn btn-warning btn-md mr-1">
-											<i class="fa fa-eye"></i>
-										</a>
+										{{-- cacher le bouton pour voir un artcile --}}
+										{{-- <a href="{{ route('articles.show', $article->id) }}"
+										class="btn btn-warning btn-md mr-1">
+										<i class="fa fa-eye"></i>
+										</a> --}}
 										<button data-toggle="modal" data-target="#modal-update-{{$article->id}}"
 											title="Modiffier" class="btn btn-primary btn-md">
 											<i class="fa fa-pen"></i>

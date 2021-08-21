@@ -41,7 +41,7 @@
                     <div class="col-md-3 col-xs-12">
                         <div class="form-group">
                             <label for="qte">Quantité *</label>
-                            <input type="number" wire:model="qte"
+                            <input type="number" min="0" wire:model="qte"
                                 class="form-control @error('qte') is-invalid @enderror" name="qte" id="qte"
                                 placeholder="Entrer la quantité d'article">
                         </div>

@@ -8,7 +8,6 @@ use App\Tarification;
 use App\Type_articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class ArticleController extends Controller
 {
@@ -34,7 +33,6 @@ class ArticleController extends Controller
     {
         $categories = Categories::all();
         $type_articles = Type_articles::all();
-        Alert::success('Success Title', 'Success Message');
         return view('parametrage.articles.create', compact('categories', 'type_articles'));
     }
 
@@ -54,7 +52,7 @@ class ArticleController extends Controller
             'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
         ], [
             'libelle.required' => 'Le champ libéllé est obligatoire',
-            'libelle.unique' => 'La valeur de ce champ est ',
+            'libelle.unique' => 'La valeur de ce champ est déja utilisée',
             'categorie_id.required' => 'Le champ catégorie est obligatoire',
             'type_article_id.required' => 'Le champ Type est obligatoire',
         ]);
@@ -90,7 +88,7 @@ class ArticleController extends Controller
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
         } else {
-            return redirect()->route('articles.index')->with('success', 'Action Effectuée!');
+            return redirect()->route('articles.index')->with('success', 'Article Enregistré!');
         }
     }
 

@@ -45,6 +45,21 @@ class Create extends Component
     {
         // verifie la validation
         $this->validate();
+        // Sectionner un article une seule fois
+        if (!empty($this->ligne)) {
+
+            for ($i = 0; $i < count($this->ligne); $i++) {
+                if (Articles::whereId($this->article)->first()->libelle == $this->ligne[$i]['article']) {
+                    $this->dispatchBrowserEvent('sweetAlert', [
+                        'title' => 'Erreur de saisie',
+                        'timer' => 5000,
+                        'icon' => 'error',
+                        'text' => 'Cet article a deja été selectionné',
+                    ]);
+                    // unset($this->ligne[$i]);
+                }
+            }
+        }
 
         // renvoie dans this->article le libelle
         $article = Articles::whereId($this->article)->first();

@@ -1,67 +1,257 @@
 <div>
+    <div wire:loading.delay wire:target="resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
+        <div class="custom-loading-spinner">
+            Patientez...
+        </div>
+    </div>
     <div class="card card-warning box-perso">
         <div class="card-header">
             <h3 class="card-title">Enregistrement de location</h3>
         </div>
         <form wire:submit.prevent="submit">
             @csrf
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="bs-stepper linear">
+            <div class="{{ $currentStep == 3 ? 'd-none' : '' }}">
+                <div class="card-body">
+                    <div class="row">
 
-                            <!-- Stepper header-->
-                            <div class="bs-stepper-header" role="tablist">
-                                <!-- Step client-->
-                                <div class="step {{ $currentStep == 1 ? 'active' : '' }}" data-target="#logins-part">
-                                    <button type="button" class="step-trigger" role="tab" aria-controls="logins-part"
-                                        id="logins-part-trigger" aria-selected="true">
-                                        <span class="bs-stepper-circle"><i class="fa fa-user"></i></span>
-                                        <span class="bs-stepper-label">Informations sur le client</span>
-                                    </button>
+                        <div class="col-md-12">
+                            <div class="bs-stepper linear">
+
+                                <!-- Stepper header-->
+                                <div class="bs-stepper-header" role="tablist">
+                                    <!-- Step client-->
+                                    <div class="step {{ $currentStep == 1 ? 'active' : '' }}"
+                                        data-target="#logins-part">
+                                        <button type="button" class="step-trigger" role="tab"
+                                            aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
+                                            <span class="bs-stepper-circle"><i class="fa fa-user"></i></span>
+                                            <span class="bs-stepper-label">Informations sur le client</span>
+                                        </button>
+                                    </div>
+                                    <div class="line"></div>
+                                    <!-- Step evenement-->
+                                    <div class="step {{ $currentStep == 2 ? 'active' : '' }}"
+                                        data-target="#information-part">
+                                        <button type="button" class="step-trigger" role="tab"
+                                            aria-controls="information-part" id="information-part-trigger"
+                                            aria-selected="false" disabled="disabled">
+                                            <span class="bs-stepper-circle">2</span>
+                                            <span class="bs-stepper-label">Informations sur l'évènement</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="line"></div>
+                                    <!-- Step evenement-->
+                                    <div class="step {{ $currentStep == 3 ? 'active' : '' }}"
+                                        data-target="#location-part">
+                                        <button type="button" class="step-trigger" role="tab"
+                                            aria-controls="location-part" id="location-part-trigger"
+                                            aria-selected="false" disabled="disabled">
+                                            <span class="bs-stepper-circle">3</span>
+                                            <span class="bs-stepper-label">Les articles de la location</span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="line"></div>
-                                <!-- Step evenement-->
-                                <div class="step {{ $currentStep == 2 ? 'active' : '' }}"
-                                    data-target="#information-part">
-                                    <button type="button" class="step-trigger" role="tab"
-                                        aria-controls="information-part" id="information-part-trigger"
-                                        aria-selected="false" disabled="disabled">
-                                        <span class="bs-stepper-circle">2</span>
-                                        <span class="bs-stepper-label">Informations sur l'évènement</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- Stepper header-->
-                            {{$currentStep}}
+                                <!-- Stepper header-->
 
-                            <!-- Client -->
-                            <div class="bs-stepper-content">
-                                <div id="logins-part"
-                                    class="content {{ $currentStep == 1 ? 'active dstepper-block' : '' }}"
-                                    role="tabpanel" aria-labelledby="logins-part-trigger">
+                                <!-- Client -->
+                                <div class="bs-stepper-content">
+                                    <div id="logins-part"
+                                        class="content {{ $currentStep == 1 ? 'active dstepper-block' : '' }}"
+                                        role="tabpanel" aria-labelledby="logins-part-trigger">
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Selectionnez un client *</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="far fa-user" style="color: black"></i>
-                                                        </span>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <legend>Client Existant:</legend>
+                                                    <div class="form-group">
+                                                        <label>Selectionnez le client *</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">
+                                                                    <i class="far fa-user" style="color: black"></i>
+                                                                </span>
+                                                            </div>
+                                                            <select required class="form-control float-right"
+                                                                wire:model="oldClient">
+                                                                <option value=""></option>
+                                                                @foreach ($clients as $client)
+                                                                <option value="{{$client->id}}"> {{$client->nom}}
+                                                                    {{$client->prenoms}}
+                                                                </option> @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <select required class="form-control float-right"
-                                                        wire:model="client">
-                                                        <option value=""></option>
-                                                        @foreach ($clients as $client)
-                                                        <option value="{{$client->id}}"> {{$client->nom}}
-                                                            {{$client->prenoms}}
-                                                        </option> @endforeach
-                                                    </select>
-                                                </div>
+                                                    @error('oldClient')
+                                                    <span class="text-danger"
+                                                        style="margin-top: -1.25rem;display: block; font-size:80%"
+                                                        role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </fieldset>
                                             </div>
-                                            @error('client')
+
+
+
+
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <legend>Nouveau Client:</legend>
+
+                                                    <div class="form-group">
+                                                        <label for="newNom">Nom du nouveau client *</label>
+                                                        <input type="text"
+                                                            class="form-control @error('newNom') is-invalid @enderror"
+                                                            wire:model="newNom" id="newNom">
+                                                    </div>
+                                                    @error('newNom')
+                                                    <span class="text-danger"
+                                                        style="margin-top: -1.25rem;display: block; font-size:80%"
+                                                        role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+
+                                                    <div class="form-group">
+                                                        <label for="contact1">Téléphone </label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i
+                                                                        class="fas fa-phone"></i></span>
+                                                            </div>
+                                                            <input type="number" min="1" required id="contact1"
+                                                                class="form-control @error('contact') is-invalid @enderror"
+                                                                wire:model="newContact1">
+                                                        </div>
+                                                        @error('contact1')
+                                                        <span class="text-danger"
+                                                            style="margin-top: -1.25rem;display: block; font-size:80%"
+                                                            role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="newAdresse">Adresse </label>
+                                                        <input type="text" id="newAdresse"
+                                                            class="form-control @error('newAdresse') is-invalid @enderror"
+                                                            wire:model="newAdresse">
+                                                    </div>
+                                                    @error('newAdresse')
+                                                    <span class="text-danger"
+                                                        style="margin-top: -1.25rem;display: block; font-size:80%"
+                                                        role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+
+                                                </fieldset>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-1">
+                                            <a class="btn btn-primary" wire:click="firstStepSubmit">Suivant</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- fin Client -->
+
+
+
+                                <!-- Evenement -->
+                                <div id="information-part"
+                                    class="content {{ $currentStep == 2 ? 'active dstepper-block' : '' }}"
+                                    role="tabpanel" aria-labelledby="information-part-trigger">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="libelle_event">Nom de l'evenement *</label>
+                                                <input type="text" wire:model="libelle_event"
+                                                    class="form-control @error('libelle_event') is-invalid @enderror"
+                                                    name="libelle_event" id="libelle_event"
+                                                    placeholder="Entrer la quantité d'article">
+                                            </div>
+                                            @error('libelle_event')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="nbr_personne">Invités</label>
+                                                <input type="number" min="0" wire:model="nbr_personne"
+                                                    class="form-control @error('nbr_personne') is-invalid @enderror"
+                                                    name="nbr_personne" id="nbr_personne">
+                                            </div>
+                                            @error('nbr_personne')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="lieuEvenement">Lieu</label>
+                                                <input type="text" wire:model="lieuEvenement"
+                                                    class="form-control @error('lieuEvenement') is-invalid @enderror"
+                                                    id="lieuEvenement">
+                                            </div>
+                                            @error('lieuEvenement')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Type d'evenement</label>
+                                                <select class="form-control float-right select2"
+                                                    wire:model="type_evenement_id">
+                                                    @foreach ($type_evenements as $type_evenement)
+                                                    <option selected="selected">{{$type_evenement->libelle}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('type_evenement_id')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Date début</label>
+                                                <input type="datetime-local" required class="form-control"
+                                                    wire:model="date_debut_evenement">
+                                            </div>
+                                            @error('date_debut_evenement')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Date fin</label>
+                                                <input type="datetime-local" required class="form-control"
+                                                    wire:model="date_fin_evenement">
+                                            </div>
+                                            @error('date_fin_evenement')
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -70,12 +260,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-1">
-                                        <a class="btn btn-primary" wire:click="firstStepSubmit">Suivant</a>
-                                    </div>
+
+                                    <a class="btn btn-primary" onclick="stepper.previous()">Precedant</a>
+                                    <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
                                 </div>
                             </div>
-                            <!-- fin Client -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                {{-- end card body--}}
+
+            </div>
 
 
 
@@ -83,109 +279,77 @@
 
 
 
+            <div class="{{ $currentStep == 3 ? '' : 'd-none' }}">
+                <div class="card-body">
 
+                    <div class="row">
+                        {{-- articles --}}
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="article">Article Concerné *</label>
+                                <select class="form-control @error('article') is-invalid @enderror" wire:model="article"
+                                    style="width: 100%;" id="article">
+                                    <option selected value="">Selectionner un article</option>
 
-                            <!-- fin Client -->
-                            <div id="information-part"
-                                class="content {{ $currentStep == 2 ? 'active dstepper-block' : '' }}" role="tabpanel"
-                                aria-labelledby="information-part-trigger">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="libelle_event">Nom de l'evenement *</label>
-                                            <input type="text" wire:model="libelle_event"
-                                                class="form-control @error('libelle_event') is-invalid @enderror"
-                                                name="libelle_event" id="libelle_event"
-                                                placeholder="Entrer la quantité d'article">
-                                        </div>
-                                        @error('libelle_event')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                            <label for="nbr_personne">Participants</label>
-                                            <input type="number" wire:model="nbr_personne"
-                                                class="form-control @error('nbr_personne') is-invalid @enderror"
-                                                name="nbr_personne" id="nbr_personne">
-                                        </div>
-                                        @error('nbr_personne')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="lieu">Lieu</label>
-                                            <input type="text" wire:model="lieu"
-                                                class="form-control @error('lieu') is-invalid @enderror" name="lieu"
-                                                id="lieu" placeholder="Nombre de participants">
-                                        </div>
-                                        @error('lieu')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Type d'evenement</label>
-                                            <select required class="form-control float-right select2"
-                                                wire:model="type_event" name="client_id">
-                                                @foreach ($type_evenements as $type_evenement)
-                                                <option selected="selected"></option> @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-
-
-                                <a class="btn btn-primary" onclick="stepper.previous()">Precedant</a>
-                                <a type="submit" class="btn btn-primary">Submit</a>
+                                    @foreach ($articles as $article)
+                                    <option value="{{$article->libelle}}"> {{$article->libelle}}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            @error('article')
+                            <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        {{-- qte_article --}}
+                        <div class="col-md-3 col-xs-12">
+                            <div class="form-group">
+                                <label for="qte_article">Quantité *</label>
+                                <input type="number" min="1" wire:model="qte_article"
+                                    class="form-control @error('qte_article') is-invalid @enderror" id="qte_article"
+                                    placeholder="Entrer la quantité d'article">
+                            </div>
+                            @error('qte_article')
+                            <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
 
+                        {{-- nbJour --}}
+                        <div class="col-md-3 col-xs-12">
+                            <div class="form-group">
+                                <label for="nbJour">Jours</label>
+                                <input type="number" min="1" wire:model="nbJour"
+                                    class="form-control @error('nbJour') is-invalid @enderror" id="nbJour"
+                                    placeholder="Entrer le nombre de jours">
+                            </div>
+                            @error('nbJour')
+                            <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-            <!-- /.card-body -->
-            <div class="card-footer {{ $currentStep == 3 ? '' : 'd-none' }}">
-                <div class="row">
-                    <div class="col-md-3 offset-md-3 col-sm-6">
-                        <button type="reset" class="btn btn-warning btn-block text-light mb-2">Effacer</button>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <button type="submit" wire:click="addLigne" class="btn btn-primary btn-block">Ajouter</button>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-3 offset-md-3 col-sm-6">
+                                <button type="reset" class="btn btn-warning btn-block text-light mb-2">Effacer</button>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <button type="submit" wire:click="addArticle"
+                                    class="btn btn-primary btn-block">Ajouter</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-    </div>
-    </form>
-</div>
 
 
 
@@ -199,89 +363,127 @@
 
 
 
-<div class="card bg-light">
-    <div class="card-header">
-        <h3 class="card-title">Approvisionnement du {{date('Y-m-d H:i')}}</h3>
-    </div>
-    {{-- <div class="card-body">
-        <div wire:loading.delay wire:target="submit, addDeleteLigne, resetLigne, addInBD">
-            <div class="custom-loading-spinner">
-                Patientez...
-            </div>
-        </div>
+                {{-- ----------------Tableau des articles---------------- --}}
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
+                <div class="card bg-light">
                     <div class="card-header">
-                        <h3 class="card-title">Auteur : {{Auth::user()->nom}} {{Auth::user()->prenoms}}</h3>
+                        <h3 class="card-title">Location du {{date('Y-m-d à H:i')}} par <b>
+                                {{Auth::user()->nom}}
+                                {{Auth::user()->prenoms}}</b>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            Client
+                                        </h3>
 
-    <div class="card-tools">
-        <div class="input-group input-group-sm float-right" style="width: 150px;">
-            <b>Code: {{$code}}</b>
-        </div>
+
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <b>{{isset($ligne['nom']) ? $ligne['nom'] : 'Aucun Nom'}}</b> <br>
+                                                <b>{{isset($ligne['contact1'])? $ligne['contact1']: 'Aucun Numéro'}}</b>
+                                                <br>
+                                                <b>{{isset($ligne['adresse'])?$ligne['adresse']: 'Aucune Adresse'}}</b>
+
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                Cérémonie :<b>
+                                                    {{($libelle_event)?$libelle_event:'Aucun Nom d\'évenement'}}</b>
+                                                <br>
+                                                Nombre d'Invités : <b>{{($nbr_personne) ? $nbr_personne: 'Inconnu'}}
+                                                </b><br>
+                                                Lieu : <b>{{($lieuEvenement) ? $lieuEvenement :'Inconnu' }} </b>
+                                            </div>
+                                            <div class="col-md-4 text-right">
+                                                Total : <b>55.000F FCA</b>
+                                                <br>
+                                                Caution(20%) : <b>55.000F FCA</b>
+                                                <br>
+                                                Net A Payer : <b>110.000F FCA</b>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body table-responsive p-0" style="height:500px;">
+                                        <table class="table table-head-fixed ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th>Article</th>
+                                                    <th>Catégorie</th>
+                                                    <th>Quantité</th>
+                                                    <th>jours</th>
+                                                    <th>Prix U</th>
+                                                    <th>Total</th>
+                                                    <th>Ation</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($tabArticles as $item=>$value)
+                                                <tr>
+                                                    <td>{{$value['code']}}</td>
+                                                    <td>{{$value['article']}}</td>
+                                                    <td>{{$value['categorie']}}</td>
+                                                    <td>{{$value['qte_article']}}
+                                                    </td>
+                                                    <td>{{$value['nbJour']}}</td>
+                                                    <td>{{$value['prix']}}</td>
+                                                    <td>{{$value['totalUneLigne']}}</td>
+                                                    <td>
+                                                        <button wire:click="updateLigne({{$item}})" title="Modiffier"
+                                                            class="btn btn-primary btn-md">
+                                                            <i class="fa fa-pen"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-md"
+                                                            wire:click="addDeleteLigne({{$item}})">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="8" class="text-center"
+                                                        style="background-color: darkgrey">Aucun
+                                                        enregistrement</td>
+                                                </tr>
+                                                @endforelse
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <a href="{{url('locations')}}" class="btn btn-warning btn-block text-light mb-2">Retour
+                                    à la liste</a>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <button wire:click="resetLigne" class="btn btn-dark btn-block text-light mb-2">Tout
+                                    Effacer</button>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <button type="submit" wire:click="addInBD()"
+                                    class="btn btn-primary btn-block">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {{-- for display none on step 3 --}}
     </div>
-</div>
-<!-- /.card-header -->
-<div class="card-body table-responsive p-0" style="height:500px;">
-    <table class="table table-head-fixed ">
-        <thead>
-            <tr>
-                <th>Code</th>
-                <th>Article</th>
-                <th>Quantité</th>
-                <th>Catégorie</th>
-                <th>Prix</th>
-                <th>Ation</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($ligne as $item=>$value)
-            <tr>
-                <td>{{$value['code']}}</td>
-                <td>{{$value['article']}}</td>
-                <td>{{$value['qte']}}</td>
-                <td>{{$value['categorie']}}</td>
-                <td>{{$value['prix']}}</td>
-                <td>
-                    <button wire:click="updateLigne({{$item}})" title="Modiffier" class="btn btn-primary btn-md">
-                        <i class="fa fa-pen"></i>
-                    </button>
-                    <button class="btn btn-danger btn-md" wire:click="addDeleteLigne({{$item}})">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="6" class="text-center" style="background-color: darkgrey">Aucun
-                    enregistrement</td>
-            </tr>
-            @endforelse
-
-        </tbody>
-    </table>
-</div>
-
-<!-- /.card-body -->
-</div>
-<!-- /.card -->
-</div>
-</div>
-</div>
-<div class="card-footer">
-    <div class="row">
-        <div class="col-md-4 col-sm-12">
-            <a href="{{route('approvisionnement.index')}}" class="btn btn-warning btn-block text-light mb-2">Retour
-                à la liste</a>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            <button wire:click="resetLigne" class="btn btn-dark btn-block text-light mb-2">Tout Effacer</button>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">Valider</button>
-        </div>
-    </div>
-</div> --}}
 </div>
 </div>
