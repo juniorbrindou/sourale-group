@@ -1,5 +1,6 @@
 <div>
-    <div wire:loading.delay wire:target="resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
+    <div wire:loading.delay
+        wire:target="addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -400,9 +401,9 @@
                                                 Lieu : <b>{{($lieuEvenement) ? $lieuEvenement :'Inconnu' }} </b>
                                             </div>
                                             <div class="col-md-4 text-right">
-                                                Total : <b>55.000F FCA</b>
+                                                Total : <b>{{$totalBrute}}F FCA</b>
                                                 <br>
-                                                Caution(20%) : <b>55.000F FCA</b>
+                                                Caution(20%) : <b>{{$caution}}F FCA</b>
                                                 <br>
                                                 Net A Payer : <b>110.000F FCA</b>
 

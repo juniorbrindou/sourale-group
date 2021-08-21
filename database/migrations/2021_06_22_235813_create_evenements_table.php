@@ -15,9 +15,12 @@ class CreateEvenementsTable extends Migration
     {
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->string('libelle')->comment('Mariage, bapteme');
             $table->integer('nbr_personne')->nullable();
+            $table->integer('montant_total')->nullable();
+            $table->integer('reste_payer')->nullable();
+            $table->integer('nb_jour');
             $table->string('lieu')->nullable();
             $table->string('status')->nullable()->comment('A venir, En Cours, Terminé, Cloturé, À Confirmer');
             $table->string('description')->nullable();

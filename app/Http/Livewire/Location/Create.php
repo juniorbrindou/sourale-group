@@ -4,8 +4,12 @@ namespace App\Http\Livewire\Location;
 
 use App\Articles;
 use App\Clients;
+use App\Evenements;
+use App\Location;
 use Livewire\Component;
 use App\Type_evenements;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
@@ -39,6 +43,72 @@ class Create extends Component
     public $code = 150;
     public $ligne = [];
     public $tabArticles = [];
+    public $totalNet;
+    public $caution = 0;
+    public $totalBrute = 0;
+    public $totalUneLigne;
+
+
+
+    /**
+     * Insertion en bd
+     * @return void
+     */
+    public function addInBD()
+    {
+        if (!empty($this->tabArticles)) { // creation du client
+            if ($this->ligne['isNew']) {
+                $client = Clients::create(
+                    [
+                        'nom' => $this->newNom,
+                        'contact1' => $this->newContact1,
+                        'adresse' => $this->newAdresse,
+                        'user_id' => Auth::user()->id,
+                    ]
+                );
+            } else {
+                $client = $this->oldClient;
+            }
+            $this->type_evenement_id = Type_evenements::where('libelle', '=', $this->ligne['type_evenement_id'])->first()->id;
+            // creation de l'évenement²
+            $evenement = Evenements::create(
+                [
+                    'libelle' => $this->ligne['libelle_event'],
+                    'lieu' => $this->ligne['lieuEvenement'],
+                    'caution' => $this->caution,
+                    'date_debut_evenement' => $this->ligne['date_debut_evenement'],
+                    'date_fin_evenement' => $this->ligne['date_fin_evenement'],
+                    'nbr_personne' => $this->ligne['nbr_personne'],
+                    'client_id' => $client->id,
+                    'type_evenement_id' => $this->type_evenement_id,
+                    'montant_total' => $this->totalBrute,
+                ]
+            );
+
+            foreach ($this->tabArticles as $value) {
+                $article = Articles::whereLibelle($value['article'])->first();
+                $article_id = $article->id;
+
+                Location::create(
+                    [
+                        'qte_loue' => $this->qte_article,
+                        'qte_retour' => 0,
+                        'prix_unitaire' => $this->article_prix,
+                        'user_id' => Auth::user()->id,
+                        'evenement_id' => $evenement->id,
+                        'article_id' => $article_id,
+                        'client_id' => $client->id,
+                        'nbJour' => $this->nbJour,
+                    ]
+                );
+            }
+            $this->resetLigne();
+            return redirect()->route('locations.index');
+        } else {
+            return;
+        }
+    }
+
 
 
     public function addArticle()
@@ -62,6 +132,8 @@ class Create extends Component
         } else {
             $this->add();
         }
+        $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
+        $this->caution = $this->totalBrute * 0.2;
     }
 
 
@@ -84,7 +156,7 @@ class Create extends Component
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
-
+        $this->totalUneLigne = $this->nbJour * $this->article_prix * $this->qte_article;
         // unshift pour une entréé en commençant par le haut
         array_unshift(
             $this->tabArticles,
@@ -95,7 +167,7 @@ class Create extends Component
                 'qte_article' => $this->qte_article,
                 'nbJour' => $this->nbJour,
                 'prix' => $this->article_prix,
-                'totalUneLigne' => $this->nbJour * $this->article_prix,
+                'totalUneLigne' => $this->totalUneLigne,
             ]
         );
     }
@@ -111,6 +183,8 @@ class Create extends Component
         $this->qte_article = $data['qte_article'];
         $this->nbJour = $data['nbJour'];
         $this->addDeleteLigne($item);
+        $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
+        $this->caution = $this->totalBrute * 0.2;
     }
 
 
@@ -121,6 +195,8 @@ class Create extends Component
     public function resetLigne()
     {
         $this->tabArticles = [];
+        $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
+        $this->caution = $this->totalBrute * 0.2;
     }
 
 
@@ -129,7 +205,10 @@ class Create extends Component
      */
     public function addDeleteLigne($item)
     {
+
         unset($this->tabArticles[$item]);
+        $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
+        $this->caution = $this->totalBrute * 0.2;
     }
 
 
@@ -219,12 +298,6 @@ class Create extends Component
         'oldClient' => 'required',
         'type_evenements' => 'required',
     ];
-    // protected $messages = [
-    //     'article.numeric' => 'Selectionnez l\'article.',
-    // ];
-    // protected $validationAttributes = [
-    //     'qte' => 'quantité'
-    // ];
 
     public function render()
     {
