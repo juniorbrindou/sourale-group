@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
+        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -173,7 +173,7 @@
                                                 <input type="text" wire:model="libelle_event"
                                                     class="form-control @error('libelle_event') is-invalid @enderror"
                                                     name="libelle_event" id="libelle_event"
-                                                    placeholder="Entrer la quantité d'article">
+                                                    placeholder="Entrez le nom de l'évenement">
                                             </div>
                                             @error('libelle_event')
                                             <span class="text-danger"
@@ -262,7 +262,7 @@
                                     </div>
 
 
-                                    <a class="btn btn-primary" onclick="stepper.previous()">Precedant</a>
+                                    <a class="btn btn-primary" wire:click="gotToBeforeStepSubmit">Precedant</a>
                                     <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
                                 </div>
                             </div>
@@ -311,7 +311,7 @@
                                 <label for="qte_article">Quantité *</label>
                                 <input type="number" min="1" wire:model="qte_article"
                                     class="form-control @error('qte_article') is-invalid @enderror" id="qte_article"
-                                    placeholder="Entrer la quantité d'article">
+                                    placeholder="Entrez la quantité d'article">
                             </div>
                             @error('qte_article')
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
@@ -328,7 +328,7 @@
                                 <label for="nbJour">Jours</label>
                                 <input type="number" min="1" wire:model="nbJour"
                                     class="form-control @error('nbJour') is-invalid @enderror" id="nbJour"
-                                    placeholder="Entrer le nombre de jours">
+                                    placeholder="Entrez le nombre de jours">
                             </div>
                             @error('nbJour')
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
@@ -401,11 +401,9 @@
                                                 Lieu : <b>{{($lieuEvenement) ? $lieuEvenement :'Inconnu' }} </b>
                                             </div>
                                             <div class="col-md-4 text-right">
-                                                Total : <b>{{$totalBrute}}F FCA</b>
-                                                <br>
                                                 Caution(20%) : <b>{{$caution}}F FCA</b>
                                                 <br>
-                                                Net A Payer : <b>110.000F FCA</b>
+                                                Net A Payer : <b>{{$totalBrute}}F FCA</b>
 
                                             </div>
                                         </div>

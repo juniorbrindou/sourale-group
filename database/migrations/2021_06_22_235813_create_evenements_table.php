@@ -20,7 +20,7 @@ class CreateEvenementsTable extends Migration
             $table->integer('nbr_personne')->nullable();
             $table->integer('montant_total')->nullable();
             $table->integer('reste_payer')->nullable();
-            $table->integer('nb_jour');
+            $table->integer('nb_jour')->nullable();
             $table->string('lieu')->nullable();
             $table->string('status')->nullable()->comment('A venir, En Cours, Terminé, Cloturé, À Confirmer');
             $table->string('description')->nullable();

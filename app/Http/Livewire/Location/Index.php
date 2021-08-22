@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire\Location;
 
+use App\Evenements;
 use App\Location;
 use Livewire\Component;
 
 class Index extends Component
 {
-    public $locations;
+    public $evenements;
 
     public function render()
     {
-        $this->locations = Location::all();
+        $this->evenements = Evenements::all();
         return view('livewire.location.index');
     }
 }

@@ -8,7 +8,6 @@ use App\Evenements;
 use App\Location;
 use Livewire\Component;
 use App\Type_evenements;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
@@ -50,6 +49,8 @@ class Create extends Component
 
 
 
+
+
     /**
      * Insertion en bd
      * @return void
@@ -67,10 +68,10 @@ class Create extends Component
                     ]
                 );
             } else {
-                $client = $this->oldClient;
+                $client = Clients::whereId($this->oldClient)->first();
             }
             $this->type_evenement_id = Type_evenements::where('libelle', '=', $this->ligne['type_evenement_id'])->first()->id;
-            // creation de l'évenement²
+            // creation de l'évenement
             $evenement = Evenements::create(
                 [
                     'libelle' => $this->ligne['libelle_event'],
@@ -82,9 +83,9 @@ class Create extends Component
                     'client_id' => $client->id,
                     'type_evenement_id' => $this->type_evenement_id,
                     'montant_total' => $this->totalBrute,
+                    'status' => 'EN COURS',
                 ]
             );
-
             foreach ($this->tabArticles as $value) {
                 $article = Articles::whereLibelle($value['article'])->first();
                 $article_id = $article->id;
@@ -108,6 +109,8 @@ class Create extends Component
             return;
         }
     }
+
+
 
 
 
@@ -224,9 +227,9 @@ class Create extends Component
             $this->currentStep = 1;
             $this->dispatchBrowserEvent('sweetAlert', [
                 'title' => 'Erreur de saisie',
-                'timer' => 3000,
+                'timer' => 5000,
                 'icon' => 'error',
-                'text' => 'Vous ne pouvez pas créer un nouveau client et Choisir un client exiatnt simultanément!',
+                'text' => 'Vous ne pouvez pas créer un nouveau client et Choisir un client existant simultanément!',
             ]);
         } elseif ($this->newNom != null && $this->oldClient == null) {
             $this->ligne =
@@ -265,6 +268,7 @@ class Create extends Component
      */
     public function gotToBeforeStepSubmit()
     {
+        $this->currentStep = 1;
     }
 
 

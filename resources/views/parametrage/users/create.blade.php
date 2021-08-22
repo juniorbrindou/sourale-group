@@ -130,7 +130,7 @@
 												<span class="input-group-text"><i class="fas fa-phone"></i></span>
 											</div>
 											<input type="text" class="form-control" value="{{ old('tel1') }}"
-												data-inputmask='"mask": "(999) 99-99-99-99-99"' name="tel1" data-mask>
+												data-inputmask='"mask": "99-99-99-99-99"' name="tel1" data-mask>
 										</div>
 										@error('tel1')
 										<span class="text-danger"
