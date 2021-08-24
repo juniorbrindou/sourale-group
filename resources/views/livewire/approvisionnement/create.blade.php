@@ -20,8 +20,8 @@
                     <div class="col-md-9">
                         <div class="form-group">
                             <label>Article Concerné *</label>
-                            <select class="form-control @error('article') is-invalid @enderror" name="article_id"
-                                wire:model="article" style="width: 100%;">
+                            <select class="form-control select2 @error('article') is-invalid @enderror"
+                                name="article_id" wire:model="article" style="width: 100%;">
                                 <option selected value="">Selectionner un article</option>
 
                                 @foreach ($articles as $article)

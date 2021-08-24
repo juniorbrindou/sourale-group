@@ -73,9 +73,10 @@
                                                                     <i class="far fa-user" style="color: black"></i>
                                                                 </span>
                                                             </div>
-                                                            <select required class="form-control float-right"
-                                                                wire:model="oldClient">
-                                                                <option value=""></option>
+                                                            <select name="oldClient" required
+                                                                class="form-control float-right"
+                                                                wire:model.defer="oldClient">
+                                                                <option value="">Coisissez un client existant</option>
                                                                 @foreach ($clients as $client)
                                                                 <option value="{{$client->id}}"> {{$client->nom}}
                                                                     {{$client->prenoms}}
@@ -104,7 +105,7 @@
                                                         <label for="newNom">Nom du nouveau client *</label>
                                                         <input type="text"
                                                             class="form-control @error('newNom') is-invalid @enderror"
-                                                            wire:model="newNom" id="newNom">
+                                                            wire:model.defer="newNom" id="newNom">
                                                     </div>
                                                     @error('newNom')
                                                     <span class="text-danger"
@@ -123,7 +124,7 @@
                                                             </div>
                                                             <input type="number" min="1" required id="contact1"
                                                                 class="form-control @error('contact') is-invalid @enderror"
-                                                                wire:model="newContact1">
+                                                                wire:model.defer="newContact1">
                                                         </div>
                                                         @error('contact1')
                                                         <span class="text-danger"
@@ -138,7 +139,7 @@
                                                         <label for="newAdresse">Adresse </label>
                                                         <input type="text" id="newAdresse"
                                                             class="form-control @error('newAdresse') is-invalid @enderror"
-                                                            wire:model="newAdresse">
+                                                            wire:model.defer="newAdresse">
                                                     </div>
                                                     @error('newAdresse')
                                                     <span class="text-danger"
@@ -170,7 +171,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="libelle_event">Nom de l'evenement *</label>
-                                                <input type="text" wire:model="libelle_event"
+                                                <input type="text" wire:model.defer="libelle_event"
                                                     class="form-control @error('libelle_event') is-invalid @enderror"
                                                     name="libelle_event" id="libelle_event"
                                                     placeholder="Entrez le nom de l'évenement">
@@ -186,7 +187,7 @@
                                         <div class="col-md-1">
                                             <div class="form-group">
                                                 <label for="nbr_personne">Invités</label>
-                                                <input type="number" min="0" wire:model="nbr_personne"
+                                                <input type="number" min="0" wire:model.defer="nbr_personne"
                                                     class="form-control @error('nbr_personne') is-invalid @enderror"
                                                     name="nbr_personne" id="nbr_personne">
                                             </div>
@@ -201,7 +202,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="lieuEvenement">Lieu</label>
-                                                <input type="text" wire:model="lieuEvenement"
+                                                <input type="text" wire:model.defer="lieuEvenement"
                                                     class="form-control @error('lieuEvenement') is-invalid @enderror"
                                                     id="lieuEvenement">
                                             </div>
@@ -217,7 +218,7 @@
                                             <div class="form-group">
                                                 <label>Type d'evenement</label>
                                                 <select class="form-control float-right select2"
-                                                    wire:model="type_evenement_id">
+                                                    wire:model.defer="type_evenement_id">
                                                     @foreach ($type_evenements as $type_evenement)
                                                     <option selected="selected">{{$type_evenement->libelle}}</option>
                                                     @endforeach
@@ -237,7 +238,7 @@
                                             <div class="form-group">
                                                 <label>Date début</label>
                                                 <input type="datetime-local" required class="form-control"
-                                                    wire:model="date_debut_evenement">
+                                                    wire:model.defer="date_debut_evenement">
                                             </div>
                                             @error('date_debut_evenement')
                                             <span class="text-danger"
@@ -250,7 +251,7 @@
                                             <div class="form-group">
                                                 <label>Date fin</label>
                                                 <input type="datetime-local" required class="form-control"
-                                                    wire:model="date_fin_evenement">
+                                                    wire:model.defer="date_fin_evenement">
                                             </div>
                                             @error('date_fin_evenement')
                                             <span class="text-danger"
@@ -288,8 +289,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="article">Article Concerné *</label>
-                                <select class="form-control @error('article') is-invalid @enderror" wire:model="article"
-                                    style="width: 100%;" id="article">
+                                <select class="form-control  @error('article') is-invalid @enderror"
+                                    wire:model.defer="article" style="width: 100%;" id="article">
                                     <option selected value="">Selectionner un article</option>
 
                                     @foreach ($articles as $article)
@@ -309,7 +310,7 @@
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
                                 <label for="qte_article">Quantité *</label>
-                                <input type="number" min="1" wire:model="qte_article"
+                                <input type="number" min="1" wire:model.defer="qte_article"
                                     class="form-control @error('qte_article') is-invalid @enderror" id="qte_article"
                                     placeholder="Entrez la quantité d'article">
                             </div>
@@ -326,7 +327,7 @@
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
                                 <label for="nbJour">Jours</label>
-                                <input type="number" min="1" wire:model="nbJour"
+                                <input type="number" min="1" wire:model.defer="nbJour"
                                     class="form-control @error('nbJour') is-invalid @enderror" id="nbJour"
                                     placeholder="Entrez le nombre de jours">
                             </div>

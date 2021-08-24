@@ -69,9 +69,12 @@
 						</td>
 
 						<td class="project-actions text-right">
+							@if (Auth::user()->login == $user->login)
+							{{-- ->pluck('name')=='super-admin' --}}
 							<a class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}">
 								<i class="fas fa-eye"></i>Voir
 							</a>
+							@endif
 
 							{{-- Je peux supprimer seulement les autres --}}
 							@if (Auth::user()->login != $user->login)

@@ -75,7 +75,7 @@
 										<label for="password">Mot de passe *</label>
 										<input type="password"
 											class="form-control @error('password') is-invalid @enderror"
-											value="{{ old('password') }}" name="password" id="password"
+											value="{{ old('password') }}" required name="password" id="password"
 											placeholder="Entrez un mot de passe initial">
 									</div>
 									@error('password')

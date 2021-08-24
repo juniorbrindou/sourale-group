@@ -15,8 +15,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Clients::all();
-        return view('parametrage.clients.index', compact('clients'));
+        return view('parametrage.clients.index');
     }
 
     /**
@@ -43,17 +42,17 @@ class ClientController extends Controller
             'contact1' => 'nullable|min:0',
             'contact2' => 'nullable|min:0',
             'adresse' => 'nullable|min:0',
-        ],[
+        ], [
             'nom.required' => 'Le nom du client est obligatoire'
         ]);
-        $data = Clients::create(array_merge($request->all(),['user_id' => Auth::id()]));
+        $data = Clients::create(array_merge($request->all(), ['user_id' => Auth::id()]));
         // creation du code
         $data->update(['code' => date("Ymd") . '0' . $data->id]);
 
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
-        }else{
+        } else {
             return redirect()->route('clients.index')->with('success', 'Action Effectuée!');
         }
     }
@@ -77,8 +76,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Clients::whereId($id)->first(); 
-        return view('parametrage.clients.edit',compact('client'));
+        $client = Clients::whereId($id)->first();
+        return view('parametrage.clients.edit', compact('client'));
     }
 
     /**
@@ -96,7 +95,7 @@ class ClientController extends Controller
             'contact1' => 'nullable|min:0',
             'contact2' => 'nullable|min:0',
             'adresse' => 'nullable|min:0',
-        ],[
+        ], [
             'nom.required' => 'Le nom du client est obligatoire'
         ]);
         Clients::whereId($id)->update([

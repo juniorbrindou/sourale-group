@@ -4,31 +4,31 @@
 
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
 
-				<div class="card card-success">
-					<div class="card-header">
-						<h3 class="card-title">Liste des Approvisionnements de stock</h3>
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des Approvisionnements de stock</h3>
 
-						<a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md bg-dark">
-							<i class="fa fa-plus-circle"></i>
-							Ajouter
-						</a>
-					</div>
-					<!-- /.card-header -->
+                        <a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md bg-dark">
+                            <i class="fa fa-plus-circle"></i>
+                            Ajouter
+                        </a>
+                    </div>
+                    <!-- /.card-header -->
 
-					<livewire:approvisionnement.index />
+                    <livewire:approvisionnement.index />
 
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container-fluid -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 @endsection
@@ -88,7 +88,7 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
 		  "buttons": ["excel", "pdf", "print"]
@@ -101,7 +101,7 @@
 		  "info": true,
 		  "autoWidth": false,
 		  "responsive": true,
-		  "language": 
+		  "language":
             {
                     "decimal":        ".",
                     "emptyTable":     "Aucune donnée disponible",
@@ -126,15 +126,15 @@
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',
@@ -142,7 +142,7 @@
 			})
 		});
 	});
-	
+
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
@@ -150,15 +150,15 @@
 
 @elseif(session('error'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'error',
@@ -169,6 +169,5 @@
 </script>
 
 <livewire:scripts />
-
 @endif
 @endpush

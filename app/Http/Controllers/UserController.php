@@ -6,37 +6,31 @@ use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $users = User::where('login', '<>', 'root')->get();
         return view('parametrage.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
     public function create()
     {
         $roles = Role::where('name', '<>', 'super-admin')->get();
         return view('parametrage.users.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -59,9 +53,11 @@ class UserController extends Controller
         $data->assignRole($request->role);
 
         if (isset($request->encore)) {
-            return back()->with('success', 'Action Effectuée!');
+            toast('Enregistrement Effectué', 'success');
+            return back();
         } else {
-            return redirect()->route('users.index')->with('success', 'Action Effectuée!');
+            toast('Enregistrement Effectué', 'success');
+            return redirect()->route('users.index');
         }
     }
 
@@ -140,7 +136,8 @@ class UserController extends Controller
         $user = User::whereId($id)->first();
 
         if (!Hash::check($request->oldPassword, $user->password)) {
-            return redirect()->back()->with('error', 'Mot de passe erroné');
+            Alert::alert('Erreur', 'Message', '');
+            return redirect()->back();
         }
         $newPassword = Hash::make($request->password);
         $user->update(['password' => $newPassword]);
@@ -158,6 +155,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return back()->with('success', 'Action Effectuée!');
+        toast('Action Effectuée', 'success');
+        return back();
     }
 }

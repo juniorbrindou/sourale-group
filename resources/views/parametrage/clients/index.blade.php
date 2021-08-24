@@ -2,150 +2,7 @@
 
 @section('main')
 <!-- Main content -->
-<section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-
-				<div class="card card-primary">
-					<div class="card-header">
-						<h3 class="card-title">Liste des clients</h3>
-
-						<a href="{{ route('clients.create')}}" class="btn float-right  btn-md bg-dark">
-							<i class="fa fa-plus-circle"></i>
-							Ajouter
-						</a>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Nom & Prénoms</th>
-									<th>Téléphne</th>
-									<th>Adresse</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-
-
-								@foreach ($clients as $client)
-
-								<tr>
-									<td>{{ $client->nom }} {{ isset($client->prenoms) ? $client->prenoms : '' }}</td>
-									<td>{{ isset($client->contact1) ? $client->contact1 : '' }} /
-										{{ isset($client->contact2) ? $client->contact2 : ''}} </td>
-									<td>{{ $client->adresse }}</td>
-									<td>
-										<button class="btn btn-warning btn-md" data-toggle="modal"
-											data-target="#modal-see-{{$client->id}}">
-											<i class="fa fa-eye"></i>
-										</button>
-										<a href="{{ route('clients.edit', $client->id) }}" title="Modiffier"
-											class="btn btn-primary btn-md">
-											<i class="fa fa-pen"></i>
-										</a>
-										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$client->id}}">
-											<i class="fa fa-trash"></i>
-											Suprimer
-										</button>
-									</td>
-								</tr>
-
-								<div class="modal fade" id="modal-danger-{{$client->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<h4 class="modal-title">Attention ! Action Irréversible !</h4>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer le client
-													<b>{{ $client->nom }} {{ $client->prenoms }}</b></p>
-											</div>
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Annuler</button>
-												<form method="POST" style="display: inline"
-													action="{{ route('clients.destroy', $client->id ) }}">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="btn btn-outline-danger">Je
-														Confirme</button>
-												</form>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
-
-
-								<div class="modal fade" id="modal-see-{{$client->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<p>Détails</p>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-
-											<div class="modal-body">
-												<p>
-													<b>NOM : </b>{{ $client->nom }}
-												</p>
-												<hr>
-												<p>
-													<b>Téléphone : </b>{{ $client->contact1 }} / {{ $client->contact2 }}
-												</p>
-												<hr>
-												<p>
-													<b>ADRESSE : </b>{{ $client->adresse }}
-												</p>
-											</div>
-
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary btn-block"
-													data-dismiss="modal">Fermer</button>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
-
-								@endforeach
-
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Nom & Prénoms</th>
-									<th>Téléphne</th>
-									<th>Adresse</th>
-									<th></th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container-fluid -->
-</section>
+<livewire:clients.client />
 <!-- /.content -->
 @endsection
 
@@ -159,7 +16,7 @@
 <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
-
+@livewireStyles
 @endpush
 
 
@@ -167,6 +24,7 @@
 
 @push('scripts')
 <!-- jQuery -->
+@livewireScripts
 <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -196,7 +54,7 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 			$("#example1").DataTable({
 			"responsive": true, "lengthChange": false, "autoWidth": false,
 			"buttons": ["excel", "pdf", "print"]
@@ -216,15 +74,15 @@
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',
@@ -233,5 +91,6 @@
 		});
 	});
 </script>
+
 @endif
 @endpush

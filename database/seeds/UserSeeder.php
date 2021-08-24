@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'tel2' => $faker->phoneNumber(),
             'password' => Hash::make('sourale-group'),
         ]);
-        
+
         User::create([
             'login' => 'manager',
             'nom' => $faker->name(),
@@ -34,6 +34,14 @@ class UserSeeder extends Seeder
             'tel2' => $faker->phoneNumber(),
             'password' => Hash::make('sourale-group'),
         ]);
+
+
+        User::create([
+            'login' => 'administrateur',
+            'nom' => 'administrateur',
+            'password' => Hash::make('sourale-group'),
+        ]);
+
 
         User::create([
             'login' => 'root',

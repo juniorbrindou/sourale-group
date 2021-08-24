@@ -3,18 +3,18 @@
 @section('main')
 
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<!-- left column -->
-			<div class="col-md-12">
-				<livewire:approvisionnement.create />
-			</div>
-			<!-- /.col -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <livewire:approvisionnement.create />
+            </div>
+            <!-- /.col -->
 
 
-		</div>
-		<!-- /.row -->
-	</div><!-- /.container-fluid -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </section>
 
 @endsection
@@ -91,7 +91,7 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 
 		//Initialize Select2 Elements
 		$('.select2').select2()
@@ -108,8 +108,8 @@
 	$(function () {
 	//Date and time picker
 	moment.locale('fr_fr')
-	$('#reservationdatetime').datetimepicker({ 
-		icons: { time: 'far fa-clock', 
+	$('#reservationdatetime').datetimepicker({
+		icons: { time: 'far fa-clock',
 		format:'DD/MM/YYYY HH:mm:ss',
 		format: 'LT'
 	}
@@ -182,15 +182,15 @@
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',
@@ -202,15 +202,15 @@
 
 @elseif(session('error'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'error',
