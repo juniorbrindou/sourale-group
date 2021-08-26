@@ -18,7 +18,7 @@
                 <td>{{$sortie->article->libelle}}</td>
                 <td>{{$sortie->created_at}} </td>
                 <td>{{$sortie->motif}} </td>
-                <td>{{$sortie->motif}} </td>
+                <td>{{$sortie->user->nom}} {{$sortie->user->prenoms}}  </td>
             </tr>
 
             @endforeach

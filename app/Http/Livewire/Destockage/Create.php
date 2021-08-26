@@ -39,23 +39,21 @@ class Create extends Component
 
 
     /**
-     * Ajoute Une nouvelle ligne A partir du formulaire
+     * Ajoute Une nouvelle ligne dans le tableau du formulaire
      * @return void
      */
     public function addLigne()
     {
-        // verifie la validation
+        // verified la validation
         $this->validate();
-
-        // renvoie dans this->article le libelle
+        // renvoie dans this→article le model article
         $article = Articles::whereId($this->article)->first();
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
 
         if ($article->qte_en_stock > $this->qte) {
-
-            // unshift pour une entréé en commençant par le bas
+            // unshift pour une entrée en commençant par le bas
             array_unshift(
                 $this->ligne,
                 [
@@ -67,9 +65,13 @@ class Create extends Component
                     'motif' => $this->motif,
                 ]
             );
-            session()->flash('success', 'Post successfully updated.');
-        } else {
-            return '<script> alert("dfdfdfd");<script>';
+        }else{
+            $this->dispatchBrowserEvent('sweetAlert',
+                [
+                    'icon' => 'error',
+                    'title' => 'Quantité suppérieure à celle disponible'
+                ]
+            );
         }
     }
 
@@ -114,8 +116,6 @@ class Create extends Component
             }
             $this->resetLigne();
             return redirect()->route('destockages.index');
-        } else {
-            return;
         }
     }
 

@@ -22,7 +22,7 @@
                             <label>Article Concerné *</label>
                             <select class="form-control @error('article') is-invalid @enderror" name="article_id"
                                 wire:model="article" style="width: 100%;">
-                                <option selected value="">Selectionner un article</option>
+                                <option selected value="">Selectionnez un article</option>
 
                                 @foreach ($articles as $article)
                                 <option value="{{$article->id}}"> {{$article->libelle}}</option>
@@ -46,6 +46,7 @@
                             <label>Motif de Sortie*</label>
                             <select class="form-control @error('motif') is-invalid @enderror" name="motif"
                                 wire:model="motif" style="width: 100%;">
+                                <option>Selectionnez un motif</option>
                                 <option value="Mauvais Etat">Mauvais Etat</option>
                                 <option value="Brisé">Brisé</option>
                                 <option value="Autre">Autre</option>
@@ -68,7 +69,7 @@
                             <label for="qte">Quantité *</label>
                             <input type="number" wire:model="qte"
                                 class="form-control @error('qte') is-invalid @enderror" name="qte" id="qte"
-                                placeholder="Entrer la quantité d'article">
+                                placeholder="Entrer la quantité d'article" min="1">
                         </div>
                         @error('qte')
                         <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"

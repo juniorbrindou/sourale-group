@@ -387,25 +387,21 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <b>{{isset($ligne['nom']) ? $ligne['nom'] : 'Aucun Nom'}}</b> <br>
-                                                <b>{{isset($ligne['contact1'])? $ligne['contact1']: 'Aucun Numéro'}}</b>
-                                                <br>
-                                                <b>{{isset($ligne['adresse'])?$ligne['adresse']: 'Aucune Adresse'}}</b>
-
+                                                <b>{{$ligne['nom'] ?? 'Aucun Nom'}}</b> <br>
+                                                <b>{{$ligne['contact1']?? 'Aucun Numéro'}}</b><br>
+                                                <b>{{$ligne['adresse'] ?? 'Aucune Adresse'}}</b>
                                             </div>
                                             <div class="col-md-4 text-center">
                                                 Cérémonie :<b>
-                                                    {{($libelle_event)?$libelle_event:'Aucun Nom d\'évenement'}}</b>
+                                                    {{($libelle_event)??'Aucun Nom d\'évenement'}}</b>
                                                 <br>
-                                                Nombre d'Invités : <b>{{($nbr_personne) ? $nbr_personne: 'Inconnu'}}
-                                                </b><br>
-                                                Lieu : <b>{{($lieuEvenement) ? $lieuEvenement :'Inconnu' }} </b>
+                                                Nombre d'Invités : <b>{{($nbr_personne) ?? 'Inconnu'}}</b><br>
+                                                Lieu : <b>{{($lieuEvenement) ??'Inconnu' }} </b><br>
+                                                Du : <b>{{ date('d-m-Y H:i:s', strtotime($date_debut_evenement)) ??'' }} au {{date('d-m-Y H:i:s', strtotime($date_fin_evenement)) ??'' }} </b><br>
                                             </div>
                                             <div class="col-md-4 text-right">
-                                                Caution(20%) : <b>{{$caution}}F FCA</b>
-                                                <br>
+                                                Caution(20%) : <b>{{$caution}}F FCA</b><br>
                                                 Net A Payer : <b>{{$totalBrute}}F FCA</b>
-
                                             </div>
                                         </div>
                                     </div>

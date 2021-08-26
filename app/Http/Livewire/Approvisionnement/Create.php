@@ -19,6 +19,7 @@ class Create extends Component
     public $ligne = [];
     public $item;
     public $code;
+    public $ligneExiste = false;
 
     public function submit()
     {
@@ -47,7 +48,6 @@ class Create extends Component
         $this->validate();
         // Sectionner un article une seule fois
         if (!empty($this->ligne)) {
-
             for ($i = 0; $i < count($this->ligne); $i++) {
                 if (Articles::whereId($this->article)->first()->libelle == $this->ligne[$i]['article']) {
                     $this->dispatchBrowserEvent('sweetAlert', [
@@ -56,18 +56,19 @@ class Create extends Component
                         'icon' => 'error',
                         'text' => 'Cet article a deja été selectionné',
                     ]);
-                    // unset($this->ligne[$i]);
+                    $this->ligneExiste = true;
                 }
             }
         }
-
-        // renvoie dans this->article le libelle
+        // } elseif (empty($this->ligne) || ($this->ligneExiste == false)) {
+        // fin selection unique d'article
+        // recuperation du model article et affectation aux variables de la class
         $article = Articles::whereId($this->article)->first();
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
 
-        // unshift pour une entréé en commençant par le bas
+        // unshift pour une nouvelle ligne ne haut
         array_unshift(
             $this->ligne,
             [
@@ -78,7 +79,7 @@ class Create extends Component
                 'prix' => $this->article_prix,
             ]
         );
-        session()->flash('success', 'Post successfully updated.');
+        // }
     }
 
 
@@ -122,7 +123,7 @@ class Create extends Component
                 $article->update(
                     [
                         'qte_stocker' => $article->qte_stocker + $value['qte'],
-                        'qte_en_stock' => $article->qte_stocker + $value['qte'],
+                        'qte_en_stock' => $article->qte_en_stock + $value['qte'],
                     ]
                 );
             }
@@ -144,7 +145,6 @@ class Create extends Component
     }
 
 
-
     protected $rules = [
         'qte' => 'required|numeric|min:1',
         'article' => 'required|numeric',
@@ -155,6 +155,8 @@ class Create extends Component
     protected $validationAttributes = [
         'qte' => 'quantité'
     ];
+
+
 
     public function render()
     {

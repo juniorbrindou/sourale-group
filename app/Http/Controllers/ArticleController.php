@@ -24,17 +24,6 @@ class ArticleController extends Controller
         return view('parametrage.articles.index', compact('articles', 'categories', 'type_articles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $categories = Categories::all();
-        $type_articles = Type_articles::all();
-        return view('parametrage.articles.create', compact('categories', 'type_articles'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -84,12 +73,8 @@ class ArticleController extends Controller
             ]);
         }
 
-
-        if (isset($request->encore)) {
-            return back()->with('success', 'Action Effectuée!');
-        } else {
-            return redirect()->route('articles.index')->with('success', 'Article Enregistré!');
-        }
+        toast('Article Enregistré!', 'success');
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -102,20 +87,6 @@ class ArticleController extends Controller
     {
         $article = Articles::whereId($id)->firstOrFail();
         return view('parametrage.articles.show', compact('article'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $article = Articles::whereId($id)->firstOrFail();
-        $categories = Categories::where('id', '<>', $article->categorie->id)->get();
-        $type_articles = Type_articles::where('id', '<>', $article->type_article->id)->get();
-        return view('parametrage.articles.edit', compact('article', 'categories', 'type_articles'));
     }
 
     /**
@@ -170,8 +141,8 @@ class ArticleController extends Controller
 
             ]);
         }
-
-        return redirect()->route('articles.index')->with('success', 'Action Effectuée!');
+        toast('Article Modiffié!', 'success');
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -190,11 +161,5 @@ class ArticleController extends Controller
             return back()->with('error', 'Impossible de Supprimer cet Article');
         }
         return back();
-    }
-
-
-    public function appliquerTarif(Article $article)
-    {
-        dd('ok');
     }
 }

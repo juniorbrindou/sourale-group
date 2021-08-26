@@ -4,374 +4,374 @@
 
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
 
-				<div class="card card-primary">
-					<div class="card-header">
-						<h3 class="card-title">Liste des articles </h3>
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des articles </h3>
 
-						<button data-toggle="modal" data-target="#modal-create" class="btn float-right  btn-md bg-dark">
-							<i class="fa fa-plus-circle"></i>
-							Ajouter
-						</button>
-					</div>
-
-
-
-
-					{{-- create type article --}}
-					<div class="modal fade" id="modal-create">
-						<div class="modal-dialog">
-							<div class="modal-content bg-default">
-								<div class="modal-header">
-									<h4>Nouveau</h4>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-
-								<form method="POST" action="{{ route('articles.store')}}" enctype="multipart/form-data">
-									@csrf
-									<div class="card-body">
-
-										<div class="col-md-12">
-
-											{{-- libelle --}}
-											<div class="form-group">
-												<label for="libelle">Nom de l'article *</label>
-												<input type="text" required
-													class="form-control @error('libelle') is-invalid @enderror"
-													value="{{ old('libelle') }}" name="libelle" id="libelle"
-													placeholder="Entrer le nom de l'article">
-											</div>
-											@error('libelle')
-											<span class="text-danger"
-												style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-												<strong>{{ $message }}</strong>
-											</span>
-											@enderror
-										</div>
-
-
-
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Type d'article *</label>
-												<select required class="form-control select2" name="type_article_id"
-													style="width: 100%;">
-
-													@foreach ($type_articles as $type_article)
-													<option @if ($loop->first) selected="selected" @endif
-														value="{{$type_article->id}}"> {{$type_article->libelle}}
-													</option> @endforeach
-
-												</select>
-											</div>
-											<!-- /.form-group -->
-										</div>
-
-										{{-- categorie_id --}}
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Catégorie d'article *</label>
-												<select required class="form-control select2" style="width: 100%;"
-													name="categorie_id">
-
-													@foreach ($categories as $categorie)
-													<option @if ($loop->first) selected="selected" @endif
-														value="{{$categorie->id}}"> {{$categorie->libelle}}
-													</option>
-													@endforeach
-
-												</select>
-											</div>
-										</div>
-
-										{{-- description --}}
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Ajouter une description à l'article</label>
-												<textarea
-													class="form-control @error('description') is-invalid @enderror"
-													name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
-											</div>
-										</div>
-
-
-										{{-- article_photo --}}
-										<div class="col-md-6 ">
-											<div class="form-group">
-												<label for="exampleInputFile">J'ai une photo de l'article</label>
-												<div class="input-group">
-													<div>
-														<input type="file" accept="image/gif, image/jpeg, image/png"
-															name="article_photo" id="article_photo">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="modal-footer justify-content-between">
-										<button type="button" class="btn btn-outline-secondary"
-											data-dismiss="modal">Annuler</button>
-
-										<button type="submit" class="btn btn-success">Enregistrer</button>
-									</div>
-
-								</form>
-							</div>
-							<!-- /.modal-content -->
-						</div>
-						<!-- /.modal-dialog -->
-						<!-- /.modal -->
-						{{-- fin create type article --}}
-
-
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Code</th>
-									<th>Image</th>
-									<th>Libéllé</th>
-									<th>Prix</th>
-									<th>Type</th>
-									<th>Categorie</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-
-								@foreach ($articles as $article)
-								<tr>
-									<td>{{$article->code}}</td>
-
-									<td>
-										@if($article->article_photo)
-										<img alt="Avatar" class="img-perso"
-											src="{{asset('storage/'.$article->article_photo)}}">
-										@else
-										<img alt="Avatar" class="img-perso"
-											src="{{asset('storage/articles/default_article100x100.png')}}">
-										@endif
-									</td>
-									<td>{{ ucwords($article->libelle)}}</td>
-									<td>{{$article->prix_tarification}}</td>
-									<td>{{$article->type_article->libelle}}</td>
-									<td>{{$article->categorie->libelle}}</td>
-									<td>
-										{{-- cacher le bouton pour voir un artcile --}}
-										{{-- <a href="{{ route('articles.show', $article->id) }}"
-										class="btn btn-warning btn-md mr-1">
-										<i class="fa fa-eye"></i>
-										</a> --}}
-										<button data-toggle="modal" data-target="#modal-update-{{$article->id}}"
-											title="Modiffier" class="btn btn-primary btn-md">
-											<i class="fa fa-pen"></i>
-										</button>
-										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$article->id}}">
-											<i class="fa fa-trash"></i>
-										</button>
-									</td>
-								</tr>
+                        <button data-toggle="modal" data-target="#modal-create" class="float-right btn btn-md bg-dark">
+                            <i class="fa fa-plus-circle"></i>
+                            Ajouter
+                        </button>
+                    </div>
 
 
 
 
+                    {{-- create type article --}}
+                    <div class="modal fade" id="modal-create">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-default">
+                                <div class="modal-header">
+                                    <h4>Nouveau</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-								{{-- update type article --}}
-								<div class="modal fade" id="modal-update-{{$article->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<h4>Modification</h4>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
+                                <form method="POST" action="{{ route('articles.store')}}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="card-body">
 
-											<form method="POST" action="{{ route('articles.update', $article->id)}}"
-												enctype="multipart/form-data">
-												@csrf
-												@method('PATCH')
-												<div class="card-body">
+                                        <div class="col-md-12">
 
-													<div class="col-md-12">
-
-														{{-- libelle --}}
-														<div class="form-group">
-															<label for="libelle">Nom de l'article</label>
-															<input type="text"
-																class="form-control @error('libelle') is-invalid @enderror"
-																value="{{ $article->libelle }}" name="libelle"
-																id="libelle">
-														</div>
-														@error('libelle')
-														<span class="text-danger"
-															style="margin-top: -1.25rem;display: block; font-size:80%"
-															role="alert">
-															<strong>{{ $message }}</strong>
-														</span>
-														@enderror
-													</div>
-
-													<div class="col-md-12">
-														<div class="form-group">
-															<label>Type d'article</label>
-															<select class="form-control select2" name="type_article_id">
-
-																<option value="{{$article->type_article_id}}">
-																	{{$article->type_article->libelle}}
-																</option>
-
-																@foreach ($type_articles as $type_article)
-																<option value="{{$type_article->id}}">
-																	{{$type_article->libelle}}
-																</option>
-																@endforeach
-
-															</select>
-														</div>
-														<!-- /.form-group -->
-													</div>
-
-													{{-- categorie_id --}}
-													<div class="col-md-12">
-														<div class="form-group">
-															<label>Catégorie d'article</label>
-															<select class="form-control select2" style="width: 100%;"
-																name="categorie_id">
-
-																<option value="{{$article->categorie_id}}">
-																	{{$article->categorie->libelle}}
-																</option>
-
-																@foreach ($categories as $categorie)
-																<option value="{{$categorie->id}}">
-																	{{$categorie->libelle}}
-																</option>
-																@endforeach
-															</select>
-														</div>
-													</div>
-
-													{{-- description --}}
-													<div class="col-md-12">
-														<div class="form-group">
-															<label>Ajouter une description à l'article</label>
-															<textarea
-																class="form-control @error('description') is-invalid @enderror"
-																name="description" rows="3"
-																placeholder="Ecrivez ici...">{{ $article->description }}</textarea>
-														</div>
-													</div>
-
-
-													{{-- article_photo --}}
-													<div class="col-md-6">
-														<div class="form-group">
-															<label for="exampleInputFile">J'ai une photo de
-																l'article</label>
-															<div class="input-group">
-																<div>
-																	<input type="file"
-																		accept="image/gif, image/jpeg, image/png"
-																		name="article_photo" id="article_photo">
-																</div>
-															</div>
-														</div>
-
-													</div>
-
-													<!-- /.card-body -->
-													<div class="card-footer">
-														<div class="row">
-															<div class="modal-footer justify-content-between">
-																<button type="button" class="btn btn-outline-secondary"
-																	data-dismiss="modal">Annuler</button>
-
-																<button type="submit"
-																	class="btn btn-success">Enregistrer</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</form>
-
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
-								{{-- fin update type article --}}
+                                            {{-- libelle --}}
+                                            <div class="form-group">
+                                                <label for="libelle">Nom de l'article *</label>
+                                                <input type="text" required
+                                                    class="form-control @error('libelle') is-invalid @enderror"
+                                                    value="{{ old('libelle') }}" name="libelle" id="libelle"
+                                                    placeholder="Entrer le nom de l'article">
+                                            </div>
+                                            @error('libelle')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
 
 
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Type d'article *</label>
+                                                <select required class="form-control select2" name="type_article_id"
+                                                    style="width: 100%;">
 
-								{{-- suppression --}}
-								<div class="modal fade" id="modal-danger-{{$article->id}}">
-									<div class=" modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<h4 class="modal-title">Attention ! Action Irréversible !</h4>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer l'article
-													<b>{{ ucwords($article->libelle) }}</b></p>
-											</div>
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Annuler</button>
-												<form method="POST" style="display: inline"
-													action="{{ route('articles.destroy', $article->id ) }}">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="btn btn-outline-danger">Je
-														Confirme</button>
-												</form>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-								</div>
-								<!-- /.modal-dialog -->
-								{{-- fin suppression --}}
-								@endforeach
+                                                    @foreach ($type_articles as $type_article)
+                                                    <option @if ($loop->first) selected="selected" @endif
+                                                        value="{{$type_article->id}}"> {{$type_article->libelle}}
+                                                    </option> @endforeach
 
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Code</th>
-									<th>Image</th>
-									<th>Libéllé</th>
-									<th>Prix</th>
-									<th>Type</th>
-									<th>Categorie</th>
-									<th></th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
+                                                </select>
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+
+                                        {{-- categorie_id --}}
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Catégorie d'article *</label>
+                                                <select required class="form-control select2" style="width: 100%;"
+                                                    name="categorie_id">
+
+                                                    @foreach ($categories as $categorie)
+                                                    <option @if ($loop->first) selected="selected" @endif
+                                                        value="{{$categorie->id}}"> {{$categorie->libelle}}
+                                                    </option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        {{-- description --}}
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Ajouter une description à l'article</label>
+                                                <textarea
+                                                    class="form-control @error('description') is-invalid @enderror"
+                                                    name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        {{-- article_photo --}}
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">J'ai une photo de l'article</label>
+                                                <div class="input-group">
+                                                    <div>
+                                                        <input type="file" accept="image/gif, image/jpeg, image/png"
+                                                            name="article_photo" id="article_photo">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            data-dismiss="modal">Annuler</button>
+
+                                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                        <!-- /.modal -->
+                        {{-- fin create type article --}}
+
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Image</th>
+                                    <th>Libéllé</th>
+                                    <th>Prix</th>
+                                    <th>Type</th>
+                                    <th>Categorie</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($articles as $article)
+                                <tr>
+                                    <td>{{$article->code}}</td>
+
+                                    <td>
+                                        @if($article->article_photo)
+                                        <img alt="Avatar" class="img-perso"
+                                            src="{{asset('storage/'.$article->article_photo)}}">
+                                        @else
+                                        <img alt="Avatar" class="img-perso"
+                                            src="{{asset('storage/articles/default_article100x100.png')}}">
+                                        @endif
+                                    </td>
+                                    <td>{{ ucwords($article->libelle)}}</td>
+                                    <td>{{$article->prix_tarification}}</td>
+                                    <td>{{$article->type_article->libelle}}</td>
+                                    <td>{{$article->categorie->libelle}}</td>
+                                    <td>
+                                        {{-- cacher le bouton pour voir un artcile --}}
+                                        {{-- <a href="{{ route('articles.show', $article->id) }}"
+                                        class="mr-1 btn btn-warning btn-md">
+                                        <i class="fa fa-eye"></i>
+                                        </a> --}}
+                                        <button data-toggle="modal" data-target="#modal-update-{{$article->id}}"
+                                            title="Modiffier" class="btn btn-primary btn-md">
+                                            <i class="fa fa-pen"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+                                            data-target="#modal-danger-{{$article->id}}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+
+
+
+
+                                {{-- update type article --}}
+                                <div class="modal fade" id="modal-update-{{$article->id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-default">
+                                            <div class="modal-header">
+                                                <h4>Modification</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form method="POST" action="{{ route('articles.update', $article->id)}}"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PATCH')
+                                                <div class="card-body">
+
+                                                    <div class="col-md-12">
+
+                                                        {{-- libelle --}}
+                                                        <div class="form-group">
+                                                            <label for="libelle">Nom de l'article</label>
+                                                            <input type="text"
+                                                                class="form-control @error('libelle') is-invalid @enderror"
+                                                                value="{{ $article->libelle }}" name="libelle"
+                                                                id="libelle">
+                                                        </div>
+                                                        @error('libelle')
+                                                        <span class="text-danger"
+                                                            style="margin-top: -1.25rem;display: block; font-size:80%"
+                                                            role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Type d'article</label>
+                                                            <select class="form-control select2" name="type_article_id">
+
+                                                                <option value="{{$article->type_article_id}}">
+                                                                    {{$article->type_article->libelle}}
+                                                                </option>
+
+                                                                @foreach ($type_articles as $type_article)
+                                                                <option value="{{$type_article->id}}">
+                                                                    {{$type_article->libelle}}
+                                                                </option>
+                                                                @endforeach
+
+                                                            </select>
+                                                        </div>
+                                                        <!-- /.form-group -->
+                                                    </div>
+
+                                                    {{-- categorie_id --}}
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Catégorie d'article</label>
+                                                            <select class="form-control select2" style="width: 100%;"
+                                                                name="categorie_id">
+
+                                                                <option value="{{$article->categorie_id}}">
+                                                                    {{$article->categorie->libelle}}
+                                                                </option>
+
+                                                                @foreach ($categories as $categorie)
+                                                                <option value="{{$categorie->id}}">
+                                                                    {{$categorie->libelle}}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- description --}}
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Ajouter une description à l'article</label>
+                                                            <textarea
+                                                                class="form-control @error('description') is-invalid @enderror"
+                                                                name="description" rows="3"
+                                                                placeholder="Ecrivez ici...">{{ $article->description }}</textarea>
+                                                        </div>
+                                                    </div>
+
+
+                                                    {{-- article_photo --}}
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputFile">J'ai une photo de
+                                                                l'article</label>
+                                                            <div class="input-group">
+                                                                <div>
+                                                                    <input type="file"
+                                                                        accept="image/gif, image/jpeg, image/png"
+                                                                        name="article_photo" id="article_photo">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!-- /.card-body -->
+                                                    <div class="card-footer">
+                                                        <div class="row">
+                                                            <div class="modal-footer justify-content-between">
+                                                                <button type="button" class="btn btn-outline-secondary"
+                                                                    data-dismiss="modal">Annuler</button>
+
+                                                                <button type="submit"
+                                                                    class="btn btn-success">Enregistrer</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
+                                {{-- fin update type article --}}
+
+
+
+
+                                {{-- suppression --}}
+                                <div class="modal fade" id="modal-danger-{{$article->id}}">
+                                    <div class=" modal-dialog">
+                                        <div class="modal-content bg-default">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Attention ! Action Irréversible !</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="text-danger">Voulez vous vraiment supprimer l'article
+                                                    <b>{{ ucwords($article->libelle) }}</b></p>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-dismiss="modal">Annuler</button>
+                                                <form method="POST" style="display: inline"
+                                                    action="{{ route('articles.destroy', $article->id ) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger">Je
+                                                        Confirme</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                </div>
+                                <!-- /.modal-dialog -->
+                                {{-- fin suppression --}}
+                                @endforeach
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Image</th>
+                                    <th>Libéllé</th>
+                                    <th>Prix</th>
+                                    <th>Type</th>
+                                    <th>Categorie</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
 </section>
 <!-- /.content -->
 @endsection
@@ -439,7 +439,7 @@
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 
 		//Initialize Select2 Elements
 		$('.select2').select2()
@@ -448,8 +448,8 @@
 		$('.select2bs4').select2({
 		theme: 'bootstrap4'
 		})
-		
-		
+
+
 		$("input[data-bootstrap-switch]").each(function(){
 	  	$(this).bootstrapSwitch('state', $(this).prop('checked'));
 		})
@@ -492,7 +492,7 @@
 </script>
 
 <script>
-	$(function () {
+    $(function () {
 			$("#example1").DataTable({
 			"responsive": true, "lengthChange": true, "autoWidth": false,
 			"buttons": ["excel", "pdf", "print"]
@@ -509,24 +509,4 @@
 		});
 </script>
 {{-- message flash enregistrement --}}
-@if (session('success'))
-<script>
-	$(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		}); 
-		
-		$(function() {
-			Toast.fire({
-				icon: 'success',
-				title: 'Action Effectuée!'
-			})
-		});
-	});
-</script>
-@endif
 @endpush

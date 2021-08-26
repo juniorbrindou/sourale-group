@@ -53,7 +53,7 @@ class Create extends Component
 
     /**
      * Insertion en bd
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function addInBD()
     {
@@ -105,8 +105,6 @@ class Create extends Component
             }
             $this->resetLigne();
             return redirect()->route('locations.index');
-        } else {
-            return;
         }
     }
 
@@ -116,6 +114,9 @@ class Create extends Component
 
     public function addArticle()
     {
+        //disponibilité de l'article dans le stock
+        $article = Articles::where('libelle', '=', $this->article)->first();
+
         // Sectionner un article une seule fois
         if (!empty($this->tabArticles)) {
             for ($i = 0; $i < count($this->tabArticles); $i++) {
@@ -126,10 +127,8 @@ class Create extends Component
                         'icon' => 'error',
                         'text' => 'Cet article a deja été selectionné',
                     ]);
-                    break;
                 } else {
                     $this->add();
-                    break;
                 }
             }
         } else {
@@ -154,7 +153,7 @@ class Create extends Component
         ]);
 
 
-        // renvoie dans this->article le libelle
+        // renvoie dans this→article le libelle
         $article = Articles::where('libelle', '=', $this->article)->first();
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
