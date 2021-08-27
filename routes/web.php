@@ -31,10 +31,10 @@ Route::group(
             Route::resource('packages', 'PackageController');
             Route::PATCH('users.updatePassword/{user}', 'UserController@updatePassword')->name('users.updatePassword');
             Route::resource('tarifications', 'TarificationController');
+        });
 
-            Route::group(['middleware' => ['role:admin|super-admin']], function () {
-                Route::resource('users', 'UserController');
-            });
+        Route::group(['prefix' => 'parametrage'], function () {
+            Route::resource('users', 'UserController');
         });
 
         Route::get('facture', function () {

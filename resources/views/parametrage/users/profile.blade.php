@@ -370,8 +370,9 @@
                                         <div class="col-sm-10">
                                             {{-- name="role_id" --}}
                                             @if (Auth::user()->login === $user->login)
+                                            <input type="hidden" name="role"
+                                                value="{{format_no_array($user->roles->pluck('name'))}}">
 
-                                            @dump($roles)
                                             <input type="text" class="form-control"
                                                 value="{{format_no_array($user->roles->pluck('name'))}}"
                                                 id="inputSkills" disabled>
