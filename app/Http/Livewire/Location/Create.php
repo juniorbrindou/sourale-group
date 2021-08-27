@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
-    public $currentStep = 1;
+    public $currentStep = 3;
     public $clients;
     /*Evennement*/
     public $libelle_event;
@@ -46,6 +46,88 @@ class Create extends Component
     public $caution = 0;
     public $totalBrute = 0;
     public $totalUneLigne;
+
+
+
+
+
+
+
+
+
+
+    public function addArticle()
+    {
+        $this->validate(
+            [
+                'article' => 'required|string|min:2',
+                'qte_article' => 'required',
+                'nbJour' => 'required',
+            ],
+            [
+                'article.*' => 'Veuillez selectionner un article.',
+                'qte_article.*' => 'Veuillez saisir la quantité.',
+                'nbJour.*' => 'Veuillez saisir le nombre de jour.',
+            ]
+        );
+        dd($this->article);
+        if (!empty($this->tabArticles)) {
+            for ($i = 0; $i < count($this->validate()); $i++) {
+            }
+        } else {
+            $this->add();
+        }
+
+        //        //disponibilité de l'article dans le stock
+        //        try {
+        //            $article = Articles::where('libelle', '=', $this->article)->findOrFail();
+        //        }catch (\Exception $exception){
+        //
+        ////        if ($article == null || $this->article){
+        //            $this->dispatchBrowserEvent('swal', [
+        //                'title' => 'Selectionnez l\'article',
+        //                'timer'=>3000,
+        //                'icon'=>'success',
+        //                'toast'=>true,
+        //            ]);
+        ////        }
+        //        }
+        //        if ($this->qte_article > $article->qte_en_stock)
+        //        {
+        //            $this->dispatchBrowserEvent('swal', [
+        //                'title' => 'Feedback Saved',
+        //                'timer'=>3000,
+        //                'icon'=>'success',
+        //                'toast'=>true,
+        //            ]);
+        //        }
+        //        // Sectionner un article une seule fois
+        //        if (!empty($this->tabArticles)) {
+        //            for ($i = 0; $i < count($this->tabArticles); $i++) {
+        //                if ($this->article == $this->tabArticles[$i]['article']) {
+        //                    $this->dispatchBrowserEvent('sweetAlert', [
+        //                        'title' => 'Erreur de saisie',
+        //                        'timer' => 5000,
+        //                        'icon' => 'error',
+        //                        'text' => 'Cet article a deja été selectionné',
+        //                    ]);
+        //                } else {
+        //                    $this->add();
+        //                }
+        //            }
+        //        } else {
+        //            $this->add();
+        //        }
+        //        $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
+        //        $this->caution = $this->totalBrute * 0.2;
+    }
+
+
+
+
+
+
+
 
 
 
@@ -112,47 +194,11 @@ class Create extends Component
 
 
 
-    public function addArticle()
-    {
-        //disponibilité de l'article dans le stock
-        $article = Articles::where('libelle', '=', $this->article)->first();
-
-        // Sectionner un article une seule fois
-        if (!empty($this->tabArticles)) {
-            for ($i = 0; $i < count($this->tabArticles); $i++) {
-                if ($this->article == $this->tabArticles[$i]['article']) {
-                    $this->dispatchBrowserEvent('sweetAlert', [
-                        'title' => 'Erreur de saisie',
-                        'timer' => 5000,
-                        'icon' => 'error',
-                        'text' => 'Cet article a deja été selectionné',
-                    ]);
-                } else {
-                    $this->add();
-                }
-            }
-        } else {
-            $this->add();
-        }
-        $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * 0.2;
-    }
-
-
-
     /**
      * @return [type]
      */
     public function add()
     {
-        // verifie la validation
-        $this->validate([
-            'article' => 'required',
-            'qte_article' => 'required',
-            'nbJour' => 'required',
-        ]);
-
-
         // renvoie dans this→article le libelle
         $article = Articles::where('libelle', '=', $this->article)->first();
         $this->article_prix = $article->prix_tarification;

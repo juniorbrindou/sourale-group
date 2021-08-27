@@ -44,26 +44,32 @@ class Create extends Component
      */
     public function addLigne()
     {
-        // verifie la validation
-        $this->validate();
-        // Sectionner un article une seule fois
-        if (!empty($this->ligne)) {
-            for ($i = 0; $i < count($this->ligne); $i++) {
-                if (Articles::whereId($this->article)->first()->libelle == $this->ligne[$i]['article']) {
+        $this->validate([
+            'article' => 'required|numeric',
+            'qte' => 'required|numeric|min:1',
+        ]);
+        if (empty($this->ligne)) {
+            $this->add();
+        } else {
+            for ($i = 0; $i + 1 <= count($this->ligne); $i++) {
+                if ($this->ligne[$i]['article'] == Articles::find($this->article)->libelle) {
                     $this->dispatchBrowserEvent('sweetAlert', [
-                        'title' => 'Erreur de saisie',
+                        'title' => 'Cet article a déjà été selectionné',
                         'timer' => 5000,
                         'icon' => 'error',
-                        'text' => 'Cet article a deja été selectionné',
                     ]);
-                    $this->ligneExiste = true;
+                    break;
+                } else {
+                    $this->add();
+                    break;
                 }
             }
         }
-        // } elseif (empty($this->ligne) || ($this->ligneExiste == false)) {
-        // fin selection unique d'article
-        // recuperation du model article et affectation aux variables de la class
-        $article = Articles::whereId($this->article)->first();
+    }
+
+    public function add()
+    {
+        $article = Articles::find($this->article);
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
@@ -79,7 +85,6 @@ class Create extends Component
                 'prix' => $this->article_prix,
             ]
         );
-        // }
     }
 
 
@@ -89,6 +94,7 @@ class Create extends Component
     public function addDeleteLigne($item)
     {
         unset($this->ligne[$item]);
+        $this->ligne = array_values($this->ligne);
     }
 
     /**

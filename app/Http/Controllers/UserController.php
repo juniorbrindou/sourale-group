@@ -140,7 +140,7 @@ class UserController extends Controller
         $user = User::whereId($id)->first();
 
         if (!Hash::check($request->oldPassword, $user->password)) {
-            Alert::alert('Erreur', 'Message', '');
+            Alert::error('Erreur de Mot de passe', 'Mot de passe Incorrecte');
             return redirect()->back();
         }
         $newPassword = Hash::make($request->password);

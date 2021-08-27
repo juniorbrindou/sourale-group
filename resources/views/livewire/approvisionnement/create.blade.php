@@ -14,7 +14,6 @@
         <form wire:submit.prevent="submit">
             @csrf
             <div class="card-body">
-
                 <div class="row">
                     {{-- articles --}}
                     <div class="col-md-9">
@@ -106,9 +105,11 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="p-0 card-body table-responsive" style="height:500px;">
+
                             <table class="table table-head-fixed ">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>Code</th>
                                         <th>Article</th>
                                         <th>Quantité</th>
@@ -120,6 +121,7 @@
                                 <tbody>
                                     @forelse ($ligne as $item=>$value)
                                     <tr>
+                                        <td>{{$item}}</td>
                                         <td>{{$value['code']}}</td>
                                         <td>{{$value['article']}}</td>
                                         <td>{{$value['qte']}}</td>
@@ -138,7 +140,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="6" class="text-center" style="background-color: darkgrey">Aucun
+                                        <td colspan="7" class="text-center" style="background-color: darkgrey">Aucun
                                             enregistrement</td>
                                     </tr>
                                     @endforelse

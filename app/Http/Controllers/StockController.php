@@ -15,7 +15,7 @@ class StockController extends Controller
     public function index()
     {
 
-        $articles = Articles::where('qte_stocker', '>', 0)->get();
+        $articles = Articles::all();
         return view('stock.index', compact('articles'));
     }
 }

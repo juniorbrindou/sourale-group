@@ -52,7 +52,7 @@ class Create extends Component
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
 
-        if ($article->qte_en_stock > $this->qte) {
+        if ($article->qte_en_stock >= $this->qte) {
             // unshift pour une entrée en commençant par le bas
             array_unshift(
                 $this->ligne,
@@ -65,11 +65,12 @@ class Create extends Component
                     'motif' => $this->motif,
                 ]
             );
-        }else{
-            $this->dispatchBrowserEvent('sweetAlert',
+        } else {
+            $this->dispatchBrowserEvent(
+                'sweetAlert',
                 [
                     'icon' => 'error',
-                    'title' => 'Quantité suppérieure à celle disponible'
+                    'title' => 'Quantité choisie n\'est pas disponible. Pensez à vous approvisionner'
                 ]
             );
         }
