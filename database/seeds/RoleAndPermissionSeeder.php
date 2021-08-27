@@ -39,6 +39,17 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'show users']);
         Permission::create(['name' => 'users']);
 
+        // tableau de bord et location (metier)
+        Permission::create(['name' => 'dashboard']);
+        Permission::create(['name' => 'location']);
+        Permission::create(['name' => 'metier']);
+
+        //flux de stock
+        Permission::create(['name' => 'stock']);
+        Permission::create(['name' => 'entree stock']);
+        Permission::create(['name' => 'sortie stock']);
+
+
         // create roles and assign created permissions
 
         // this can be done as separate statements
@@ -48,11 +59,11 @@ class RoleAndPermissionSeeder extends Seeder
 
         // secretaire
         $role = Role::create(['name' => 'secretaire'])
-            ->givePermissionTo(['create articles', 'edit articles', 'delete articles', 'show articles', 'articles']);
+            ->givePermissionTo(['metier', 'stock']);
 
         // manager
         $role = Role::create(['name' => 'manager'])
-            ->givePermissionTo(['create articles', 'edit articles', 'delete articles', 'create users', 'delete users', 'edit users', 'edit parametrage', 'create parametrage', 'delete parametrage', 'show parametrage', 'articles', 'parametrage', 'users']);
+            ->givePermissionTo(['articles', 'parametrage']);
 
         // admin
         $role = Role::create(['name' => 'admin']);
