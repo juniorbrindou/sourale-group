@@ -74,7 +74,7 @@
                                                                 </span>
                                                             </div>
                                                             <select name="oldClient" required
-                                                                class="form-control float-right"
+                                                                class="float-right form-control"
                                                                 wire:model.defer="oldClient">
                                                                 <option value="">Coisissez un client existant</option>
                                                                 @foreach ($clients as $client)
@@ -217,7 +217,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Type d'evenement</label>
-                                                <select class="form-control float-right select2"
+                                                <select class="float-right form-control select2"
                                                     wire:model.defer="type_evenement_id">
                                                     @foreach ($type_evenements as $type_evenement)
                                                     <option selected="selected">{{$type_evenement->libelle}}</option>
@@ -343,7 +343,7 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-3 offset-md-3 col-sm-6">
-                                <button type="reset" class="btn btn-warning btn-block text-light mb-2">Effacer</button>
+                                <button type="reset" class="mb-2 btn btn-warning btn-block text-light">Effacer</button>
                             </div>
                             <div class="col-md-3 col-sm-6">
                                 <button type="submit" wire:click="addArticle"
@@ -391,25 +391,28 @@
                                                 <b>{{$ligne['contact1']?? 'Aucun Numéro'}}</b><br>
                                                 <b>{{$ligne['adresse'] ?? 'Aucune Adresse'}}</b>
                                             </div>
-                                            <div class="col-md-4 text-center">
+                                            <div class="text-center col-md-4">
                                                 Cérémonie :<b>
                                                     {{($libelle_event)??'Aucun Nom d\'évenement'}}</b>
                                                 <br>
                                                 Nombre d'Invités : <b>{{($nbr_personne) ?? 'Inconnu'}}</b><br>
                                                 Lieu : <b>{{($lieuEvenement) ??'Inconnu' }} </b><br>
-                                                Du : <b>{{ date('d-m-Y H:i:s', strtotime($date_debut_evenement)) ??'' }} au {{date('d-m-Y H:i:s', strtotime($date_fin_evenement)) ??'' }} </b><br>
+                                                Du : <b>{{ date('d-m-Y H:i:s', strtotime($date_debut_evenement)) ??'' }}
+                                                    au {{date('d-m-Y H:i:s', strtotime($date_fin_evenement)) ??'' }}
+                                                </b><br>
                                             </div>
-                                            <div class="col-md-4 text-right">
+                                            <div class="text-right col-md-4">
                                                 Caution(20%) : <b>{{$caution}}F FCA</b><br>
                                                 Net A Payer : <b>{{$totalBrute}}F FCA</b>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body table-responsive p-0" style="height:500px;">
+                                    <div class="p-0 card-body table-responsive" style="height:500px;">
                                         <table class="table table-head-fixed ">
                                             <thead>
                                                 <tr>
+                                                    <th>#</th>
                                                     <th>Code</th>
                                                     <th>Article</th>
                                                     <th>Catégorie</th>
@@ -423,6 +426,7 @@
                                             <tbody>
                                                 @forelse ($tabArticles as $item=>$value)
                                                 <tr>
+                                                    <td>{{$item+1}}</td>
                                                     <td>{{$value['code']}}</td>
                                                     <td>{{$value['article']}}</td>
                                                     <td>{{$value['categorie']}}</td>
@@ -463,11 +467,11 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
-                                <a href="{{url('locations')}}" class="btn btn-warning btn-block text-light mb-2">Retour
+                                <a href="{{url('locations')}}" class="mb-2 btn btn-warning btn-block text-light">Retour
                                     à la liste</a>
                             </div>
                             <div class="col-md-4 col-sm-12">
-                                <button wire:click="resetLigne" class="btn btn-dark btn-block text-light mb-2">Tout
+                                <button wire:click="resetLigne" class="mb-2 btn btn-dark btn-block text-light">Tout
                                     Effacer</button>
                             </div>
                             <div class="col-md-4 col-sm-12">

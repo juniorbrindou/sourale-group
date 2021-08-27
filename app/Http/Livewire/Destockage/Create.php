@@ -85,6 +85,7 @@ class Create extends Component
     public function addDeleteLigne($item)
     {
         unset($this->ligne[$item]);
+        $this->ligne = array_values($this->ligne);
     }
 
     /**

@@ -50,12 +50,6 @@ class Create extends Component
 
 
 
-
-
-
-
-
-
     public function addArticle()
     {
         $this->validate(
@@ -70,12 +64,40 @@ class Create extends Component
                 'nbJour.*' => 'Veuillez saisir le nombre de jour.',
             ]
         );
-        dd($this->article);
-        if (!empty($this->tabArticles)) {
+        if (Articles::where('libelle', '=', $this->article)->get('qte_en_stock') >= $this->qte_article) {
+            $this->dispatchBrowserEvent('sweetAlert', [
+                'title' => 'La quantité saisie est suppérieure à  celle disponible',
+                'timer' => 5000,
+                'icon' => 'error',
+            ]);
+        }
+
+
+        if (empty($this->tabArticles)) {
             for ($i = 0; $i < count($this->validate()); $i++) {
             }
         } else {
             $this->add();
+        }
+
+
+
+        if (empty($this->ligne)) {
+            $this->add();
+        } else {
+            for ($i = 0; $i + 1 <= count($this->ligne); $i++) {
+                if ($this->ligne[$i]['article'] == Articles::find($this->article)->libelle) {
+                    $this->dispatchBrowserEvent('sweetAlert', [
+                        'title' => 'Cet article a déjà été selectionné',
+                        'timer' => 5000,
+                        'icon' => 'error',
+                    ]);
+                    break;
+                } else {
+                    $this->add();
+                    break;
+                }
+            }
         }
 
         //        //disponibilité de l'article dans le stock
@@ -254,7 +276,8 @@ class Create extends Component
     public function addDeleteLigne($item)
     {
 
-        unset($this->tabArticles[$item]);
+        unset($this->ligne[$item]);
+        $this->ligne = array_values($this->ligne);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
         $this->caution = $this->totalBrute * 0.2;
     }
