@@ -4,136 +4,146 @@
 
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
 
-				<!-- Profile Image -->
-				<div class="card card-primary card-outline">
-					<div class="card-body box-profile">
-						<div class="text-center">
-							<img class="profile-user-img img-fluid img-circle" src="{{ userAvatar($user->genre)}}"
-								alt="User profile picture">
-						</div>
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src="{{ userAvatar($user->genre)}}"
+                                alt="User profile picture">
+                        </div>
 
-						<h3 class="profile-username text-center">{{Auth::user()->login}}</h3>
 
-						<p class="text-muted text-center">{{$user->nom .' '. $user->prenoms}}</p>
+                        <h3 class="text-center profile-username">{{Auth::user()->login}}</h3>
 
-						@if (Auth::user()->login === $user->login)
 
-						<form method="POST" action="{{ route('logout') }}" accept-charset="UTF-8" name="logout-form"
-							id="logout-form">
-							{{ csrf_field() }}
-							<button class="btn btn-primary btn-block" type="submit">Déconnexion</button>
-						</form>
+                        <ul class="mb-3 list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Nom</b> <span class="float-right">{{$user->nom .' '. $user->prenoms}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>role</b> <span
+                                    class="float-right">{{format_no_array($user->roles->pluck('name'))}}</span>
+                            </li>
+                        </ul>
 
-						@endif
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-			<div class="col-md-9">
-				<div class="card">
-					<div class="card-header p-2">
-						<ul class="nav nav-pills">
-							{{-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
+                        @if (Auth::user()->login === $user->login)
+
+                        <form method="POST" action="{{ route('logout') }}" accept-charset="UTF-8" name="logout-form"
+                            id="logout-form">
+                            {{ csrf_field() }}
+                            <button class="btn btn-primary btn-block" type="submit">Déconnexion</button>
+                        </form>
+
+                        @endif
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="p-2 card-header">
+                        <ul class="nav nav-pills">
+                            {{-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
 							</li> --}}
-							<li class="nav-item">
-								<a class="nav-link active" href="#settings" data-toggle="tab">Informations</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#activity" data-toggle="tab">
-									Gestion du Mot de Passe
-								</a>
-							</li>
-						</ul>
-					</div><!-- /.card-header -->
-					<div class="card-body">
-						<div class="tab-content">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#settings" data-toggle="tab">Informations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#activity" data-toggle="tab">
+                                    Gestion du Mot de Passe
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
 
 
-							<div class="tab-pane" id="activity">
-								<!-- Post -->
-								<!-- formulaire de modiffication de profile -->
-								<form class="form-horizontal" action="{{route('users.updatePassword',$user->id)}}"
-									method="POST">
-									@csrf
-									@method('PATCH')
-									{{-- oldPassword --}}
-									<div class="form-group row">
-										<label for="oldPassword" class="col-sm-3 col-form-label">Mot de passe
-											Actuel</label>
-										<div class="col-sm-9">
-											<input type="password" name="oldPassword"
-												class="form-control @error('oldPassword') is-invalid @enderror"
-												id="oldPassword" value="{{ old('oldPassword') }}">
+                            <div class="tab-pane" id="activity">
+                                <!-- Post -->
+                                <!-- formulaire de modiffication de profile -->
+                                <form class="form-horizontal" action="{{route('users.updatePassword',$user->id)}}"
+                                    method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    {{-- oldPassword --}}
+                                    <div class="form-group row">
+                                        <label for="oldPassword" class="col-sm-3 col-form-label">Mot de passe
+                                            Actuel</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" name="oldPassword"
+                                                class="form-control @error('oldPassword') is-invalid @enderror"
+                                                id="oldPassword" value="{{ old('oldPassword') }}">
 
-											@error('oldPassword')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
-										</div>
-									</div>
+                                            @error('oldPassword')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-									{{-- nouveau mot de passe --}}
-									<div class="form-group row">
-										<label for="password" class="col-sm-3 col-form-label">Nouveau Mot de
-											passe</label>
-										<div class="col-sm-9">
-											<input type="password" name="password"
-												class="form-control @error('password') is-invalid @enderror"
-												id="password" value="{{ old('password') }}">
+                                    {{-- nouveau mot de passe --}}
+                                    <div class="form-group row">
+                                        <label for="password" class="col-sm-3 col-form-label">Nouveau Mot de
+                                            passe</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" name="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                id="password" value="{{ old('password') }}">
 
-											@error('password')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
-										</div>
-									</div>
+                                            @error('password')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-									{{-- Confirmation du nouveau mot de passe --}}
-									<div class="form-group row">
-										<label for="password_confirmation" class="col-sm-3 col-form-label">Confirmez le
-											nouveau mot de passe</label>
-										<div class="col-sm-9">
-											<input type="password" name="password_confirmation"
-												class="form-control @error('password_confirmation') is-invalid @enderror"
-												id="password_confirmation">
+                                    {{-- Confirmation du nouveau mot de passe --}}
+                                    <div class="form-group row">
+                                        <label for="password_confirmation" class="col-sm-3 col-form-label">Confirmez le
+                                            nouveau mot de passe</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" name="password_confirmation"
+                                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                id="password_confirmation">
 
-											@error('password_confirmation')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
-										</div>
-									</div>
-
-
-
-									<div class="row">
-										<div class="offset-sm-3 col-sm-4">
-											<input type="reset" class="btn btn-block btn-danger" value="Annuler">
-										</div>
-
-										<div class="offset-sm-1 col-sm-4">
-											<button type="submit" class="btn btn-block btn-primary">Enregistrer</button>
-										</div>
-									</div>
-								</form>
-
-							</div>
+                                            @error('password_confirmation')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
 
-							<!-- /.tab-pane -->
-							{{-- <div class="tab-pane" id="timeline">
+
+                                    <div class="row">
+                                        <div class="offset-sm-3 col-sm-4">
+                                            <input type="reset" class="btn btn-block btn-danger" value="Annuler">
+                                        </div>
+
+                                        <div class="offset-sm-1 col-sm-4">
+                                            <button type="submit" class="btn btn-block btn-primary">Enregistrer</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+
+                            <!-- /.tab-pane -->
+                            {{-- <div class="tab-pane" id="timeline">
 								<!-- The timeline -->
 								<div class="timeline timeline-inverse">
 									<!-- timeline time label -->
@@ -173,7 +183,7 @@
 										<div class="timeline-item">
 											<span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
 
-											<h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted
+											<h3 class="border-0 timeline-header"><a href="#">Sarah Young</a> accepted
 												your friend request
 											</h3>
 										</div>
@@ -231,160 +241,177 @@
 									</div>
 								</div>
 							</div> --}}
-							<!-- /.tab-pane -->
+                            <!-- /.tab-pane -->
 
 
 
-							<div class="tab-pane active" id="settings">
+                            <div class="tab-pane active" id="settings">
 
-								<!-- formulaire de modiffication de profile -->
-								<form class="form-horizontal" action="{{route('users.update',$user->id)}}"
-									method="POST">
-									@csrf
-									@method('PATCH')
-									{{-- login --}}
-									<div class="form-group row">
-										<label for="inputName" class="col-sm-2 col-form-label">Login</label>
-										<div class="col-sm-10">
-											<input type="text" name="login" value="{{$user->login}}"
-												class="form-control @error('login') is-invalid @enderror"
-												id="inputName">
+                                <!-- formulaire de modiffication de profile -->
+                                <form class="form-horizontal" action="{{route('users.update',$user->id)}}"
+                                    method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    {{-- login --}}
+                                    <div class="form-group row">
+                                        <label for="inputName" class="col-sm-2 col-form-label">Login</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="login" value="{{$user->login}}"
+                                                class="form-control @error('login') is-invalid @enderror"
+                                                id="inputName">
 
-											@error('login')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
-										</div>
+                                            @error('login')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
-									</div>
+                                    </div>
 
-									{{-- nom --}}
-									<div class="form-group row">
-										<label for="nom" class="col-sm-2 col-form-label">Nom</label>
-										<div class="col-sm-10">
-											<input type="text" name="nom"
-												class="form-control @error('nom') is-invalid @enderror" id="nom"
-												value="{{ $user->nom}}">
+                                    {{-- nom --}}
+                                    <div class="form-group row">
+                                        <label for="nom" class="col-sm-2 col-form-label">Nom</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="nom"
+                                                class="form-control @error('nom') is-invalid @enderror" id="nom"
+                                                value="{{ $user->nom}}">
 
-											@error('nom')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
+                                            @error('nom')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
 
 
-										</div>
-									</div>
+                                        </div>
+                                    </div>
 
-									{{-- prenoms --}}
-									<div class="form-group row">
-										<label for="prenoms" class="col-sm-2 col-form-label">Prenoms</label>
-										<div class="col-sm-10">
-											<input type="text" name="prenoms"
-												class="form-control @error('prenoms') is-invalid @enderror" id="prenoms"
-												value="{{ $user->prenoms}}">
+                                    {{-- prenoms --}}
+                                    <div class="form-group row">
+                                        <label for="prenoms" class="col-sm-2 col-form-label">Prenoms</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="prenoms"
+                                                class="form-control @error('prenoms') is-invalid @enderror" id="prenoms"
+                                                value="{{ $user->prenoms}}">
 
-											@error('prenoms')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
-										</div>
-									</div>
+                                            @error('prenoms')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-									{{-- tel1 --}}
-									<div class="form-group row">
-										<label for="tel1" class="col-sm-2 col-form-label">Contact 1</label>
-										<div class="col-sm-10">
-											<input type="tel" name="tel1"
-												class="form-control @error('tel1') is-invalid @enderror" id="tel1"
-												value="{{ $user->tel1}}">
+                                    {{-- tel1 --}}
+                                    <div class="form-group row">
+                                        <label for="tel1" class="col-sm-2 col-form-label">Contact 1</label>
+                                        <div class="col-sm-10">
+                                            <input type="tel" name="tel1"
+                                                class="form-control @error('tel1') is-invalid @enderror" id="tel1"
+                                                value="{{ $user->tel1}}">
 
-											@error('tel1')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
+                                            @error('tel1')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
 
-										</div>
-									</div>
+                                        </div>
+                                    </div>
 
-									{{-- tel2 --}}
-									<div class="form-group row">
-										<label for="tel2" class="col-sm-2 col-form-label">Contact 2</label>
-										<div class="col-sm-10">
-											<input type="tel" name="tel2"
-												class="form-control @error('tel2') is-invalid @enderror" id="tel2"
-												value="{{ $user->tel2}}">
+                                    {{-- tel2 --}}
+                                    <div class="form-group row">
+                                        <label for="tel2" class="col-sm-2 col-form-label">Contact 2</label>
+                                        <div class="col-sm-10">
+                                            <input type="tel" name="tel2"
+                                                class="form-control @error('tel2') is-invalid @enderror" id="tel2"
+                                                value="{{ $user->tel2}}">
 
-											@error('tel2')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
+                                            @error('tel2')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
 
-										</div>
-									</div>
+                                        </div>
+                                    </div>
 
-									{{-- genre --}}
-									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">Genre</label>
-										<div class="col-sm-10">
-											<select required
-												class="form-control select2 @error('genre') is-invalid @enderror"
-												name="genre" style="width: 100%;">
-												<option selected="selected" value="Mme">Mme</option>
-												<option value="Mlle">Mlle</option>
-												<option value="M">M</option>
-											</select>
-											@error('genre')
-											<span class="text-danger"
-												style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-												<strong>{{$message}} </strong>
-											</span>
-											@enderror
+                                    {{-- genre --}}
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Genre</label>
+                                        <div class="col-sm-10">
+                                            <select required
+                                                class="form-control select2 @error('genre') is-invalid @enderror"
+                                                name="genre" style="width: 100%;">
+                                                <option selected="selected" value="Mme">Mme</option>
+                                                <option value="Mlle">Mlle</option>
+                                                <option value="M">M</option>
+                                            </select>
+                                            @error('genre')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{$message}} </strong>
+                                            </span>
+                                            @enderror
 
-										</div>
-									</div>
+                                        </div>
+                                    </div>
 
-									{{-- role --}}
-									<div class="form-group row">
-										<label for="inputSkills"
-											class="col-sm-2 col-form-label @error('role_id') is-invalid @enderror">Role</label>
-										<div class="col-sm-10">
-											{{-- name="role_id" --}}
-											<input type="text" class="form-control" value="1" id="inputSkills" disabled>
-										</div>
-									</div>
+                                    {{-- role --}}
+                                    <div class="form-group row">
+                                        <label for="inputSkills"
+                                            class="col-sm-2 col-form-label @error('role_id') is-invalid @enderror">Role</label>
+                                        <div class="col-sm-10">
+                                            {{-- name="role_id" --}}
+                                            @if (Auth::user()->login === $user->login)
 
-									<div class="row">
-										<div class="offset-sm-2 col-sm-4">
-											<input type="reset" class="btn btn-block btn-danger" value="Annuler">
-										</div>
+                                            @dump($roles)
+                                            <input type="text" class="form-control"
+                                                value="{{format_no_array($user->roles->pluck('name'))}}"
+                                                id="inputSkills" disabled>
+                                            @endif
+                                            @role('admin|super-admin')
+                                            <select required class="form-control select2" name="role"
+                                                style="width: 100%;">
+                                                @foreach ($roles as $role)
+                                                <option @if ($loop->first) selected="selected" @endif
+                                                    value="{{$role->name}}"> {{$role->name}}
+                                                </option> @endforeach
 
-										<div class="offset-sm-1 col-sm-4">
-											<button type="submit" class="btn btn-block btn-primary">Enregistrer</button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<!-- /.tab-pane -->
-						</div>
-						<!-- /.tab-content -->
-					</div><!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div><!-- /.container-fluid -->
+                                            </select>
+                                            @endrole
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="offset-sm-2 col-sm-4">
+                                            <input type="reset" class="btn btn-block btn-danger" value="Annuler">
+                                        </div>
+
+                                        <div class="offset-sm-1 col-sm-4">
+                                            <button type="submit" class="btn btn-block btn-primary">Enregistrer</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 @endsection
@@ -463,7 +490,7 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 	//Initialize Select2 Elements
 	$('.select2').select2()
 
@@ -596,48 +623,4 @@
   }
   // DropzoneJS Demo Code End
 </script>
-{{-- message flash enregistrement --}}
-@if (session('success'))
-<script>
-	$(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		}); 
-		
-		$(function() {
-			Toast.fire({
-				icon: 'success',
-				title: 'Action Effectuée!'
-			})
-		});
-	});
-</script>
-@endif
-
-@if (session('error'))
-<script>
-	$(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		}); 
-		
-		$(function() {
-			Toast.fire({
-				icon: 'error',
-				title: 'Une erreur s\'est produite!'
-			})
-		});
-	});
-</script>
-@endif
-
-
 @endpush

@@ -21,7 +21,7 @@ Route::group(
 
 
         // Parametrage
-        Route::group(['prefix' => 'parametrage'], function () {
+        Route::group(['prefix' => 'parametrage', 'middleware' => ['role:admin|super-admin']], function () {
             Route::resource('articles', 'ArticleController');
             Route::resource('categorieArticles', 'CategorieArticleController');
             Route::resource('clients', 'ClientController');
@@ -30,8 +30,11 @@ Route::group(
             Route::resource('typeEvenements', 'TypeEvenementsController');
             Route::resource('packages', 'PackageController');
             Route::PATCH('users.updatePassword/{user}', 'UserController@updatePassword')->name('users.updatePassword');
-            Route::resource('users', 'UserController');
             Route::resource('tarifications', 'TarificationController');
+
+            Route::group(['middleware' => ['role:admin|super-admin']], function () {
+                Route::resource('users', 'UserController');
+            });
         });
 
         Route::get('facture', function () {

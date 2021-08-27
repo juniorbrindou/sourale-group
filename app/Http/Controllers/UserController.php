@@ -70,7 +70,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::whereId($id)->first();
-        return view('parametrage.users.profile', compact('user'));
+        $roles = Role::where('name', '<>', 'super-admin')->get();
+        return view('parametrage.users.profile', compact('user', 'roles'));
     }
 
     /**
@@ -106,15 +107,18 @@ class UserController extends Controller
             'tel1.min' => 'La numérotation est passée à 10 chiffres',
             'tel2.min' => 'La numérotation est passée à 10 chiffres',
         ]);
-        User::whereId($id)->update([
+
+        $data = User::find($id);
+        $data->update([
             'login' => $request->login,
             'nom' => $request->nom,
             'prenoms' => $request->prenoms,
             'tel1' => $request->tel1,
             'tel2' => $request->tel2,
             'genre' => $request->genre,
-            'role_id' => $request->role_id,
         ]);
+        $data->removeRole($data->roles->first());
+        $data->assignRole($request->role);
 
         return redirect()->route('users.index')->with('success', 'Action Effectuée!');
     }
