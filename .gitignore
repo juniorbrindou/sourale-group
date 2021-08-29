@@ -10,5 +10,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-text.txt 
-/resources/AdminLTE-3.1.0 
+text.txt
+/resources/AdminLTE-3.1.0
+.vscode/

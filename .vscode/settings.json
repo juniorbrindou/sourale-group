@@ -4,7 +4,6 @@
   "files.exclude": {
     "resources\\views\\facture": true,
     "bootstrap": true,
-    "public": true,
     "resources\\AdminLTE-3.1.0": true,
     "resources\\js": true
   }
