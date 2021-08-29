@@ -157,7 +157,7 @@
                                             src="{{asset('storage/'.$article->article_photo)}}">
                                         @else
                                         <img alt="Avatar" class="img-perso"
-                                            src="{{asset('storage/articles/default_article100x100.png')}}">
+                                            src="{{asset('img/default_article100x100.png')}}">
                                         @endif
                                     </td>
                                     <td>{{ ucwords($article->libelle)}}</td>

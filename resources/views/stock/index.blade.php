@@ -4,71 +4,71 @@
 
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
 
-				<div class="card card-info">
-					<div class="card-header">
-						<h3 class="card-title">Etat du STOCK</h3>
-					</div>
-					<!-- /.card-header -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Etat du STOCK</h3>
+                    </div>
+                    <!-- /.card-header -->
 
-					<div class="card-body">
-						<table id="example1" class="table table-bordered">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Image</th>
-									<th>Article</th>
-									<th title="Somme de la quantité d'aticle disponible et en location">Quantité en
-										stock</th>
-									<th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach ($articles as $article)
-								<tr>
-									<td>{{$article->code}}</td>
-									<td>
-										@if($article->article_photo)
-										<img alt="Avatar" class="img-perso"
-											src="{{asset('storage/'.$article->article_photo)}}">
-										@else
-										<img alt="Avatar" class="img-perso"
-											src="{{asset('storage/articles/default_article100x100.png')}}">
-										@endif
-									</td>
-									<td>{{$article->libelle}} </td>
-									<td>{{$article->qte_en_stock}}</td>
-									<td>{{$article->qte_stocker}} </td>
-								</tr>
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Article</th>
+                                    <th title="Somme de la quantité d'aticle disponible et en location">Quantité en
+                                        stock</th>
+                                    <th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($articles as $article)
+                                <tr>
+                                    <td>{{$article->code}}</td>
+                                    <td>
+                                        @if($article->article_photo)
+                                        <img alt="Avatar" class="img-perso"
+                                            src="{{asset('storage/'.$article->article_photo)}}">
+                                        @else
+                                        <img alt="Avatar" class="img-perso"
+                                            src="{{asset('img/default_article100x100.png')}}">
+                                        @endif
+                                    </td>
+                                    <td>{{$article->libelle}} </td>
+                                    <td>{{$article->qte_en_stock}}</td>
+                                    <td>{{$article->qte_stocker}} </td>
+                                </tr>
 
-								@endforeach
+                                @endforeach
 
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>#</th>
-									<th>Image</th>
-									<th>Article</th>
-									<th title="Somme de la quantité d'aticle disponible et en location">Quantité en
-										stock</th>
-									<th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<!-- /.card-body -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Article</th>
+                                    <th title="Somme de la quantité d'aticle disponible et en location">Quantité en
+                                        stock</th>
+                                    <th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
 
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container-fluid -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 @endsection
@@ -128,7 +128,7 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
 		  "buttons": ["excel", "pdf", "print"]
@@ -147,15 +147,15 @@
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',
@@ -163,7 +163,7 @@
 			})
 		});
 	});
-	
+
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
@@ -171,15 +171,15 @@
 
 @elseif(session('error'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'error',
