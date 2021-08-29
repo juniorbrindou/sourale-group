@@ -5,14 +5,11 @@
                 <th>#</th>
                 <th>Evenement</th>
                 <th>Client</th>
-                <th>Lieu</th>
-                <th>invités</th>
-                <th>status</th>
                 <th>Net a payer</th>
                 <th>caution</th>
-                <th>Type</th>
                 <th>date début</th>
                 <th>date fin</th>
+                <th>status</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,14 +19,11 @@
                 <td>{{$evenement->id}}</td>
                 <td class="text-uppercase">{{$evenement->libelle}}</td>
                 <td>{{$evenement->client->nom}} </td>
-                <td>{{$evenement->lieu}} </td>
-                <td>{{ format_money($evenement->nbr_personne) }}</td>
-                <td><span class="badge badge-primary">{{$evenement->status}}</span> </td>
                 <td><b>{{ format_money($evenement->montant_total) }}</b> </td>
                 <td><b>{{ format_money($evenement->caution) }}</b> </td>
-                <td>{{$evenement->type_evenement->libelle}} </td>
                 <td>{{$evenement->date_debut_evenement}} </td>
                 <td>{{$evenement->date_fin_evenement}} </td>
+                <td><span class="badge badge-primary">{{$evenement->status}}</span> </td>
                 <td>
                     <a href="{{ route('locations.show', $evenement->id) }}" class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-eye"></i>
@@ -41,22 +35,6 @@
             @endforeach
 
         </tbody>
-        <tfoot>
-            <tr>
-                <th>#</th>
-                <th>Evenement</th>
-                <th>Client</th>
-                <th>Lieu</th>
-                <th>invités</th>
-                <th>status</th>
-                <th>Net a payer</th>
-                <th>caution</th>
-                <th>Type</th>
-                <th>date début</th>
-                <th>date fin</th>
-                <th></th>
-            </tr>
-        </tfoot>
     </table>
 </div>
 <!-- /.card-body -->
