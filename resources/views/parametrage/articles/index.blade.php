@@ -161,7 +161,7 @@
                                         @endif
                                     </td>
                                     <td>{{ ucwords($article->libelle)}}</td>
-                                    <td>{{$article->prix_tarification}}</td>
+                                    <td>{{ format_money($article->prix_tarification)}}</td>
                                     <td>{{$article->type_article->libelle}}</td>
                                     <td>{{$article->categorie->libelle}}</td>
                                     <td>

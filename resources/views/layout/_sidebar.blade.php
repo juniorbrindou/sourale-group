@@ -48,7 +48,7 @@
 
                 <li class="nav-item">
                     <a href="{{route('locations.index')}}"
-                        class="nav-link {{ request()->is('location*') ? 'bg-warning active' : ''}}">
+                        class="nav-link {{ request()->is('location*') ? 'bg-warning active' : '' }}">
                         <i class="fas fa-shipping-fast nav-icon"></i>
                         <p>Locations</p>
                     </a>

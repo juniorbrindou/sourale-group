@@ -369,7 +369,7 @@
 
                 <div class="card bg-light">
                     <div class="card-header">
-                        <h3 class="card-title">Location du {{date('Y-m-d à H:i')}} par <b>
+                        <h3 class="card-title">Location du {{ long_date() }} par <b>
                                 {{Auth::user()->nom}}
                                 {{Auth::user()->prenoms}}</b>
                         </h3>
@@ -395,15 +395,16 @@
                                                 Cérémonie :<b>
                                                     {{($libelle_event)??'Aucun Nom d\'évenement'}}</b>
                                                 <br>
-                                                Nombre d'Invités : <b>{{($nbr_personne) ?? 'Inconnu'}}</b><br>
+                                                Nombre d'Invités : <b>{{ ($nbr_personne) ?? 'Inconnu'}}</b><br>
                                                 Lieu : <b>{{($lieuEvenement) ??'Inconnu' }} </b><br>
-                                                Du : <b>{{ date('d-m-Y H:i:s', strtotime($date_debut_evenement)) ??'' }}
-                                                    au {{date('d-m-Y H:i:s', strtotime($date_fin_evenement)) ??'' }}
+                                                Du : <b>{{ long_date($date_debut_evenement) ??'' }} <br>
+                                                    au {{long_date($date_fin_evenement) ??'' }}
                                                 </b><br>
+                                                Durée : <b>{{ $ligne['duree_evenement'] ?? '' }}</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b>{{$caution}}F FCA</b><br>
-                                                Net A Payer : <b>{{$totalBrute}}F FCA</b>
+                                                Caution(20%) : <b>{{ format_money($caution) }}F FCA</b><br>
+                                                Net A Payer : <b>{{ format_money($totalBrute) }}F FCA</b>
                                             </div>
                                         </div>
                                     </div>
@@ -433,8 +434,8 @@
                                                     <td>{{$value['qte_article']}}
                                                     </td>
                                                     <td>{{$value['nbJour']}}</td>
-                                                    <td>{{$value['prix']}}</td>
-                                                    <td>{{$value['totalUneLigne']}}</td>
+                                                    <td>{{ format_money($value['prix']) }}</td>
+                                                    <td>{{ format_money($value['totalUneLigne']) }}</td>
                                                     <td>
                                                         <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                             class="btn btn-primary btn-md">
@@ -448,7 +449,7 @@
                                                 </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="8" class="text-center"
+                                                    <td colspan="9" class="text-center"
                                                         style="background-color: darkgrey">Aucun
                                                         enregistrement</td>
                                                 </tr>

@@ -23,15 +23,15 @@
                 <td class="text-uppercase">{{$evenement->libelle}}</td>
                 <td>{{$evenement->client->nom}} </td>
                 <td>{{$evenement->lieu}} </td>
-                <td>{{$evenement->nbr_personne}}</td>
+                <td>{{ format_money($evenement->nbr_personne) }}</td>
                 <td><span class="badge badge-primary">{{$evenement->status}}</span> </td>
-                <td><b>{{$evenement->montant_total}}</b> </td>
-                <td><b>{{$evenement->caution}}</b> </td>
+                <td><b>{{ format_money($evenement->montant_total) }}</b> </td>
+                <td><b>{{ format_money($evenement->caution) }}</b> </td>
                 <td>{{$evenement->type_evenement->libelle}} </td>
                 <td>{{$evenement->date_debut_evenement}} </td>
                 <td>{{$evenement->date_fin_evenement}} </td>
                 <td>
-                    <a href="{{ route('locations.show', $evenement->id) }}" class="btn btn-warning btn-md mr-1">
+                    <a href="{{ route('locations.show', $evenement->id) }}" class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-eye"></i>
                     </a>
                 </td>

@@ -126,7 +126,7 @@
                                         <td>{{$value['article']}}</td>
                                         <td>{{$value['qte']}}</td>
                                         <td>{{$value['categorie']}}</td>
-                                        <td>{{$value['prix']}}</td>
+                                        <td>{{format_money($value['prix'])}}</td>
                                         <td>
                                             <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                 class="btn btn-primary btn-md">

@@ -7,6 +7,7 @@
     <link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
     <title>{{ config('app.name') }}</title>
     @stack('styles')
+    <link rel="stylesheet" href="{{ asset('dist/css/style.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">

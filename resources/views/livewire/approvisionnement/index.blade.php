@@ -17,7 +17,7 @@
                 <td>{{$entree->created_at}}</td>
                 <td>{{$entree->user->nom}} </td>
                 <td>
-                    <a href="{{ route('approvisionnement.show', $entree->id) }}" class="btn btn-warning btn-md mr-1">
+                    <a href="{{ route('approvisionnement.show', $entree->id) }}" class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-eye"></i>
                     </a>
                 </td>

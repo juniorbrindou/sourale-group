@@ -4,15 +4,16 @@ namespace App\Http\Livewire\Location;
 
 use App\Articles;
 use App\Clients;
-use App\Evenements;
 use App\Location;
+use Carbon\Carbon;
+use App\Evenements;
 use Livewire\Component;
 use App\Type_evenements;
 use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
-    public $currentStep = 3;
+    public $currentStep = 1;
     public $clients;
     /*Evennement*/
     public $libelle_event;
@@ -22,6 +23,7 @@ class Create extends Component
     public $lieuEvenement;
     public $date_debut_evenement;
     public $date_fin_evenement;
+    public $duree_evenement;
 
     /* Ancien clien*/
     public $oldClient;
@@ -64,12 +66,15 @@ class Create extends Component
                 'nbJour.*' => 'Veuillez saisir le nombre de jour.',
             ]
         );
-        if (Articles::where('libelle', '=', $this->article)->get('qte_en_stock') >= $this->qte_article) {
+        if (Articles::where('libelle', '=', $this->article)->first()->qte_en_stock >= \intval($this->qte_article)) {
+            dd('tooo');
             $this->dispatchBrowserEvent('sweetAlert', [
                 'title' => 'La quantité saisie est suppérieure à  celle disponible',
                 'timer' => 5000,
                 'icon' => 'error',
             ]);
+        } else {
+            dd('ok');
         }
 
 
@@ -362,6 +367,7 @@ class Create extends Component
         $this->ligne['nbr_personne'] = $this->nbr_personne;
         $this->ligne['date_debut_evenement'] = $this->date_debut_evenement;
         $this->ligne['date_fin_evenement'] = $this->date_fin_evenement;
+        $this->ligne['duree_evenement'] = Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
 
         $this->currentStep = 3;
     }
