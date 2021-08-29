@@ -1,0 +1,19 @@
+.unactiveLocation{
+    background-color: #ffc1073d !important;
+}
+
+.unactiveStock{
+    background-color: #17a2b83d !important;
+}
+
+.unactiveApprovisionnement{
+    background-color: #28a7453d !important;
+}
+
+.unactiveDestockages{
+    background-color: #dc35453d !important;
+}
+
+.unactiveParametrage{
+    background-color: #007bff3d !important;
+}
