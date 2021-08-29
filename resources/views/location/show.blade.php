@@ -3,98 +3,98 @@
 @section('main')
 
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<!-- left column -->
-			<div class="col-md-12">
-				<div>
-					<div class="card bg-light card-success">
-						<div class="card-header">
-							<h3 class="card-title">Location du {{$entrer->created_at}}</h3>
-						</div>
-						<div class="card-body">
-							<div wire:loading.delay wire:target="submit, addDeleteLigne, resetLigne, addInBD">
-								<div class="custom-loading-spinner">
-									Patientez...
-								</div>
-							</div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div>
+                    <div class="card bg-light card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Location du {{$entrer->created_at}}</h3>
+                        </div>
+                        <div class="card-body">
+                            <div wire:loading.delay wire:target="submit, addDeleteLigne, resetLigne, addInBD">
+                                <div class="custom-loading-spinner">
+                                    Patientez...
+                                </div>
+                            </div>
 
-							<div class="row">
-								<div class="col-12">
-									<div class="card">
-										<div class="card-header">
-											<h3 class="card-title">Auteur : {{$entrer->user->nom}}
-												{{$entrer->user->prenoms}}</h3>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Auteur : {{$entrer->user->nom}}
+                                                {{$entrer->user->prenoms}}</h3>
 
-											<div class="card-tools">
-												<div class="input-group input-group-sm float-right"
-													style="width: 150px;">
-													<b>Code: {{$entrer->code}}</b>
-												</div>
-											</div>
-										</div>
-										<!-- /.card-header -->
-										<div class="card-body table-responsive p-0" style="height:500px;">
-											<table class="table table-head-fixed ">
-												<thead>
-													<tr>
-														<th>Code</th>
-														<th>Image</th>
-														<th>Libelle</th>
-														<th>Prix</th>
-														<th>Quantité Ajoutée</th>
-														<th>Catégorie</th>
-													</tr>
-												</thead>
-												<tbody>
-													@forelse ($lignes as $ligne)
-													<tr>
-														<td>{{$entrer->code}}</td>
-														<td>
+                                            <div class="card-tools">
+                                                <div class="float-right input-group input-group-sm"
+                                                    style="width: 150px;">
+                                                    <b>Code: {{$entrer->code}}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="p-0 card-body table-responsive" style="height:500px;">
+                                            <table class="table table-head-fixed ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Code</th>
+                                                        <th>Image</th>
+                                                        <th>Libelle</th>
+                                                        <th>Prix</th>
+                                                        <th>Quantité Ajoutée</th>
+                                                        <th>Catégorie</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($lignes as $ligne)
+                                                    <tr>
+                                                        <td>{{$entrer->code}}</td>
+                                                        <td>
 
-															@if($ligne->article->article_photo)
-															<img alt="Avatar" class="img-perso"
-																src="{{asset('storage/'.$ligne->article->article_photo)}}">
-															@else
-															<img alt="Avatar" class="img-perso" style="cursor:pointer"
-																src="{{asset('storage/articles/default_article100x100.png')}}">
-															@endif
-														</td>
-														<td>{{$ligne->article->libelle}}</td>
-														<td>{{$ligne->article->prix_tarification}}</td>
-														<td>{{$ligne->qte}}</td>
-														<td>{{$ligne->article->categorie->libelle}}</td>
-													</tr>
-													@empty
-													Aucune information...
-													@endforelse
-												</tbody>
-											</table>
-										</div>
+                                                            @if($ligne->article->article_photo)
+                                                            <img alt="Avatar" class="img-perso"
+                                                                src="{{asset('storage/'.$ligne->article->article_photo)}}">
+                                                            @else
+                                                            <img alt="Avatar" class="img-perso" style="cursor:pointer"
+                                                                src="{{asset('img/default_article100x100.png')}}">
+                                                            @endif
+                                                        </td>
+                                                        <td>{{$ligne->article->libelle}}</td>
+                                                        <td>{{$ligne->article->prix_tarification}}</td>
+                                                        <td>{{$ligne->qte}}</td>
+                                                        <td>{{$ligne->article->categorie->libelle}}</td>
+                                                    </tr>
+                                                    @empty
+                                                    Aucune information...
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-										<!-- /.card-body -->
-									</div>
-									<!-- /.card -->
-								</div>
-							</div>
-						</div>
-						<div class="card-footer">
-							<div class="row">
-								<div class="col-md-4 offset-4  col-sm-12">
-									<a href="{{route('location.index')}}"
-										class="btn btn-warning btn-block text-light mb-2">Retour à la liste</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /.col -->
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-md-4 offset-4 col-sm-12">
+                                    <a href="{{route('location.index')}}"
+                                        class="mb-2 btn btn-warning btn-block text-light">Retour à la liste</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
 
 
-		</div>
-		<!-- /.row -->
-	</div><!-- /.container-fluid -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </section>
 
 @endsection
@@ -171,7 +171,7 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 
 		//Initialize Select2 Elements
 		$('.select2').select2()
@@ -188,8 +188,8 @@
 	$(function () {
 	//Date and time picker
 	moment.locale('fr_fr')
-	$('#reservationdatetime').datetimepicker({ 
-		icons: { time: 'far fa-clock', 
+	$('#reservationdatetime').datetimepicker({
+		icons: { time: 'far fa-clock',
 		format:'DD/MM/YYYY HH:mm:ss',
 		format: 'LT'
 	}
@@ -262,15 +262,15 @@
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',
@@ -282,15 +282,15 @@
 
 @elseif(session('error'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'error',

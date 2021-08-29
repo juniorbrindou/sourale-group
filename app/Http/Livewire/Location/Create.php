@@ -66,44 +66,46 @@ class Create extends Component
                 'nbJour.*' => 'Veuillez saisir le nombre de jour.',
             ]
         );
-        if (Articles::where('libelle', '=', $this->article)->first()->qte_en_stock >= \intval($this->qte_article)) {
-            dd('tooo');
+
+        // si la quantité saisie est supperieur à celle en bd de l'article
+        $article = Articles::where('libelle', '=', $this->article)->first();
+        if ($article->qte_en_stock < \intval($this->qte_article)) {
             $this->dispatchBrowserEvent('sweetAlert', [
-                'title' => 'La quantité saisie est suppérieure à  celle disponible',
+                'title' => 'La quantité saisie est suppérieure à celle disponible <br>' . $article->libelle . ' = ' . $article->qte_en_stock,
                 'timer' => 5000,
                 'icon' => 'error',
             ]);
         } else {
-            dd('ok');
-        }
+            // si la quantité saisie est inférieur ou égale à celle en bd
 
-
-        if (empty($this->tabArticles)) {
-            for ($i = 0; $i < count($this->validate()); $i++) {
-            }
-        } else {
+            // si le tableau est vide
             $this->add();
         }
 
+        // if (empty($this->tabArticles)) {
+        //     for ($i = 0; $i < count($this->validate()); $i++) {
+        //     }
+        // } else {
+        //     $this->add();
+        // }
 
-
-        if (empty($this->ligne)) {
-            $this->add();
-        } else {
-            for ($i = 0; $i + 1 <= count($this->ligne); $i++) {
-                if ($this->ligne[$i]['article'] == Articles::find($this->article)->libelle) {
-                    $this->dispatchBrowserEvent('sweetAlert', [
-                        'title' => 'Cet article a déjà été selectionné',
-                        'timer' => 5000,
-                        'icon' => 'error',
-                    ]);
-                    break;
-                } else {
-                    $this->add();
-                    break;
-                }
-            }
-        }
+        // if (empty($this->ligne)) {
+        //     $this->add();
+        // } else {
+        //     for ($i = 0; $i + 1 <= count($this->ligne); $i++) {
+        //         if ($this->ligne[$i]['article'] == Articles::find($this->article)->libelle) {
+        //             $this->dispatchBrowserEvent('sweetAlert', [
+        //                 'title' => 'Cet article a déjà été selectionné',
+        //                 'timer' => 5000,
+        //                 'icon' => 'error',
+        //             ]);
+        //             break;
+        //         } else {
+        //             $this->add();
+        //             break;
+        //         }
+        //     }
+        // }
 
         //        //disponibilité de l'article dans le stock
         //        try {
@@ -149,7 +151,31 @@ class Create extends Component
         //        $this->caution = $this->totalBrute * 0.2;
     }
 
-
+    /**
+     * @return [type]
+     */
+    public function add()
+    {
+        // renvoie dans this→article le libelle
+        $article = Articles::where('libelle', '=', $this->article)->first();
+        $this->article_prix = $article->prix_tarification;
+        $this->article = $article->libelle;
+        $this->article_categorie = $article->categorie->libelle;
+        $this->totalUneLigne = $this->nbJour * $this->article_prix * $this->qte_article;
+        // unshift pour une entréé en commençant par le haut
+        array_unshift(
+            $this->tabArticles,
+            [
+                'code' => $article->code,
+                'article' => $this->article,
+                'categorie' => $this->article_categorie,
+                'qte_article' => $this->qte_article,
+                'nbJour' => $this->nbJour,
+                'prix' => $this->article_prix,
+                'totalUneLigne' => $this->totalUneLigne,
+            ]
+        );
+    }
 
 
 
@@ -221,31 +247,7 @@ class Create extends Component
 
 
 
-    /**
-     * @return [type]
-     */
-    public function add()
-    {
-        // renvoie dans this→article le libelle
-        $article = Articles::where('libelle', '=', $this->article)->first();
-        $this->article_prix = $article->prix_tarification;
-        $this->article = $article->libelle;
-        $this->article_categorie = $article->categorie->libelle;
-        $this->totalUneLigne = $this->nbJour * $this->article_prix * $this->qte_article;
-        // unshift pour une entréé en commençant par le haut
-        array_unshift(
-            $this->tabArticles,
-            [
-                'code' => $article->code,
-                'article' => $this->article,
-                'categorie' => $this->article_categorie,
-                'qte_article' => $this->qte_article,
-                'nbJour' => $this->nbJour,
-                'prix' => $this->article_prix,
-                'totalUneLigne' => $this->totalUneLigne,
-            ]
-        );
-    }
+
 
 
     /**
@@ -280,9 +282,8 @@ class Create extends Component
      */
     public function addDeleteLigne($item)
     {
-
-        unset($this->ligne[$item]);
-        $this->ligne = array_values($this->ligne);
+        unset($this->tabArticles[$item]);
+        $this->tabArticles = array_values($this->tabArticles);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
         $this->caution = $this->totalBrute * 0.2;
     }

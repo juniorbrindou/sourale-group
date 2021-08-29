@@ -57,7 +57,7 @@
                                                                 src="{{asset('storage/'.$ligne->article->article_photo)}}">
                                                             @else
                                                             <img alt="Avatar" class="img-perso" style="cursor:pointer"
-                                                                src="{{asset('storage/articles/default_article100x100.png')}}">
+                                                                src="{{asset('img/default_article100x100.png')}}">
                                                             @endif
                                                         </td>
                                                         <td>{{$ligne->article->libelle}}</td>
