@@ -7,11 +7,6 @@
             <b>{{ $user->nom}}</b>
         </h3>
 
-
-
-
-
-
     </div>
     <div class="card-body">
         <div wire:loading.delay wire:target="submit, addDeleteLigne, resetLigne, addInBD">
@@ -24,8 +19,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-
-
 
                         <br>
                         <div class="row">
@@ -92,7 +85,6 @@
                                         </button>
                                     </td>
                                 </tr>
-
                                 @empty
                                 Aucune information...
                                 @endforelse
@@ -100,7 +92,6 @@
                         </table>
 
                     </div>
-
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -110,8 +101,9 @@
     <div class="card-footer">
         <div class="row">
             <div class="col-md-4 offset-4 col-sm-12">
-                <a href="{{route('locations.index')}}" class="mb-2 btn btn-warning btn-block text-light">Retour à la
-                    liste</a>
+                <a href="{{route('locations.index')}}" class="mb-2 btn btn-warning btn-block text-light">
+                    Retour à la liste
+                </a>
             </div>
         </div>
     </div>

@@ -2,15 +2,15 @@
     <table id="example1" class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Evenement</th>
-                <th>Client</th>
-                <th>Net a payer</th>
-                <th>caution</th>
-                <th>date début</th>
-                <th>date fin</th>
-                <th>status</th>
-                <th></th>
+                <th width="1%">#</th>
+                <th width="*%">Evenement</th>
+                <th width="*%">Client</th>
+                <th width="5%">Net a payer</th>
+                <th width="5%">caution</th>
+                <th width="10%">date début</th>
+                <th width="10%">date fin</th>
+                <th width="5%">status</th>
+                <th width="*%"></th>
             </tr>
         </thead>
         <tbody>
@@ -34,11 +34,8 @@
                         <i class="fa fa-file-pdf"></i>
                     </a>
                 </td>
-
             </tr>
-
             @endforeach
-
         </tbody>
     </table>
 </div>
