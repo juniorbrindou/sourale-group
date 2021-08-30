@@ -121,7 +121,7 @@
                                 <tbody>
                                     @forelse ($ligne as $item=>$value)
                                     <tr>
-                                        <td>{{$item}}</td>
+                                        <td>{{$item+1}}</td>
                                         <td>{{$value['code']}}</td>
                                         <td>{{$value['article']}}</td>
                                         <td>{{$value['qte']}}</td>
