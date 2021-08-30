@@ -38,7 +38,7 @@ class Create extends Component
     public $article_prix;
     public $qte_article;
     public $article_categorie;
-    public $nbJour;
+    public $nb_jour;
     public $article_code;
     /* Location */
     public $code = 150;
@@ -58,12 +58,12 @@ class Create extends Component
             [
                 'article' => 'required|string|min:2',
                 'qte_article' => 'required',
-                'nbJour' => 'required',
+                'nb_jour' => 'required',
             ],
             [
                 'article.*' => 'Veuillez selectionner un article.',
                 'qte_article.*' => 'Veuillez saisir la quantité.',
-                'nbJour.*' => 'Veuillez saisir le nombre de jour.',
+                'nb_jour.*' => 'Veuillez saisir le nombre de jour.',
             ]
         );
 
@@ -167,7 +167,7 @@ class Create extends Component
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
-        $this->totalUneLigne = $this->nbJour * $this->article_prix * $this->qte_article;
+        $this->totalUneLigne = $this->nb_jour * $this->article_prix * $this->qte_article;
         // unshift pour une entrée en commençant par le haut
         array_unshift(
             $this->tabArticles,
@@ -176,7 +176,7 @@ class Create extends Component
                 'article' => $this->article,
                 'categorie' => $this->article_categorie,
                 'qte_article' => $this->qte_article,
-                'nbJour' => $this->nbJour,
+                'nb_jour' => $this->nb_jour,
                 'prix' => $this->article_prix,
                 'totalUneLigne' => $this->totalUneLigne,
             ]
@@ -241,7 +241,7 @@ class Create extends Component
                         'evenement_id' => $evenement->id,
                         'article_id' => $article_id,
                         'client_id' => $client->id,
-                        'nbJour' => $this->nbJour,
+                        'nb_jour' => $this->nb_jour,
                     ]
                 );
             }
@@ -271,7 +271,7 @@ class Create extends Component
         $data = $this->tabArticles[$item];
         $this->article = $data['article'];
         $this->qte_article = $data['qte_article'];
-        $this->nbJour = $data['nbJour'];
+        $this->nb_jour = $data['nb_jour'];
         $this->addDeleteLigne($item);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
         $this->caution = $this->totalBrute * 0.2;

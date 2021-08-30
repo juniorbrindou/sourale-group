@@ -26,7 +26,7 @@
                 <td>{{ long_date($evenement->date_fin_evenement) }} </td>
                 <td><span class="badge badge-primary">{{$evenement->status}}</span> </td>
                 <td>
-                    <a title="Voir l'évènement" href="{{ route('evenements.show', $evenement->id) }}"
+                    <a title="Voir l'évènement" href="{{ route('locations.show', $evenement->id) }}"
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-eye"></i>
                     </a>

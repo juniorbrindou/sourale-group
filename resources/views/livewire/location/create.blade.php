@@ -323,15 +323,15 @@
                         </div>
 
 
-                        {{-- nbJour --}}
+                        {{-- nb_jour --}}
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="nbJour">Jours</label>
-                                <input type="number" min="1" wire:model.defer="nbJour"
-                                    class="form-control @error('nbJour') is-invalid @enderror" id="nbJour"
+                                <label for="nb_jour">Jours</label>
+                                <input type="number" min="1" wire:model.defer="nb_jour"
+                                    class="form-control @error('nb_jour') is-invalid @enderror" id="nb_jour"
                                     placeholder="Entrez le nombre de jours">
                             </div>
-                            @error('nbJour')
+                            @error('nb_jour')
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                 role="alert">
                                 <strong>{{ $message }}</strong>
@@ -433,7 +433,7 @@
                                                     <td>{{$value['categorie']}}</td>
                                                     <td>{{$value['qte_article']}}
                                                     </td>
-                                                    <td>{{$value['nbJour']}}</td>
+                                                    <td>{{$value['nb_jour']}}</td>
                                                     <td>{{ format_money($value['prix']) }}</td>
                                                     <td>{{ format_money($value['totalUneLigne']) }}</td>
                                                     <td>

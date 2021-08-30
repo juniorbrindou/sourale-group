@@ -6,6 +6,24 @@ use Carbon\Carbon;
  * Fonction utili
  **/
 
+if (!function_exists('total_ligne')) {
+    /**
+     * calcule le totale de chaque ligne
+     * @param float $quantite
+     * @param float $nb_jours
+     * @param float $prix_unitaire
+     *
+     * @return [type]
+     */
+    function total_ligne(float $quantite, float $nb_jours, float $prix_unitaire)
+    {
+        $total = $quantite * $nb_jours * $prix_unitaire;
+        return $total;
+    }
+}
+
+
+
 if (!function_exists('long_date')) {
     /**
      * retourne la date au format humain de carbone

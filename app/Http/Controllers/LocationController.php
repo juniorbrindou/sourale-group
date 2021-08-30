@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use App\Evenements;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -47,8 +48,13 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        $location = Location::whereId($id)->firstOrFail();
-        return view('location.show', compact('location'));
+        $evenement = Evenements::whereId($id)->firstOrFail();
+        return view('location.show', compact('evenement'));
+
+        /** plus tard penser corriger : afficher la liste des evennement et non des location
+         *   il sagit de la table evennement qui est gérée et non la table location
+         *   la location n'est qu'une table pivot entre article et evennement
+         */
     }
 
     /**
