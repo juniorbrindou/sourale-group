@@ -7,7 +7,7 @@
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
-                <livewire:location.show :location="$location" />
+                <livewire:evennement.show :evennement="$evennement" />
             </div>
             <!-- /.col -->
 

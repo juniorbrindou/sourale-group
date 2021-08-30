@@ -18,6 +18,7 @@ Route::group(
         Route::get('stock', 'StockController@index');
         Route::post('locationsCreateClient', 'LocationController@locationsCreateClient')->name('locationsCreateClient');
         Route::resource('locations', 'LocationController');
+        Route::resource('evennements', 'EvennementController');
 
 
         // Parametrage

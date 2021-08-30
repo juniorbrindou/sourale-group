@@ -17,10 +17,9 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->integer('qte_loue');
             $table->integer('qte_retour')->nullable();
-            $table->float('prix_unitaire')->nullable();
-            $table->integer('status')->default(0)->comment('0:etatt initial pas de destockage, 1 : Validation. Appliquer le destockage, 2 : le retour de stock. restokage');
-            $table->date('date_location')->nullable();
-            $table->date('date_retour')->nullable();
+            $table->string('status')->default('Enregistré')->comment('0:Enregistré, 1:En Cours, 2:Terminé');
+            $table->timestamp('date_location')->nullable();
+            $table->timestamp('date_retour')->nullable();
 
             $table->integer('user_id')->unsigned();
             $table->integer('article_id')->unsigned();

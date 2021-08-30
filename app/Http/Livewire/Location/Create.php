@@ -78,8 +78,12 @@ class Create extends Component
         } else {
             // si la quantité saisie est inférieur ou égale à celle en bd
 
-            // si le tableau est vide
+            // si le tableau est vide l'onclic sur ajouter
+            // ajout dans la liste frontend
             $this->add();
+            // calcul totalBrute et caution
+            $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
+            $this->caution = $this->totalBrute * 0.2;
         }
 
         // if (empty($this->tabArticles)) {
@@ -156,13 +160,15 @@ class Create extends Component
      */
     public function add()
     {
-        // renvoie dans this→article le libelle
+        // renvoie dans this→article le model article
         $article = Articles::where('libelle', '=', $this->article)->first();
+
+        // recupération des iformation l'article en bd
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
         $this->totalUneLigne = $this->nbJour * $this->article_prix * $this->qte_article;
-        // unshift pour une entréé en commençant par le haut
+        // unshift pour une entrée en commençant par le haut
         array_unshift(
             $this->tabArticles,
             [
@@ -192,6 +198,7 @@ class Create extends Component
      */
     public function addInBD()
     {
+        // dd($this->tabArticles);
         if (!empty($this->tabArticles)) { // creation du client
             if ($this->ligne['isNew']) {
                 $client = Clients::create(
@@ -240,6 +247,12 @@ class Create extends Component
             }
             $this->resetLigne();
             return redirect()->route('locations.index');
+        } else {
+            $this->dispatchBrowserEvent('sweetAlert', [
+                'title' => 'Aucun article choisi',
+                'timer' => 5000,
+                'icon' => 'error',
+            ]);
         }
     }
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     protected $fillable = [
-        'code', 'libelle', 'description', 'qte_loue', 'qte_retour', 'date_location', 'date_retour', 'user_id', 'article_id', 'evenement_id', 'client_id'
+        'code', 'libelle', 'description', 'qte_loue', 'qte_retour', 'date_location', 'date_retour', 'user_id', 'article_id', 'evenement_id', 'client_id', 'status'
     ];
 
     /**
@@ -43,7 +43,7 @@ class Location extends Model
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Clients::class);
     }
 
     /**

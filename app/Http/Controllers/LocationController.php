@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -46,7 +47,8 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = Location::whereId($id)->firstOrFail();
+        return view('location.show', compact('location'));
     }
 
     /**

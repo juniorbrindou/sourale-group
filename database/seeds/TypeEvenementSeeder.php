@@ -14,7 +14,7 @@ class TypeEvenementSeeder extends Seeder
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        $datas = ['Mariage', 'Bapteme', 'Divorce'];
+        $datas = ['Mariage', 'Bapteme', 'Divorce', 'Fête de la Musique', 'Conférence', 'Sortie de bébé'];
 
         Type_evenements::truncate();
 
