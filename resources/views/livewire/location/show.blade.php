@@ -317,9 +317,9 @@
 
                 <div class="card bg-light">
                     <div class="card-header">
-                        <h3 class="card-title">Location du {{ long_date() }} par <b>
-                                {{Auth::user()->nom}}
-                                {{Auth::user()->prenoms}}</b>
+                        <h3 class="card-title">Location créee le {{ $evenement->date_debut_evenement }} par <b>
+                                {{$user->nom}}
+                                {{$user->prenoms}}</b>
                         </h3>
                     </div>
                     <div class="card-body">
@@ -335,24 +335,24 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <b>{{$ligne['nom'] ?? 'Aucun Nom'}}</b> <br>
-                                                <b>{{$ligne['contact1']?? 'Aucun Numéro'}}</b><br>
-                                                <b>{{$ligne['adresse'] ?? 'Aucune Adresse'}}</b>
+                                                <b>{{$client->nom ?? 'Aucun Nom'}}</b> <br>
+                                                <b>{{$client->contact1?? 'Aucun Numéro'}}</b><br>
+                                                <b>{{$client->adresse ?? 'Aucune Adresse'}}</b>
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
-                                                    {{($libelle_event)??'Aucun Nom d\'évenement'}}</b>
+                                                    {{$evenement->libelle ??'Aucun Nom d\'évenement'}}</b>
                                                 <br>
-                                                Nombre d'Invités : <b>{{ ($nbr_personne) ?? 'Inconnu'}}</b><br>
-                                                Lieu : <b>{{($lieuEvenement) ??'Inconnu' }} </b><br>
-                                                Du : <b>{{ long_date()??'' }} <br>
-                                                    au {{long_date() ??'' }}
+                                                Nombre d'Invités : <b>{{ $evenement->nbr_personne ?? 'Inconnu'}}</b><br>
+                                                Lieu : <b>{{($evenement->lieu) ??'Inconnu' }} </b><br>
+                                                Du : <b>{{ long_date($evenement->date_debut_evenement)??'' }} <br>
+                                                    au {{long_date($evenement->date_fin_evenement) ??'' }}
                                                 </b><br>
-                                                Durée : <b>{{ $ligne['duree_evenement'] ?? '' }}</b>
+                                                Durée : <b>{{ $evenement->nb_jour ?? '' }} jour(s)</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> F FCA</b><br>
-                                                Net A Payer : <b>F FCA</b>
+                                                Caution(20%) : <b> {{$evenement->caution}} F FCA</b><br>
+                                                Net A Payer : <b>{{$evenement->montant_total}} F FCA</b>
                                             </div>
                                         </div>
                                     </div>
@@ -362,7 +362,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Code</th>
                                                     <th>Article</th>
                                                     <th>Catégorie</th>
                                                     <th>Quantité</th>
@@ -373,15 +372,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($tab_locations as $item=>$value)
+                                                @forelse ($tab_locations as $item=>$location)
                                                 <tr>
                                                     <td>{{$item+1}}</td>
-                                                    <td>{{$value['code']}}</td>
-                                                    <td>{{$value['article']}}</td>
-                                                    <td>{{$value['categorie']}}</td>
-                                                    <td>{{$value['qte_article']}}
+                                                    <td>{{$location->article->libelle}}</td>
+                                                    <td>{{$location->article->categorie->libelle}}</td>
+                                                    <td>{{$location->qte_loue}}</td>
+                                                    <td>{{$location->evenement->nb_jour}}</td>
+                                                    <td>{{$location->article->prix_tarification}}
                                                     </td>
-                                                    <td>{{$value['nb_jour']}}</td>
                                                     <td>dsds</td>
                                                     <td>dsds</td>
                                                     <td>
