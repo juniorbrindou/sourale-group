@@ -8,7 +8,6 @@
                 <th width="5%">Net a payer</th>
                 <th width="5%">caution</th>
                 <th width="10%">date début</th>
-                <th width="10%">date fin</th>
                 <th width="5%">status</th>
                 <th width="*%"></th>
             </tr>
@@ -22,8 +21,7 @@
                 <td title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
                     <b>{{ format_money($evenement->montant_total) }}</b> </td>
                 <td><b>{{ format_money($evenement->caution) }}</b> </td>
-                <td>{{ long_date($evenement->date_debut_evenement) }} </td>
-                <td>{{ long_date($evenement->date_fin_evenement) }} </td>
+                <td>{{ $evenement->date_debut_evenement }} </td>
                 <td><span class="badge badge-primary">{{$evenement->status}}</span> </td>
                 <td>
                     <a title="Voir l'évènement" href="{{ route('locations.show', $evenement->id) }}"
