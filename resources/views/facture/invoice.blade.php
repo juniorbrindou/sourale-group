@@ -347,8 +347,8 @@
         <div id="header">
             <div id="reference">
                 <h3><strong>Facture</strong></h3>
-                <h4>Réf. : FA2108-00001</h4>
-                <p>Date facturation : 20/08/2021</p>
+                <h4>Réf. : {{$facture->code}}</h4>
+                <p>Date facturation : {{$facture->date_creation}}</p>
             </div>
         </div>
 

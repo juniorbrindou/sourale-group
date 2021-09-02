@@ -7,6 +7,7 @@ use App\Clients;
 use App\Location;
 use Carbon\Carbon;
 use App\Evenements;
+use App\Factures;
 use Livewire\Component;
 use App\Type_evenements;
 use Illuminate\Support\Facades\Auth;
@@ -229,6 +230,18 @@ class Create extends Component
                     'nb_jour' => Carbon::parse($this->date_debut_evenement)->DiffInDays($this->date_fin_evenement)
                 ]
             );
+
+            $facture = Factures::create(
+                [
+                    "date_creation" => date('d-m-Y'),
+                    "caution" => $this->caution,
+                    "user_id" => Auth::user()->id,
+                    "evenement_id" => $evenement->id,
+                ]
+            );
+
+            $facture->update(['code' => 'FA' . date('ym') . '-' . $facture->id]);
+
             foreach ($this->tabArticles as $value) {
                 $article = Articles::whereLibelle($value['article'])->first();
                 $article_id = $article->id;

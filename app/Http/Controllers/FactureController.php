@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use App\Evenements;
+use App\Factures;
 use Illuminate\Http\Request;
 
 class FactureController extends Controller
@@ -19,7 +20,7 @@ class FactureController extends Controller
         $evenement = Evenements::whereId($id)->firstOrFail();
         $tab_locations = Location::where('evenement_id', '=', $evenement->id)->get();
         $client = $tab_locations[0]->client;
-
+        $facture = Factures::where('evenement_id', '=', $id)->firstOrFail();
         $totalBrute = 0;
 
 
@@ -33,6 +34,6 @@ class FactureController extends Controller
         // $caution = $this->totalBrute * 0.2;
 
 
-        return view('facture.invoice', compact('evenement', 'client', 'tab_locations', 'totalBrute'));
+        return view('facture.invoice', compact('evenement', 'client', 'tab_locations', 'totalBrute', 'facture'));
     }
 }
