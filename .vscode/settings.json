@@ -6,6 +6,11 @@
     "resources\\AdminLTE-3.1.0": true,
     "resources\\js": true,
     "config": true,
+<<<<<<< HEAD
+=======
+    "database": true,
+    "public": true,
+>>>>>>> 3f86e0bc152ab1821c5380ec803f255305873ae2
     "resources\\views\\parametrage": true
   }
 }
