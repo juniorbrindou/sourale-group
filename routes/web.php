@@ -36,6 +36,7 @@ Route::group(
         Route::post('locationsCreateClient', 'LocationController@locationsCreateClient')->name('locationsCreateClient');
         Route::resource('locations', 'LocationController');
         Route::resource('evennements', 'EvennementController');
+        Route::get('facture/{id}', 'FactureController@show')->name('facture.show');
 
 
         // Parametrage
@@ -53,10 +54,6 @@ Route::group(
         Route::group(['prefix' => 'parametrage'], function () {
             Route::resource('users', 'UserController');
             Route::PATCH('users.updatePassword/{user}', 'UserController@updatePassword')->name('users.updatePassword');
-        });
-
-        Route::get('facture', function () {
-            return view('facture.index');
         });
 
         Route::fallback(function () {

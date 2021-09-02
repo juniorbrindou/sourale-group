@@ -226,6 +226,7 @@ class Create extends Component
                     'type_evenement_id' => $this->type_evenement_id,
                     'montant_total' => $this->totalBrute,
                     'status' => 'EN COURS',
+                    'nb_jour' => Carbon::parse($this->date_debut_evenement)->DiffInDays($this->date_fin_evenement)
                 ]
             );
             foreach ($this->tabArticles as $value) {
@@ -242,6 +243,7 @@ class Create extends Component
                         'article_id' => $article_id,
                         'client_id' => $client->id,
                         'nb_jour' => $this->nb_jour,
+                        'total_une_ligne' => $value['totalUneLigne'],
                     ]
                 );
             }
