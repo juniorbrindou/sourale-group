@@ -5,7 +5,6 @@
     "bootstrap": true,
     "resources\\AdminLTE-3.1.0": true,
     "resources\\js": true,
-    "config": true,
     "database": true,
     "public": true,
     "resources\\views\\parametrage": true
