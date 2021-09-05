@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clients;
+use App\Evenements;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,9 +64,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Clients $client)
     {
-        //
+        $evenements = Evenements::where('client_id', '=', $client->id)->orderBy('id', 'desc')->get();
+        return \view('parametrage.clients.show', \compact('client', 'evenements'));
     }
 
     /**
