@@ -67,7 +67,14 @@ class ClientController extends Controller
     public function show(Clients $client)
     {
         $evenements = Evenements::where('client_id', '=', $client->id)->orderBy('id', 'desc')->get();
-        return \view('parametrage.clients.show', \compact('client', 'evenements'));
+        $max = $evenements->max('montant_total');
+        $bestEvenement = $evenements->where('montant_total', '=', $max)->first();
+        $gainTotal = 0;
+        foreach ($evenements->pluck('montant_total') as $value) {
+            $gainTotal += $value;
+        }
+
+        return \view('parametrage.clients.show', \compact('client', 'evenements', 'gainTotal', 'bestEvenement'));
     }
 
     /**

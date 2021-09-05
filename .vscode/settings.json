@@ -5,6 +5,7 @@
     "bootstrap": true,
     "resources\\js": true,
     "database": true,
-    "public": true
+    "public": true,
+    "resources\\AdminLTE-3.1.0": true
   }
 }

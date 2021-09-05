@@ -18,13 +18,17 @@
 
                         <ul class="mb-3 list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Nombre d'événments</b> <a class="float-right"> {{$evenements->count()}}</a>
+                                <b>Nombre d'événments</b> <a class="float-right text-bold"> {{$evenements->count()}}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Total de gain</b> <a class="float-right">543</a>
+                                <b>Meilleur gain</b>
+                                <a class="float-right text-bold">
+                                    {{ $bestEvenement->montant_total ?? '0' }} F CFA
+                                </a>
                             </li>
                             <li class="list-group-item">
-                                <b>Friends</b> <a class="float-right">13,287</a>
+                                <b>Total de gain</b> <a class="float-right text-bold">{{format_money($gainTotal)}} F
+                                    CFA</a>
                             </li>
                         </ul>
                     </div>
@@ -57,7 +61,7 @@
                                     <!-- /.timeline-label -->
                                     <!-- timeline item -->
                                     <div>
-                                        <i class="far fa-clock bg-primary"></i>
+                                        <i class="far fa-clock bg-warning"></i>
 
                                         <div class="timeline-item">
 
@@ -68,8 +72,8 @@
                                             <div class="timeline-body">
                                                 <p>{{$evenement->libelle}} à {{$evenement->lieu}}</p>
                                                 <p>
-                                                    Caution : {{$evenement->caution}} <br>
-                                                    Montant Total : {{$evenement->montant_total}}
+                                                    Caution : {{$evenement->caution}} F CFA <br>
+                                                    Montant Total : {{$evenement->montant_total}} F CFA
                                                 </p>
                                             </div>
                                             <div class="timeline-footer">
@@ -121,7 +125,6 @@
 <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
