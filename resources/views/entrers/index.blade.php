@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Liste des Approvisionnements de stock</h3>
 
-                        <a href="{{ route('approvisionnement.create')}}" class="btn float-right  btn-md bg-dark">
+                        <a href="{{ route('approvisionnement.create')}}" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>
                             Ajouter
                         </a>
@@ -91,7 +91,8 @@
     $(function () {
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
-		  "buttons": ["excel", "pdf", "print"]
+		  "buttons": ["excel", "pdf", "print"],
+          "order": [0,'desc']
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		$('#example2').DataTable({
 		  "paging": true,

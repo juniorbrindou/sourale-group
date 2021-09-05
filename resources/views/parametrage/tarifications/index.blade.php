@@ -4,51 +4,42 @@
 
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
 
-				<div class="card card-primary">
-					<div class="card-header">
-						<h3 class="card-title">Liste des Prix </h3>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Prix</th>
-									<th>Type d'article</th>
-									<th>Categorie de l'article</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des Prix </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Prix</th>
+                                    <th>Type d'article</th>
+                                    <th>Categorie de l'article</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-								<livewire:tarification.index />
+                                <livewire:tarification.index />
 
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>#</th>
-									<th>Prix</th>
-									<th>Type d'article</th>
-									<th>Categorie de l'article</th>
-									<th></th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container-fluid -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 @endsection
@@ -106,10 +97,11 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
-		  "buttons": ["excel", "pdf", "print"]
+		  "buttons": ["excel", "pdf", "print"],
+          "order": [0,'desc']
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		$('#example2').DataTable({
 		  "paging": true,
@@ -125,7 +117,7 @@
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',

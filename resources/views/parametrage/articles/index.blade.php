@@ -136,6 +136,7 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Code</th>
                                     <th>Image</th>
                                     <th>Libéllé</th>
@@ -149,6 +150,7 @@
 
                                 @foreach ($articles as $article)
                                 <tr>
+                                    <td>{{$article->id}}</td>
                                     <td>{{$article->code}}</td>
 
                                     <td>
@@ -351,17 +353,6 @@
                                 @endforeach
 
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Code</th>
-                                    <th>Image</th>
-                                    <th>Libéllé</th>
-                                    <th>Prix</th>
-                                    <th>Type</th>
-                                    <th>Categorie</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -495,7 +486,8 @@
     $(function () {
 			$("#example1").DataTable({
 			"responsive": true, "lengthChange": true, "autoWidth": false,
-			"buttons": ["excel", "pdf", "print"]
+			"buttons": ["pdf", "print"],
+            "order": [0,'desc']
 			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 			$('#example2').DataTable({
 			"paging": true,

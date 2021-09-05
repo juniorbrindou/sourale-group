@@ -3,152 +3,143 @@
 @section('main')
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
 
-				<div class="card">
-					<div class="card-header">
-						<h3 class="card-title">Liste des fournisseurs</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des fournisseurs</h3>
 
-						<a href="{{ route('fournisseurs.create')}}" class="btn float-right  btn-md btn-success">
-							<i class="fa fa-plus-circle"></i>
-							Ajouter
-						</a>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>Code</th>
-									<th>Nom & Prénoms</th>
-									<th>Contact</th>
-									<th>Adresse</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach ($fournisseurs as $fournisseur)
+                        <a href="{{ route('fournisseurs.create')}}" class="float-right btn btn-md btn-success">
+                            <i class="fa fa-plus-circle"></i>
+                            Ajouter
+                        </a>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Nom & Prénoms</th>
+                                    <th>Contact</th>
+                                    <th>Adresse</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($fournisseurs as $fournisseur)
 
-								<tr>
-									<td>{{ $fournisseur->code }} </td>
-									<td>{{ $fournisseur->nom }} </td>
-									<td>{{ $fournisseur->contact }} </td>
-									<td>{{ $fournisseur->adresse }} </td>
-									<td>
-										<button class="btn btn-warning btn-md" data-toggle="modal"
-											data-target="#modal-see-{{$fournisseur->id}}">
-											<i class="fa fa-eye"></i>
-										</button>
-										<a href="{{ route('fournisseurs.edit', $fournisseur->id) }}" title="Modiffier"
-											class="btn btn-primary btn-md">
-											<i class="fa fa-pen"></i>
-										</a>
-										<button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
-											data-target="#modal-danger-{{$fournisseur->id}}">
-											<i class="fa fa-trash"></i>
-										</button>
-									</td>
-								</tr>
+                                <tr>
+                                    <td>{{ $fournisseur->code }} </td>
+                                    <td>{{ $fournisseur->nom }} </td>
+                                    <td>{{ $fournisseur->contact }} </td>
+                                    <td>{{ $fournisseur->adresse }} </td>
+                                    <td>
+                                        <button class="btn btn-warning btn-md" data-toggle="modal"
+                                            data-target="#modal-see-{{$fournisseur->id}}">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <a href="{{ route('fournisseurs.edit', $fournisseur->id) }}" title="Modiffier"
+                                            class="btn btn-primary btn-md">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+                                            data-target="#modal-danger-{{$fournisseur->id}}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
 
-								<div class="modal fade" id="modal-danger-{{$fournisseur->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<h4 class="modal-title">Attention ! Action Irréversible !</h4>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<p class="text-danger">Voulez vous vraiment supprimer le fournisseur
-													<b>{{ $fournisseur->nom }}</b></p>
-											</div>
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Annuler</button>
-												<form method="POST" style="display: inline"
-													action="{{ route('fournisseurs.destroy', $fournisseur->id ) }}">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="btn btn-outline-danger">Je
-														Confirme</button>
-												</form>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
+                                <div class="modal fade" id="modal-danger-{{$fournisseur->id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-default">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Attention ! Action Irréversible !</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="text-danger">Voulez vous vraiment supprimer le fournisseur
+                                                    <b>{{ $fournisseur->nom }}</b></p>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-dismiss="modal">Annuler</button>
+                                                <form method="POST" style="display: inline"
+                                                    action="{{ route('fournisseurs.destroy', $fournisseur->id ) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger">Je
+                                                        Confirme</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
 
 
 
-								<div class="modal fade" id="modal-see-{{$fournisseur->id}}">
-									<div class="modal-dialog">
-										<div class="modal-content bg-default">
-											<div class="modal-header">
-												<p>Détails</p>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
+                                <div class="modal fade" id="modal-see-{{$fournisseur->id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-default">
+                                            <div class="modal-header">
+                                                <p>Détails</p>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
 
-											<div class="modal-body">
-												<p>
-													<b>CODE : </b>{{ $fournisseur->code }}
-												</p>
-												<hr>
-												<p>
-													<b>NOM : </b>{{ $fournisseur->nom }}
-												</p>
-												<hr>
-												<p>
-													<b>Contact : </b>{{ $fournisseur->contact }}
-												</p>
-												<hr>
-												<p>
-													<b>ADRESSE : </b>{{ $fournisseur->adresse }}
-												</p>
-											</div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    <b>CODE : </b>{{ $fournisseur->code }}
+                                                </p>
+                                                <hr>
+                                                <p>
+                                                    <b>NOM : </b>{{ $fournisseur->nom }}
+                                                </p>
+                                                <hr>
+                                                <p>
+                                                    <b>Contact : </b>{{ $fournisseur->contact }}
+                                                </p>
+                                                <hr>
+                                                <p>
+                                                    <b>ADRESSE : </b>{{ $fournisseur->adresse }}
+                                                </p>
+                                            </div>
 
-											<div class="modal-footer justify-content-between">
-												<button type="button" class="btn btn-primary btn-block"
-													data-dismiss="modal">Fermer</button>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div>
-								<!-- /.modal -->
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-primary btn-block"
+                                                    data-dismiss="modal">Fermer</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
 
-								@endforeach
+                                @endforeach
 
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Code</th>
-									<th>Nom & Prénoms</th>
-									<th>Contact</th>
-									<th>Adresse</th>
-									<th></th>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container-fluid -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 @endsection
@@ -207,10 +198,10 @@
 <script src="dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 			$("#example1").DataTable({
 			"responsive": true, "lengthChange": false, "autoWidth": false,
-			"buttons": ["excel", "pdf", "print"]
+			"buttons": ["pdf", "print"]
 			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 			$('#example2').DataTable({
 			"paging": true,
@@ -226,15 +217,15 @@
 {{-- message flash enregistrement --}}
 @if (session('success'))
 <script>
-	$(function() {
+    $(function() {
 		var Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',
