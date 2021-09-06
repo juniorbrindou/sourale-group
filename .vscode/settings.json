@@ -2,10 +2,5 @@
   "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
   "intelephense.phpdoc.useFullyQualifiedNames": true,
   "files.exclude": {
-    "bootstrap": true,
-    "resources\\js": true,
-    "database": true,
-    "public": true,
-    "resources\\AdminLTE-3.1.0": true
   }
 }

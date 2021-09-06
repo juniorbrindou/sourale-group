@@ -163,8 +163,7 @@ class Create extends Component
     {
         // renvoie dans this→article le model article
         $article = Articles::where('libelle', '=', $this->article)->first();
-
-        // recupération des iformation l'article en bd
+        // recupération des informations l'article en bd
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
@@ -406,11 +405,26 @@ class Create extends Component
         'type_evenements' => 'required',
     ];
 
-    public function render()
+    public function mount()
     {
         $this->type_evenements = Type_evenements::all();
         $this->clients = Clients::all();
         $this->articles = Articles::all();
+    }
+
+    public function hydrate()
+    {
+        // pour reduire de la liste l'elemen selectionné
+        // for ($i = 0; $i < count($this->tabArticles); $i++) {
+        //     if ($this->tabArticles[$i]['article'] === $this->article) {
+        //         dd($this->article);
+        //     }
+        // }
+    }
+
+
+    public function render()
+    {
         return view('livewire.location.create');
     }
 }

@@ -74,7 +74,7 @@
                                                                 </span>
                                                             </div>
                                                             <select name="oldClient" required
-                                                                class="float-right form-control"
+                                                                class="float-right select2 form-control"
                                                                 wire:model.defer="oldClient">
                                                                 <option value="">Coisissez un client existant</option>
                                                                 @foreach ($clients as $client)
@@ -217,7 +217,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Type d'evenement</label>
-                                                <select class="float-right form-control select2"
+                                                <select class="float-right select2 form-control"
                                                     wire:model.defer="type_evenement_id">
                                                     @foreach ($type_evenements as $type_evenement)
                                                     <option selected="selected">{{$type_evenement->libelle}}</option>
@@ -289,7 +289,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="article">Article Concerné *</label>
-                                <select class="form-control  @error('article') is-invalid @enderror"
+                                <select class="select2 form-control  @error('article') is-invalid @enderror"
                                     wire:model.defer="article" style="width: 100%;" id="article">
                                     <option selected value="">Selectionner un article</option>
 
@@ -487,4 +487,11 @@
             {{-- for display none on step 3 --}}
     </div>
 </div>
+<script>
+    document.addEventListener('livewire:load', function (event) {
+    window.livewire.hook('afterDomUpdate', () => {
+        $('.select2').select2();
+      });
+  });
+</script>
 </div>
