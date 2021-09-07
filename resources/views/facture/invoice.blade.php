@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Simple invoice html template</title>
+    <title>Facture</title>
 </head>
 
 <style>
@@ -192,7 +192,7 @@
     }
 
     #items>table th {
-        font-weight: 400;
+        font-weight: 750;
         padding: 1px 4px;
         background-color: goldenrod;
     }
@@ -320,6 +320,10 @@
         margin-left: 20px;
     }
 
+    .mr-3 {
+        margin-right: 10px;
+    }
+
     .d-inline-block {
         display: inline-block;
     }
@@ -355,29 +359,53 @@
         <div id="fromto">
             <div id="from">
                 <p>
-                    <strong>SOURALE-GROUP</strong><br>
+                    <strong style="color: red;font-size:medium">SOURALÈ GROUP</strong><br>
                     Cocody Angré 8eme tranche <br>
                     programme 6<br><br>
                     Tél.: 07 08 08 49 48 <br>
+                    Tél.: 05 04 67 23 23 <br>
                     Email: contact@souralegroup.ci <br>
 
                 </p>
             </div>
             <div id="to">
                 <p>
-                    <span class="ml-2 right">{{$client->nom ?? ''}} <strong>Client</strong></span><br>
-                    <span class="ml-2 right">{{$client->contact1 ?? ''}} <strong>Contact</strong></span><br>
+                    <span class="ml-2">
+                        <strong>Client</strong>
+                        {{$client->nom ?? ''}}
+                    </span>
+                    <br>
+                    <span class="ml-2">
+                        <strong>Contact</strong>
+                        {{$client->contact1 ?? ''}}
+                    </span>
+                    <br>
                     <hr>
-                    <span class="ml-2 right">{{$evenement->libelle ?? ''}} <strong
-                            class="ml-3">Evenement</strong></span><br>
-                    <span class="ml-2 right">{{$evenement->date_debut_evenement ?? ''}}
-                        <strong class="ml-3">Date
-                            début</strong></span><br>
-                    <span class="ml-2 right">{{$evenement->date_fin_evenement ?? ''}}<strong class="ml-4">Date
-                            fin</strong></span><br>
-                    <span class="ml-2 right">{{$evenement->nbr_personne ?? '0'}} personne(s) <strong
-                            class="ml-5">Invités</strong></span><br>
-                    <span class="ml-2 right">{{$evenement->lieu ?? ''}} <strong class="ml-5">Lieu</strong></span><br>
+                    <span class="ml-2">
+                        <strong>Evenement</strong>
+                        {{$evenement->libelle ?? ''}}
+                    </span>
+                    <br>
+                    <span class="ml-2">
+                        <strong class="mr-3">Date début</strong>
+                        {{$evenement->date_debut_evenement ?? ''}}
+                    </span>
+                    <br>
+                    <span class="ml-2">
+                        <strong class="mr-3">Date fin</strong>
+                        {{$evenement->date_fin_evenement ?? ''}}
+                    </span>
+                    <br>
+                    <span class="ml-2">
+                        <strong class="mr-3">Invités </strong>
+                        {{$evenement->nbr_personne ?? '0'}} personne(s)
+                    </span>
+                    <br>
+                    <span class="ml-2">
+                        <strong class="mr-3">Lieu </strong>
+                        {{$evenement->lieu ?? ''}}
+                    </span>
+                    <br>
                 </p>
             </div>
         </div>
@@ -455,13 +483,13 @@
         <div id="footer">
             <hr width="545">
             <p>SOURALÈ-GROUP - Sise à Cocody - Angré - Société à responsabilité limité (SARL) <br>
-                07 08 08 49 48 - contact@souralegroup.c</p>
+                07 08 08 49 48 - contact@souralegroup.com</p>
         </div>
     </div>
 
-    {{-- <script>
+    <script>
         window.addEventListener("load",window.print())
-    </script> --}}
+    </script>
 
 </body>
 
