@@ -19,10 +19,22 @@ class Show extends Component
     public $articles;
     public $currentStep = 2;
     public $type_evenements;
+    public $type_evenement_libelle;
+
+    public $evenement;
+    public $evenement_libelle;
+    public $evenement_nbr_personne;
+    public $evenement_montant_total;
+    public $evenement_reste_payer;
+    public $evenement_nb_jour;
+    public $evenement_lieu;
+    public $evenement_description;
+    public $evenement_status;
+    public $evenement_caution;
+    public $evenement_date_debut_evenement;
 
     public $client;
     public $user;
-    public $evenement;
     public $duree_evenement;
     public $ligne = [];     # contient les informations de chaque lignes
     public $tab_locations = [];      # Contient les differentes locations de l'evenement
@@ -32,7 +44,16 @@ class Show extends Component
         $this->clients = Clients::all();
         $this->articles = Articles::all();
         $this->type_evenements = Type_evenements::all();
-
+        $this->type_evenement_libelle = $evenement->type_evenement->libelle;
+        $this->evenement_libelle = $evenement->libelle;
+        $this->evenement_nbr_personne = $evenement->nbr_personne;
+        $this->evenement_montant_total = $evenement->montant_toal;
+        $this->evenement_reste_payer = $evenement->reste_payer;
+        $this->evenement_nb_jour = $evenement->nb_jour;
+        $this->evenement_lieu = $evenement->lieu;
+        $this->evenement_description = $evenement->description;
+        $this->evenement_date_debut_evenement = $evenement->date_debut_evenement;
+        // dd($this->evenement_date_debut_evenement);
 
 
         # tableau des articles ok
@@ -87,16 +108,6 @@ class Show extends Component
                 'isNew' => true,
             ];
         $this->currentStep = 2;
-    }
-
-
-
-    /**
-     * @return [type]
-     */
-    public function gotToBeforeStepSubmit()
-    {
-        $this->currentStep = 1;
     }
 
 

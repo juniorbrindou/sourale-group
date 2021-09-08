@@ -13,7 +13,7 @@ class Evenements extends Model
      * article
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function Type_evenement()
+    public function type_evenement()
     {
         return $this->belongsTo(Type_evenements::class);
     }

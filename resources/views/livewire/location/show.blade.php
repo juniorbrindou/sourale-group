@@ -21,22 +21,14 @@
                                 <!-- Stepper header-->
                                 <div class="bs-stepper-header" role="tablist">
                                     <!-- Step client-->
-                                    <div class="step {{ $currentStep == 1 ? 'active' : '' }}"
-                                        data-target="#logins-part">
-                                        <button type="button" class="step-trigger" role="tab"
-                                            aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
-                                            <span class="bs-stepper-circle"><i class="fa fa-user"></i></span>
-                                            <span class="bs-stepper-label">Informations sur le client</span>
-                                        </button>
-                                    </div>
-                                    <div class="line"></div>
+
                                     <!-- Step evenement-->
                                     <div class="step {{ $currentStep == 2 ? 'active' : '' }}"
                                         data-target="#information-part">
                                         <button type="button" class="step-trigger" role="tab"
                                             aria-controls="information-part" id="information-part-trigger"
                                             aria-selected="false" disabled="disabled">
-                                            <span class="bs-stepper-circle">2</span>
+                                            <span class="bs-stepper-circle">1</span>
                                             <span class="bs-stepper-label">Informations sur l'évènement</span>
                                         </button>
                                     </div>
@@ -48,7 +40,7 @@
                                         <button type="button" class="step-trigger" role="tab"
                                             aria-controls="location-part" id="location-part-trigger"
                                             aria-selected="false" disabled="disabled">
-                                            <span class="bs-stepper-circle">3</span>
+                                            <span class="bs-stepper-circle">2</span>
                                             <span class="bs-stepper-label">Les articles de la location</span>
                                         </button>
                                     </div>
@@ -56,60 +48,9 @@
                                 <!-- Stepper header-->
 
                                 <!-- Client -->
-                                <div class="bs-stepper-content">
-                                    <div id="logins-part"
-                                        class="content {{ $currentStep == 1 ? 'active dstepper-block' : '' }}"
-                                        role="tabpanel" aria-labelledby="logins-part-trigger">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <fieldset>
-                                                    <legend>Client Existant:</legend>
-                                                    <div class="form-group">
-                                                        <label>Selectionnez le client *</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text">
-                                                                    <i class="far fa-user" style="color: black"></i>
-                                                                </span>
-                                                            </div>
-                                                            <select required class="form-control"
-                                                                wire:model.defer="client_id">
-                                                                <option selected value="{{$client->id}}">
-                                                                    {{$client->nom}} {{$client->prenoms}}
-                                                                </option>
-                                                                @foreach ($clients as $key => $client)
-                                                                <option value="{{$key}}" wire:key="{{$key}}">
-                                                                    {{$client->nom}}
-                                                                    {{$client->prenoms}}
-
-
-
-                                                                </option> @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    @error('client_id')
-                                                    <span class="text-danger"
-                                                        style="margin-top: -1.25rem;display: block; font-size:80%"
-                                                        role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </fieldset>
-                                            </div>
-
-                                        </div>
-
-
-                                        <div class="col-md-1">
-                                            <a class="btn btn-primary" wire:click="firstStepSubmit">Suivant</a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- fin Client -->
 
-
+                                @dump($evenement)
 
                                 <!-- Evenement -->
                                 <div id="information-part"
@@ -118,13 +59,13 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="libelle_event">Nom de l'evenement *</label>
-                                                <input type="text" wire:model.defer="libelle_event"
-                                                    class="form-control @error('libelle_event') is-invalid @enderror"
-                                                    name="libelle_event" id="libelle_event"
+                                                <label for="evenement_libelle">Nom de l'evenement *</label>
+                                                <input type="text" wire:model.defer="evenement_libelle"
+                                                    class="form-control @error('evenement_libelle') is-invalid @enderror"
+                                                    name="evenement_libelle" id="evenement_libelle"
                                                     placeholder="Entrez le nom de l'évenement">
                                             </div>
-                                            @error('libelle_event')
+                                            @error('evenement_libelle')
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -132,14 +73,15 @@
                                             @enderror
                                         </div>
 
+                                        @dump($evenement_date_debut_evenement)
                                         <div class="col-md-1">
                                             <div class="form-group">
-                                                <label for="nbr_personne">Invités</label>
-                                                <input type="number" min="0" wire:model.defer="nbr_personne"
-                                                    class="form-control @error('nbr_personne') is-invalid @enderror"
-                                                    name="nbr_personne" id="nbr_personne">
+                                                <label for="evenement_nbr_personne">Invités</label>
+                                                <input type="number" min="0" wire:model.defer="evenement_nbr_personne"
+                                                    class="form-control @error('evenement_nbr_personne') is-invalid @enderror"
+                                                    name="evenement_nbr_personne" id="evenement_nbr_personne">
                                             </div>
-                                            @error('nbr_personne')
+                                            @error('evenement_nbr_personne')
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -149,12 +91,12 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="lieuEvenement">Lieu</label>
-                                                <input type="text" wire:model.defer="lieuEvenement"
-                                                    class="form-control @error('lieuEvenement') is-invalid @enderror"
-                                                    id="lieuEvenement">
+                                                <label for="evenement_date_debut_evenement">Lieu</label>
+                                                <input type="text" wire:model.defer="evenement_date_debut_evenement"
+                                                    class="form-control @error('evenement_date_debut_evenement') is-invalid @enderror"
+                                                    id="evenement_date_debut_evenement">
                                             </div>
-                                            @error('lieuEvenement')
+                                            @error('evenement_date_debut_evenement')
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -164,11 +106,13 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Type d'evenement</label>
-                                                <select class="float-right form-control select2"
+                                                <label for="type_evenement_libelle">Type d'evenement</label>
+                                                <select class="float-right form-control"
                                                     wire:model.defer="type_evenement_id">
+
+                                                    <option selected="selected">{{$type_evenement_libelle}}</option>
                                                     @foreach ($type_evenements as $type_evenement)
-                                                    <option selected="selected">{{$type_evenement->libelle}}</option>
+                                                    <option>{{$type_evenement->libelle}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -211,7 +155,6 @@
                                     </div>
 
 
-                                    <a class="btn btn-primary" wire:click="gotToBeforeStepSubmit">Precedant</a>
                                     <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
                                 </div>
                             </div>
