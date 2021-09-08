@@ -117,10 +117,12 @@
                                             <i class="fa fa-pen"></i>
                                         </button>
 
-                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+
+                                        {{-- suppression de categorie désactivée --}}
+                                        {{-- <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
                                             data-target="#modal-danger-{{$categorieArticle->id}}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <i class="fa fa-trash"></i>
+                                        </button> --}}
                                     </td>
                                 </tr>
 
