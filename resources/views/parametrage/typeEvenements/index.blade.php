@@ -44,10 +44,10 @@
                                             title="Modiffier" class="btn btn-primary btn-md">
                                             <i class="fa fa-pen"></i>
                                         </a>
-                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+                                        {{-- <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
                                             data-target="#modal-danger-{{$typeEvenement->id}}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <i class="fa fa-trash"></i>
+                                        </button> --}}
                                     </td>
                                 </tr>
 
