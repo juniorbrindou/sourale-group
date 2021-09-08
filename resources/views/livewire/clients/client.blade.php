@@ -43,11 +43,13 @@
                                             class="btn btn-primary btn-md">
                                             <i class="fa fa-pen"></i>
                                         </a>
-                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+                                        @if ($client->evenements->count() <= 0) <button type="submit"
+                                            class="btn btn-danger btn-md" data-toggle="modal"
                                             data-target="#modal-danger-{{$client->id}}">
                                             <i class="fa fa-trash"></i>
                                             Suprimer
-                                        </button>
+                                            </button>
+                                            @endif
                                     </td>
                                 </tr>
 

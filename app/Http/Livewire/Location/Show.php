@@ -17,7 +17,7 @@ class Show extends Component
     public $client_id;
 
     public $articles;
-    public $currentStep = 3;
+    public $currentStep = 2;
     public $type_evenements;
 
     public $client;

@@ -87,6 +87,15 @@
 
                 {{-- parametrage --}}
 
+                {{-- clients --}}
+                <li class="nav-item">
+                    <a href="{{route('clients.index')}}"
+                        class="nav-link {{ request()->is('parametrage/clients*') ? 'active' : ''}}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Clients</p>
+                    </a>
+                </li>
+
 
                 {{-- tarifications --}}
                 <li class="nav-item">
@@ -136,14 +145,7 @@
 
 
 
-                {{-- clients --}}
-                <li class="nav-item">
-                    <a href="{{route('clients.index')}}"
-                        class="nav-link {{ request()->is('parametrage/clients*') ? 'active' : ''}}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Clients</p>
-                    </a>
-                </li>
+
 
                 {{-- fournisseurs --}}
                 {{-- <li class="nav-item">
