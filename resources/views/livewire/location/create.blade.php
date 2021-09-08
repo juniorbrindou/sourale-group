@@ -414,7 +414,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Code</th>
                                                     <th>Article</th>
                                                     <th>Catégorie</th>
                                                     <th>Quantité</th>
@@ -428,14 +427,13 @@
                                                 @forelse ($tabArticles as $item=>$value)
                                                 <tr>
                                                     <td>{{$item+1}}</td>
-                                                    <td>{{$value['code']}}</td>
-                                                    <td>{{$value['article']}}</td>
+                                                    <td><b> {{$value['article']}} </b></td>
                                                     <td>{{$value['categorie']}}</td>
                                                     <td>{{$value['qte_article']}}
                                                     </td>
                                                     <td>{{$value['nb_jour']}}</td>
                                                     <td>{{ format_money($value['prix']) }}</td>
-                                                    <td>{{ format_money($value['totalUneLigne']) }}</td>
+                                                    <td><b> {{ format_money($value['totalUneLigne']) }} </b></td>
                                                     <td>
                                                         <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                             class="btn btn-primary btn-md">

@@ -6,6 +6,35 @@ use Carbon\Carbon;
  * Fonction utili
  **/
 
+if (!function_exists('couleur_status')) {
+    /**
+     * calcule le totale de chaque ligne
+     * @param float $quantite
+     * @param float $nb_jours
+     * @param float $prix_unitaire
+     *
+     * @return [type]
+     */
+    function couleur_status(string $status)
+    {
+        if ($status == 'EN COURS') {
+            $color = 'primary';
+        } elseif ($status == 'TERMINÉ') {
+            $color = 'success';
+        } elseif ($status == 'ANNULÉ') {
+            $color = 'default';
+        } elseif ($status == 'ENREGISTRÉ') {
+            $color = 'secondary';
+        } else {
+            $color = 'warning';
+        }
+
+        return $color;
+    }
+}
+
+
+
 if (!function_exists('total_ligne')) {
     /**
      * calcule le totale de chaque ligne

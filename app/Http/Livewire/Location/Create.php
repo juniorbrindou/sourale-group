@@ -225,7 +225,7 @@ class Create extends Component
                     'client_id' => $client->id,
                     'type_evenement_id' => $this->type_evenement_id,
                     'montant_total' => $this->totalBrute,
-                    'status' => 'EN COURS',
+                    'status' => 'Enregistré',
                     'nb_jour' => Carbon::parse($this->date_debut_evenement)->DiffInDays($this->date_fin_evenement)
                 ]
             );

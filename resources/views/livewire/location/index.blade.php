@@ -17,12 +17,14 @@
             <tr>
                 <td>{{$evenement->id}}</td>
                 <td class="text-uppercase">{{$evenement->libelle}}</td>
-                <td>{{$evenement->client->nom}} </td>
+                <td>{{$evenement->client->nom}} {{$evenement->client->prenoms}}</td>
                 <td title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
                     <b>{{ format_money($evenement->montant_total) }}</b> </td>
                 <td><b>{{ format_money($evenement->caution) }}</b> </td>
                 <td>{{ $evenement->date_debut_evenement }} </td>
-                <td><span class="badge badge-primary">{{$evenement->status}}</span> </td>
+
+                <td><span class="badge badge-{{couleur_status($evenement->status)}}">{{$evenement->status}}</span> </td>
+                {{--  --}}
                 <td>
                     <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
                         class="mr-1 btn btn-warning btn-md">
