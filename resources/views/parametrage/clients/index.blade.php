@@ -71,26 +71,4 @@
 		});
 
 </script>
-{{-- message flash enregistrement --}}
-@if (session('success'))
-<script>
-    $(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		});
-
-		$(function() {
-			Toast.fire({
-				icon: 'success',
-				title: 'Action Effectuée!'
-			})
-		});
-	});
-</script>
-
-@endif
 @endpush

@@ -74,7 +74,7 @@
                                                                 </span>
                                                             </div>
                                                             <select name="oldClient" required
-                                                                class="float-right select2 form-control"
+                                                                class="float-right form-control"
                                                                 wire:model.defer="oldClient">
                                                                 <option value="">Coisissez un client existant</option>
                                                                 @foreach ($clients as $client)

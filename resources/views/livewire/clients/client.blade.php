@@ -36,20 +36,19 @@
                                         {{ isset($client->contact2) ? $client->contact2 : ''}} </td>
                                     <td>{{ $client->adresse }}</td>
                                     <td>
-                                        <a href="{{route('clients.show',$client->id)}}" class="btn btn-warning btn-md">
+                                        @if ($client->evenements)<a href="{{route('clients.show',$client->id)}}"
+                                            class="btn btn-warning btn-md">
                                             <i class="fa fa-eye"></i>
                                         </a>
+                                        @endif
                                         <a href="{{ route('clients.edit', $client->id) }}" title="Modiffier"
                                             class="btn btn-primary btn-md">
                                             <i class="fa fa-pen"></i>
                                         </a>
-                                        @if ($client->evenements->count() <= 0) <button type="submit"
-                                            class="btn btn-danger btn-md" data-toggle="modal"
-                                            data-target="#modal-danger-{{$client->id}}">
-                                            <i class="fa fa-trash"></i>
-                                            Suprimer
-                                            </button>
-                                            @endif
+                                        @if (!$client->evenements) <button type="submit" class="btn btn-danger btn-md"
+                                            data-toggle="modal" data-target="#modal-danger-{{$client->id}}">
+                                            <i class="fa fa-trash"></i></button>
+                                        @endif
                                     </td>
                                 </tr>
 

@@ -3,131 +3,140 @@
 @section('main')
 
 <section class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<!-- left column -->
-			<div class="col-md-12">
-				<!-- general form elements -->
-				<div class="card card-primary box-perso">
-					<div class="card-header">
-						<h3 class="card-title">Nouveau Client</h3>
-					</div>
-					<!-- /.card-header -->
-					<!-- form start -->
-					<form method="POST" action="{{ route('clients.store')}}">
-						@csrf
-						<div class="card-body">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary box-perso">
+                    <div class="card-header">
+                        <h3 class="card-title">Nouveau Client</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="POST" action="{{ route('clients.store')}}">
+                        @csrf
+                        <div class="card-body">
 
-							<div class="row">
-								<div class="col-md-4">
-									{{-- libelle --}}
-									<div class="form-group">
-										<label for="nom">Nom *</label>
-										<input type="text" class="form-control @error('nom') is-invalid @enderror"
-											value="{{ old('nom') }}" name="nom" id="nom"
-											placeholder="Entrer le nom du client" autofocus>
-									</div>
-									@error('nom')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-
-
-								<div class="col-md-8">
-									{{-- libelle --}}
-									<div class="form-group">
-										<label for="prenoms">prenoms</label>
-										<input type="text" class="form-control @error('prenoms') is-invalid @enderror"
-											value="{{ old('prenoms') }}" name="prenoms" id="prenoms"
-											placeholder="Entrer le prénom du client">
-									</div>
-									@error('prenoms')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-							</div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{-- libelle --}}
+                                    <div class="form-group">
+                                        <label for="nom">Nom *</label>
+                                        <input type="text" class="form-control @error('nom') is-invalid @enderror"
+                                            value="{{ old('nom') }}" name="nom" id="nom"
+                                            placeholder="Entrer le nom du client" autofocus>
+                                    </div>
+                                    @error('nom')
+                                    <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                        role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
 
 
-							<div class="row">
-								
-								<div class="col-md-3">
-									{{-- libelle --}}
-									  <!-- phone mask -->
-									  <div class="form-group">
-										<label>Téléphone 1</label>
-					  
-										<div class="input-group">
-										  <div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-phone"></i></span>
-										  </div>
-										  <input type="text" class="form-control" value="{{ old('contact1') }}" data-inputmask='"mask": "(999) 99-99-99-99-99"' name="contact1" data-mask>
-										</div>
-										<!-- /.input group -->
-									  </div>
-								</div>
-
-								<div class="col-md-3">
-									{{-- libelle --}}
-									  <!-- phone mask -->
-									  <div class="form-group">
-										<label>Téléphone 2</label>
-					  
-										<div class="input-group">
-										  <div class="input-group-prepend">
-											<span class="input-group-text"><i class="fas fa-phone"></i></span>
-										  </div>
-										  <input type="text" class="form-control" value="{{ old('contact2') }}" data-inputmask='"mask": "(999) 99-99-99-99-99"' name="contact2" data-mask>
-										</div>
-										<!-- /.input group -->
-									  </div>
-								</div>
+                                <div class="col-md-8">
+                                    {{-- libelle --}}
+                                    <div class="form-group">
+                                        <label for="prenoms">prenoms</label>
+                                        <input type="text" class="form-control @error('prenoms') is-invalid @enderror"
+                                            value="{{ old('prenoms') }}" name="prenoms" id="prenoms"
+                                            placeholder="Entrer le prénom du client">
+                                    </div>
+                                    @error('prenoms')
+                                    <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                        role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
 
 
-								
+                            <div class="row">
 
-								<div class="col-md-6">
-									{{-- libelle --}}
-									<div class="form-group">
-										<label for="adresse">Adresse</label>
-										<textarea class="form-control" rows="3" name="adresse" placeholder="Ecrivez ici ..."></textarea>
-									</div>
-								</div>
-								<div class="col-md-4">
-									{{-- libelle --}}
-									<div class="form-group">
-									<label for="switch">Enregistrer Encore</label>
-									<input type="checkbox" name="encore" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
-									</div>
-								</div>
+                                <div class="col-md-3">
+                                    {{-- libelle --}}
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Téléphone 1</label>
 
-						</div>
-						<!-- /.card-body -->
-						<div class="card-footer">
-							<div class="row">
-								<div class="col-md-6 col-sm-6">
-									<a href="{{ route('clients.index') }}" class="btn btn-warning btn-block text-light mb-2">Retour</a>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
-								</div>
-							</div>
-						</div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" value="{{ old('contact1') }}"
+                                                data-inputmask='"mask": "(999) 99-99-99-99-99"' name="contact1"
+                                                data-mask>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
 
-					</form>
-				</div>
-				<!-- /.card -->
+                                <div class="col-md-3">
+                                    {{-- libelle --}}
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Téléphone 2</label>
 
-			</div>
-			<!-- /.col -->
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" value="{{ old('contact2') }}"
+                                                data-inputmask='"mask": "(999) 99-99-99-99-99"' name="contact2"
+                                                data-mask>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
 
 
-		</div>
-		<!-- /.row -->
-	</div><!-- /.container-fluid -->
+
+
+                                <div class="col-md-6">
+                                    {{-- libelle --}}
+                                    <div class="form-group">
+                                        <label for="adresse">Adresse</label>
+                                        <textarea class="form-control" rows="3" name="adresse"
+                                            placeholder="Ecrivez ici ..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    {{-- libelle --}}
+                                    <div class="form-group">
+                                        <label for="switch">Enregistrer Encore</label>
+                                        <input type="checkbox" name="encore" checked data-bootstrap-switch
+                                            data-off-color="danger" data-on-color="success">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <a href="{{ route('clients.index') }}"
+                                            class="mb-2 btn btn-warning btn-block text-light">Retour</a>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </form>
+                </div>
+                <!-- /.card -->
+
+            </div>
+            <!-- /.col -->
+
+
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </section>
 
 @endsection
@@ -205,7 +214,7 @@
 <script src="{{ asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
 <script>
-	$(function () {
+    $(function () {
 	//Initialize Select2 Elements
 	$('.select2').select2()
 
@@ -339,25 +348,5 @@
   // DropzoneJS Demo Code End
 </script>
 {{-- message flash enregistrement --}}
-@if (session('success'))
-<script>
-	$(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		}); 
-		
-		$(function() {
-			Toast.fire({
-				icon: 'success',
-				title: 'Action Effectuée!'
-			})
-		});
-	});
-</script>
-@endif
 
 @endpush
