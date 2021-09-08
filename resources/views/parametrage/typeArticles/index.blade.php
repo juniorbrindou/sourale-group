@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Liste des Types d'articles</h3>
 
-                        <button data-toggle="modal" data-target="#modal-create" class="btn float-right  btn-md bg-dark">
+                        <button data-toggle="modal" data-target="#modal-create" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>
                             Ajouter
                         </button>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-6 mb-2">
+                                            <div class="mb-2 col-md-6 col-sm-6">
                                                 <button type="button" class="btn btn-outline-warning btn-block"
                                                     data-dismiss="modal">Retour
                                                 </button>
@@ -115,10 +115,11 @@
                                             title="Modiffier" class="btn btn-primary btn-md">
                                             <i class="fa fa-pen"></i>
                                         </button>
-                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+                                        {{-- boutton de suppresion --}}
+                                        {{-- <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
                                             data-target="#modal-danger-{{$typeArticle->id}}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <i class="fa fa-trash"></i>
+                                        </button> --}}
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="modal-danger-{{$typeArticle->id}}"">
@@ -137,13 +138,14 @@
                                         <div class="modal-footer justify-content-between">
                                             <button type="button" class="btn btn-primary"
                                                 data-dismiss="modal">Annuler</button>
-                                            <form method="POST" style="display: inline"
+                                            {{-- suppresion --}}
+                                            {{-- <form method="POST" style="display: inline"
                                                 action="{{ route('typeArticles.destroy', $typeArticle->id ) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-outline-danger">Je
-                                                    Confirme</button>
-                                            </form>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">Je
+                                                Confirme</button>
+                                            </form> --}}
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->
@@ -206,7 +208,7 @@
 
                                     <div class="card-footer">
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-6 mb-2">
+                                            <div class="mb-2 col-md-6 col-sm-6">
                                                 <button type="button" class="btn btn-outline-warning btn-block"
                                                     data-dismiss="modal">Retour
                                                 </button>
