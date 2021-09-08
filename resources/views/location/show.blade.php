@@ -105,16 +105,6 @@
   			$(this).bootstrapSwitch('state', $(this).prop('checked'));
 		})
 	})
-	$(function () {
-	//Date and time picker
-	moment.locale('fr_fr')
-	$('#reservationdatetime').datetimepicker({
-		icons: { time: 'far fa-clock',
-		format:'DD/MM/YYYY HH:mm:ss',
-		format: 'LT'
-	}
-	});
-
 
 	$("input[data-bootstrap-switch]").each(function(){
 	  $(this).bootstrapSwitch('state', $(this).prop('checked'));
