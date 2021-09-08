@@ -176,10 +176,12 @@
                                             title="Modiffier" class="btn btn-primary btn-md">
                                             <i class="fa fa-pen"></i>
                                         </button>
-                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
+
+                                        {{-- suppresion d'article --}}
+                                        {{-- <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
                                             data-target="#modal-danger-{{$article->id}}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <i class="fa fa-trash"></i>
+                                        </button> --}}
                                     </td>
                                 </tr>
 
@@ -336,13 +338,15 @@
                                             <div class="modal-footer justify-content-between">
                                                 <button type="button" class="btn btn-primary"
                                                     data-dismiss="modal">Annuler</button>
-                                                <form method="POST" style="display: inline"
+
+                                                {{-- suppresion d'article --}}
+                                                {{-- <form method="POST" style="display: inline"
                                                     action="{{ route('articles.destroy', $article->id ) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger">Je
-                                                        Confirme</button>
-                                                </form>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-outline-danger">Je
+                                                    Confirme</button>
+                                                </form> --}}
                                             </div>
                                         </div>
                                         <!-- /.modal-content -->
