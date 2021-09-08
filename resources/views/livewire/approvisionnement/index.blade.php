@@ -27,15 +27,6 @@
             @endforeach
 
         </tbody>
-        <tfoot>
-            <tr>
-                <th>#</th>
-                <th>Code</th>
-                <th>Date d'ajout</th>
-                <th>Auteur</th>
-                <th></th>
-            </tr>
-        </tfoot>
     </table>
 </div>
 <!-- /.card-body -->

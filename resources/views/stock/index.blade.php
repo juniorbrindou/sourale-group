@@ -47,16 +47,6 @@
                                 @endforeach
 
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Image</th>
-                                    <th>Article</th>
-                                    <th title="Somme de la quantité d'aticle disponible et en location">Quantité en
-                                        stock</th>
-                                    <th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->
