@@ -133,13 +133,13 @@
                 </li>
 
                 {{-- package --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('packages.index')}}"
-                        class="nav-link {{ request()->is('parametrage/packages*') ? 'active' : ''}}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Packages</p>
-                    </a>
-                </li>
+                class="nav-link {{ request()->is('parametrage/packages*') ? 'active' : ''}}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Packages</p>
+                </a>
+                </li> --}}
 
 
 
