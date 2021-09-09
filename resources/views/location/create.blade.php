@@ -185,45 +185,5 @@
     });
   // DropzoneJS Demo Code End
 </script>
-{{-- message flash enregistrement --}}
-@if (session('success'))
-<script>
-    $(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		});
-
-		$(function() {
-			Toast.fire({
-				icon: 'success',
-				title: 'Action Effectuée!'
-			})
-		});
-</script>
-
-@elseif(session('error'))
-<script>
-    $(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		});
-
-		$(function() {
-			Toast.fire({
-				icon: 'error',
-				title: 'L\'action à échouée!'
-			})
-		});
-	});
-</script>
-@endif
 <livewire:scripts />
 @endpush

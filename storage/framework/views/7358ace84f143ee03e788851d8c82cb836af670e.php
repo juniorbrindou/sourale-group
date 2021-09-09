@@ -10,8 +10,8 @@
             <h3 class="card-title">Enregistrement de location</h3>
         </div>
         <form wire:submit.prevent="submit">
-            @csrf
-            <div class="{{ $currentStep == 3 ? 'd-none' : '' }}">
+            <?php echo csrf_field(); ?>
+            <div class="<?php echo e($currentStep == 3 ? 'd-none' : ''); ?>">
                 <div class="card-body">
                     <div class="row">
 
@@ -21,7 +21,7 @@
                                 <!-- Stepper header-->
                                 <div class="bs-stepper-header" role="tablist">
                                     <!-- Step client-->
-                                    <div class="step {{ $currentStep == 1 ? 'active' : '' }}"
+                                    <div class="step <?php echo e($currentStep == 1 ? 'active' : ''); ?>"
                                         data-target="#logins-part">
                                         <button type="button" class="step-trigger" role="tab"
                                             aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="line"></div>
                                     <!-- Step evenement-->
-                                    <div class="step {{ $currentStep == 2 ? 'active' : '' }}"
+                                    <div class="step <?php echo e($currentStep == 2 ? 'active' : ''); ?>"
                                         data-target="#information-part">
                                         <button type="button" class="step-trigger" role="tab"
                                             aria-controls="information-part" id="information-part-trigger"
@@ -43,7 +43,7 @@
 
                                     <div class="line"></div>
                                     <!-- Step evenement-->
-                                    <div class="step {{ $currentStep == 3 ? 'active' : '' }}"
+                                    <div class="step <?php echo e($currentStep == 3 ? 'active' : ''); ?>"
                                         data-target="#location-part">
                                         <button type="button" class="step-trigger" role="tab"
                                             aria-controls="location-part" id="location-part-trigger"
@@ -58,7 +58,7 @@
                                 <!-- Client -->
                                 <div class="bs-stepper-content">
                                     <div id="logins-part"
-                                        class="content {{ $currentStep == 1 ? 'active dstepper-block' : '' }}"
+                                        class="content <?php echo e($currentStep == 1 ? 'active dstepper-block' : ''); ?>"
                                         role="tabpanel" aria-labelledby="logins-part-trigger">
 
                                         <div class="row">
@@ -77,20 +77,29 @@
                                                                 class="float-right form-control"
                                                                 wire:model.defer="oldClient">
                                                                 <option value="">Coisissez un client existant</option>
-                                                                @foreach ($clients as $client)
-                                                                <option value="{{$client->id}}"> {{$client->nom}}
-                                                                    {{$client->prenoms}}
-                                                                </option> @endforeach
+                                                                <?php $__currentLoopData = $clients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $client): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($client->id); ?>"> <?php echo e($client->nom); ?>
+
+                                                                    <?php echo e($client->prenoms); ?>
+
+                                                                </option> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    @error('oldClient')
+                                                    <?php $__errorArgs = ['oldClient'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                     <span class="text-danger"
                                                         style="margin-top: -1.25rem;display: block; font-size:80%"
                                                         role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                        <strong><?php echo e($message); ?></strong>
                                                     </span>
-                                                    @enderror
+                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                 </fieldset>
                                             </div>
 
@@ -104,16 +113,30 @@
                                                     <div class="form-group">
                                                         <label for="newNom">Nom du nouveau client *</label>
                                                         <input type="text"
-                                                            class="form-control @error('newNom') is-invalid @enderror"
+                                                            class="form-control <?php $__errorArgs = ['newNom'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                                             wire:model.defer="newNom" id="newNom">
                                                     </div>
-                                                    @error('newNom')
+                                                    <?php $__errorArgs = ['newNom'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                     <span class="text-danger"
                                                         style="margin-top: -1.25rem;display: block; font-size:80%"
                                                         role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                        <strong><?php echo e($message); ?></strong>
                                                     </span>
-                                                    @enderror
+                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                                                     <div class="form-group">
                                                         <label for="contact1">Téléphone </label>
@@ -123,31 +146,59 @@
                                                                         class="fas fa-phone"></i></span>
                                                             </div>
                                                             <input type="number" min="1" required id="contact1"
-                                                                class="form-control @error('contact') is-invalid @enderror"
+                                                                class="form-control <?php $__errorArgs = ['contact'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                                                 wire:model.defer="newContact1">
                                                         </div>
-                                                        @error('contact1')
+                                                        <?php $__errorArgs = ['contact1'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                         <span class="text-danger"
                                                             style="margin-top: -1.25rem;display: block; font-size:80%"
                                                             role="alert">
-                                                            <strong>{{ $message }}</strong>
+                                                            <strong><?php echo e($message); ?></strong>
                                                         </span>
-                                                        @enderror
+                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="newAdresse">Adresse </label>
                                                         <input type="text" id="newAdresse"
-                                                            class="form-control @error('newAdresse') is-invalid @enderror"
+                                                            class="form-control <?php $__errorArgs = ['newAdresse'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                                             wire:model.defer="newAdresse">
                                                     </div>
-                                                    @error('newAdresse')
+                                                    <?php $__errorArgs = ['newAdresse'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                     <span class="text-danger"
                                                         style="margin-top: -1.25rem;display: block; font-size:80%"
                                                         role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                        <strong><?php echo e($message); ?></strong>
                                                     </span>
-                                                    @enderror
+                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                                                 </fieldset>
                                             </div>
@@ -165,53 +216,95 @@
 
                                 <!-- Evenement -->
                                 <div id="information-part"
-                                    class="content {{ $currentStep == 2 ? 'active dstepper-block' : '' }}"
+                                    class="content <?php echo e($currentStep == 2 ? 'active dstepper-block' : ''); ?>"
                                     role="tabpanel" aria-labelledby="information-part-trigger">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="libelle_event">Nom de l'evenement *</label>
                                                 <input type="text" wire:model.defer="libelle_event"
-                                                    class="form-control @error('libelle_event') is-invalid @enderror"
+                                                    class="form-control <?php $__errorArgs = ['libelle_event'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                                     name="libelle_event" id="libelle_event"
                                                     placeholder="Entrez le nom de l'évenement">
                                             </div>
-                                            @error('libelle_event')
+                                            <?php $__errorArgs = ['libelle_event'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                            @enderror
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
 
                                         <div class="col-md-1">
                                             <div class="form-group">
                                                 <label for="nbr_personne">Invités</label>
                                                 <input type="number" min="0" wire:model.defer="nbr_personne"
-                                                    class="form-control @error('nbr_personne') is-invalid @enderror"
+                                                    class="form-control <?php $__errorArgs = ['nbr_personne'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                                     name="nbr_personne" id="nbr_personne">
                                             </div>
-                                            @error('nbr_personne')
+                                            <?php $__errorArgs = ['nbr_personne'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                            @enderror
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="lieuEvenement">Lieu</label>
                                                 <input type="text" wire:model.defer="lieuEvenement"
-                                                    class="form-control @error('lieuEvenement') is-invalid @enderror"
+                                                    class="form-control <?php $__errorArgs = ['lieuEvenement'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                                     id="lieuEvenement">
                                             </div>
-                                            @error('lieuEvenement')
+                                            <?php $__errorArgs = ['lieuEvenement'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                            @enderror
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
 
                                         <div class="col-md-3">
@@ -219,17 +312,24 @@
                                                 <label>Type d'evenement</label>
                                                 <select class="float-right select2 form-control"
                                                     wire:model.defer="type_evenement_id">
-                                                    @foreach ($type_evenements as $type_evenement)
-                                                    <option selected="selected">{{$type_evenement->libelle}}</option>
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $type_evenements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type_evenement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option selected="selected"><?php echo e($type_evenement->libelle); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
-                                            @error('type_evenement_id')
+                                            <?php $__errorArgs = ['type_evenement_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                            @enderror
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
 
                                     </div>
@@ -240,12 +340,19 @@
                                                 <input type="datetime-local" required class="form-control"
                                                     wire:model.defer="date_debut_evenement">
                                             </div>
-                                            @error('date_debut_evenement')
+                                            <?php $__errorArgs = ['date_debut_evenement'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                            @enderror
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -253,12 +360,19 @@
                                                 <input type="datetime-local" required class="form-control"
                                                     wire:model.defer="date_fin_evenement">
                                             </div>
-                                            @error('date_fin_evenement')
+                                            <?php $__errorArgs = ['date_fin_evenement'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                            @enderror
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
 
@@ -271,7 +385,7 @@
                         <!-- /.card -->
                     </div>
                 </div>
-                {{-- end card body--}}
+                
 
             </div>
 
@@ -281,62 +395,104 @@
 
 
 
-            <div class="{{ $currentStep == 3 ? '' : 'd-none' }}">
+            <div class="<?php echo e($currentStep == 3 ? '' : 'd-none'); ?>">
                 <div class="card-body">
 
                     <div class="row">
-                        {{-- articles --}}
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="article">Article Concerné *</label>
-                                <select class="select2 form-control  @error('article') is-invalid @enderror"
+                                <select class="select2 form-control  <?php $__errorArgs = ['article'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                     wire:model.defer="article" style="width: 100%;" id="article">
                                     <option selected value="">Selectionner un article</option>
 
-                                    @foreach ($articles as $article)
-                                    <option value="{{$article->libelle}}"> {{$article->libelle}}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($article->libelle); ?>"> <?php echo e($article->libelle); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
-                            @error('article')
+                            <?php $__errorArgs = ['article'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                 role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong><?php echo e($message); ?></strong>
                             </span>
-                            @enderror
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
 
-                        {{-- qte_article --}}
+                        
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
                                 <label for="qte_article">Quantité *</label>
                                 <input type="number" min="1" wire:model.defer="qte_article"
-                                    class="form-control @error('qte_article') is-invalid @enderror" id="qte_article"
+                                    class="form-control <?php $__errorArgs = ['qte_article'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="qte_article"
                                     placeholder="Entrez la quantité d'article">
                             </div>
-                            @error('qte_article')
+                            <?php $__errorArgs = ['qte_article'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                 role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong><?php echo e($message); ?></strong>
                             </span>
-                            @enderror
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
 
 
-                        {{-- nb_jour --}}
+                        
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
                                 <label for="nb_jour">Jours</label>
                                 <input type="number" min="1" wire:model.defer="nb_jour"
-                                    class="form-control @error('nb_jour') is-invalid @enderror" id="nb_jour"
+                                    class="form-control <?php $__errorArgs = ['nb_jour'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="nb_jour"
                                     placeholder="Entrez le nombre de jours">
                             </div>
-                            @error('nb_jour')
+                            <?php $__errorArgs = ['nb_jour'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                 role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong><?php echo e($message); ?></strong>
                             </span>
-                            @enderror
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -365,13 +521,14 @@
 
 
 
-                {{-- ----------------Tableau des articles---------------- --}}
+                
 
                 <div class="card bg-light">
                     <div class="card-header">
-                        <h3 class="card-title">Location du {{ long_date() }} par <b>
-                                {{Auth::user()->nom}}
-                                {{Auth::user()->prenoms}}</b>
+                        <h3 class="card-title">Location du <?php echo e(long_date()); ?> par <b>
+                                <?php echo e(Auth::user()->nom); ?>
+
+                                <?php echo e(Auth::user()->prenoms); ?></b>
                         </h3>
                     </div>
                     <div class="card-body">
@@ -387,24 +544,25 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <b>{{$ligne['nom'] ?? 'Aucun Nom'}}</b> <br>
-                                                <b>{{$ligne['contact1']?? 'Aucun Numéro'}}</b><br>
-                                                <b>{{$ligne['adresse'] ?? 'Aucune Adresse'}}</b>
+                                                <b><?php echo e($ligne['nom'] ?? 'Aucun Nom'); ?></b> <br>
+                                                <b><?php echo e($ligne['contact1']?? 'Aucun Numéro'); ?></b><br>
+                                                <b><?php echo e($ligne['adresse'] ?? 'Aucune Adresse'); ?></b>
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
-                                                    {{($libelle_event)??'Aucun Nom d\'évenement'}}</b>
+                                                    <?php echo e(($libelle_event)??'Aucun Nom d\'évenement'); ?></b>
                                                 <br>
-                                                Nombre d'Invités : <b>{{ ($nbr_personne) ?? 'Inconnu'}}</b><br>
-                                                Lieu : <b>{{($lieuEvenement) ??'Inconnu' }} </b><br>
-                                                Du : <b>{{ long_date($date_debut_evenement) ??'' }} <br>
-                                                    au {{long_date($date_fin_evenement) ??'' }}
+                                                Nombre d'Invités : <b><?php echo e(($nbr_personne) ?? 'Inconnu'); ?></b><br>
+                                                Lieu : <b><?php echo e(($lieuEvenement) ??'Inconnu'); ?> </b><br>
+                                                Du : <b><?php echo e(long_date($date_debut_evenement) ??''); ?> <br>
+                                                    au <?php echo e(long_date($date_fin_evenement) ??''); ?>
+
                                                 </b><br>
-                                                Durée : <b>{{ $ligne['duree_evenement'] ?? '' }}</b>
+                                                Durée : <b><?php echo e($ligne['duree_evenement'] ?? ''); ?></b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b>{{ format_money($caution) }}F FCA</b><br>
-                                                Net A Payer : <b>{{ format_money($totalBrute) }}F FCA</b>
+                                                Caution(20%) : <b><?php echo e(format_money($caution)); ?>F FCA</b><br>
+                                                Net A Payer : <b><?php echo e(format_money($totalBrute)); ?>F FCA</b>
                                             </div>
                                         </div>
                                     </div>
@@ -424,34 +582,35 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($tabArticles as $item=>$value)
+                                                <?php $__empty_1 = true; $__currentLoopData = $tabArticles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                 <tr>
-                                                    <td>{{$item+1}}</td>
-                                                    <td><b> {{$value['article']}} </b></td>
-                                                    <td>{{$value['categorie']}}</td>
-                                                    <td>{{$value['qte_article']}}
+                                                    <td><?php echo e($item+1); ?></td>
+                                                    <td><b> <?php echo e($value['article']); ?> </b></td>
+                                                    <td><?php echo e($value['categorie']); ?></td>
+                                                    <td><?php echo e($value['qte_article']); ?>
+
                                                     </td>
-                                                    <td>{{$value['nb_jour']}}</td>
-                                                    <td>{{ format_money($value['prix']) }}</td>
-                                                    <td><b> {{ format_money($value['totalUneLigne']) }} </b></td>
+                                                    <td><?php echo e($value['nb_jour']); ?></td>
+                                                    <td><?php echo e(format_money($value['prix'])); ?></td>
+                                                    <td><b> <?php echo e(format_money($value['totalUneLigne'])); ?> </b></td>
                                                     <td>
-                                                        <button wire:click="updateLigne({{$item}})" title="Modiffier"
+                                                        <button wire:click="updateLigne(<?php echo e($item); ?>)" title="Modiffier"
                                                             class="btn btn-primary btn-md">
                                                             <i class="fa fa-pen"></i>
                                                         </button>
                                                         <button class="btn btn-danger btn-md"
-                                                            wire:click="addDeleteLigne({{$item}})">
+                                                            wire:click="addDeleteLigne(<?php echo e($item); ?>)">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
-                                                @empty
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                 <tr>
                                                     <td colspan="9" class="text-center"
                                                         style="background-color: darkgrey">Aucun
                                                         enregistrement</td>
                                                 </tr>
-                                                @endforelse
+                                                <?php endif; ?>
 
                                             </tbody>
                                         </table>
@@ -466,7 +625,7 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
-                                <a href="{{url('locations')}}" class="mb-2 btn btn-warning btn-block text-light">Retour
+                                <a href="<?php echo e(url('locations')); ?>" class="mb-2 btn btn-warning btn-block text-light">Retour
                                     à la liste</a>
                             </div>
                             <div class="col-md-4 col-sm-12">
@@ -482,7 +641,7 @@
                 </div>
 
             </div>
-            {{-- for display none on step 3 --}}
+            
     </div>
 </div>
 <script>
@@ -493,3 +652,4 @@
   });
 </script>
 </div>
+<?php /**PATH C:\xampp\htdocs\Sourale-group\resources\views/livewire/location/create.blade.php ENDPATH**/ ?>

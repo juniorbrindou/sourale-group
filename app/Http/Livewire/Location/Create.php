@@ -86,74 +86,6 @@ class Create extends Component
             $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
             $this->caution = $this->totalBrute * 0.2;
         }
-
-        // if (empty($this->tabArticles)) {
-        //     for ($i = 0; $i < count($this->validate()); $i++) {
-        //     }
-        // } else {
-        //     $this->add();
-        // }
-
-        // if (empty($this->ligne)) {
-        //     $this->add();
-        // } else {
-        //     for ($i = 0; $i + 1 <= count($this->ligne); $i++) {
-        //         if ($this->ligne[$i]['article'] == Articles::find($this->article)->libelle) {
-        //             $this->dispatchBrowserEvent('sweetAlert', [
-        //                 'title' => 'Cet article a déjà été selectionné',
-        //                 'timer' => 5000,
-        //                 'icon' => 'error',
-        //             ]);
-        //             break;
-        //         } else {
-        //             $this->add();
-        //             break;
-        //         }
-        //     }
-        // }
-
-        //        //disponibilité de l'article dans le stock
-        //        try {
-        //            $article = Articles::where('libelle', '=', $this->article)->findOrFail();
-        //        }catch (\Exception $exception){
-        //
-        ////        if ($article == null || $this->article){
-        //            $this->dispatchBrowserEvent('swal', [
-        //                'title' => 'Selectionnez l\'article',
-        //                'timer'=>3000,
-        //                'icon'=>'success',
-        //                'toast'=>true,
-        //            ]);
-        ////        }
-        //        }
-        //        if ($this->qte_article > $article->qte_en_stock)
-        //        {
-        //            $this->dispatchBrowserEvent('swal', [
-        //                'title' => 'Feedback Saved',
-        //                'timer'=>3000,
-        //                'icon'=>'success',
-        //                'toast'=>true,
-        //            ]);
-        //        }
-        //        // Sectionner un article une seule fois
-        //        if (!empty($this->tabArticles)) {
-        //            for ($i = 0; $i < count($this->tabArticles); $i++) {
-        //                if ($this->article == $this->tabArticles[$i]['article']) {
-        //                    $this->dispatchBrowserEvent('sweetAlert', [
-        //                        'title' => 'Erreur de saisie',
-        //                        'timer' => 5000,
-        //                        'icon' => 'error',
-        //                        'text' => 'Cet article a deja été selectionné',
-        //                    ]);
-        //                } else {
-        //                    $this->add();
-        //                }
-        //            }
-        //        } else {
-        //            $this->add();
-        //        }
-        //        $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        //        $this->caution = $this->totalBrute * 0.2;
     }
 
     /**
@@ -198,7 +130,6 @@ class Create extends Component
      */
     public function addInBD()
     {
-        // dd($this->tabArticles);
         if (!empty($this->tabArticles)) { // creation du client
             if ($this->ligne['isNew']) {
                 $client = Clients::create(
@@ -240,21 +171,20 @@ class Create extends Component
             );
 
             $facture->update(['code' => 'FA' . date('ym') . '-' . $facture->id]);
-
             foreach ($this->tabArticles as $value) {
                 $article = Articles::whereLibelle($value['article'])->first();
                 $article_id = $article->id;
 
                 Location::create(
                     [
-                        'qte_loue' => $this->qte_article,
+                        'qte_loue' => $value['qte_article'],
                         'qte_retour' => 0,
                         'prix_unitaire' => $this->article_prix,
                         'user_id' => Auth::user()->id,
                         'evenement_id' => $evenement->id,
                         'article_id' => $article_id,
                         'client_id' => $client->id,
-                        'nb_jour' => $this->nb_jour,
+                        'nb_jour' => $value['nb_jour'],
                         'total_une_ligne' => $value['totalUneLigne'],
                     ]
                 );

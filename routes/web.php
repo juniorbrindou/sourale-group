@@ -1,27 +1,9 @@
 <?php
 
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-route::get('test', function () {
-    $test = [];
-    // return PDF::loadView('pages.test')
-    //     ->setPaper('a4', 'landscape')
-    //     ->setWarnings(false)
-    //     ->save(public_path("storage/fichier.pdf"))
-    //     ->stream();
 
-    // $pdf = App::make('dompdf.wrapper');
-    // $pdf->loadHTML('<h1>Test</h1>');
-    // return $pdf->stream();
-
-    // $pdf = PDF::loadView('pages.test', $test);
-    // return $pdf->download('storage/invoice.pdf');
-
-    // $pdf = PDF::loadView('pages.test', $test);
-    // return view('pages.test');
-});
 Route::group(
     ['middleware' => 'auth'],
     function () {
@@ -57,7 +39,7 @@ Route::group(
         });
 
         Route::fallback(function () {
-            return view('dashboard')->with(['error' => 'Désolé, Cette page n\'exitste pas.']);
+            return redirect('dashboard')->with(['error' => 'Désolé, Cette page n\'exitste pas.']);
         });
     }
 );
