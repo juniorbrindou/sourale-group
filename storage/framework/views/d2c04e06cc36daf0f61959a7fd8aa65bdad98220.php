@@ -30,12 +30,67 @@
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
+                    <button data-toggle="modal" data-target="#modal-statut-<?php echo e($evenement->id); ?>"
+                        title="Modiffier le status" class="btn btn-primary btn-md">
+                        <i class="fa fa-cog"></i>
+                    </button>
                     <a title="Visualiser la facture" href="<?php echo e(route('facture.show',$evenement->id)); ?>" target="_blank"
                         style="color:yellow" class="btn btn-dark btn-md">
                         <i class="fa fa-file-pdf"></i>
                     </a>
                 </td>
             </tr>
+
+
+            
+            <div class="modal fade" id="modal-statut-<?php echo e($evenement->id); ?>">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-default">
+                        <div class="modal-header">
+                            <h4>Changer le statut de l'évenement</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form wire:submit.prevent="submit">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select class="form-control" name="statut_evenement">
+                                                <option value="ENREGISTRER">ENREGISTRER</option>
+                                                <option value="A VENIR">A VENIR</option>
+                                                <option value="EN COURS">EN COURS</option>
+                                                <option value="TERMINÉ">TERMINÉ</option>
+                                                <option value="CLÔTURÉ">CLÔTURÉ</option>
+                                            </select>
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <button type="button" class="btn btn-outline-warning btn-block"
+                                            data-dismiss="modal">Annuler</button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <button type="submit" wire:click="update_statut"
+                                            class="btn btn-primary btn-block">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>

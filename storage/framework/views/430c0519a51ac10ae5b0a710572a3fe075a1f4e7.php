@@ -1,6 +1,4 @@
-@extends('layout.app')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
 <section class="content">
@@ -69,10 +67,10 @@
         </div>
         <!-- /.row -->
 
-        {{-- rapport mensuel --}}
+        
         <div class="row">
             <div class="col-md-12">
-                {{-- debut du card pour les charts --}}
+                
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Rapport récapitulatif</h5>
@@ -91,17 +89,17 @@
                                     <strong>Locations: 1 Jan, 2021 - 16 Juil, 2021</strong>
                                 </p>
 
-                                {{-- debut de chart --}}
+                                
                                 <div class="chart">
                                     <div id="chartContainer" style="height: 180px;"></div>
 
-                                    {{-- <canvas id="salesChart" height="180" style="height: 180px;"></canvas> --}}
+                                    
                                 </div>
                                 <!-- /.chart-responsive -->
                             </div>
                             <!-- /.col -->
 
-                            {{-- objectif et accomplissements --}}
+                            
                             <div class="col-md-4">
                                 <p class="text-center">
                                     <strong>Objectifs et accomplissements</strong>
@@ -209,7 +207,7 @@
 
                 <!-- tableau des dernieres commandes -->
                 <div class="card">
-                    {{-- card header --}}
+                    
                     <div class="border-transparent card-header">
 
                         <h3 class="card-title">Dernières Locations </h3>
@@ -220,9 +218,9 @@
                             </button>
                         </div>
                     </div>
-                    {{-- /.card-header  --}}
+                    
 
-                    {{-- card body --}}
+                    
                     <div class="p-0 card-body">
                         <div class="table-responsive">
                             <table class="table m-0">
@@ -363,60 +361,61 @@
 </div>
 <!-- /.content-wrapper -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
 
 
-{{-- les styles et les scripts spécifiques a cette page --}}
 
-@push('styles')
+
+<?php $__env->startPush('styles'); ?>
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome Icons -->
-<link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.css')}}">
+<link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.css')); ?>">
 <!-- overlayScrollbars -->
-<link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+<link rel="stylesheet" href="<?php echo e(asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')); ?>">
 <!-- Theme style -->
-<link rel="stylesheet" href="{{asset('dist/css/adminlte.css')}}">
+<link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.css')); ?>">
 
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 
-{{-- <script src="{{asset('plugins/canvasjs-3.4.1/jquery.canvasjs.min.js')}}"></script> --}}
-<script src="{{asset('plugins/canvasjs-3.4.1/canvasjs.min.js')}}"></script>
+
+<script src="<?php echo e(asset('plugins/canvasjs-3.4.1/canvasjs.min.js')); ?>"></script>
 
 <!-- Bootstrap -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- overlayScrollbars -->
-<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
+<script src="<?php echo e(asset('dist/js/adminlte.js')); ?>"></script>
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
-<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/jquery-mousewheel/jquery.mousewheel.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/raphael/raphael.min.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/jquery-mapael/jquery.mapael.min.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/jquery-mapael/maps/usa_states.min.js')); ?>"></script>
 
-<script src="{{asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')); ?>"></script>
 
 <!-- ChartJS -->
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
 
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
+<script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
-{{'bonjour'}}
+<script src="<?php echo e(asset('dist/js/pages/dashboard2.js')); ?>"></script>
+<?php echo e('bonjour'); ?>
+
 <script type="text/javascript">
     window.onload = function () {
-        var data0 = JSON.parse({{$data}})
+        var data0 = JSON.parse(<?php echo e($data); ?>)
         data1 = data.replace('&quot;', '')
 
         var chart = new CanvasJS.Chart("chartContainer", {
@@ -434,11 +433,13 @@
 
 
 
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('preloader')
+<?php $__env->startPush('preloader'); ?>
 <!-- Preloader -->
 <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="{{asset ('dist/img/logo.png')}}" alt="AdminLTELogo" height="200" width="320">
+    <img class="animation__wobble" src="<?php echo e(asset ('dist/img/logo.png')); ?>" alt="AdminLTELogo" height="200" width="320">
 </div>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Sourale-group\resources\views/dashboard.blade.php ENDPATH**/ ?>
