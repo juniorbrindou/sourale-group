@@ -7,7 +7,7 @@
                 <th width="*%">Client</th>
                 <th width="5%">Net a payer</th>
                 <th width="5%">caution</th>
-                <th width="10%">date début</th>
+                <th width="19%">date début</th>
                 <th width="5%">status</th>
                 <th width="*%"></th>
             </tr>
@@ -21,7 +21,7 @@
                 <td title="Sans la caution: <?php echo e(format_money($evenement->montant_total - $evenement->caution)); ?> F CFA">
                     <b><?php echo e(format_money($evenement->montant_total)); ?></b> </td>
                 <td><b><?php echo e(format_money($evenement->caution)); ?></b> </td>
-                <td><?php echo e($evenement->date_debut_evenement); ?> </td>
+                <td><?php echo e(long_date($evenement->date_debut_evenement)); ?> </td>
 
                 <td><span class="badge badge-<?php echo e(couleur_status($evenement->status)); ?>"><?php echo e($evenement->status); ?></span> </td>
                 
@@ -30,10 +30,13 @@
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
+                    <?php if($evenement->status !== "CLÔTURÉ"): ?>
+
                     <button data-toggle="modal" data-target="#modal-statut-<?php echo e($evenement->id); ?>"
                         title="Modiffier le status" class="btn btn-primary btn-md">
                         <i class="fa fa-cog"></i>
                     </button>
+                    <?php endif; ?>
                     <a title="Visualiser la facture" href="<?php echo e(route('facture.show',$evenement->id)); ?>" target="_blank"
                         style="color:yellow" class="btn btn-dark btn-md">
                         <i class="fa fa-file-pdf"></i>
@@ -53,12 +56,13 @@
                             </button>
                         </div>
 
-                        <form wire:submit.prevent="submit">
+                        <form method="POST">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <select class="form-control" name="statut_evenement">
+                                            <select class="form-control" wire:model.defer="statut_evenement"
+                                                name="statut_evenement">
                                                 <option value="ENREGISTRER">ENREGISTRER</option>
                                                 <option value="A VENIR">A VENIR</option>
                                                 <option value="EN COURS">EN COURS</option>
@@ -79,7 +83,7 @@
                                             data-dismiss="modal">Annuler</button>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <button type="submit" wire:click="update_statut"
+                                        <button wire:click="update_statut(<?php echo e($evenement->id); ?>)"
                                             class="btn btn-primary btn-block">Enregistrer</button>
                                     </div>
                                 </div>

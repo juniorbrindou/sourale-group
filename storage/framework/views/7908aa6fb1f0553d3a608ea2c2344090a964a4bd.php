@@ -20,15 +20,15 @@
                     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('location.index', [])->html();
-} elseif ($_instance->childHasBeenRendered('VvMtg6k')) {
-    $componentId = $_instance->getRenderedChildComponentId('VvMtg6k');
-    $componentTag = $_instance->getRenderedChildComponentTagName('VvMtg6k');
+} elseif ($_instance->childHasBeenRendered('EOmLKNh')) {
+    $componentId = $_instance->getRenderedChildComponentId('EOmLKNh');
+    $componentTag = $_instance->getRenderedChildComponentTagName('EOmLKNh');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('VvMtg6k');
+    $_instance->preserveRenderedChild('EOmLKNh');
 } else {
     $response = \Livewire\Livewire::mount('location.index', []);
     $html = $response->html();
-    $_instance->logRenderedChild('VvMtg6k', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('EOmLKNh', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -104,7 +104,7 @@ echo $html;
     $(function () {
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
-		  "buttons": ["excel", "pdf", "print"],
+		  "buttons": ["pdf", "print"],
           "order": [0,'desc']
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		$('#example2').DataTable({
@@ -164,10 +164,9 @@ echo $html;
 	});
 </script>
 
+<?php endif; ?>
 <?php echo \Livewire\Livewire::scripts(); ?>
 
-
-<?php endif; ?>
 <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Sourale-group\resources\views/location/index.blade.php ENDPATH**/ ?>
