@@ -15,7 +15,7 @@ class DashboardController extends Controller
                 ['x' => 40, 'y' => 30],
                 ['x' => 50, 'y' => 28]
             ];
-        $data = json_encode($dataPoints);
-        return view('dashboard', compact('data'));
+        // $data = json_encode($dataPoints);
+        return view('dashboard', compact('dataPoints'));
     }
 }

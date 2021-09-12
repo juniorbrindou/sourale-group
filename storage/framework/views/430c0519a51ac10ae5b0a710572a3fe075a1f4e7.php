@@ -86,15 +86,19 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <p class="text-center">
-                                    <strong>Locations: 1 Jan, 2021 - 16 Juil, 2021</strong>
+                                    <strong>Zoé: 1 Jan, 2021 - 16 Juil, 2021</strong>
                                 </p>
 
                                 
-                                <div class="chart">
-                                    <div id="chartContainer" style="height: 180px;"></div>
-
-                                    
+                                <div class="chart row">
+                                    <div class="col-md-6">
+                                        <div id="chartContainer1" style="height: 180px;"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="chartContainer2" style="height: 180px;"></div>
+                                    </div>
                                 </div>
+
                                 <!-- /.chart-responsive -->
                             </div>
                             <!-- /.col -->
@@ -383,9 +387,8 @@
 
 <?php $__env->startPush('scripts'); ?>
 <!-- jQuery -->
-<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
-
-
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script> -->
+<!-- canva -->
 <script src="<?php echo e(asset('plugins/canvasjs-3.4.1/canvasjs.min.js')); ?>"></script>
 
 <!-- Bootstrap -->
@@ -411,23 +414,53 @@
 <script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo e(asset('dist/js/pages/dashboard2.js')); ?>"></script>
-<?php echo e('bonjour'); ?>
 
 <script type="text/javascript">
     window.onload = function () {
-        var data0 = JSON.parse(<?php echo e($data); ?>)
-        data1 = data.replace('&quot;', '')
+        var chart1 = new CanvasJS.Chart("chartContainer1", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light1", // "light1", "light2", "dark1", "dark2"
+            // title:{
+            //     text: "indexLabel at dataSeries",
+            //     fontSize: 20
+            // },
+            toolTip: {
+                cornerRadius: 15,
+                borderThickness:3
+            },
 
-        var chart = new CanvasJS.Chart("chartContainer", {
             data: [
             {
-                type: "column",
-                dataPoints:data1
+                type: "doughnut",// bar, bubble, column, pie, spline,doughnut
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
             }
             ]
         });
 
-        chart.render();
+                var chart2 = new CanvasJS.Chart("chartContainer2", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light1", // "light1", "light2", "dark1", "dark2"
+            // title:{
+            //     text: "indexLabel at dataSeries",
+            //     fontSize: 20
+            // },
+            toolTip: {
+                cornerRadius: 15,
+                borderThickness:3
+            },
+
+            data: [
+            {
+                type: "doughnut",// bar, bubble, column, pie, spline,doughnut
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+            }
+            ]
+        });
+
+        chart1.render();
+        chart2.render();
     }
 </script>
 

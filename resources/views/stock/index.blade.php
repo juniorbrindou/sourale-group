@@ -121,7 +121,8 @@
     $(function () {
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
-		  "buttons": ["excel", "pdf", "print"]
+		  "buttons": ["pdf", "print"],
+		   "order": [0,'desc']
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		$('#example2').DataTable({
 		  "paging": true,
@@ -134,52 +135,5 @@
 		});
 	  });
 </script>
-{{-- message flash enregistrement --}}
-@if (session('success'))
-<script>
-    $(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		});
-
-		$(function() {
-			Toast.fire({
-				icon: 'success',
-				title: 'Action Effectuée!'
-			})
-		});
-	});
-
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-	})
-</script>
-
-@elseif(session('error'))
-<script>
-    $(function() {
-		var Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			'timerProgressBar':true,
-			timer: 4000
-		});
-
-		$(function() {
-			Toast.fire({
-				icon: 'error',
-				title: 'L\'action à échouée!'
-			})
-		});
-	});
-</script>
-
 <livewire:scripts />
-
-@endif
 @endpush
