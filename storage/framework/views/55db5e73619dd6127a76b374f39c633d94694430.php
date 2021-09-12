@@ -8,15 +8,15 @@
                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('location.show', ['evenement' => $evenement])->html();
-} elseif ($_instance->childHasBeenRendered('JdffgUk')) {
-    $componentId = $_instance->getRenderedChildComponentId('JdffgUk');
-    $componentTag = $_instance->getRenderedChildComponentTagName('JdffgUk');
+} elseif ($_instance->childHasBeenRendered('fgQoCEQ')) {
+    $componentId = $_instance->getRenderedChildComponentId('fgQoCEQ');
+    $componentTag = $_instance->getRenderedChildComponentTagName('fgQoCEQ');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('JdffgUk');
+    $_instance->preserveRenderedChild('fgQoCEQ');
 } else {
     $response = \Livewire\Livewire::mount('location.show', ['evenement' => $evenement]);
     $html = $response->html();
-    $_instance->logRenderedChild('JdffgUk', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('fgQoCEQ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -198,7 +198,6 @@ echo $html;
     });
   // DropzoneJS Demo Code End
 </script>
-
 <?php echo \Livewire\Livewire::scripts(); ?>
 
 <?php $__env->stopPush(); ?>

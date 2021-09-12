@@ -1,4 +1,9 @@
 <div class="card-body">
+    <div wire:loading.delay wire:target="update_statut">
+        <div class="custom-loading-spinner">
+            Patientez...
+        </div>
+    </div>
     <table id="example1" class="table table-bordered">
         <thead>
             <tr>
@@ -23,14 +28,16 @@
                 <td><b>{{ format_money($evenement->caution) }}</b> </td>
                 <td>{{ long_date($evenement->date_debut_evenement) }} </td>
 
-                <td><span class="badge badge-{{couleur_status($evenement->status)}}">{{$evenement->status}}</span> </td>
+                <td><span
+                        class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}</span>
+                </td>
                 {{--  --}}
                 <td>
                     <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
-                    @if ($evenement->status !== "CLÔTURÉ")
+                    @if ($evenement->status !== "CLOTURÉ")
 
                     <button data-toggle="modal" data-target="#modal-statut-{{$evenement->id}}"
                         title="Modiffier le status" class="btn btn-primary btn-md">
@@ -56,18 +63,21 @@
                             </button>
                         </div>
 
-                        <form method="POST">
+                        <form>
+                            @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <select class="form-control" wire:model.defer="statut_evenement"
                                                 name="statut_evenement">
-                                                <option value="ENREGISTRER">ENREGISTRER</option>
+                                                <option value=""></option>
+                                                <option value="ENREGISTRÉ">ENREGISTRÉ</option>
                                                 <option value="A VENIR">A VENIR</option>
                                                 <option value="EN COURS">EN COURS</option>
                                                 <option value="TERMINÉ">TERMINÉ</option>
-                                                <option value="CLÔTURÉ">CLÔTURÉ</option>
+                                                <option value="CLOTURÉ">CLOTURÉ</option>
+                                                <option value="ANNULÉ">ANNULÉ</option>
                                             </select>
                                         </div>
                                         <!-- /.form-group -->

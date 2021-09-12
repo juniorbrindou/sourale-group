@@ -22,8 +22,10 @@ if (!function_exists('couleur_status')) {
         } elseif ($status == 'TERMINÉ') {
             $color = 'success';
         } elseif ($status == 'ANNULÉ') {
-            $color = 'default';
+            $color = 'info';
         } elseif ($status == 'ENREGISTRÉ') {
+            $color = 'danger';
+        } elseif ($status == 'CLOTURÉ') {
             $color = 'secondary';
         } else {
             $color = 'warning';
