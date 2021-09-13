@@ -360,7 +360,7 @@
             <div id="from">
                 <p>
                     <strong style="color: red;font-size:medium">SOURALÈ GROUP</strong><br>
-                    Cocody Angré 8eme tranche <br>
+                    Treichville Zone 3 <br>
                     programme 6<br><br>
                     Tél.: 07 08 08 49 48 <br>
                     Tél.: 05 04 67 23 23 <br>
@@ -482,8 +482,8 @@
 
         <div id="footer">
             <hr width="545">
-            <p>SOURALÈ-GROUP - Sise à Cocody - Angré - Société à responsabilité limité (SARL) <br>
-                07 08 08 49 48 - contact@souralegroup.com</p>
+            <p>SOURALÈ-GROUP - Sise à Treichville Zone 3 - Angré - N°RC CI-ABJ-2018-8-17766 / N° CC. 1835258A <br>
+                07 08 08 49 48 - contact@souralegroup.ci</p>
         </div>
     </div>
 
