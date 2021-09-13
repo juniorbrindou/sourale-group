@@ -28,21 +28,30 @@
                 <td><b>{{ format_money($evenement->caution) }}</b> </td>
                 <td>{{ long_date($evenement->date_debut_evenement) }} </td>
 
-                <td><span
-                        class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}</span>
+                <td>
+                    <span class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}
+                        @if ($evenement->status === "A VENIR")
+                        <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px"></i>
+                        @endif
+                    </span>
                 </td>
                 {{--  --}}
                 <td>
+
+                    @if ($evenement->status !== "CLOTURÉ")
                     <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
-                    @if ($evenement->status !== "CLOTURÉ")
+
+                    {{-- <i class="fas fa-2x fa-sync-alt fa-spin"></i> --}}
+
 
                     <button data-toggle="modal" data-target="#modal-statut-{{$evenement->id}}"
                         title="Modiffier le status" class="btn btn-primary btn-md">
                         <i class="fa fa-cog"></i>
                     </button>
+
                     @endif
                     <a title="Visualiser la facture" href="{{route('facture.show',$evenement->id)}}" target="_blank"
                         style="color:yellow" class="btn btn-dark btn-md">
@@ -93,7 +102,7 @@
                                             data-dismiss="modal">Annuler</button>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <button wire:click="update_statut({{$evenement->id}})"
+                                        <button type="submit" wire:click="update_statut({{$evenement->id}})"
                                             class="btn btn-primary btn-block">Enregistrer</button>
                                     </div>
                                 </div>

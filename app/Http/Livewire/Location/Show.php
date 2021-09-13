@@ -61,6 +61,7 @@ class Show extends Component
             'type_evenement_libelle' => 'required',
             'evenement_date_fin_evenement' => 'required',
         ]);
+        dd($this->evenement_date_debut_evenement);
         $this->evenement_date_debut_evenement = $this->evenement_date_debut_evenement->format('Y-m-d\TH:i');
         $this->evenement_date_fin_evenement = $this->evenement_date_fin_evenement->format('Y-m-d\TH:i');
 
@@ -91,15 +92,14 @@ class Show extends Component
                 'nbr_jours' => 'required',
             ],
             [
-                'article.*' => 'Veuillez selectionner un article.',
-                'qte_article.*' => 'Veuillez saisir la quantité.',
-                'nb_jours.*' => 'Veuillez saisir le nombre de jour.',
+                'article_libelle.*' => 'Veuillez selectionner un article.',
+                'article_qte.*' => 'Veuillez saisir la quantité d\'article louée.',
+                'nbr_jours.*' => 'Veuillez saisir le nombre de jour de location de cet article.',
             ]
         );
 
         // si la quantité saisie est supperieur à celle en bd de l'article
         $article = Articles::where('libelle', '=', $this->article_libelle)->first();
-        // dd($this->);
         if ($article->qte_en_stock < \intval($this->article_qte)) {
             $this->dispatchBrowserEvent('sweetAlert', [
                 'title' => 'La quantité saisie est suppérieure à celle disponible <br>',
@@ -156,8 +156,8 @@ class Show extends Component
         $this->evenement_nb_jour = $evenement->nb_jour;
         $this->evenement_lieu = $evenement->lieu;
         $this->evenement_description = $evenement->description;
-        $this->evenement_date_debut_evenement = \DateTime::createFromFormat('Y-m-d H:i:s', $evenement->date_debut_evenement);
-        $this->evenement_date_fin_evenement = \DateTime::createFromFormat('Y-m-d H:i:s', $evenement->date_fin_evenement);
+        $this->evenement_date_debut_evenement = \str_replace(' ', 'T', $evenement->date_debut_evenement);
+        $this->evenement_date_fin_evenement = \str_replace(' ', 'T', $evenement->date_fin_evenement);
 
 
         # tableau des articles ok

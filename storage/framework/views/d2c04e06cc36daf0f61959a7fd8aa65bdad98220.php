@@ -28,21 +28,31 @@
                 <td><b><?php echo e(format_money($evenement->caution)); ?></b> </td>
                 <td><?php echo e(long_date($evenement->date_debut_evenement)); ?> </td>
 
-                <td><span
-                        class="badge badge-<?php echo e(couleur_status($evenement->status)); ?> text-lg"><?php echo e($evenement->status); ?></span>
+                <td>
+                    <span class="badge badge-<?php echo e(couleur_status($evenement->status)); ?> text-lg"><?php echo e($evenement->status); ?>
+
+                        <?php if($evenement->status === "A VENIR"): ?>
+                        <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px"></i>
+                        <?php endif; ?>
+                    </span>
                 </td>
                 
                 <td>
+
+                    <?php if($evenement->status !== "CLOTURÉ"): ?>
                     <a title="Modiffier l'évènement" href="<?php echo e(route('locations.show', $evenement->id)); ?>"
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
-                    <?php if($evenement->status !== "CLOTURÉ"): ?>
+
+                    
+
 
                     <button data-toggle="modal" data-target="#modal-statut-<?php echo e($evenement->id); ?>"
                         title="Modiffier le status" class="btn btn-primary btn-md">
                         <i class="fa fa-cog"></i>
                     </button>
+
                     <?php endif; ?>
                     <a title="Visualiser la facture" href="<?php echo e(route('facture.show',$evenement->id)); ?>" target="_blank"
                         style="color:yellow" class="btn btn-dark btn-md">
@@ -93,7 +103,7 @@
                                             data-dismiss="modal">Annuler</button>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <button wire:click="update_statut(<?php echo e($evenement->id); ?>)"
+                                        <button type="submit" wire:click="update_statut(<?php echo e($evenement->id); ?>)"
                                             class="btn btn-primary btn-block">Enregistrer</button>
                                     </div>
                                 </div>

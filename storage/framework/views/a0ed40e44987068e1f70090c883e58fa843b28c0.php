@@ -9,7 +9,7 @@
         <div class="card-header">
             <h3 class="card-title">Enregistrement de location</h3>
         </div>
-        <form wire:submit.prevent="submit">
+        <form wire:submit.prevent="addArticle()">
             <?php echo csrf_field(); ?>
             <div class="<?php echo e($currentStep == 3 ? 'd-none' : ''); ?>">
                 <div class="card-body">
@@ -259,7 +259,7 @@ unset($__errorArgs, $__bag); ?>"
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
-                            <?php $__errorArgs = ['article'];
+                            <?php $__errorArgs = ['article_libelle'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -342,7 +342,7 @@ unset($__errorArgs, $__bag); ?>
                                 <button type="reset" class="mb-2 btn btn-warning btn-block text-light">Effacer</button>
                             </div>
                             <div class="col-md-3 col-sm-6">
-                                <button type="submit" wire:click="addArticle"
+                                <button type="submit" wire:click="addArticle()"
                                     class="btn btn-primary btn-block">Ajouter</button>
                             </div>
                         </div>
@@ -402,7 +402,7 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
                                             <div class="text-right col-md-4">
                                                 Caution(20%) : <b> <?php echo e($evenement->caution); ?> F FCA</b><br>
-                                                Net A Payer : <b><?php echo e($evenement->montant_total); ?> F FCA</b>
+                                                TTC : <b><?php echo e($evenement->montant_total); ?> F FCA</b>
                                             </div>
                                         </div>
                                     </div>

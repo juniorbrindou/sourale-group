@@ -9,7 +9,7 @@
         <div class="card-header">
             <h3 class="card-title">Enregistrement de location</h3>
         </div>
-        <form wire:submit.prevent="submit">
+        <form wire:submit.prevent="addArticle()">
             @csrf
             <div class="{{ $currentStep == 3 ? 'd-none' : '' }}">
                 <div class="card-body">
@@ -189,7 +189,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @error('article')
+                            @error('article_libelle')
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                 role="alert">
                                 <strong>{{ $message }}</strong>
@@ -237,7 +237,7 @@
                                 <button type="reset" class="mb-2 btn btn-warning btn-block text-light">Effacer</button>
                             </div>
                             <div class="col-md-3 col-sm-6">
-                                <button type="submit" wire:click="addArticle"
+                                <button type="submit" wire:click="addArticle()"
                                     class="btn btn-primary btn-block">Ajouter</button>
                             </div>
                         </div>
@@ -295,7 +295,7 @@
                                             </div>
                                             <div class="text-right col-md-4">
                                                 Caution(20%) : <b> {{$evenement->caution}} F FCA</b><br>
-                                                Net A Payer : <b>{{$evenement->montant_total}} F FCA</b>
+                                                TTC : <b>{{$evenement->montant_total}} F FCA</b>
                                             </div>
                                         </div>
                                     </div>
