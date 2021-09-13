@@ -390,19 +390,20 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
-                                                    <?php echo e($evenement->libelle ??'Aucun Nom d\'évenement'); ?></b>
+                                                    <?php echo e($tab_evenement['libelle'] ??'Aucun Nom d\'évenement'); ?></b>
                                                 <br>
-                                                Nombre d'Invités : <b><?php echo e($evenement->nbr_personne ?? 'Inconnu'); ?></b><br>
-                                                Lieu : <b><?php echo e(($evenement->lieu) ??'Inconnu'); ?> </b><br>
-                                                Du : <b><?php echo e(long_date($evenement->date_debut_evenement)??''); ?> <br>
-                                                    au <?php echo e(long_date($evenement->date_fin_evenement) ??''); ?>
+                                                Nombre d'Invités :
+                                                <b><?php echo e($tab_evenement['nbr_personne'] ?? 'Inconnu'); ?></b><br>
+                                                Lieu : <b><?php echo e($tab_evenement['lieu'] ??'Inconnu'); ?> </b><br>
+                                                Du : <b><?php echo e($tab_evenement['date_debut']??''); ?> <br>
+                                                    au <?php echo e($tab_evenement['date_fin'] ??''); ?>
 
                                                 </b><br>
                                                 Durée : <b><?php echo e($tab_evenement['duree_evenement'] ?? ''); ?> jour(s)</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> <?php echo e($evenement->caution); ?> F FCA</b><br>
-                                                TTC : <b><?php echo e($evenement->montant_total); ?> F FCA</b>
+                                                Caution(20%) : <b> <?php echo e($tab_evenement['caution'] ?? ''); ?> F FCA</b><br>
+                                                TTC : <b><?php echo e($tab_evenement['montant_total'] ?? ''); ?> F FCA</b>
                                             </div>
                                         </div>
                                     </div>

@@ -284,18 +284,19 @@
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
-                                                    {{$evenement->libelle ??'Aucun Nom d\'évenement'}}</b>
+                                                    {{$tab_evenement['libelle'] ??'Aucun Nom d\'évenement'}}</b>
                                                 <br>
-                                                Nombre d'Invités : <b>{{ $evenement->nbr_personne ?? 'Inconnu'}}</b><br>
-                                                Lieu : <b>{{($evenement->lieu) ??'Inconnu' }} </b><br>
-                                                Du : <b>{{ long_date($evenement->date_debut_evenement)??'' }} <br>
-                                                    au {{long_date($evenement->date_fin_evenement) ??'' }}
+                                                Nombre d'Invités :
+                                                <b>{{ $tab_evenement['nbr_personne'] ?? 'Inconnu'}}</b><br>
+                                                Lieu : <b>{{$tab_evenement['lieu'] ??'Inconnu' }} </b><br>
+                                                Du : <b>{{$tab_evenement['date_debut']??'' }} <br>
+                                                    au {{$tab_evenement['date_fin'] ??'' }}
                                                 </b><br>
                                                 Durée : <b>{{ $tab_evenement['duree_evenement'] ?? '' }} jour(s)</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> {{$evenement->caution}} F FCA</b><br>
-                                                TTC : <b>{{$evenement->montant_total}} F FCA</b>
+                                                Caution(20%) : <b> {{$tab_evenement['caution'] ?? ''}} F FCA</b><br>
+                                                TTC : <b>{{$tab_evenement['montant_total'] ?? ''}} F FCA</b>
                                             </div>
                                         </div>
                                     </div>

@@ -65,7 +65,7 @@ if (!function_exists('long_date')) {
      * @param string|null $date
      * @return string| date
      */
-    function long_date(string $date = null)
+    function long_date($date = null)
     {
         if ($date == null) {
             return Carbon::now()->isoFormat('LLLL');
