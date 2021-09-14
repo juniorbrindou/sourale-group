@@ -30,22 +30,19 @@
 
                 <td>
                     <span class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}
-                        @if ($evenement->status === "A VENIR")
-                        <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px"></i>
+                        @if ($evenement->status === "EN COURS")
+                        <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px;"></i>
                         @endif
                     </span>
                 </td>
                 {{--  --}}
                 <td>
 
-                    @if ($evenement->status !== "CLOTURÉ")
+                    @if ($evenement->status !== "CLOTURÉ" && $evenement->status !== "EN COURS")
                     <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
-
-                    {{-- <i class="fas fa-2x fa-sync-alt fa-spin"></i> --}}
-
 
                     <button data-toggle="modal" data-target="#modal-statut-{{$evenement->id}}"
                         title="Modiffier le status" class="btn btn-primary btn-md">
@@ -53,6 +50,16 @@
                     </button>
 
                     @endif
+
+                    @if ($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS")
+                    <a title="Voir" href="{{ route('locations.terminer', $evenement->id) }}"
+                        class="mr-1 btn btn-warning btn-md">
+                        <i class="fa fa-eye"></i>
+                    </a>
+
+                    @endif
+
+
                     <a title="Visualiser la facture" href="{{route('facture.show',$evenement->id)}}" target="_blank"
                         style="color:yellow" class="btn btn-dark btn-md">
                         <i class="fa fa-file-pdf"></i>
@@ -81,7 +88,6 @@
                                             <select class="form-control" wire:model.defer="statut_evenement"
                                                 name="statut_evenement">
                                                 <option value=""></option>
-                                                <option value="ENREGISTRÉ">ENREGISTRÉ</option>
                                                 <option value="A VENIR">A VENIR</option>
                                                 <option value="EN COURS">EN COURS</option>
                                                 <option value="TERMINÉ">TERMINÉ</option>
@@ -118,4 +124,3 @@
         </tbody>
     </table>
 </div>
-<!-- /.card-body -->

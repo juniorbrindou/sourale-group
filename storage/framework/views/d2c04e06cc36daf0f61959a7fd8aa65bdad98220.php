@@ -31,22 +31,19 @@
                 <td>
                     <span class="badge badge-<?php echo e(couleur_status($evenement->status)); ?> text-lg"><?php echo e($evenement->status); ?>
 
-                        <?php if($evenement->status === "A VENIR"): ?>
-                        <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px"></i>
+                        <?php if($evenement->status === "EN COURS"): ?>
+                        <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px;"></i>
                         <?php endif; ?>
                     </span>
                 </td>
                 
                 <td>
 
-                    <?php if($evenement->status !== "CLOTURÉ"): ?>
+                    <?php if($evenement->status !== "CLOTURÉ" && $evenement->status !== "EN COURS"): ?>
                     <a title="Modiffier l'évènement" href="<?php echo e(route('locations.show', $evenement->id)); ?>"
                         class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
-
-                    
-
 
                     <button data-toggle="modal" data-target="#modal-statut-<?php echo e($evenement->id); ?>"
                         title="Modiffier le status" class="btn btn-primary btn-md">
@@ -54,6 +51,16 @@
                     </button>
 
                     <?php endif; ?>
+
+                    <?php if($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS"): ?>
+                    <a title="Voir" href="<?php echo e(route('locations.terminer', $evenement->id)); ?>"
+                        class="mr-1 btn btn-warning btn-md">
+                        <i class="fa fa-eye"></i>
+                    </a>
+
+                    <?php endif; ?>
+
+
                     <a title="Visualiser la facture" href="<?php echo e(route('facture.show',$evenement->id)); ?>" target="_blank"
                         style="color:yellow" class="btn btn-dark btn-md">
                         <i class="fa fa-file-pdf"></i>
@@ -82,7 +89,6 @@
                                             <select class="form-control" wire:model.defer="statut_evenement"
                                                 name="statut_evenement">
                                                 <option value=""></option>
-                                                <option value="ENREGISTRÉ">ENREGISTRÉ</option>
                                                 <option value="A VENIR">A VENIR</option>
                                                 <option value="EN COURS">EN COURS</option>
                                                 <option value="TERMINÉ">TERMINÉ</option>
@@ -119,5 +125,4 @@
         </tbody>
     </table>
 </div>
-<!-- /.card-body -->
 <?php /**PATH C:\xampp\htdocs\Sourale-group\resources\views/livewire/location/index.blade.php ENDPATH**/ ?>
