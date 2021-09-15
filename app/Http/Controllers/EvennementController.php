@@ -47,8 +47,8 @@ class EvennementController extends Controller
      */
     public function show($id)
     {
-        // $evenement = Evenements::whereId($id)->firstOrFail();
-        // return view('location.show', compact('evenement'));
+        $evenement = Evenements::whereId($id)->firstOrFail();
+        return view('location.terminer', compact('evenement'));
 
         /** plus tard penser corriger : afficher la liste des evennement et non des location
          *   il sagit de la table evennement qui est gérée et non la table location

@@ -59,21 +59,6 @@ class LocationController extends Controller
 
 
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function terminer($id)
-    {
-        $evenement = Evenements::whereId($id)->firstOrFail();
-        return view('location.terminee', compact('evenement'));
-    }
-
-
-
     /**
      * Show the form for editing the specified resource.
      *

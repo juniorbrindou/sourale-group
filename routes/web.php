@@ -16,9 +16,9 @@ Route::group(
         Route::resource('destockages', 'DestockageController');
         Route::get('stock', 'StockController@index');
         Route::post('locationsCreateClient', 'LocationController@locationsCreateClient')->name('locationsCreateClient');
-        Route::get('location/{$id}', 'LocationController@terminer')->name('locations.terminer');
+        Route::get('location/{$id}', 'EvenementController@show')->name('locations.terminer');
         Route::resource('locations', 'LocationController');
-        Route::resource('evennements', 'EvennementController');
+        Route::get('evennements', 'EvennementController');
         Route::get('facture/{id}', 'FactureController@show')->name('facture.show');
 
 

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Fournisseurs;
-use App\Type_articles;
 use App\Type_evenements;
 use Illuminate\Http\Request;
 
@@ -45,21 +43,21 @@ class TypeEvenementsController extends Controller
         $request->validate([
             'libelle' => 'required|string|min:1',
             'description' => 'nullable|min:0',
-        ],[
-            'libelle.required' =>'Le libéllé est obligatoire'
+        ], [
+            'libelle.required' => 'Le libéllé est obligatoire'
         ]);
         $data = Type_evenements::create($request->all());
 
         // creation du code
-        $data->update(['code' => date("Ymd").'0'.$data->id]);
+        $data->update(['code' => date("Ymd") . '0' . $data->id]);
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
-        }else{
+        } else {
             return redirect()->route('typeEvenements.index')->with('success', 'Action Effectuée!');
         }
     }
-    
+
 
 
     /**
@@ -70,10 +68,10 @@ class TypeEvenementsController extends Controller
      */
     public function edit($id)
     {
-        $typeEvenement = type_evenements::whereId($id)->first(); 
-        return view('parametrage.typeEvenements.edit',compact('typeEvenement'));
+        $typeEvenement = type_evenements::whereId($id)->first();
+        return view('parametrage.typeEvenements.edit', compact('typeEvenement'));
     }
-    
+
 
 
     /**
@@ -88,18 +86,18 @@ class TypeEvenementsController extends Controller
         $request->validate([
             'libelle' => 'required|string|min:1',
             'description' => 'nullable|min:0',
-        ],[
-            'libelle.required' =>'Le libéllé est obligatoire'
+        ], [
+            'libelle.required' => 'Le libéllé est obligatoire'
         ]);
         Type_evenements::whereId($id)->update([
-            'libelle'=> $request->libelle,
-            'description'=> $request->description,
+            'libelle' => $request->libelle,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('typeEvenements.index')->with('success', 'Action Effectuée!');
     }
-    
-    
+
+
 
     /**
      * Remove the specified resource from storage.
