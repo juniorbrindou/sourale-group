@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
+    public function terminer(int $id)
+    {
+        $evenement = Evenements::whereId($id)->firstOrFail();
+        return view('location.terminee', compact('evenement'));
+    }
+
 
     /**
      * Display a listing of the resource.

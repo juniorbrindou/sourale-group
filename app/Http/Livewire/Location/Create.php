@@ -314,12 +314,12 @@ class Create extends Component
     public function secondStepSubmit()
     {
         $this->validate([
-            'libelle_event' => 'required',
+            'libelle_event' => 'required|unique:evenements,libelle',
             'nbr_personne' => 'required',
             'date_debut_evenement' => 'required',
             'type_evenement_id' => 'required',
             'date_fin_evenement' => 'required|after:date_debut_evenement',
-        ]);
+        ],['libelle_event.unique'=>'Ce nom d\'évenement existe déja']);
         $this->ligne['libelle_event'] = $this->libelle_event;
         $this->ligne['lieuEvenement'] = $this->lieuEvenement;
         $this->ligne['type_evenement_id'] = $this->type_evenement_id;
@@ -342,17 +342,6 @@ class Create extends Component
         $this->clients = Clients::all();
         $this->articles = Articles::all();
     }
-
-    public function hydrate()
-    {
-        // pour reduire de la liste l'elemen selectionné
-        // for ($i = 0; $i < count($this->tabArticles); $i++) {
-        //     if ($this->tabArticles[$i]['article'] === $this->article) {
-        //         dd($this->article);
-        //     }
-        // }
-    }
-
 
     public function render()
     {

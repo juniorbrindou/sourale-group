@@ -6,62 +6,61 @@
     </div>
     <table id="example1" class="table table-bordered">
         <thead>
-            <tr>
-                <th width="1%">#</th>
-                <th width="*%">Evenement</th>
-                <th width="*%">Client</th>
-                <th width="5%">TTC</th>
-                <th width="5%">caution</th>
-                <th width="19%">date début</th>
-                <th width="5%">status</th>
-                <th width="*%"></th>
-            </tr>
+        <tr>
+            <th width="1%">#</th>
+            <th width="*%">Evenement</th>
+            <th width="*%">Client</th>
+            <th width="10%">TTC</th>
+            <th width="5%">caution</th>
+            <th width="19%">date début</th>
+            <th width="5%">status</th>
+            <th width="*%"></th>
+        </tr>
         </thead>
         <tbody>
-            @foreach ($evenements as $evenement)
+        @foreach ($evenements as $evenement)
             <tr>
                 <td>{{$evenement->id}}</td>
                 <td class="text-uppercase">{{$evenement->libelle}}</td>
                 <td>{{$evenement->client->nom}}</td>
                 <td title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
-                    <b>{{ format_money($evenement->montant_total) }}</b> </td>
-                <td><b>{{ format_money($evenement->caution) }}</b> </td>
+                    <b>{{ format_money($evenement->montant_total) }}</b></td>
+                <td><b>{{ format_money($evenement->caution) }}</b></td>
                 <td>{{ long_date($evenement->date_debut_evenement) }} </td>
 
                 <td>
                     <span class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}
                         @if ($evenement->status === "EN COURS")
-                        <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px;"></i>
+                            <i class="fas fa-2x fa-sync-alt fa-spin" style="font-size: 25px;"></i>
                         @endif
                     </span>
                 </td>
-                {{--  --}}
                 <td>
 
                     @if ($evenement->status !== "CLOTURÉ" && $evenement->status !== "EN COURS")
-                    <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
-                        class="mr-1 btn btn-warning btn-md">
-                        <i class="fa fa-pen"></i>
-                    </a>
+                        <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
+                           class="mr-1 btn btn-warning btn-md">
+                            <i class="fa fa-pen"></i>
+                        </a>
 
-                    <button data-toggle="modal" data-target="#modal-statut-{{$evenement->id}}"
-                        title="Modiffier le status" class="btn btn-primary btn-md">
-                        <i class="fa fa-cog"></i>
-                    </button>
+                        <button data-toggle="modal" data-target="#modal-statut-{{$evenement->id}}"
+                                title="Modiffier le status" class="btn btn-primary btn-md">
+                            <i class="fa fa-cog"></i>
+                        </button>
 
                     @endif
 
                     @if ($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS")
-                    <a title="Voir" href="{{ route('locations.terminer', $evenement->id) }}"
-                        class="mr-1 btn btn-warning btn-md">
-                        <i class="fa fa-eye"></i>
-                    </a>
+                        <a title="Voir" href="{{ route('locations.terminer', $evenement->id) }}"
+                           class="mr-1 btn btn-warning btn-md">
+                            <i class="fa fa-eye"></i>
+                        </a>
 
                     @endif
 
 
                     <a title="Visualiser la facture" href="{{route('facture.show',$evenement->id)}}" target="_blank"
-                        style="color:yellow" class="btn btn-dark btn-md">
+                       style="color:yellow" class="btn btn-dark btn-md">
                         <i class="fa fa-file-pdf"></i>
                     </a>
                 </td>
@@ -79,14 +78,14 @@
                             </button>
                         </div>
 
-                        <form>
-                            @csrf
+                        <form wire:submit.prevent="update_statut()">
                             <div class="card-body">
                                 <div class="row">
+                                    <input type="hidden" name="evenement_id" wire:model="{{$evenement->id}}">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <select class="form-control" wire:model.defer="statut_evenement"
-                                                name="statut_evenement">
+                                                    name="statut_evenement">
                                                 <option value=""></option>
                                                 <option value="A VENIR">A VENIR</option>
                                                 <option value="EN COURS">EN COURS</option>
@@ -105,11 +104,13 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <button type="button" class="btn btn-outline-warning btn-block"
-                                            data-dismiss="modal">Annuler</button>
+                                                data-dismiss="modal">Annuler
+                                        </button>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <button type="submit" wire:click="update_statut({{$evenement->id}})"
-                                            class="btn btn-primary btn-block">Enregistrer</button>
+                                        <button type="submit" wire:click="update_statut()"
+                                                class="btn btn-primary btn-block">Enregistrer
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +121,7 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
-            @endforeach
+        @endforeach
         </tbody>
     </table>
 </div>
