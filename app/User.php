@@ -17,11 +17,11 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'login', 'password', 'nom', 'prenoms', 'tel1', 'tel2', 'genre'
+		'login', 'password', 'nom', 'tel1', 'tel2', 'genre'
 	];
 
 	/**
-	 * Categorie 
+	 * Categorie
 	 * @return Illuminate\Database\Eloquent\Model
 	 */
 	public function role()

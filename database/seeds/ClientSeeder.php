@@ -14,11 +14,10 @@ class ClientSeeder extends Seeder
 	{
 		$faker = Faker\Factory::create('fr_FR');
 
-		for ($i = 0; $i < 100; $i++) {
+		for ($i = 0; $i < 25; $i++) {
 			Clients::create([
 				'code' =>  date("Ymd") . '0' . $i,
 				'nom' => $faker->name(),
-				'prenoms' => $faker->lastName(),
 				'contact1' => $faker->phoneNumber(),
 				'contact2' => $faker->phoneNumber(),
 				'adresse' => $faker->streetName(),

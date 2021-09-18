@@ -10,7 +10,7 @@
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Modification Client : <b>{{ $client->nom }} {{ $client->prenoms }}</b> </h3>
+						<h3 class="card-title">Modification Client : <b>{{ $client->nom }} </b> </h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
@@ -20,12 +20,12 @@
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
 										<label for="nom">Nom </label>
 										<input type="text" class="form-control @error('nom') is-invalid @enderror"
-											value="{{ $client->nom }}" name="nom" id="nom">
+											value="{{ $client->nom }}" name="nom" autofocus id="nom">
 									</div>
 									@error('nom')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
@@ -33,27 +33,13 @@
 									</span>
 									@enderror
 								</div>
-
-							<div class="col-md-9">
-								{{-- libelle --}}
-								<div class="form-group">
-									<label for="prenoms">Prénoms </label>
-									<input type="text" class="form-control @error('prenoms') is-invalid @enderror"
-										value="{{ $client->prenoms }}" name="prenoms" id="prenoms">
-								</div>
-								@error('prenoms')
-								<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>Téléphone 1</label>
-				
+
 									<div class="input-group">
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -67,7 +53,7 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>Téléphone 1</label>
-				
+
 									<div class="input-group">
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fas fa-phone"></i></span>

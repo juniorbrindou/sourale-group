@@ -10,7 +10,7 @@
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Modification fournisseur : <b>{{ $fournisseur->nom }} {{ $fournisseur->prenoms }}</b> </h3>
+						<h3 class="card-title">Modification fournisseur : <b>{{ $fournisseur->nom }}</b> </h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
@@ -36,7 +36,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Téléphone</label>
-					
+
 										<div class="input-group">
 											<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -55,11 +55,11 @@
 											name="adresse" rows="3" placeholder="Ecrivez ici...">{{ $fournisseur->adresse }}</textarea>
 									</div>
 								</div>
-							
+
 						</div>
 
 
-							
+
 
 
 						<div class="card-footer">

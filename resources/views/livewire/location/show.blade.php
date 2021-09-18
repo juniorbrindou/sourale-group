@@ -261,8 +261,7 @@
                 <div class="card bg-light">
                     <div class="card-header">
                         <h3 class="card-title">Location du {{ long_date($evenement->created_at) }} par <b>
-                                {{$user->nom}}
-                                {{$user->prenoms}}</b>
+                                {{$user->nom}}</b>
                         </h3>
                     </div>
                     <div class="card-body">

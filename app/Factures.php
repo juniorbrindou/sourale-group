@@ -12,7 +12,7 @@ class Factures extends Model
      * @var array
      */
     protected $fillable = [
-        'code', 'user_id', 'total', 'date_creation', 'caution', 'evenement_id'
+        'code', 'user_id', 'total', 'date_creation', 'caution', 'evenement_id','libelle'
     ];
 
 

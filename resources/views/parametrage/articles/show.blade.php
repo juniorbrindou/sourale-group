@@ -58,7 +58,7 @@
                             title="Voir l'utilisateur">
                             Derniere
                             Modification :
-                            {{$article->user->nom}} {{$article->user->prenoms}} ({{$article->user->login}}) </a>
+                            {{$article->user->nom}} ({{$article->user->login}}) </a>
                     </div>
                 </div>
                 <div class="mt-4 row">

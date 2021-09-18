@@ -70,7 +70,7 @@ class Create extends Component
                 'sweetAlert',
                 [
                     'icon' => 'error',
-                    'title' => 'Quantité choisie n\'est pas disponible. Pensez à vous approvisionner'
+                    'title' => 'Quantité choisie n\'est pas disponible. Pensez à vous approvisionner d\'abord'
                 ]
             );
         }

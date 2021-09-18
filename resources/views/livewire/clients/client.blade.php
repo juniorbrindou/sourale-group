@@ -29,8 +29,7 @@
                                 <tr>
                                     <td>{{ $client->id }}</td>
                                     <td>
-                                        <a href="{{route('clients.show',$client->id)}}">{{ $client->nom }}
-                                            {{ isset($client->prenoms) ? $client->prenoms : '' }}</a>
+                                        <a href="{{route('clients.show',$client->id)}}">{{ $client->nom }}</a>
                                     </td>
                                     <td>{{ isset($client->contact1) ? $client->contact1 : '' }} /
                                         {{ isset($client->contact2) ? $client->contact2 : ''}} </td>
@@ -64,7 +63,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p class="text-danger">Voulez vous vraiment supprimer le client
-                                                    <b>{{ $client->nom }} {{ $client->prenoms }}</b></p>
+                                                    <b>{{ $client->nom }}</b></p>
                                             </div>
                                             <div class="modal-footer justify-content-between">
                                                 <button type="button" class="btn btn-primary"

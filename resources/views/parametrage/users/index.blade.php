@@ -52,8 +52,8 @@
                         </td>
 
                         <td>
-                            @if ($user->nom && $user->prenoms)
-                            {{ $user->nom .' '. $user->prenoms }}
+                            @if ($user->nom)
+                            {{ $user->nom }}
                             @else
                             <span class="badge badge-danger">Aucun nom (ce compte est incomplet) </span>
                             @endif
@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p class="text-danger">Voulez vous vraiment supprimer l'Utilisateur
-                                        <b>{{ $user->nom.' '. $user->prenoms }}</b></p>
+                                        <b>{{ $user->nom}}</b></p>
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>

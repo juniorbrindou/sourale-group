@@ -40,7 +40,7 @@
                             </div>
                             <div class="text-right col-md-4">
                                 Caution(20%) : <b>{{ format_money($evenement->caution) }}F FCA</b><br>
-                                Net A Payer : <b>{{ format_money($evenement->montant_total) }}F FCA</b>
+                                TTC : <b>{{ format_money($evenement->montant_total) }}F FCA</b>
                             </div>
                         </div>
 

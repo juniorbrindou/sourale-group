@@ -9,11 +9,8 @@ use Carbon\Carbon;
 if (!function_exists('couleur_status')) {
     /**
      * calcule le totale de chaque ligne
-     * @param float $quantite
-     * @param float $nb_jours
-     * @param float $prix_unitaire
-     *
-     * @return [type]
+     * @param string $status
+     * @return string [type]
      */
     function couleur_status(string $status)
     {

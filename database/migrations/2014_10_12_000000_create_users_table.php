@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('login');
             $table->string('nom')->nullable();
-            $table->string('prenoms')->nullable();
             $table->string('tel1')->nullable();
             $table->string('tel2')->nullable();
             $table->string('genre')->default('Mme');

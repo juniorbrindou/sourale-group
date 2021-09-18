@@ -167,6 +167,7 @@ class Create extends Component
                     "caution" => $this->caution,
                     "user_id" => Auth::user()->id,
                     "evenement_id" => $evenement->id,
+                    "libelle" => 'Facture-'.$evenement->libelle,
                 ]
             );
 

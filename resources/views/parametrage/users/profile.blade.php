@@ -22,7 +22,7 @@
 
                         <ul class="mb-3 list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Nom</b> <span class="float-right">{{$user->nom .' '. $user->prenoms}}</span>
+                                <b>Nom</b> <span class="float-right">{{$user->nom}}</span>
                             </li>
                             <li class="list-group-item">
                                 <b>role</b> <span
@@ -182,23 +182,6 @@
                                             @enderror
 
 
-                                        </div>
-                                    </div>
-
-                                    {{-- prenoms --}}
-                                    <div class="form-group row">
-                                        <label for="prenoms" class="col-sm-2 col-form-label">Prenoms</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="prenoms"
-                                                class="form-control @error('prenoms') is-invalid @enderror" id="prenoms"
-                                                value="{{ $user->prenoms}}">
-
-                                            @error('prenoms')
-                                            <span class="text-danger"
-                                                style="margin-top: -1.rem;display: block; font-size:80%" role="alert">
-                                                <strong>{{$message}} </strong>
-                                            </span>
-                                            @enderror
                                         </div>
                                     </div>
 

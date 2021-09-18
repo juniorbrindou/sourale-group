@@ -95,7 +95,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Auteur : {{Auth::user()->nom}} {{Auth::user()->prenoms}}</h3>
+                            <h3 class="card-title">Auteur : {{Auth::user()->nom}}</h3>
 
                             <div class="card-tools">
                                 <div class="float-right input-group input-group-sm" style="width: 150px;">

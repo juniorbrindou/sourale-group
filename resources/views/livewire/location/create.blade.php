@@ -78,8 +78,8 @@
                                                                 wire:model.defer="oldClient">
                                                                 <option value="">Coisissez un client existant</option>
                                                                 @foreach ($clients as $client)
-                                                                <option value="{{$client->id}}"> {{$client->nom}}
-                                                                    {{$client->prenoms}}
+                                                                <option value="{{$client->id}}">
+                                                                    {{$client->nom}}
                                                                 </option> @endforeach
                                                             </select>
                                                         </div>
@@ -370,8 +370,7 @@
                 <div class="card bg-light">
                     <div class="card-header">
                         <h3 class="card-title">Location du {{ long_date() }} par <b>
-                                {{Auth::user()->nom}}
-                                {{Auth::user()->prenoms}}</b>
+                                {{Auth::user()->nom}} </b>
                         </h3>
                     </div>
                     <div class="card-body">
@@ -404,7 +403,7 @@
                                             </div>
                                             <div class="text-right col-md-4">
                                                 Caution(20%) : <b>{{ format_money($caution) }}F FCA</b><br>
-                                                Net A Payer : <b>{{ format_money($totalBrute) }}F FCA</b>
+                                                TTC : <b>{{ format_money($totalBrute) }}F FCA</b>
                                             </div>
                                         </div>
                                     </div>

@@ -19,7 +19,7 @@
                         <div class="card-body">
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     {{-- libelle --}}
                                     <div class="form-group">
                                         <label for="nom">Nom *</label>
@@ -28,23 +28,6 @@
                                             placeholder="Entrer le nom du client" autofocus>
                                     </div>
                                     @error('nom')
-                                    <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-                                        role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-
-                                <div class="col-md-8">
-                                    {{-- libelle --}}
-                                    <div class="form-group">
-                                        <label for="prenoms">prenoms</label>
-                                        <input type="text" class="form-control @error('prenoms') is-invalid @enderror"
-                                            value="{{ old('prenoms') }}" name="prenoms" id="prenoms"
-                                            placeholder="Entrer le prénom du client">
-                                    </div>
-                                    @error('prenoms')
                                     <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                         role="alert">
                                         <strong>{{ $message }}</strong>

@@ -5,14 +5,18 @@ namespace App\Http\Controllers;
 use App\Clients;
 use App\Evenements;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use function compact;
+use function view;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -22,7 +26,7 @@ class ClientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -32,24 +36,24 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'required|string|min:1',
-            'prenoms' => 'nullable|min:0',
+            'nom' => ['required','string','min:1', Rule::unique('clients')],
             'contact1' => 'nullable|min:0',
             'contact2' => 'nullable|min:0',
             'adresse' => 'nullable|min:0',
         ], [
-            'nom.required' => 'Le nom du client est obligatoire'
+            'nom.required' => 'Le nom du client est obligatoire',
+            'nom.unique' => 'Ce client existe déja',
         ]);
+
         $data = Clients::create(array_merge($request->all(), ['user_id' => Auth::id()]));
         // creation du code
         $data->update(['code' => date("Ymd") . '0' . $data->id]);
-
 
         if (isset($request->encore)) {
             return back()->with('success', 'Action Effectuée!');
@@ -61,8 +65,8 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show(Clients $client)
     {
@@ -74,14 +78,14 @@ class ClientController extends Controller
             $gainTotal += $value;
         }
 
-        return \view('parametrage.clients.show', \compact('client', 'evenements', 'gainTotal', 'bestEvenement'));
+        return view('parametrage.clients.show', compact('client', 'evenements', 'gainTotal', 'bestEvenement'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function edit($id)
     {
@@ -92,15 +96,14 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
             'nom' => 'required|string|min:1',
-            'prenoms' => 'nullable|min:0',
             'contact1' => 'nullable|min:0',
             'contact2' => 'nullable|min:0',
             'adresse' => 'nullable|min:0',
@@ -109,7 +112,6 @@ class ClientController extends Controller
         ]);
         Clients::whereId($id)->update([
             'nom' => $request->nom,
-            'prenoms' => $request->prenoms,
             'contact1' => $request->contact1,
             'contact2' => $request->contact2,
             'adresse' => $request->adresse,
@@ -121,8 +123,8 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {

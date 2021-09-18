@@ -37,14 +37,12 @@ class UserController extends Controller
             'login' => 'required|string|min:1|unique:users,login',
             'nom' => 'required|string|min:1',
             'nom' => 'nullable|min:0',
-            'prenoms' => 'nullable|min:0',
         ]);
 
 
         $data = User::create([
             'login' => $request->login,
             'nom' => $request->nom,
-            'prenoms' => $request->prenoms,
             'tel1' => $request->tel1,
             'password' => Hash::make($request->password),
             'genre' => $request->genre,
@@ -97,7 +95,6 @@ class UserController extends Controller
         $request->validate([
             'login' => 'required|string|min:1',
             'nom' => 'nullable|min:1|string',
-            'prenoms' => 'nullable|min:0|string',
             'tel1' => 'nullable|min:10|string',
             'tel2' => 'nullable|min:10|string',
             'genre' => 'nullable|min:1|string',
@@ -112,7 +109,6 @@ class UserController extends Controller
         $data->update([
             'login' => $request->login,
             'nom' => $request->nom,
-            'prenoms' => $request->prenoms,
             'tel1' => $request->tel1,
             'tel2' => $request->tel2,
             'genre' => $request->genre,

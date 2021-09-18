@@ -53,22 +53,6 @@
 							</div>
 
 							<div class="row">
-								<div class="col-md-6">
-									{{-- prenoms --}}
-									<div class="form-group">
-										<label for="prenoms">prenoms</label>
-										<input type="text" class="form-control @error('prenoms') is-invalid @enderror"
-											value="{{ old('prenoms') }}" name="prenoms" id="prenoms"
-											placeholder="Entrez les prenoms">
-									</div>
-									@error('prenoms')
-									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-										role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-									@enderror
-								</div>
-
 								<div class="col-md-3">
 									{{-- password --}}
 									<div class="form-group">
@@ -401,8 +385,8 @@
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',

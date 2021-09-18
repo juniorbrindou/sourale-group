@@ -18,23 +18,13 @@
                 <td>{{$sortie->article->libelle}}</td>
                 <td>{{$sortie->created_at}} </td>
                 <td>{{$sortie->motif}} </td>
-                <td>{{$sortie->user->nom}} {{$sortie->user->prenoms}}  </td>
+                <td>{{$sortie->user->nom}} </td>
             </tr>
 
             @endforeach
 
         </tbody>
 
-        <tfoot>
-            <tr>
-                <th>#</th>
-                <th>Quantité</th>
-                <th>Article</th>
-                <th>Date de sortie</th>
-                <th>Motif</th>
-                <th>Auteur</th>
-            </tr>
-        </tfoot>
     </table>
 </div>
 <!-- /.card-body -->
