@@ -5,16 +5,26 @@
         </div>
     </div>
     <table id="example1" class="table table-bordered">
+        <colgroup>
+          <col style="width: 1%"/>
+          <col style="width: auto"/>
+          <col style="width: auto"/>
+          <col style="width: 10%"/>
+          <col style="width: 5%"/>
+          <col style="width: 19%"/>
+          <col style="width: 5%"/>
+          <col style="width: auto"/>
+       </colgroup>
         <thead>
         <tr>
-            <th width="1%">#</th>
-            <th width="*%">Evenement</th>
-            <th width="*%">Client</th>
-            <th width="10%">TTC</th>
-            <th width="5%">caution</th>
-            <th width="19%">date début</th>
-            <th width="5%">status</th>
-            <th width="*%"></th>
+            <th>#</th>
+            <th>Evenement</th>
+            <th>Client</th>
+            <th>TTC</th>
+            <th>caution</th>
+            <th>date début</th>
+            <th>status</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -37,11 +47,14 @@
                 </td>
                 <td>
 
-                    @if ($evenement->status !== "CLOTURÉ" && $evenement->status !== "EN COURS")
+                    @if ($evenement->status !== "CLOTURÉ" && $evenement->status !== "ANNULÉ")
                         <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
                            class="mr-1 btn btn-warning btn-md">
                             <i class="fa fa-pen"></i>
                         </a>
+                    @endif
+
+                    @if ($evenement->status !== "CLOTURÉ")
 
                         <button data-toggle="modal" data-target="#modal-statut-{{$evenement->id}}"
                                 title="Modiffier le status" class="btn btn-primary btn-md">
@@ -55,7 +68,6 @@
                            class="mr-1 btn btn-warning btn-md">
                             <i class="fa fa-eye"></i>
                         </a>
-
                     @endif
 
 
@@ -81,17 +93,15 @@
                         <form wire:submit.prevent="update_statut()">
                             <div class="card-body">
                                 <div class="row">
-                                    <input type="hidden" name="evenement_id" wire:model="{{$evenement->id}}">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <select class="form-control" wire:model.defer="statut_evenement"
                                                     name="statut_evenement">
                                                 <option value=""></option>
-                                                <option value="A VENIR">A VENIR</option>
-                                                <option value="EN COURS">EN COURS</option>
-                                                <option value="TERMINÉ">TERMINÉ</option>
-                                                <option value="CLOTURÉ">CLOTURÉ</option>
-                                                <option value="ANNULÉ">ANNULÉ</option>
+                                                <option value="{{$evenement->id}}.EN COURS">EN COURS</option>
+                                                <option value="{{$evenement->id}}.TERMINÉ">TERMINER</option>
+                                                <option value="{{$evenement->id}}.CLOTURÉ">CLOTURÉ</option>
+                                                <option value="{{$evenement->id}}.ANNULÉ">ANNULÉ</option>
                                             </select>
                                         </div>
                                         <!-- /.form-group -->
