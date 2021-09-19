@@ -64,7 +64,7 @@
                     @endif
 
                     @if ($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS")
-                        <a title="Voir" href="{{ route('locations.terminer', $evenement->id) }}"
+                        <a title="Voir" href="{{ route('evennements.show', $evenement->id) }}"
                            class="mr-1 btn btn-warning btn-md">
                             <i class="fa fa-eye"></i>
                         </a>

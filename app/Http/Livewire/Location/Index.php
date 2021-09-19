@@ -14,16 +14,69 @@ class Index extends Component
     public $evenements;
     public $statut_evenement;
     public $tab_locations;
-    public $ligne;
+    public $ligne=[];
     public $evenement_id;
-
 
     public function update_statut()
     {
+        $tab = explode('.',$this->statut_evenement);
+        $this->evenement_id = $tab[0];
+        $this->statut_evenement = $tab[1];
+        $this->validate(['statut_evenement' => 'required'], ['statut_evenement.*' => 'Aucun status choisis']);
+        $evenement = Evenements::find($this->evenement_id);
+        $locations = Location::where('evenement_id','=',$evenement->id)->get();
+
+        foreach ($locations as $key => $location)
+        {
+            $this->ligne[$key] = $location;
+        }
+
+
+        if($evenement->status =='ENREGISTRÉ')
+        {
+            //En cours et annulé
+            if ($this->statut_evenement =='EN COURS')
+            {
+            //todo : retirer les articles commandés dans qte_en_stock de la table article
+                dd('en cours');
+            }elseif ($this->statut_evenement == 'ANNULÉ')
+            {
+                $evenement->update(['status'=>'ANNULÉ']);
+                session()->flash('error','posd');
+            }else{
+                //todo : gerer le lancement des erreurs flash
+                // (action impossible l'article l'évenement doit etre en cours pour pouvoir eecuter cette action)
+                session()->flash('error', 'Post successfully updated.');
+//                $this->emitTo('livewire-toast', 'show', 'Project Added Successfully');
+//                return redirect()->route('locations.index');
+            }
+        }elseif ($evenement->status =='EN COURS')
+        {
+            //TERMINÉ
+            if ($this->statut_evenement =='TERMINÉ')
+            {
+                $evenement->update(['status'=>'TERMINÉ']);
+            }else{
+                // todo: gerer les erreurs flash (action impossible)
+                dd('impossibles');
+            }
+        }elseif ($evenement->status =='ANNULÉ')
+        {
+            // EN COURS
+            // todo : reflechir sur l'evenement annulé peut passer a enregistrer ou a en cour directement
+/*            if ($this->statut_evenement =='EN COURS')
+            {
+                $evenement->update(['status'=>'TERMINÉ']);
+            }else{
+                // todo: gerer les erreurs flash (action impossible)
+                dd('impossibles');
+            }*/
+        }else{
+            dd('nothing');
+        }
 
 
 
-        
 
 
 
@@ -32,8 +85,35 @@ class Index extends Component
 
 
 
-//        $this->validate(['statut_evenement' => 'required'], ['statut_evenement.*' => 'Aucun status choisis']);
-//        $evenement = Evenements::find($this->evenement_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //        $this->tab_locations = Location::where('evenement_id', '=', $evenement->id)->get();
 //
 //        foreach ($this->tab_locations as $item => $value) {

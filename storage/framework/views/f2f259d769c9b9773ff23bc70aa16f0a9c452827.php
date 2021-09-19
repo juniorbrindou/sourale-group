@@ -65,7 +65,7 @@
                     <?php endif; ?>
 
                     <?php if($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS"): ?>
-                        <a title="Voir" href="<?php echo e(route('locations.terminer', $evenement->id)); ?>"
+                        <a title="Voir" href="<?php echo e(route('evennements.show', $evenement->id)); ?>"
                            class="mr-1 btn btn-warning btn-md">
                             <i class="fa fa-eye"></i>
                         </a>
