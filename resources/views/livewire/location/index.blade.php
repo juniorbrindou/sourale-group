@@ -6,15 +6,15 @@
     </div>
     <table id="example1" class="table table-bordered">
         <colgroup>
-          <col style="width: 1%"/>
-          <col style="width: auto"/>
-          <col style="width: auto"/>
-          <col style="width: 10%"/>
-          <col style="width: 5%"/>
-          <col style="width: 19%"/>
-          <col style="width: 5%"/>
-          <col style="width: auto"/>
-       </colgroup>
+            <col style="width: 1%"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: 10%"/>
+            <col style="width: 5%"/>
+            <col style="width: 19%"/>
+            <col style="width: 5%"/>
+            <col style="width: auto"/>
+        </colgroup>
         <thead>
         <tr>
             <th>#</th>
@@ -90,12 +90,13 @@
                             </button>
                         </div>
 
-                        <form wire:submit.prevent="update_statut()">
+                        <form wire:submit.prevent="update_statut">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <select class="form-control" wire:model.defer="statut_evenement"
+                                            <select class="form-control @error('statut_evenement') is-invalid @enderror"
+                                                    wire:model.defer="statut_evenement"
                                                     name="statut_evenement">
                                                 <option value=""></option>
                                                 <option value="{{$evenement->id}}.EN COURS">EN COURS</option>
@@ -105,6 +106,14 @@
                                             </select>
                                         </div>
                                         <!-- /.form-group -->
+                                        @error('statut_evenement')
+                                        <span class="text-danger"
+                                              style="margin-top: -1.25rem;display: block; font-size:80%"
+                                              role="alert">
+										    <strong>{{ $message }}</strong>
+									    </span>
+                                        @enderror
+
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +127,7 @@
                                         </button>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <button type="submit" wire:click="update_statut()"
+                                        <button type="submit" wire:click="update_statut"
                                                 class="btn btn-primary btn-block">Enregistrer
                                         </button>
                                     </div>

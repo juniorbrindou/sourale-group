@@ -6,15 +6,15 @@
     </div>
     <table id="example1" class="table table-bordered">
         <colgroup>
-          <col style="width: 1%"/>
-          <col style="width: auto"/>
-          <col style="width: auto"/>
-          <col style="width: 10%"/>
-          <col style="width: 5%"/>
-          <col style="width: 19%"/>
-          <col style="width: 5%"/>
-          <col style="width: auto"/>
-       </colgroup>
+            <col style="width: 1%"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: 10%"/>
+            <col style="width: 5%"/>
+            <col style="width: 19%"/>
+            <col style="width: 5%"/>
+            <col style="width: auto"/>
+        </colgroup>
         <thead>
         <tr>
             <th>#</th>
@@ -91,12 +91,20 @@
                             </button>
                         </div>
 
-                        <form wire:submit.prevent="update_statut()">
+                        <form wire:submit.prevent="update_statut">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <select class="form-control" wire:model.defer="statut_evenement"
+                                            <select class="form-control <?php $__errorArgs = ['statut_evenement'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                    wire:model.defer="statut_evenement"
                                                     name="statut_evenement">
                                                 <option value=""></option>
                                                 <option value="<?php echo e($evenement->id); ?>.EN COURS">EN COURS</option>
@@ -106,6 +114,21 @@
                                             </select>
                                         </div>
                                         <!-- /.form-group -->
+                                        <?php $__errorArgs = ['statut_evenement'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="text-danger"
+                                              style="margin-top: -1.25rem;display: block; font-size:80%"
+                                              role="alert">
+										    <strong><?php echo e($message); ?></strong>
+									    </span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +142,7 @@
                                         </button>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <button type="submit" wire:click="update_statut()"
+                                        <button type="submit" wire:click="update_statut"
                                                 class="btn btn-primary btn-block">Enregistrer
                                         </button>
                                     </div>

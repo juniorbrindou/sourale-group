@@ -61,7 +61,6 @@
                                     <th>Jours</th>
                                     <th>Prix U</th>
                                     <th>Total</th>
-                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -76,16 +75,6 @@
                                     <td><?php echo e(format_money($tab_location->article->prix_tarification)); ?></td>
                                     <td><?php echo e(total_ligne($tab_location->qte_loue,$tab_location->nb_jour,$tab_location->article->prix_tarification)); ?>
 
-
-                                    <td>
-                                        <button wire:click="updateLigne(<?php echo e($item); ?>)" title="Modiffier"
-                                            class="btn btn-primary btn-md">
-                                            <i class="fa fa-pen"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-md" wire:click="addDeleteLigne(<?php echo e($item); ?>)">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
                                 </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 Aucune information...

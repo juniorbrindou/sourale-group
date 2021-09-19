@@ -60,7 +60,6 @@
                                     <th>Jours</th>
                                     <th>Prix U</th>
                                     <th>Total</th>
-                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -74,16 +73,6 @@
                                     <td>{{$tab_location->nb_jour}}</td>
                                     <td>{{ format_money($tab_location->article->prix_tarification)}}</td>
                                     <td>{{total_ligne($tab_location->qte_loue,$tab_location->nb_jour,$tab_location->article->prix_tarification)}}
-
-                                    <td>
-                                        <button wire:click="updateLigne({{$item}})" title="Modiffier"
-                                            class="btn btn-primary btn-md">
-                                            <i class="fa fa-pen"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-md" wire:click="addDeleteLigne({{$item}})">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
                                 </tr>
                                 @empty
                                 Aucune information...
