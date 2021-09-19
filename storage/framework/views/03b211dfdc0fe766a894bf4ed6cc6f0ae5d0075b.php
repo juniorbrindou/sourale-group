@@ -126,23 +126,23 @@
         height: 55px
     }
 
-    #header>#reference {
+    #header > #reference {
         text-align: center
     }
 
-    #header>#reference h3 {
+    #header > #reference h3 {
         margin-top: 5px;
         font-size: initial;
         text-decoration: underline;
     }
 
-    #header>#reference h4 {
+    #header > #reference h4 {
         margin-top: 1%;
         font-size: 85%;
         font-weight: 600
     }
 
-    #header>#reference p {
+    #header > #reference p {
         margin: 0;
         margin-top: 1%;
         font-size: 85%
@@ -152,8 +152,8 @@
         height: 140px
     }
 
-    #fromto>#from,
-    #fromto>#to {
+    #fromto > #from,
+    #fromto > #to {
         width: 45%;
         min-height: 90px;
         font-size: 85%;
@@ -161,7 +161,7 @@
         line-height: 120%
     }
 
-    #fromto>#from {
+    #fromto > #from {
         float: left;
         width: 45%;
         background: #efefef;
@@ -169,52 +169,52 @@
         padding: 1.5%
     }
 
-    #fromto>#to {
+    #fromto > #to {
         float: right;
         border: solid grey 1px
     }
 
-    #items>p {
+    #items > p {
         font-weight: 700;
         text-align: right;
         margin-bottom: 1%;
         font-size: 65%
     }
 
-    #items>table {
+    #items > table {
         width: 100%;
         font-size: 85%;
         border: solid goldenrod 1px
     }
 
-    #items>table th:first-child {
+    #items > table th:first-child {
         text-align: left
     }
 
-    #items>table th {
+    #items > table th {
         font-weight: 750;
         padding: 1px 4px;
         background-color: goldenrod;
     }
 
-    #items>table td {
+    #items > table td {
         padding: 1px 4px
     }
 
-    #items>table th:nth-child(2),
-    #items>table th:nth-child(4) {
+    #items > table th:nth-child(2),
+    #items > table th:nth-child(4) {
         width: 45px
     }
 
-    #items>table th:nth-child(3) {
+    #items > table th:nth-child(3) {
         width: 60px
     }
 
-    #items>table th:nth-child(5) {
+    #items > table th:nth-child(5) {
         width: 80px
     }
 
-    #items>table tr td:not(:first-child) {
+    #items > table tr td:not(:first-child) {
         text-align: right;
         padding-right: 1%
     }
@@ -238,7 +238,7 @@
         padding: 3px
     }
 
-    #items table tr:nth-child(2)>td {
+    #items table tr:nth-child(2) > td {
         padding-top: 8px
     }
 
@@ -344,90 +344,90 @@
 </style>
 
 <body>
-    <div id="container">
-        <div class="banner">
-            <img src="<?php echo e(asset('img/545x150&text=SOURALE-GROUP.png')); ?>" alt="banniere" class="img-banner">
+<div id="container">
+    <div class="banner">
+        <img src="<?php echo e(asset('img/545x150&text=SOURALE-GROUP.png')); ?>" alt="banniere" class="img-banner">
+    </div>
+    <div id="header">
+        <div id="reference">
+            <h3><strong>Facture</strong></h3>
+            <h4>Réf. : <?php echo e($facture->code); ?></h4>
+            <p>Date facturation : <?php echo e($facture->date_creation); ?></p>
         </div>
-        <div id="header">
-            <div id="reference">
-                <h3><strong>Facture</strong></h3>
-                <h4>Réf. : <?php echo e($facture->code); ?></h4>
-                <p>Date facturation : <?php echo e($facture->date_creation); ?></p>
-            </div>
+    </div>
+
+    <div id="fromto">
+        <div id="from">
+            <p>
+                <strong style="color: red;font-size:medium">SOURALÈ GROUP</strong><br>
+                Treichville Zone 3 <br>
+                <br>
+                Tél.: 07 08 08 49 48 <br>
+                Tél.: 05 04 67 23 23 <br>
+                Email: contact@souralegroup.ci <br>
+
+            </p>
         </div>
-
-        <div id="fromto">
-            <div id="from">
-                <p>
-                    <strong style="color: red;font-size:medium">SOURALÈ GROUP</strong><br>
-                    Treichville Zone 3 <br>
-                    programme 6<br><br>
-                    Tél.: 07 08 08 49 48 <br>
-                    Tél.: 05 04 67 23 23 <br>
-                    Email: contact@souralegroup.ci <br>
-
-                </p>
-            </div>
-            <div id="to">
-                <p>
+        <div id="to">
+            <p>
                     <span class="ml-2">
                         <strong>Client</strong>
                         <?php echo e($client->nom ?? ''); ?>
 
                     </span>
-                    <br>
-                    <span class="ml-2">
+                <br>
+                <span class="ml-2">
                         <strong>Contact</strong>
                         <?php echo e($client->contact1 ?? ''); ?>
 
                     </span>
-                    <br>
-                    <hr>
-                    <span class="ml-2">
+                <br>
+            <hr>
+            <span class="ml-2">
                         <strong>Evenement</strong>
                         <?php echo e($evenement->libelle ?? ''); ?>
 
                     </span>
-                    <br>
-                    <span class="ml-2">
+            <br>
+            <span class="ml-2">
                         <strong class="mr-3">Date début</strong>
                         <?php echo e($evenement->date_debut_evenement ?? ''); ?>
 
                     </span>
-                    <br>
-                    <span class="ml-2">
+            <br>
+            <span class="ml-2">
                         <strong class="mr-3">Date fin</strong>
                         <?php echo e($evenement->date_fin_evenement ?? ''); ?>
 
                     </span>
-                    <br>
-                    <span class="ml-2">
+            <br>
+            <span class="ml-2">
                         <strong class="mr-3">Invités </strong>
                         <?php echo e($evenement->nbr_personne ?? '0'); ?> personne(s)
                     </span>
-                    <br>
-                    <span class="ml-2">
+            <br>
+            <span class="ml-2">
                         <strong class="mr-3">Lieu </strong>
                         <?php echo e($evenement->lieu ?? ''); ?>
 
                     </span>
-                    <br>
-                </p>
-            </div>
+            <br>
+            </p>
         </div>
+    </div>
 
-        <div id="items">
-            <p>Montants exprimés en Franc CFA</p>
-            <table>
-                <tr>
-                    <th style="width: 5%;">#</th>
-                    <th style="width: 48%">Désignation</th>
-                    <th style="width: 13%;">P.U. HT</th>
-                    <th style="width: 13%;">Qté</th>
-                    <th style="width: 8%;">jours</th>
-                    <th style="width: 13%;">Sous Total</th>
-                </tr>
-                <?php $__empty_1 = true; $__currentLoopData = $tab_locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+    <div id="items">
+        <p>Montants exprimés en Franc CFA</p>
+        <table>
+            <tr>
+                <th style="width: 5%;">#</th>
+                <th style="width: 48%">Désignation</th>
+                <th style="width: 13%;">P.U. HT</th>
+                <th style="width: 13%;">Qté</th>
+                <th style="width: 8%;">jours</th>
+                <th style="width: 13%;">Sous Total</th>
+            </tr>
+            <?php $__empty_1 = true; $__currentLoopData = $tab_locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <tr>
                     <td><?php echo e($key+1); ?></td>
                     <td><?php echo e($item->article->libelle); ?></td>
@@ -438,65 +438,66 @@
 
                     </td>
                 </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 
-                <?php endif; ?>
+            <?php endif; ?>
 
+        </table>
+    </div>
+
+    <div id="summary">
+
+        <div id="total">
+            <table class="border-1">
+                <tr>
+                    <td>Total HT</td>
+                    <td><?php echo e($totalBrute); ?></td>
+                </tr>
+                <tr>
+                    <td>Caution (20%)</td>
+                    <td><?php echo e(format_money($evenement->caution) ?? ''); ?></td>
+                </tr>
+                <tr>
+                    <td>Total TTC</td>
+                    <td><?php echo e(format_money($evenement->montant_total)); ?></td>
+                </tr>
             </table>
         </div>
 
-        <div id="summary">
-
-            <div id="total">
-                <table class="border-1">
-                    <tr>
-                        <td>Total HT</td>
-                        <td><?php echo e($totalBrute); ?></td>
-                    </tr>
-                    <tr>
-                        <td>Caution (20%)</td>
-                        <td><?php echo e(format_money($evenement->caution) ?? ''); ?></td>
-                    </tr>
-                    <tr>
-                        <td>Total TTC</td>
-                        <td><?php echo e(format_money($evenement->montant_total)); ?></td>
-                    </tr>
-                </table>
-            </div>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <div id="note">
-                <h4>NOTE : CONDITIONS DE LOCATION</h4>
-                <ol>
-                    <li>La location est faite pour 24h. Le jour supplémentaire est facturé</li>
-                    <li>Le matériel loué est sous l'entière responsabilité du client</li>
-                    <li>Une reservation n'est prise en compte qu'après versement d'un acompte</li>
-                    <li>Une réservation annulée entraine une retenue de 75% sur la valeur versée</li>
-                    <li>Toute réservation doit être confirmée 48h avant le jour de la livraison en versant la valeur
-                        totale de la commande plus une caution</li>
-                    <li>La caution remboursable de 20% de la valeur soit <span
-                            style="color: red;"><b><?php echo e(format_money($evenement->caution) ?? ''); ?> F CFA est
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="note">
+            <h4>NOTE : CONDITIONS DE LOCATION</h4>
+            <ol>
+                <li>La location est faite pour 24h. Le jour supplémentaire est facturé</li>
+                <li>Le matériel loué est sous l'entière responsabilité du client</li>
+                <li>Une reservation n'est prise en compte qu'après versement d'un acompte</li>
+                <li>Une réservation annulée entraine une retenue de 75% sur la valeur versée</li>
+                <li>Toute réservation doit être confirmée 48h avant le jour de la livraison en versant la valeur
+                    totale de la commande plus une caution
+                </li>
+                <li>La caution remboursable de 20% de la valeur soit <span
+                        style="color: red;"><b><?php echo e(format_money($evenement->caution) ?? ''); ?> F CFA est
                                 obligatoire</b></span></li>
-                    <li>La caution est rembousable en 24h après le retour du matériel</li>
-                    <li><span style="color: red;"><b>Le transport est à la charge du client</b></span> </li>
-                </ol>
-                </p>
-            </div>
-        </div>
-
-        <div id="footer">
-            <hr width="545">
-            <p>SOURALÈ-GROUP - Sise à Treichville Zone 3 - Angré - N°RC CI-ABJ-2018-8-17766 / N° CC. 1835258A <br>
-                07 08 08 49 48 - contact@souralegroup.ci</p>
+                <li>La caution est rembousable en 24h après le retour du matériel</li>
+                <li><span style="color: red;"><b>Le transport est à la charge du client</b></span></li>
+            </ol>
+            </p>
         </div>
     </div>
 
-    <script>
-        window.addEventListener("load",window.print())
-    </script>
+    <div id="footer">
+        <hr width="545">
+        <p>SOURALÈ-GROUP - Sise à Treichville Zone 3 - Angré - N°RC CI-ABJ-2018-8-17766 / N° CC. 1835258A <br>
+            07 08 08 49 48 - contact@souralegroup.ci</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", window.print())
+</script>
 
 </body>
 

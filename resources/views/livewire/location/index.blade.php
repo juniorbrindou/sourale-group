@@ -47,7 +47,7 @@
                 </td>
                 <td>
 
-                    @if ($evenement->status !== "CLOTURÉ" && $evenement->status !== "ANNULÉ")
+                    @if ($evenement->status !== "CLOTURÉ" && $evenement->status !== "TERMINÉ" && $evenement->status !== "ANNULÉ" && $evenement->status !== "EN COURS")
                         <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
                            class="mr-1 btn btn-warning btn-md">
                             <i class="fa fa-pen"></i>
@@ -63,7 +63,7 @@
 
                     @endif
 
-                    @if ($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS")
+                    @if ($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS" || $evenement->status == "TERMINÉ" )
                         <a title="Voir" href="{{ route('evennements.show', $evenement->id) }}"
                            class="mr-1 btn btn-warning btn-md">
                             <i class="fa fa-eye"></i>
@@ -90,7 +90,9 @@
                             </button>
                         </div>
 
-                        <form wire:submit.prevent="update_statut">
+                        <form method="post" action="{{route('evennements.update',$evenement->id)}}">
+                            @method('PATCH')
+                            @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -99,10 +101,10 @@
                                                     wire:model.defer="statut_evenement"
                                                     name="statut_evenement">
                                                 <option value=""></option>
-                                                <option value="{{$evenement->id}}.EN COURS">EN COURS</option>
-                                                <option value="{{$evenement->id}}.TERMINÉ">TERMINER</option>
-                                                <option value="{{$evenement->id}}.CLOTURÉ">CLOTURÉ</option>
-                                                <option value="{{$evenement->id}}.ANNULÉ">ANNULÉ</option>
+                                                <option value="EN COURS">EN COURS</option>
+                                                <option value="TERMINÉ">TERMINER</option>
+                                                <option value="CLOTURÉ">CLOTURÉ</option>
+                                                <option value="ANNULÉ">ANNULÉ</option>
                                             </select>
                                         </div>
                                         <!-- /.form-group -->
@@ -127,9 +129,7 @@
                                         </button>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <button type="submit" wire:click="update_statut"
-                                                class="btn btn-primary btn-block">Enregistrer
-                                        </button>
+                                        <button type="submit" class="btn btn-primary btn-block">Enregistrer </button>
                                     </div>
                                 </div>
                             </div>

@@ -138,9 +138,8 @@
                 icon: 'error',
                 title: 'Oops...',
                 @error('statut_evenement')
-                text: '{{ session('error')}}',
+                text: '<?php echo session('error') ?>',
                 @enderror
-                footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
 

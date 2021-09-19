@@ -20,15 +20,15 @@
                         <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('location.index', [])->html();
-} elseif ($_instance->childHasBeenRendered('j4pNOfi')) {
-    $componentId = $_instance->getRenderedChildComponentId('j4pNOfi');
-    $componentTag = $_instance->getRenderedChildComponentTagName('j4pNOfi');
+} elseif ($_instance->childHasBeenRendered('UPD8t2t')) {
+    $componentId = $_instance->getRenderedChildComponentId('UPD8t2t');
+    $componentTag = $_instance->getRenderedChildComponentTagName('UPD8t2t');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('j4pNOfi');
+    $_instance->preserveRenderedChild('UPD8t2t');
 } else {
     $response = \Livewire\Livewire::mount('location.index', []);
     $html = $response->html();
-    $_instance->logRenderedChild('j4pNOfi', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('UPD8t2t', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -155,12 +155,11 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                text: '<?php echo e(session('error')); ?>',
+                text: '<?php echo session('error') ?>',
                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
 
