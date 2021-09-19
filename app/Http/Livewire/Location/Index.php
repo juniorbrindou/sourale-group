@@ -14,12 +14,18 @@ class Index extends Component
     public $tab_locations;
     public $ligne = [];
     public $evenement_id;
+    public $test2;
 
     public function update_statut()
     {
-        $tab = explode('.', $this->statut_evenement);
-        $this->evenement_id = $tab[0];
-        $this->statut_evenement = $tab[1];
+        if (isset($this->statut_evenement)) {
+            $tab = explode('.', $this->statut_evenement);
+            $this->evenement_id = $tab[0];
+            $this->statut_evenement = $tab[1];
+        } else {
+            session()->flash('error', 'Post successfully updated.');
+            return redirect()->route('locations.index');
+        }
         $this->validate(['statut_evenement' => 'required'], ['statut_evenement.*' => 'Aucun status choisis']);
         $evenement = Evenements::find($this->evenement_id);
         $locations = Location::where('evenement_id', '=', $evenement->id)->get();
@@ -60,7 +66,8 @@ class Index extends Component
                         $article_en_bd->update(['qte_en_stock' => $article_en_bd->qte_en_stock - $value->qte_loue]);
                     }
                 } else {
-                    dd('Impossible : ' . $test . '--' . $nbr_article);
+                    session()->flash('error', 'Post successfully updated.');
+                    return redirect()->route('locations.index');
                 }
 
 
@@ -154,6 +161,7 @@ class Index extends Component
 
     public function render()
     {
+        $this->test2 = 'bonjour';
         return view('livewire.location.index');
     }
 }
