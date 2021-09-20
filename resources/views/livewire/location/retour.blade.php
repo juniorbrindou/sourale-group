@@ -1,164 +1,18 @@
 <div>
-    <div wire:loading.delay
-        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
+    <div wire:loading.delay wire:target="addInBD, addArticle, save">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
     </div>
-    <div class="card card-warning box-perso">
-        <div class="card-header">
-            <h3 class="card-title">Retour de Location</h3>
-        </div>
-        <form wire:submit.prevent="submit">
-            @csrf
-            <div class="card-body">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="bs-stepper linear">
-
-                            <!-- Stepper header-->
-                            <div class="bs-stepper-header" role="tablist">
-                                <div class="step active" data-target="#location-part">
-                                    <button type="button" class="step-trigger" role="tab" aria-controls="location-part"
-                                        id="location-part-trigger" aria-selected="false" disabled="disabled">
-                                        <span class="bs-stepper-circle">1</span>
-                                        <span class="bs-stepper-label">Les articles de la location</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- Stepper header-->
-
-
-
-                            <!-- Evenement -->
-                            <div id="information-part" class="content active dstepper-block" role="tabpanel"
-                                aria-labelledby="information-part-trigger">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="libelle_event">Nom de l'evenement *</label>
-                                            <input type="text" wire:model.defer="libelle_event"
-                                                class="form-control @error('libelle_event') is-invalid @enderror"
-                                                name="libelle_event" id="libelle_event"
-                                                placeholder="Entrez le nom de l'évenement">
-                                        </div>
-                                        @error('libelle_event')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                            <label for="nbr_personne">Invités</label>
-                                            <input type="number" min="0" wire:model.defer="nbr_personne"
-                                                class="form-control @error('nbr_personne') is-invalid @enderror"
-                                                name="nbr_personne" id="nbr_personne">
-                                        </div>
-                                        @error('nbr_personne')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="lieuEvenement">Lieu</label>
-                                            <input type="text" wire:model.defer="lieuEvenement"
-                                                class="form-control @error('lieuEvenement') is-invalid @enderror"
-                                                id="lieuEvenement">
-                                        </div>
-                                        @error('lieuEvenement')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Type d'evenement</label>
-                                            <select class="float-right select2 form-control"
-                                                wire:model.defer="type_evenement_id">
-                                                @foreach ($type_evenements as $type_evenement)
-                                                <option selected="selected">{{$type_evenement->libelle}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('type_evenement_id')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Date début</label>
-                                            <input type="datetime-local" required class="form-control"
-                                                wire:model.defer="date_debut_evenement">
-                                        </div>
-                                        @error('date_debut_evenement')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Date fin</label>
-                                            <input type="datetime-local" required class="form-control"
-                                                wire:model.defer="date_fin_evenement">
-                                        </div>
-                                        @error('date_fin_evenement')
-                                        <span class="text-danger"
-                                            style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-
-                                <a class="btn btn-primary" wire:click="gotToBeforeStepSubmit">Precedant</a>
-                                <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-            {{-- end card body--}}
-
-    </div>
-
-
-
-
-
-
-
-
-
 
 
 
     {{-- ----------------Tableau des articles---------------- --}}
 
-    <div class="card bg-light">
+    <div class="card card-warning box-perso">
         <div class="card-header">
-            <h3 class="card-title">Location du {{ long_date() }} par <b>
-                    {{Auth::user()->nom}} </b>
+            <h3 class="card-title">Rétour de Location du {{ long_date($ligne['date_debut_evenement']) }} par <b>
+                    {{$tab_locations[0]->user->nom}} </b>
             </h3>
         </div>
         <div class="card-body">
@@ -203,24 +57,40 @@
                                         <th>#</th>
                                         <th>Article</th>
                                         <th>Catégorie</th>
-                                        <th>Quantité</th>
+                                        <th>Quantité Louée</th>
+                                        <th>Quantité retournée</th>
+                                        <th>Etat</th>
                                         <th>Ation</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($tabArticles as $item=>$value)
+                                    @forelse ($tab_locations as $item=>$value)
                                     <tr>
                                         <td>{{$item+1}}</td>
-                                        <td><b> {{$value['article']}} </b></td>
-                                        <td>{{$value['categorie']}}</td>
-                                        <td>{{$value['qte_article']}}
+                                        <td><b> {{$value['article']->libelle}} </b></td>
+                                        <td>{{$value['article']->categorie->libelle}}</td>
+                                        <td>{{$value['qte_loue']}}</td>
+                                        <td colspan="">
+                                            <form action="" wire:submit.prevent='save'>
+                                                <div class="field" wire:ignore>
+                                                    <input type="number" wire:model.defer="qte_retour"
+                                                        style="width: 5rem; height: 25px"
+                                                        value="{{$value['qte_retour']}}">
+                                                    <button type="submit" class="btn btn-dark btn-xs" wire:click="save">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    <br>
+                                                    @error('qte_retour') <span class="error text-sm text-danger">
+                                                        {{ $message }}
+                                                    </span> @enderror
+                                                </div>
+                                            </form>
                                         </td>
-                                        <td>{{ format_money($value['prix']) }}</td>
-                                        <td><b> {{ format_money($value['totalUneLigne']) }} </b></td>
+                                        <td>{{$value['etat_article'] }}</td>
                                         <td>
                                             <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                 class="btn btn-primary btn-md">
-                                                <i class="fa fa-pen"></i>
+                                                <i class="fa fa-check-circle"></i>
                                             </button>
                                             <button class="btn btn-danger btn-md"
                                                 wire:click="addDeleteLigne({{$item}})">
@@ -251,8 +121,9 @@
                     <a href="{{url('locations')}}" class="mb-2 btn btn-warning btn-block text-light">Retour
                         à la liste</a>
                 </div>
-                <div class="col-md-4 col-sm-12">
-                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">Valider</button>
+                <div class="col-md-6 col-sm-12">
+                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">Terminer le
+                        retour</button>
                 </div>
             </div>
         </div>

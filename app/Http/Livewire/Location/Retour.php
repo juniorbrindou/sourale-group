@@ -1,4 +1,6 @@
-<?php /** @noinspection ALL */
+<?php
+
+/** @noinspection ALL */
 
 namespace App\Http\Livewire\Location;
 
@@ -14,9 +16,10 @@ use Illuminate\Support\Facades\Auth;
 
 class Retour extends Component
 {
-    public $currentStep = 1;
+    public $qte_retour;
     public $clients;
     /*Evennement*/
+    public $tab_location;
     public $evenement;
     public $libelle_event;
     public $nbr_personne;
@@ -43,6 +46,7 @@ class Retour extends Component
     public $nb_jour;
     public $article_code;
     /* Location */
+    public $tab_locations;
     public $code = 150;
     public $ligne = [];
     public $tabArticles = [];
@@ -96,7 +100,7 @@ class Retour extends Component
     public function addInBD()
     {
         if (!empty($this->tabArticles)) { // creation du client
-                        $evenement = Evenements::create(
+            $evenement = Evenements::create(
                 [
                     'libelle' => $this->ligne['libelle_event'],
                     'lieu' => $this->ligne['lieuEvenement'],
@@ -154,35 +158,24 @@ class Retour extends Component
 
 
     protected $rules = [
-        'oldClient' => 'required',
-        'type_evenements' => 'required',
+        'qte_retour' => 'required',
     ];
+    public function forValidation($qte_retour)
+    {
+        $this->validateOnly($qte_retour);
+    }
+
+    public function save()
+    {
+        $validatedData = $this->validate();
+        sleep(1);
+    }
+
+
 
     public function mount($evenement)
     {
-        // renvoie dans this→article le model article
-        $article = Articles::where('libelle', '=', $this->article)->first();
-        // recupération des informations l'article en bd
-        $this->article_prix = $article->prix_tarification;
-        $this->article = $article->libelle;
-        $this->article_categorie = $article->categorie->libelle;
-        $this->totalUneLigne = $this->nb_jour * $this->article_prix * $this->qte_article;
-        // unshift pour une entrée en commençant par le haut
-        array_unshift(
-            $this->tabArticles,
-            [
-                'code' => $article->code,
-                'article' => $this->article,
-                'categorie' => $this->article_categorie,
-                'qte_article' => $this->qte_article,
-                'nb_jour' => $this->nb_jour,
-                'prix' => $this->article_prix,
-                'totalUneLigne' => $this->totalUneLigne,
-            ]
-        );
-
-
-
+        $this->tab_locations = Location::where('evenement_id', '=', $evenement->id)->get();
 
         $this->ligne['nom_client'] = $evenement->client->nom;
         $this->ligne['contact1_client'] = $evenement->client->contact1;
@@ -196,7 +189,7 @@ class Retour extends Component
         $this->ligne['caution'] = $evenement->caution;
         $this->ligne['date_fin_evenement'] = $evenement->date_fin_evenement;
         $this->ligne['duree_evenement'] = Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
-        $this->ligne['montant_total']= $evenement->montant_total;
+        $this->ligne['montant_total'] = $evenement->montant_total;
 
         $this->evenement = $evenement;
         $this->type_evenements = Evenements::all();

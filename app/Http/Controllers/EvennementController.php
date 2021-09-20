@@ -121,7 +121,7 @@ class EvennementController extends Controller
                     toast('Action Effectuée avec succes!', 'success');
                     return redirect()->route('locations.index');
                 } else {
-                    toast('Articles Indisponible!', 'error');
+                    alert()->warning('Articles Indisponible', 'Action Impossible! la quantité d\'article disponible est insifisante pour démarer cet evenement : pensez a cloturer les evenements terminer pour rendre les articles disponibles');
                     return redirect()->route('locations.index');
                 }
             } elseif ($request->statut_evenement == 'ANNULÉ') {

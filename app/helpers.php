@@ -76,7 +76,7 @@ if (!function_exists('long_date')) {
 
 
 if (!function_exists('format_money')) {
-    function format_money(float $montant)
+    function format_money($montant)
     {
         return number_format($montant, 0, ',', ' ');
     }
