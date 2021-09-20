@@ -73,7 +73,9 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $evenement = Evenements::whereId($id)->firstOrFail();
+        return view('location.retour',compact('evenement'));
+
     }
 
     /**
@@ -85,7 +87,7 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('location.retour');
     }
 
     /**
