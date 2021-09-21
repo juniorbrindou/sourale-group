@@ -1,5 +1,5 @@
 <div>
-    <div wire:loading.delay wire:target="addInBD, addArticle, save">
+    <div wire:loading.delay wire:target="addInBD, addArticle, save, startEdit">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -71,39 +71,34 @@
                                         <td><b> <?php echo e($value['article']->libelle); ?> </b></td>
                                         <td><?php echo e($value['article']->categorie->libelle); ?></td>
                                         <td><?php echo e($value['qte_loue']); ?></td>
-                                        <td colspan="">
-                                            <form action="" wire:submit.prevent='save'>
+                                        <td>
+
+                                        <?php if($edit_id === $item): ?>
+                                            <form wire:submit.prevent='save'>
                                                 <div class="field" wire:ignore>
                                                     <input type="number" wire:model.defer="qte_retour"
-                                                        style="width: 5rem; height: 25px"
+                                                        style="width: 5rem;"
                                                         value="<?php echo e($value['qte_retour']); ?>">
-                                                    <button type="submit" class="btn btn-dark btn-xs" wire:click="save">
+                                                    <button type="submit" class="btn btn-success" wire:click="update_quantite_retour(<?php echo e($item); ?>)">
                                                         <i class="fa fa-check"></i>
                                                     </button>
-                                                    <br>
-                                                    <?php $__errorArgs = ['qte_retour'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> <span class="error text-sm text-danger">
-                                                        <?php echo e($message); ?>
-
-                                                    </span> <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
                                                 </div>
                                             </form>
+                                            <?php else: ?>
+                                            <?php echo e($value['qte_retour']); ?>
+
+                                            <button wire:click="startEdit(<?php echo e($item); ?>)" title="Modiffier"
+                                                class="btn btn-dark ">
+                                                <i class="fa fa-pen"></i>
+                                            </button>
+
+                                        <?php endif; ?>
                                         </td>
                                         <td><?php echo e($value['etat_article']); ?></td>
                                         <td>
                                             <button wire:click="updateLigne(<?php echo e($item); ?>)" title="Modiffier"
                                                 class="btn btn-primary btn-md">
                                                 <i class="fa fa-check-circle"></i>
-                                            </button>
-                                            <button class="btn btn-danger btn-md"
-                                                wire:click="addDeleteLigne(<?php echo e($item); ?>)">
-                                                <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -128,11 +123,10 @@ unset($__errorArgs, $__bag); ?>
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <a href="<?php echo e(url('locations')); ?>" class="mb-2 btn btn-warning btn-block text-light">Retour
-                        à la liste</a>
+                        à la liste et cloturer plus tard</a>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">Terminer le
-                        retour</button>
+                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">cloturer maintenant</button>
                 </div>
             </div>
         </div>

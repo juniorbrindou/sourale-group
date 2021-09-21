@@ -22,7 +22,6 @@ class Show extends Component
     public $article_qte;
     public $nbr_jours;
     public $article_prix;
-    public $article_categorie;
 
     public $currentStep = 2;
     public $type_evenements;
@@ -36,7 +35,6 @@ class Show extends Component
     public $evenement_nb_jour;
     public $evenement_lieu;
     public $evenement_description;
-    public $evenement_status;
     public $evenement_caution;
     public $evenement_date_debut_evenement;
     public $evenement_date_fin_evenement;

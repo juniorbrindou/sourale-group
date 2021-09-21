@@ -55,117 +55,32 @@ class Retour extends Component
     public $totalBrute = 0;
     public $totalUneLigne;
 
+    public $edit_id;
 
-    public function addArticle()
+
+    public function startEdit($id)
     {
-        $this->validate(
-            [
-                'article' => 'required|string|min:2',
-                'qte_article' => 'required',
-                'nb_jour' => 'required',
-            ],
-            [
-                'article.*' => 'Veuillez selectionner un article.',
-                'qte_article.*' => 'Veuillez saisir la quantité.',
-                'nb_jour.*' => 'Veuillez saisir le nombre de jour.',
-            ]
-        );
-
-        // si la quantité saisie est supperieur à celle en bd de l'article
-        $article = Articles::where('libelle', '=', $this->article)->first();
-        if ($article->qte_en_stock < \intval($this->qte_article)) {
-            $this->dispatchBrowserEvent('sweetAlert', [
-                'title' => 'La quantité saisie est suppérieure à celle disponible <br>' . $article->libelle . ' = ' . $article->qte_en_stock,
-                'timer' => 5000,
-                'icon' => 'error',
-            ]);
-        } else {
-            // si la quantité saisie est inférieur ou égale à celle en bd
-
-            // si le tableau est vide l'onclic sur ajouter
-            // ajout dans la liste frontend
-            $this->add();
-            // calcul totalBrute et caution
-            $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-            $this->caution = $this->totalBrute * 0.2;
-        }
+        $this->edit_id = $id;
     }
 
-
-
-    /**
-     * Insertion en bd
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function addInBD()
+    public function update_quantite_retour($id)
     {
-        if (!empty($this->tabArticles)) { // creation du client
-            $evenement = Evenements::create(
-                [
-                    'libelle' => $this->ligne['libelle_event'],
-                    'lieu' => $this->ligne['lieuEvenement'],
-                    'caution' => $this->caution,
-                    'date_debut_evenement' => $this->ligne['date_debut_evenement'],
-                    'date_fin_evenement' => $this->ligne['date_fin_evenement'],
-                    'nbr_personne' => $this->ligne['nbr_personne'],
-                    'client_id' => $client->id,
-                    'type_evenement_id' => $this->type_evenement_id,
-                    'montant_total' => $this->totalBrute,
-                    'status' => 'ENREGISTRÉ',
-                    'nb_jour' => Carbon::parse($this->date_debut_evenement)->DiffInDays($this->date_fin_evenement)
-                ]
-            );
-
-            $facture = Factures::create(
-                [
-                    "date_creation" => date('d-m-Y'),
-                    "caution" => $this->caution,
-                    "user_id" => Auth::user()->id,
-                    "evenement_id" => $evenement->id,
-                    "libelle" => 'Facture-' . $evenement->libelle,
-                ]
-            );
-
-            $facture->update(['code' => 'FA' . date('ym') . '-' . $facture->id]);
-            foreach ($this->tabArticles as $value) {
-                $article = Articles::whereLibelle($value['article'])->first();
-                $article_id = $article->id;
-
-                Location::create(
-                    [
-                        'qte_loue' => $value['qte_article'],
-                        'qte_retour' => 0,
-                        'prix_unitaire' => $this->article_prix,
-                        'user_id' => Auth::user()->id,
-                        'evenement_id' => $evenement->id,
-                        'article_id' => $article_id,
-                        'client_id' => $client->id,
-                        'nb_jour' => $value['nb_jour'],
-                        'total_une_ligne' => $value['totalUneLigne'],
-                    ]
-                );
-            }
-            $this->resetLigne();
-            return redirect()->route('locations.index');
-        } else {
-            $this->dispatchBrowserEvent('sweetAlert', [
-                'title' => 'Aucun article choisi',
-                'timer' => 5000,
-                'icon' => 'error',
-            ]);
-        }
+        dd($this->qte_retour);
+        dd(Articles::whereId($this->tab_locations[$id]->article_id)->first()->libelle);
     }
+
 
 
     protected $rules = [
         'qte_retour' => 'required',
     ];
+
     public function forValidation($qte_retour)
     {
         $this->validateOnly($qte_retour);
     }
 
-    public function save()
+    public function save($id)
     {
         $validatedData = $this->validate();
         sleep(1);

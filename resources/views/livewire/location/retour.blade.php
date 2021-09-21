@@ -1,5 +1,5 @@
 <div>
-    <div wire:loading.delay wire:target="addInBD, addArticle, save">
+    <div wire:loading.delay wire:target="addInBD, addArticle, save, startEdit">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -70,31 +70,33 @@
                                         <td><b> {{$value['article']->libelle}} </b></td>
                                         <td>{{$value['article']->categorie->libelle}}</td>
                                         <td>{{$value['qte_loue']}}</td>
-                                        <td colspan="">
-                                            <form action="" wire:submit.prevent='save'>
+                                        <td>
+
+                                        @if($edit_id === $item)
+                                            <form wire:submit.prevent='save'>
                                                 <div class="field" wire:ignore>
                                                     <input type="number" wire:model.defer="qte_retour"
-                                                        style="width: 5rem; height: 25px"
+                                                        style="width: 5rem;"
                                                         value="{{$value['qte_retour']}}">
-                                                    <button type="submit" class="btn btn-dark btn-xs" wire:click="save">
+                                                    <button type="submit" class="btn btn-success" wire:click="update_quantite_retour({{$item}})">
                                                         <i class="fa fa-check"></i>
                                                     </button>
-                                                    <br>
-                                                    @error('qte_retour') <span class="error text-sm text-danger">
-                                                        {{ $message }}
-                                                    </span> @enderror
                                                 </div>
                                             </form>
+                                            @else
+                                            {{$value['qte_retour']}}
+                                            <button wire:click="startEdit({{$item}})" title="Modiffier"
+                                                class="btn btn-dark ">
+                                                <i class="fa fa-pen"></i>
+                                            </button>
+
+                                        @endif
                                         </td>
                                         <td>{{$value['etat_article'] }}</td>
                                         <td>
                                             <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                 class="btn btn-primary btn-md">
                                                 <i class="fa fa-check-circle"></i>
-                                            </button>
-                                            <button class="btn btn-danger btn-md"
-                                                wire:click="addDeleteLigne({{$item}})">
-                                                <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -119,11 +121,10 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <a href="{{url('locations')}}" class="mb-2 btn btn-warning btn-block text-light">Retour
-                        à la liste</a>
+                        à la liste et cloturer plus tard</a>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">Terminer le
-                        retour</button>
+                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">cloturer maintenant</button>
                 </div>
             </div>
         </div>
