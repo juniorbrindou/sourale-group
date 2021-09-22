@@ -15,7 +15,6 @@ class Show extends Component
 {
 
     public $clients;
-    public $client_id;
 
     public $articles;
     public $article_libelle;
@@ -70,8 +69,6 @@ class Show extends Component
         $this->tab_evenement['date_fin'] = $this->evenement_date_fin_evenement;
         $this->tab_evenement['type_evenement_libelle'] = $this->type_evenement_libelle;
         $this->tab_evenement['duree_evenement'] = Carbon::parse($this->evenement_date_debut_evenement)->DiffInDays($this->evenement_date_fin_evenement);
-        // 2021-09-10T17:19
-        // 2021-09-30T14:27
         $this->currentStep = 3;
     }
 
