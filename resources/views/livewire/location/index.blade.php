@@ -31,12 +31,18 @@
             @foreach ($evenements as $evenement)
             <tr>
                 <td>{{$evenement->id}}</td>
+
                 <td class="text-uppercase">{{$evenement->libelle}}</td>
+
                 <td>{{$evenement->client->nom}}</td>
-                <td title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
-                    <b>{{ format_money($evenement->montant_total) }}</b></td>
+
+                <td style="cursor:pointer" title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
+                    <b>{{ format_money($evenement->montant_total) }}</b>
+                </td>
+
                 <td><b>{{ format_money($evenement->caution) }}</b></td>
-                <td>{{ long_date($evenement->date_debut_evenement) }} </td>
+
+                <td style="cursor:pointer" title="Date de Fin : {{ long_date($evenement->date_fin_evenement) }}">{{ long_date($evenement->date_debut_evenement) }} </td>
 
                 <td>
                     <span class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}
@@ -71,7 +77,10 @@
                     @endif
 
                     @if ($evenement->status =="TERMINÉ")
-                    <a title="retour en stock" href="{{ route('locations.edit', $evenement->id) }}"
+                    <a title="Clôturer l'évenement :
+cette action permet de retourner les articles
+dans le stock une fois l'evenement terminé"
+                       href="{{ route('locations.edit', $evenement->id) }}"
                         class="mr-1 btn btn-dark btn-md">
                         <i class="fa fa-undo"></i>
                     </a>

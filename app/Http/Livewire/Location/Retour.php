@@ -6,13 +6,9 @@ namespace App\Http\Livewire\Location;
 
 use Livewire\Component;
 use App\Articles;
-use App\Clients;
 use App\Location;
 use Carbon\Carbon;
 use App\Evenements;
-use App\Factures;
-use App\Type_evenements;
-use Illuminate\Support\Facades\Auth;
 
 class Retour extends Component
 {
@@ -58,6 +54,27 @@ class Retour extends Component
     public $edit_id;
 
 
+    public function cloturer()
+    {
+        Evenements::whereId($this->evenement->id)->first()->update(['status' => 'CLOTURÉ']);
+
+
+        return redirect()->route('locations.index');
+    }
+
+
+
+
+    protected $listeners = [
+        'updateLineCloturation' => 'afterLineUpdate'
+    ];
+
+    public function afterLineUpdate()
+    {
+        $this->reset('edit_id');
+    }
+
+
     public function startEdit($id)
     {
         $this->edit_id = $id;
@@ -65,8 +82,17 @@ class Retour extends Component
 
     public function update_quantite_retour($id)
     {
-        dd($this->qte_retour);
-        dd(Articles::whereId($this->tab_locations[$id]->article_id)->first()->libelle);
+        $this->validate(
+            ['qte_retour' => 'required|min:0|numeric|max:' . $this->tab_locations[$id]->qte_loue],
+            [
+                'qte_retour.required' => 'Saisissez la quantité',
+                'qte_retour.min' => 'Saisissez une quantité valide',
+                'qte_retour.max' => 'Saisissez une quantité valide : valeur max : ' . $this->tab_locations[$id]->qte_loue,
+            ]
+        );
+
+        $articleLigne = Articles::whereId($this->tab_locations[$id]->article_id)->first();
+        $articleLigne->update(['qte_en_stock' => $articleLigne->qte_en_stock + $this->qte_retour]);
     }
 
 
@@ -82,7 +108,7 @@ class Retour extends Component
 
     public function save($id)
     {
-        $validatedData = $this->validate();
+        $this->validate();
         sleep(1);
     }
 

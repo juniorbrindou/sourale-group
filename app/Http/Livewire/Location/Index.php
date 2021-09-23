@@ -12,7 +12,6 @@ class Index extends Component
     public $tab_locations;
     public $ligne = [];
     public $evenement_id;
-    public $test2;
 
     public function mount()
     {
@@ -21,7 +20,6 @@ class Index extends Component
 
     public function render()
     {
-        $this->test2 = 'bonjour';
         return view('livewire.location.index');
     }
 }

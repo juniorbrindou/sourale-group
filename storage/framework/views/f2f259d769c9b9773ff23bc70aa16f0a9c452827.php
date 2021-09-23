@@ -31,12 +31,18 @@
             <?php $__currentLoopData = $evenements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $evenement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
                 <td><?php echo e($evenement->id); ?></td>
+
                 <td class="text-uppercase"><?php echo e($evenement->libelle); ?></td>
+
                 <td><?php echo e($evenement->client->nom); ?></td>
-                <td title="Sans la caution: <?php echo e(format_money($evenement->montant_total - $evenement->caution)); ?> F CFA">
-                    <b><?php echo e(format_money($evenement->montant_total)); ?></b></td>
+
+                <td style="cursor:pointer" title="Sans la caution: <?php echo e(format_money($evenement->montant_total - $evenement->caution)); ?> F CFA">
+                    <b><?php echo e(format_money($evenement->montant_total)); ?></b>
+                </td>
+
                 <td><b><?php echo e(format_money($evenement->caution)); ?></b></td>
-                <td><?php echo e(long_date($evenement->date_debut_evenement)); ?> </td>
+
+                <td style="cursor:pointer" title="Date de Fin : <?php echo e(long_date($evenement->date_fin_evenement)); ?>"><?php echo e(long_date($evenement->date_debut_evenement)); ?> </td>
 
                 <td>
                     <span class="badge badge-<?php echo e(couleur_status($evenement->status)); ?> text-lg"><?php echo e($evenement->status); ?>
@@ -72,7 +78,10 @@
                     <?php endif; ?>
 
                     <?php if($evenement->status =="TERMINÉ"): ?>
-                    <a title="retour en stock" href="<?php echo e(route('locations.edit', $evenement->id)); ?>"
+                    <a title="Clôturer l'évenement :
+cette action permet de retourner les articles
+dans le stock une fois l'evenement terminé"
+                       href="<?php echo e(route('locations.edit', $evenement->id)); ?>"
                         class="mr-1 btn btn-dark btn-md">
                         <i class="fa fa-undo"></i>
                     </a>

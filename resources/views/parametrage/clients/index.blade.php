@@ -55,7 +55,7 @@
 <script>
     $(function () {
 			$("#example1").DataTable({
-			"responsive": true, "lengthChange": false, "autoWidth": false,
+			"responsive": true, "lengthChange": true, "autoWidth": true,
 			"buttons": ["print"],
             "order":[0,'desc']
 			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

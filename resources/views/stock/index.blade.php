@@ -21,9 +21,13 @@
                                     <th>#</th>
                                     <th>Image</th>
                                     <th>Article</th>
-                                    <th title="Somme de la quantité d'aticle disponible et en location">Quantité en
-                                        stock</th>
-                                    <th title="Quantité d'article disponible uniquement">Quantité Disponible</th>
+                                    <th title="Le nombre d'aticle disponible actuellement">
+                                        Stock Disponible
+                                    </th>
+
+                                    <th title="Nombre d'article Enregistré">
+                                        Stock Global Enregistré
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
