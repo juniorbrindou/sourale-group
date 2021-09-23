@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="addInBD,updateLigne, addArticle, save, startEdit,updateLineCloturation, afterLineUpdate ">
+        wire:target="addInBD,updateLigne, addArticle, save, startEdit,updateLineCloturation, afterLineUpdate,cloturer ">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -118,7 +118,7 @@
                         à la liste et cloturer plus tard</a>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">cloturer
+                    <button type="submit" wire:click="cloturer()" class="btn btn-primary btn-block">cloturer
                         maintenant</button>
                 </div>
             </div>

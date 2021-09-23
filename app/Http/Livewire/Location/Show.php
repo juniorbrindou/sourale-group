@@ -103,7 +103,6 @@ class Show extends Component
         } else {
             $this->add();
             // calcul totalBrute et caution
-            dd($this->ligne);
             $this->tab_evenement['montant_total'] = array_sum(array_column($this->ligne, 'totalUneLigne'));
             $this->caution = $this->tab_evenement['montant_total'] * 0.2;
         }
@@ -168,29 +167,6 @@ class Show extends Component
             $this->ligne[$item]['total_une_ligne'] = $value->total_une_ligne;
         }
         $this->duree_evenement =  Carbon::parse($this->evenement->date_debut_evenement)->DiffForHumans($this->evenement->date_fin_evenement, true);
-
-        #	Code	Article	Catégorie	Quantité	jours	Prix U	Total	Ation
-
-
-        // $this->totalUneLigne = $this->nb_jour * $this->article_prix * $this->qte_article;
-        // // unshift pour une entrée en commençant par le haut
-        // array_unshift(
-        //     $this->tabArticles,
-        //     [
-        //         'article' => $this->article,
-        //         'categorie' => $this->article_categorie,
-        //         'qte_article' => $this->qte_article,
-        //         'nb_jour' => $this->nb_jour,
-        //         'prix' => $this->article_prix,
-        //         'totalUneLigne' => $this->totalUneLigne,
-        //     ]
-        // );
-
-
-
-
-        // $this->location = $location;
-        // $this->evenement = $location->evenement;
     }
 
 
@@ -198,10 +174,6 @@ class Show extends Component
     public function deleteLigne($item)
     {
         unset($this->ligne[$item]);
-        // dd($this->ligne);
-        // $this->ligne = array_values($this->ligne);
-        // $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        // $this->caution = $this->totalBrute * 0.2;
     }
 
 
