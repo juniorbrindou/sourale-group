@@ -1,5 +1,6 @@
 <div>
-    <div wire:loading.delay wire:target="addInBD, addArticle, save, startEdit">
+    <div wire:loading.delay
+        wire:target="addInBD,updateLigne, addArticle, save, startEdit,updateLineCloturation, afterLineUpdate ">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -72,17 +73,10 @@
                                         <td>{{$value['qte_loue']}}</td>
                                         <td>
 
-                                        @if($edit_id === $item)
-                                            <form wire:submit.prevent='save'>
-                                                <div class="field" wire:ignore>
-                                                    <input type="number" wire:model.defer="qte_retour"
-                                                        style="width: 5rem;"
-                                                        value="{{$value['qte_retour']}}">
-                                                    <button type="submit" class="btn btn-success" wire:click="update_quantite_retour({{$item}})">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
+                                            @if($edit_id === $item)
+
+                                            <livewire:location.cloturation :value="$value" :key="$item" />
+
                                             @else
                                             {{$value['qte_retour']}}
                                             <button wire:click="startEdit({{$item}})" title="Modiffier"
@@ -90,7 +84,7 @@
                                                 <i class="fa fa-pen"></i>
                                             </button>
 
-                                        @endif
+                                            @endif
                                         </td>
                                         <td>{{$value['etat_article'] }}</td>
                                         <td>
@@ -124,7 +118,8 @@
                         à la liste et cloturer plus tard</a>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">cloturer maintenant</button>
+                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">cloturer
+                        maintenant</button>
                 </div>
             </div>
         </div>

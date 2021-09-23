@@ -1,5 +1,6 @@
 <div>
-    <div wire:loading.delay wire:target="addInBD, addArticle, save, startEdit">
+    <div wire:loading.delay
+        wire:target="addInBD,updateLigne, addArticle, save, startEdit,updateLineCloturation, afterLineUpdate ">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -73,17 +74,24 @@
                                         <td><?php echo e($value['qte_loue']); ?></td>
                                         <td>
 
-                                        <?php if($edit_id === $item): ?>
-                                            <form wire:submit.prevent='save'>
-                                                <div class="field" wire:ignore>
-                                                    <input type="number" wire:model.defer="qte_retour"
-                                                        style="width: 5rem;"
-                                                        value="<?php echo e($value['qte_retour']); ?>">
-                                                    <button type="submit" class="btn btn-success" wire:click="update_quantite_retour(<?php echo e($item); ?>)">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
+                                            <?php if($edit_id === $item): ?>
+
+                                            <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('location.cloturation', ['value' => $value])->html();
+} elseif ($_instance->childHasBeenRendered($item)) {
+    $componentId = $_instance->getRenderedChildComponentId($item);
+    $componentTag = $_instance->getRenderedChildComponentTagName($item);
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild($item);
+} else {
+    $response = \Livewire\Livewire::mount('location.cloturation', ['value' => $value]);
+    $html = $response->html();
+    $_instance->logRenderedChild($item, $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+
                                             <?php else: ?>
                                             <?php echo e($value['qte_retour']); ?>
 
@@ -92,7 +100,7 @@
                                                 <i class="fa fa-pen"></i>
                                             </button>
 
-                                        <?php endif; ?>
+                                            <?php endif; ?>
                                         </td>
                                         <td><?php echo e($value['etat_article']); ?></td>
                                         <td>
@@ -126,7 +134,8 @@
                         à la liste et cloturer plus tard</a>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">cloturer maintenant</button>
+                    <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">cloturer
+                        maintenant</button>
                 </div>
             </div>
         </div>
