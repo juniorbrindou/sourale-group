@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
@@ -12,10 +10,10 @@
                     <div class="card-header">
                         <h3 class="card-title">Liste des articles </h3>
 
-                        <button data-toggle="modal" data-target="#modal-create" class="float-right btn btn-md bg-dark">
+                        <a href="<?php echo e(route('articles.create')); ?>" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>
                             Ajouter
-                        </button>
+                        </a>
                     </div>
 
 
@@ -151,9 +149,9 @@ unset($__errorArgs, $__bag); ?>"
                         <!-- /.modal-dialog -->
                         <!-- /.modal -->
                         
-
-
                     </div>
+                    
+
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -186,7 +184,7 @@ unset($__errorArgs, $__bag); ?>"
                                         <?php endif; ?>
                                     </td>
                                     <td><?php echo e(ucwords($article->libelle)); ?></td>
-                                    <td><?php echo e(format_money($article->prix_tarification)); ?></td>
+                                    <td><?php echo e(format_money($article->tarification->prix)); ?></td>
                                     <td><?php echo e($article->type_article->libelle); ?></td>
                                     <td><?php echo e($article->categorie->libelle); ?></td>
                                     <td>

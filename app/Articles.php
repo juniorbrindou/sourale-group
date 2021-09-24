@@ -12,7 +12,8 @@ class Articles extends Model
      * @var array
      */
     protected $fillable = [
-        'libelle', 'code', 'description', 'prix', 'user_id', 'qte_stocker', 'qte_en_stock', 'categorie_id', 'type_article_id', 'article_photo', 'prix_tarification'
+        'libelle', 'code', 'description', 'prix', 'user_id', 'qte_stocker',
+        'qte_en_stock', 'categorie_id', 'type_article_id', 'article_photo', 'prix_tarification', 'tarification_id'
 
     ];
 
@@ -24,6 +25,11 @@ class Articles extends Model
     public function categorie()
     {
         return $this->belongsTo(Categories::class);
+    }
+
+    public function tarification()
+    {
+        return $this->belongsTo(Tarification::class);
     }
 
     /**

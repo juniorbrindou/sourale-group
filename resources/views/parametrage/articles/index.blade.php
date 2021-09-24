@@ -12,10 +12,10 @@
                     <div class="card-header">
                         <h3 class="card-title">Liste des articles </h3>
 
-                        <button data-toggle="modal" data-target="#modal-create" class="float-right btn btn-md bg-dark">
+                        <a href="{{route('articles.create')}}" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>
                             Ajouter
-                        </button>
+                        </a>
                     </div>
 
 
@@ -128,9 +128,9 @@
                         <!-- /.modal-dialog -->
                         <!-- /.modal -->
                         {{-- fin create type article --}}
-
-
                     </div>
+                    {{-- fin creation de type d'article --}}
+
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -163,7 +163,7 @@
                                         @endif
                                     </td>
                                     <td>{{ ucwords($article->libelle)}}</td>
-                                    <td>{{ format_money($article->prix_tarification)}}</td>
+                                    <td>{{ format_money($article->tarification->prix)}}</td>
                                     <td>{{$article->type_article->libelle}}</td>
                                     <td>{{$article->categorie->libelle}}</td>
                                     <td>

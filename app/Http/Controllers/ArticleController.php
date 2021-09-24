@@ -6,15 +6,18 @@ use App\Articles;
 use App\Categories;
 use App\Tarification;
 use App\Type_articles;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -24,12 +27,24 @@ class ArticleController extends Controller
         return view('parametrage.articles.index', compact('articles', 'categories', 'type_articles'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Factory|View
+     */
+    public function create()
+    {
+        $categories = Categories::all();
+        $type_articles = Type_articles::all();
+        return view('parametrage.articles.create', compact('categories', 'type_articles'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -73,15 +88,19 @@ class ArticleController extends Controller
             ]);
         }
 
-        toast('Article Enregistré!', 'success');
-        return redirect()->route('articles.index');
+         if (isset($request->encore)) {
+            return back()->with('success', 'Article Enregistré!');
+        } else {
+            toast('Article Enregistré!', 'success');
+            return redirect()->route('articles.index');
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -92,9 +111,9 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -149,7 +168,7 @@ class ArticleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
