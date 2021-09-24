@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <b>{{$ligne['nom_client'] ?? 'Aucun Nom'}}</b> <br>
-                                    <b>{{$ligne['contact1_client']?? 'Aucun Numéro'}}</b><br>
-                                    <b>{{$ligne['adresse_client'] ?? 'Aucune Adresse'}}</b>
+                                    <b>{{$ligne['contact1_client']?? ''}}</b><br>
+                                    <b>{{$ligne['adresse_client'] ?? ''}}</b>
                                 </div>
                                 <div class="text-center col-md-4">
                                     Cérémonie :<b>

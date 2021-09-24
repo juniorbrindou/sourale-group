@@ -80,23 +80,6 @@ class Retour extends Component
         $this->edit_id = $id;
     }
 
-    public function update_quantite_retour($id)
-    {
-        $this->validate(
-            ['qte_retour' => 'required|min:0|numeric|max:' . $this->tab_locations[$id]->qte_loue],
-            [
-                'qte_retour.required' => 'Saisissez la quantité',
-                'qte_retour.min' => 'Saisissez une quantité valide',
-                'qte_retour.max' => 'Saisissez une quantité valide : valeur max : ' . $this->tab_locations[$id]->qte_loue,
-            ]
-        );
-
-        $articleLigne = Articles::whereId($this->tab_locations[$id]->article_id)->first();
-        $articleLigne->update(['qte_en_stock' => $articleLigne->qte_en_stock + $this->qte_retour]);
-    }
-
-
-
     protected $rules = [
         'qte_retour' => 'required',
     ];

@@ -23,10 +23,17 @@ class Cloturation extends Component
         );
 
         # recuperation de l'article à partir de son Id
-        $articleLigne = Articles::whereId($this->value['article_id'])->first();
+        $articleLigne = Articles::where('id','=',$this->value['article_id'])->first();
 
         # Ajour de la quantité rétournée à la quantité déja disponible en stock
-        $articleLigne->update(['qte_en_stock' => $articleLigne->qte_en_stock + $this->qte_retour]);
+        $qte = $articleLigne->qte_en_stock;
+
+        # calcul : quantité disponible + quantité retournée
+        $qte_after_retour = $qte + $this->qte_retour;
+
+//        dd($qte_after_retour);
+
+        $articleLigne->update(['qte_en_stock' => $qte_after_retour]);
 
         # Insertion de la quantité rétournée dans la ligne de l'article dans la location
         Location::whereId($this->value['id'])

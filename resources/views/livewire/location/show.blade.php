@@ -278,8 +278,8 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <b>{{$client->nom ?? 'Aucun Nom'}}</b> <br>
-                                                <b>{{$client->contact1?? 'Aucun Numéro'}}</b><br>
-                                                <b>{{$client->adresse ?? 'Aucune Adresse'}}</b>
+                                                <b>{{$client->contact1?? ''}}</b><br>
+                                                <b>{{$client->adresse ?? ''}}</b>
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>

@@ -387,8 +387,8 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <b>{{$ligne['nom'] ?? 'Aucun Nom'}}</b> <br>
-                                                <b>{{$ligne['contact1']?? 'Aucun Numéro'}}</b><br>
-                                                <b>{{$ligne['adresse'] ?? 'Aucune Adresse'}}</b>
+                                                <b>{{$ligne['contact1']?? ''}}</b><br>
+                                                <b>{{$ligne['adresse'] ?? ''}}</b>
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>

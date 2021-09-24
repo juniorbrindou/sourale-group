@@ -1,17 +1,19 @@
+
+
 <?php $__env->startSection('main'); ?>
 <!-- Main content -->
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('clients.client', [])->html();
-} elseif ($_instance->childHasBeenRendered('pLtPPnJ')) {
-    $componentId = $_instance->getRenderedChildComponentId('pLtPPnJ');
-    $componentTag = $_instance->getRenderedChildComponentTagName('pLtPPnJ');
+} elseif ($_instance->childHasBeenRendered('zcBjn3x')) {
+    $componentId = $_instance->getRenderedChildComponentId('zcBjn3x');
+    $componentTag = $_instance->getRenderedChildComponentTagName('zcBjn3x');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('pLtPPnJ');
+    $_instance->preserveRenderedChild('zcBjn3x');
 } else {
     $response = \Livewire\Livewire::mount('clients.client', []);
     $html = $response->html();
-    $_instance->logRenderedChild('pLtPPnJ', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('zcBjn3x', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -70,7 +72,6 @@ echo $html;
     $(function () {
 			$("#example1").DataTable({
 			"responsive": true, "lengthChange": true, "autoWidth": true,
-
 			"buttons": ["print"],
             "order":[0,'desc']
 			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
