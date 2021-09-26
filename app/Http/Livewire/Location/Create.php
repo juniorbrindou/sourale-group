@@ -11,6 +11,7 @@ use App\Factures;
 use Livewire\Component;
 use App\Type_evenements;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
@@ -191,6 +192,7 @@ class Create extends Component
                 );
             }
             $this->resetLigne();
+            Alert::success('Evenement Créé', '');
             return redirect()->route('locations.index');
         } else {
             $this->dispatchBrowserEvent('sweetAlert', [

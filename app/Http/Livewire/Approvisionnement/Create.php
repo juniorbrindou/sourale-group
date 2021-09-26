@@ -7,6 +7,7 @@ use App\Articles;
 use App\Ligne_entrer;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
@@ -134,6 +135,7 @@ class Create extends Component
                 );
             }
             $this->resetLigne();
+            Alert::success('Approvisoinnement Effectué', '');
             return redirect()->route('approvisionnement.index');
         } else {
             return;

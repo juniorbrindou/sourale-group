@@ -6,6 +6,9 @@
             <b>{{long_date($evenement->date_debut_evenement)}}</b> par
             <b>{{ $user->nom}}</b>
         </h3>
+        <h3 class="card-title float-right">
+            Clôturé le {{long_date($tab_locations[0]['date_retour'])}}
+        </h3>
 
     </div>
     <div class="card-body">

@@ -61,8 +61,7 @@
                                         <th>Catégorie</th>
                                         <th>Quantité Louée</th>
                                         <th>Quantité retournée</th>
-                                        <th>Etat</th>
-                                        <th>Ation</th>
+                                        <th>Non rétournée</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,13 +101,8 @@ echo $html;
 
                                             <?php endif; ?>
                                         </td>
-                                        <td><?php echo e($value['etat_article']); ?></td>
-                                        <td>
-                                            <button wire:click="updateLigne(<?php echo e($item); ?>)" title="Modiffier"
-                                                class="btn btn-primary btn-md">
-                                                <i class="fa fa-check-circle"></i>
-                                            </button>
-                                        </td>
+                                        <td class="text-danger text-bold"><?php echo e($value['qte_loue'] - $value['qte_retour']); ?></td>
+
                                     </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <tr>

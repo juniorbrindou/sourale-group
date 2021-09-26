@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
@@ -9,30 +7,36 @@
         <!-- Info boxes -->
         <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                    <span class="info-box-icon bg-danger elevation-2"><i class="fas fa-shipping-fast"></i></span>
+                <a href="<?php echo e(route('locations.index')); ?>">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-danger elevation-2"><i
+                                class="fas fa-2x fa-sync-alt <?php echo e(($nbrEventEnCours <1 )? "" : "fa-spin"); ?>"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">En cours de Location</span>
+                            <span class="info-box-number">
+                                <?php echo e($nbrEventEnCours); ?>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">En cours de Location</span>
-                        <span class="info-box-number">
-                            10
-                        </span>
+                            </span>
+                        </div>
+
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-                <div class="mb-3 info-box">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-archive"></i></span>
+                <a href="<?php echo e(url('stock')); ?>">
+                    <div class="mb-3 info-box">
+                        <span class="info-box-icon <?php echo e(($nbrNiveauCritique >= 1 )? "bg-danger" : "bg-warning"); ?> elevation-1"><i class="fas fa-bell"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Disponibles en Stock</span>
-                        <span class="info-box-number">41410 Articles</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Stock Critique</span>
+                            <span class="info-box-number"><?php echo e($nbrNiveauCritique); ?> Articles</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
+                </a>
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
@@ -45,8 +49,8 @@
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Total des Locations</span>
-                        <span class="info-box-number">760</span>
+                        <span class="info-box-text">Total des Locations Clôturées</span>
+                        <span class="info-box-number"><?php echo e($nbrEventCloturer); ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -54,16 +58,19 @@
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-                <div class="mb-3 info-box">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                <a href="<?php echo e(route('clients.index')); ?>">
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total des Clients</span>
-                        <span class="info-box-number">200</span>
+                    <div class="mb-3 info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total des Clients</span>
+                            <span class="info-box-number"><?php echo e($nbrClients); ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
             <!-- /.col -->
         </div>

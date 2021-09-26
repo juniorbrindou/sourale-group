@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('dist/css/style.css')}}">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed dark-mode">
     <div class="wrapper">
         @include('sweetalert::alert')
 

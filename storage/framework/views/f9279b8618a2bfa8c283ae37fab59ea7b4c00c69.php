@@ -383,8 +383,8 @@ unset($__errorArgs, $__bag); ?>
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <b><?php echo e($client->nom ?? 'Aucun Nom'); ?></b> <br>
-                                                <b><?php echo e($client->contact1?? 'Aucun Numéro'); ?></b><br>
-                                                <b><?php echo e($client->adresse ?? 'Aucune Adresse'); ?></b>
+                                                <b><?php echo e($client->contact1?? ''); ?></b><br>
+                                                <b><?php echo e($client->adresse ?? ''); ?></b>
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>

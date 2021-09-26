@@ -60,8 +60,7 @@
                                         <th>Catégorie</th>
                                         <th>Quantité Louée</th>
                                         <th>Quantité retournée</th>
-                                        <th>Etat</th>
-                                        <th>Ation</th>
+                                        <th>Non rétournée</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,13 +85,8 @@
 
                                             @endif
                                         </td>
-                                        <td>{{$value['etat_article'] }}</td>
-                                        <td>
-                                            <button wire:click="updateLigne({{$item}})" title="Modiffier"
-                                                class="btn btn-primary btn-md">
-                                                <i class="fa fa-check-circle"></i>
-                                            </button>
-                                        </td>
+                                        <td class="text-danger text-bold">{{ $value['qte_loue'] - $value['qte_retour'] }}</td>
+
                                     </tr>
                                     @empty
                                     <tr>

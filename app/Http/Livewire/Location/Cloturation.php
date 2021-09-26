@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Location;
 
 use App\Articles;
-use App\Location;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class Cloturation extends Component
 {
@@ -14,34 +14,58 @@ class Cloturation extends Component
     public function save()
     {
         $this->validate(
-            ['qte_retour' => 'required|min:0|numeric|max:' . $this->value['qte_loue']],
+            ['qte_retour' => 'required|min:0|numeric|max:' . $this->value->qte_loue],
             [
                 'qte_retour.required' => 'Saisissez la quantité',
                 'qte_retour.min' => 'Saisissez une quantité valide',
-                'qte_retour.max' => 'Saisissez une quantité valide : valeur max : ' . $this->value['qte_loue'],
+                'qte_retour.max' => 'Saisissez une quantité valide : valeur max : ' . $this->value->qte_loue,
             ]
         );
+        # convertion en entier
+        $this->qte_retour =(int)$this->qte_retour;
 
-        # recuperation de l'article à partir de son Id
-        $articleLigne = Articles::where('id','=',$this->value['article_id'])->first();
+        /*Mise a jour de la qte dispo d'article*/
+        # recupeartion de l'article concerné
+        $articleBD = Articles::whereId($this->value->article_id)->first();
+        # Ajout de la nouvelle quantité a l'ancienne quantité disponible
 
-        # Ajour de la quantité rétournée à la quantité déja disponible en stock
-        $qte = $articleLigne->qte_en_stock;
+        if(($this->qte_retour + $articleBD->qte_retour) <= $this->value->qte_loue)
+        {
+             /*Update de la location */
+            $oldQteRetour = $this->value->qte_retour;
+            $this->value->update([
+                'qte_retour' => $this->qte_retour,
+                'date_retour' => date('d-m-Y'),
+            ]);
 
-        # calcul : quantité disponible + quantité retournée
-        $qte_after_retour = $qte + $this->qte_retour;
 
-//        dd($qte_after_retour);
 
-        $articleLigne->update(['qte_en_stock' => $qte_after_retour]);
+            # retrait de l'ancienne qte :
+            DB::table('articles')
+              ->where('id', $this->value->article_id)
+              ->update([
+                  'qte_en_stock' => $articleBD->qte_en_stock - $oldQteRetour,
+              ]);
 
-        # Insertion de la quantité rétournée dans la ligne de l'article dans la location
-        Location::whereId($this->value['id'])
-            ->first()
-            ->update(['qte_retour' => $this->qte_retour]);
+            $qte = $this->qte_retour;
+            DB::table('articles')
+              ->where('id', $this->value->article_id)
+              ->increment("qte_en_stock",$qte);
+//            update([
+//                  'qte_en_stock' => ,
+//              ]);
 
-        # Lancement d'un evenement pour qu'il soit observé par les composants parents pour un nouveau rendu du dom
-        $this->emit('updateLineCloturation');
+
+            $this->emit('updateLineCloturation');
+        }else{
+            $this->dispatchBrowserEvent('sweetAlert', [
+                'title' => 'Action Impossible : Quantité retournée trop grande!',
+                'timer' => 5000,
+                'icon' => 'error',
+            ]);
+        }
+
+
     }
 
 
