@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('dist/css/style.css')); ?>">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed dark-mode">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
@@ -69,4 +69,5 @@
     </script>
 </body>
 
-</html><?php /**PATH C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\resources\views/layout/app.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\resources\views/layout/app.blade.php ENDPATH**/ ?>

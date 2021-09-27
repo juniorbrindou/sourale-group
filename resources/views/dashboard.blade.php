@@ -14,7 +14,7 @@
                         <span class="info-box-icon bg-danger elevation-2"><i
                                 class="fas fa-2x fa-sync-alt {{($nbrEventEnCours <1 )? "" : "fa-spin"}}"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">En cours de Location</span>
+                            <span class="info-box-text">Location En cours</span>
                             <span class="info-box-number">
                                 {{$nbrEventEnCours}}
                             </span>
@@ -30,8 +30,8 @@
                 <a href="{{url('stock')}}">
                     <div class="mb-3 info-box">
                         <span
-                            class="info-box-icon {{($nbrNiveauCritique >= 1 )? "bg-danger" : "bg-warning"}} elevation-1"><i
-                                class="fas fa-bell"></i></span>
+                            class="info-box-icon {{($nbrNiveauCritique >= 1 )? "bg-danger" : "bg-warning"}} elevation-1">
+                            <i class="fas fa-bell {{($nbrNiveauCritique >= 1 )? "blink" : ""}}"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Stock Critique</span>
@@ -314,8 +314,8 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Meilleure location</span>
-                        <span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i
-                                class="fas fa-archive"></i></span>
+                        <span class="info-box-number">{{format_money($bestEvenement->montant_total)}} F <i
+                                class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -330,17 +330,7 @@
                     </div>
                     <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box -->
-                <div class="mb-3 info-box bg-gray">
-                    <span class="info-box-icon"><i class="fa fa-adn"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Package argenté</span>
-                        <span class="info-box-number">52 <i class="fa fa-truck"></i> sur 122 <i
-                                class="fa fa-archive"></i></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
                 <!-- /.info-box -->
                 <div class="mb-3 info-box bg-default">
                     <span class="info-box-icon"><i class="fa fa-feather-alt"></i></span>
@@ -394,6 +384,26 @@
 <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('dist/css/adminlte.css')}}">
+
+
+<style>
+    @keyframes blinking {
+        0% {
+            color: #302929;
+        }
+
+        100% {
+            color: #fbff10;
+        }
+    }
+
+    .blink {
+        animation: blinking 1s infinite;
+    }
+</style>
+
+
+
 
 @endpush
 

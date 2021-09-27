@@ -18,10 +18,14 @@ class DashboardController extends Controller
         $nbrClients = $clients->count();
 
         $articles = Articles::all();
+        // a dynamiser
         $nbrNiveauCritique = $articles->where('qte_en_stock','<=',10)->count();
 
         $eventCloturer = Evenements::where('status', '=', 'CLOTURÉ')->get();
         $nbrEventCloturer = $eventCloturer->count();
+
+        # Evenement avec le max d'argent
+        $bestEvenement = Evenements::where('montant_total','=',Evenements::max('montant_total'))->first();
 
 
 
@@ -37,7 +41,7 @@ class DashboardController extends Controller
         // $data = json_encode($dataPoints);
         return view(
             'dashboard',
-            compact('dataPoints', 'nbrEventEnCours', 'nbrClients','nbrNiveauCritique','nbrEventCloturer')
+            compact('dataPoints', 'nbrEventEnCours', 'nbrClients','nbrNiveauCritique','nbrEventCloturer','bestEvenement')
         );
     }
 }
