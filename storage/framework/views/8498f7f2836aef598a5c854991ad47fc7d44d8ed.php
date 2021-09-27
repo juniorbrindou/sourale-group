@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <section class="content">
@@ -10,15 +8,15 @@
                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('location.show', ['evenement' => $evenement])->html();
-} elseif ($_instance->childHasBeenRendered('EkoNu9A')) {
-    $componentId = $_instance->getRenderedChildComponentId('EkoNu9A');
-    $componentTag = $_instance->getRenderedChildComponentTagName('EkoNu9A');
+} elseif ($_instance->childHasBeenRendered('HBCQiNE')) {
+    $componentId = $_instance->getRenderedChildComponentId('HBCQiNE');
+    $componentTag = $_instance->getRenderedChildComponentTagName('HBCQiNE');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('EkoNu9A');
+    $_instance->preserveRenderedChild('HBCQiNE');
 } else {
     $response = \Livewire\Livewire::mount('location.show', ['evenement' => $evenement]);
     $html = $response->html();
-    $_instance->logRenderedChild('EkoNu9A', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('HBCQiNE', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -199,7 +197,15 @@ echo $html;
         });
     });
   // DropzoneJS Demo Code End
+
 </script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+
 <?php echo \Livewire\Livewire::scripts(); ?>
 
 <?php $__env->stopPush(); ?>

@@ -7,7 +7,7 @@
             <b><?php echo e($user->nom); ?></b>
         </h3>
         <h3 class="card-title float-right">
-            Clôturée le <?php echo e(long_date($tab_locations[0]['date_retour'])); ?>
+            Clôturé le <?php echo e(long_date($tab_locations[0]['date_retour'])); ?>
 
         </h3>
 

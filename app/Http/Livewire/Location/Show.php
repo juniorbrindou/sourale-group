@@ -20,11 +20,12 @@ class Show extends Component
     public $article_libelle;
     public $article_qte;
     public $nbr_jours;
+
     public $article_prix;
 
     public $currentStep = 2;
     public $type_evenements;
-    public $type_evenement_libelle;
+    public $type_evenement_libelle; #del
 
     public $evenement;
     public $evenement_libelle;
@@ -38,12 +39,13 @@ class Show extends Component
     public $evenement_date_debut_evenement;
     public $evenement_date_fin_evenement;
     public $tab_evenement = [];
-
+    public $totalBrute;
     public $client;
     public $user;
     public $duree_evenement;
     public $ligne = [];     # contient les informations de chaque lignes
     public $tab_locations = [];      # Contient les differentes locations de l'evenement
+
 
     /**
      * Write code on Method
@@ -56,17 +58,23 @@ class Show extends Component
             'evenement_nbr_personne' => 'required',
             'evenement_date_debut_evenement' => 'required',
             'type_evenement_libelle' => 'required',
-            'evenement_date_fin_evenement' => 'required',
+            'evenement_date_fin_evenement' => 'required|after:evenement_date_debut_evenement',
             'evenement_lieu' => 'required',
+        ], [
+            'evenement_libelle.*' => 'Entrez un titre d\'évenement valide',
+            'evenement_nbr_personne.*' => 'Entrez un nombre valide',
+            'evenement_date_debut_evenement.*' => 'Entrez une date valide',
+            'type_evenement_libelle.*' => 'Selectionnez un type d\'évenement',
+            'evenement_date_fin_evenement.*' => 'Entrez une date de fin valide',
+            'evenement_lieu.*' => 'Entrez un lieu valide',
         ]);
-
-        $this->tab_evenement['libelle'] = $this->evenement_libelle;
-        $this->tab_evenement['caution'] = $this->evenement_caution;
-        $this->tab_evenement['montant_total'] = $this->evenement_montant_total;
-        $this->tab_evenement['lieu'] = $this->evenement_lieu;
-        $this->tab_evenement['nbr_personne'] = $this->evenement_nbr_personne;
-        $this->tab_evenement['date_debut'] = $this->evenement_date_debut_evenement;
-        $this->tab_evenement['date_fin'] = $this->evenement_date_fin_evenement;
+        $this->tab_evenement['evenement_libelle'] = $this->evenement_libelle;
+        $this->tab_evenement['evenement_caution'] = $this->evenement_caution;
+        $this->tab_evenement['evenement_montant_total'] = $this->evenement_montant_total;
+        $this->tab_evenement['evenement_lieu'] = $this->evenement_lieu;
+        $this->tab_evenement['evenement_nbr_personne'] = $this->evenement_nbr_personne;
+        $this->tab_evenement['evenement_date_debut_evenement'] = $this->evenement_date_debut_evenement;
+        $this->tab_evenement['evenement_date_fin_evenement'] = $this->evenement_date_fin_evenement;
         $this->tab_evenement['type_evenement_libelle'] = $this->type_evenement_libelle;
         $this->tab_evenement['duree_evenement'] = Carbon::parse($this->evenement_date_debut_evenement)->DiffInDays($this->evenement_date_fin_evenement);
         $this->currentStep = 3;
@@ -77,70 +85,13 @@ class Show extends Component
 
 
 
-    public function addArticle()
-    {
-        $this->validate(
-            [
-                'article_libelle' => 'required|string|min:2',
-                'article_qte' => 'required',
-                'nbr_jours' => 'required',
-            ],
-            [
-                'article_libelle.*' => 'Veuillez selectionner un article.',
-                'article_qte.*' => 'Veuillez saisir la quantité d\'article louée.',
-                'nbr_jours.*' => 'Veuillez saisir le nombre de jour de location de cet article.',
-            ]
-        );
-
-        // si la quantité saisie est supperieur à celle en bd de l'article
-        $article = Articles::where('libelle', '=', $this->article_libelle)->first();
-        if ($article->qte_en_stock < \intval($this->article_qte)) {
-            $this->dispatchBrowserEvent('sweetAlert', [
-                'title' => 'La quantité saisie est suppérieure à celle disponible <br>' . $article->libelle . ' = ' . $article->qte_en_stock,
-                'timer' => 5000,
-                'icon' => 'error',
-            ]);
-        } else {
-            $this->add();
-            // calcul totalBrute et caution
-            $this->tab_evenement['montant_total'] = array_sum(array_column($this->ligne, 'totalUneLigne'));
-            $this->caution = $this->tab_evenement['montant_total'] * 0.2;
-        }
-    }
-
-
-
-    /**
-     * @return [type]
-     */
-    public function add()
-    {
-        // renvoie dans this→article le model article
-        $article = Articles::where('libelle', '=', $this->article_libelle)->first();
-        // recupération des informations l'article en bd
-        $this->article_prix = $article->prix_tarification;
-        $this->totalUneLigne = $this->nbr_jours * $this->article_prix * $this->article_qte;
-
-        // unshift pour une entrée en commençant par le haut
-        array_unshift(
-            $this->ligne,
-            [
-                ['article']['libelle'] => $article->libellle,
-                'article_categorie' => (array) $article->categorie,
-                'qte_loue' => (int)$this->article_qte,
-                'nbr_jour' => (int)$this->nbr_jours,
-                'total_une_ligne' => $this->totalUneLigne,
-            ]
-        );
-    }
-
-
-
     public function mount(Evenements $evenement)
     {
         $this->clients = Clients::all();
         $this->articles = Articles::all();
         $this->type_evenements = Type_evenements::all();
+
+        # Evenement
         $this->type_evenement_libelle = $evenement->type_evenement->libelle;
         $this->evenement_libelle = $evenement->libelle;
         $this->evenement_nbr_personne = $evenement->nbr_personne;
@@ -155,50 +106,16 @@ class Show extends Component
 
         # tableau des articles ok
         $this->tab_locations = Location::where('evenement_id', '=', $evenement->id)->get();
+
+        $this->totalBrute = $this->tab_locations->sum('total_une_ligne');
+
         # clien ok
         $this->client = $this->tab_locations[0]->client;
         # user ok
         $this->user = $this->tab_locations[0]->user;
-        foreach ($this->tab_locations as $item => $value) {
-            $this->ligne[$item]['article'] = $value->article;
-            $this->ligne[$item]['article_categorie'] = $value->article->categorie;
-            $this->ligne[$item]['qte_loue'] = $value->qte_loue;
-            $this->ligne[$item]['nbr_jour'] = $value->nb_jour;
-            $this->ligne[$item]['total_une_ligne'] = $value->total_une_ligne;
-        }
+
         $this->duree_evenement =  Carbon::parse($this->evenement->date_debut_evenement)->DiffForHumans($this->evenement->date_fin_evenement, true);
     }
-
-
-
-    public function deleteLigne($item)
-    {
-        unset($this->ligne[$item]);
-    }
-
-
-
-
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function firstStepSubmit()
-    {
-        $this->ligne =
-            [
-                'nom' => $this->newNom,
-                'contact1' => $this->newContact1,
-                'adresse' => $this->newAdresse,
-                'isNew' => true,
-            ];
-        $this->currentStep = 2;
-    }
-
-
-
-
 
 
     public function render()

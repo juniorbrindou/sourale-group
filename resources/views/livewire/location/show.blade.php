@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne,firstStepSubmit, secondStepSubmit, addArticle">
+        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne, secondStepSubmit, addArticle">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -106,14 +106,14 @@
                                                 <label for="type_evenement_libelle">Type d'evenement</label>
                                                 <select class="float-right form-control"
                                                     wire:model.defer="type_evenement_id">
-
-                                                    <option selected="selected">{{$type_evenement_libelle}}</option>
+                                                    <option selected="selected">{{$evenement->type_evenement->libelle}}
+                                                    </option>
                                                     @foreach ($type_evenements as $type_evenement)
                                                     <option>{{$type_evenement->libelle}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            @error('type_evenement_id')
+                                            @error('type_evenement_libelle')
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -283,19 +283,22 @@
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
-                                                    {{$tab_evenement['libelle'] ??'Aucun Nom d\'évenement'}}</b>
+                                                    {{$tab_evenement['evenement_libelle'] ??'Aucun Nom d\'évenement'}}</b>
                                                 <br>
                                                 Nombre d'Invités :
-                                                <b>{{ $tab_evenement['nbr_personne'] ?? 'Inconnu'}}</b><br>
-                                                Lieu : <b>{{$tab_evenement['lieu'] ??'Inconnu' }} </b><br>
-                                                Du : <b>{{$tab_evenement['date_debut']??'' }} <br>
-                                                    au {{$tab_evenement['date_fin'] ??'' }}
+                                                <b>{{ $tab_evenement['evenement_nbr_personne'] ?? 'Inconnu'}}</b><br>
+                                                Lieu : <b>{{$tab_evenement['evenement_lieu'] ??'Inconnu' }} </b><br>
+                                                Du : <b>{{$tab_evenement['evenement_date_debut_evenement']??'' }}
+                                                    <br>
+                                                    au {{ $tab_evenement['evenement_date_fin_evenement'] ??'' }}
                                                 </b><br>
-                                                Durée : <b>{{ $tab_evenement['duree_evenement'] ?? '' }} jour(s)</b>
+                                                Durée : <b>{{ $tab_evenement['evenement_duree_evenement'] ?? '' }}
+                                                    jour(s)</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> {{$tab_evenement['caution'] ?? ''}} F FCA</b><br>
-                                                TTC : <b>{{$tab_evenement['montant_total'] ?? ''}} F FCA</b>
+                                                Caution(20%) : <b> {{$tab_evenement['evenement_caution'] ?? ''}} F
+                                                    FCA</b><br>
+                                                TTC : <b>{{$tab_evenement['evenement_montant_total']?? ''}} F FCA</b>
                                             </div>
                                         </div>
                                     </div>
@@ -315,22 +318,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($ligne as $item=>$location)
+                                                @forelse ($tab_locations as $item => $ligne )
                                                 <tr>
                                                     <td>{{$item+1}}</td>
-                                                    <td>{{$location['article']['libelle']}}</td>
-                                                    <td>{{$location['article_categorie']['libelle']}}</td>
-                                                    <td>{{$location['qte_loue']}}</td>
-                                                    <td>{{$location['nbr_jour']}}</td>
-                                                    <td>{{$location['article']['prix_tarification']}}
+                                                    <td><b> {{$ligne->article->libelle}}</b></td>
+                                                    <td>{{$ligne->article->categorie->libelle}}</td>
+                                                    <td>{{$ligne->qte_loue}}</td>
+                                                    <td>{{$ligne->nb_jour}}</td>
+                                                    <td>{{$ligne->article->tarification->prix}}
                                                     </td>
-                                                    <td>{{$location['total_une_ligne']}}</td>
+                                                    <td>{{$ligne->total_une_ligne}}</td>
                                                     <td>
-                                                        <button wire:click="updateLigne({{$item}})" title="Modiffier"
-                                                            class="btn btn-primary btn-md">
-                                                            <i class="fa fa-pen"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger btn-md"
+                                                        <button class="btn btn-danger btn-md" data-toggle="tooltip"
+                                                            data-placement="bottom" title="Supprimer"
                                                             wire:click="deleteLigne({{$item}})" type="submit">
                                                             <i class="fa fa-trash"></i>
                                                         </button>

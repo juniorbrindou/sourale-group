@@ -26,4 +26,16 @@ class Evenements extends Model
     {
         return $this->belongsTo(Clients::class);
     }
+
+
+    /**
+     * les attributs qui doivent etre converties en type natif.
+     * @var array
+     */
+    protected $casts = [
+        "deleted_at" => "datetime:Y-m-d H:i:s",
+        "updated_at" => "datetime:Y-m-d H:i:s",
+        "created_at" => "datetime:Y-m-d H:i:s",
+    ];
+
 }

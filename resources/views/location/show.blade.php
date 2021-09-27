@@ -184,6 +184,14 @@
         });
     });
   // DropzoneJS Demo Code End
+
 </script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+
 <livewire:scripts />
 @endpush

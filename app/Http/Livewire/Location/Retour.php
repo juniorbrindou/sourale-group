@@ -57,8 +57,6 @@ class Retour extends Component
     public function cloturer()
     {
         Evenements::whereId($this->evenement->id)->first()->update(['status' => 'CLOTURÉ']);
-
-
         return redirect()->route('locations.index');
     }
 

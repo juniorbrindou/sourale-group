@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne,firstStepSubmit, secondStepSubmit, addArticle">
+        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne, secondStepSubmit, addArticle">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -148,14 +148,15 @@ unset($__errorArgs, $__bag); ?>
                                                 <label for="type_evenement_libelle">Type d'evenement</label>
                                                 <select class="float-right form-control"
                                                     wire:model.defer="type_evenement_id">
+                                                    <option selected="selected"><?php echo e($evenement->type_evenement->libelle); ?>
 
-                                                    <option selected="selected"><?php echo e($type_evenement_libelle); ?></option>
+                                                    </option>
                                                     <?php $__currentLoopData = $type_evenements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type_evenement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option><?php echo e($type_evenement->libelle); ?></option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
-                                            <?php $__errorArgs = ['type_evenement_id'];
+                                            <?php $__errorArgs = ['type_evenement_libelle'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -388,20 +389,25 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
-                                                    <?php echo e($tab_evenement['libelle'] ??'Aucun Nom d\'évenement'); ?></b>
+                                                    <?php echo e($tab_evenement['evenement_libelle'] ??'Aucun Nom d\'évenement'); ?></b>
                                                 <br>
                                                 Nombre d'Invités :
-                                                <b><?php echo e($tab_evenement['nbr_personne'] ?? 'Inconnu'); ?></b><br>
-                                                Lieu : <b><?php echo e($tab_evenement['lieu'] ??'Inconnu'); ?> </b><br>
-                                                Du : <b><?php echo e($tab_evenement['date_debut']??''); ?> <br>
-                                                    au <?php echo e($tab_evenement['date_fin'] ??''); ?>
+                                                <b><?php echo e($tab_evenement['evenement_nbr_personne'] ?? 'Inconnu'); ?></b><br>
+                                                Lieu : <b><?php echo e($tab_evenement['evenement_lieu'] ??'Inconnu'); ?> </b><br>
+                                                Du : <b><?php echo e($tab_evenement['evenement_date_debut_evenement']??''); ?>
+
+                                                    <br>
+                                                    au <?php echo e($tab_evenement['evenement_date_fin_evenement'] ??''); ?>
 
                                                 </b><br>
-                                                Durée : <b><?php echo e($tab_evenement['duree_evenement'] ?? ''); ?> jour(s)</b>
+                                                Durée : <b><?php echo e($tab_evenement['evenement_duree_evenement'] ?? ''); ?>
+
+                                                    jour(s)</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> <?php echo e($tab_evenement['caution'] ?? ''); ?> F FCA</b><br>
-                                                TTC : <b><?php echo e($tab_evenement['montant_total'] ?? ''); ?> F FCA</b>
+                                                Caution(20%) : <b> <?php echo e($tab_evenement['evenement_caution'] ?? ''); ?> F
+                                                    FCA</b><br>
+                                                TTC : <b><?php echo e($tab_evenement['evenement_montant_total']?? ''); ?> F FCA</b>
                                             </div>
                                         </div>
                                     </div>
@@ -421,23 +427,20 @@ unset($__errorArgs, $__bag); ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $__empty_1 = true; $__currentLoopData = $ligne; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item=>$location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                <?php $__empty_1 = true; $__currentLoopData = $tab_locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item => $ligne): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                 <tr>
                                                     <td><?php echo e($item+1); ?></td>
-                                                    <td><?php echo e($location['article']['libelle']); ?></td>
-                                                    <td><?php echo e($location['article_categorie']['libelle']); ?></td>
-                                                    <td><?php echo e($location['qte_loue']); ?></td>
-                                                    <td><?php echo e($location['nbr_jour']); ?></td>
-                                                    <td><?php echo e($location['article']['prix_tarification']); ?>
+                                                    <td><b> <?php echo e($ligne->article->libelle); ?></b></td>
+                                                    <td><?php echo e($ligne->article->categorie->libelle); ?></td>
+                                                    <td><?php echo e($ligne->qte_loue); ?></td>
+                                                    <td><?php echo e($ligne->nb_jour); ?></td>
+                                                    <td><?php echo e($ligne->article->tarification->prix); ?>
 
                                                     </td>
-                                                    <td><?php echo e($location['total_une_ligne']); ?></td>
+                                                    <td><?php echo e($ligne->total_une_ligne); ?></td>
                                                     <td>
-                                                        <button wire:click="updateLigne(<?php echo e($item); ?>)" title="Modiffier"
-                                                            class="btn btn-primary btn-md">
-                                                            <i class="fa fa-pen"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger btn-md"
+                                                        <button class="btn btn-danger btn-md" data-toggle="tooltip"
+                                                            data-placement="bottom" title="Supprimer"
                                                             wire:click="deleteLigne(<?php echo e($item); ?>)" type="submit">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
