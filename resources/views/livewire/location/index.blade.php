@@ -36,13 +36,16 @@
 
                 <td>{{$evenement->client->nom}}</td>
 
-                <td style="cursor:pointer" title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
+                <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
+                    title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
                     <b>{{ format_money($evenement->montant_total) }}</b>
                 </td>
 
                 <td><b>{{ format_money($evenement->caution) }}</b></td>
 
-                <td style="cursor:pointer" title="Date de Fin : {{ long_date($evenement->date_fin_evenement) }}">{{ long_date($evenement->date_debut_evenement) }} </td>
+                <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
+                    title="Date de Fin : {{ long_date($evenement->date_fin_evenement) }}">
+                    {{ long_date($evenement->date_debut_evenement) }} </td>
 
                 <td>
                     <span class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}
@@ -55,8 +58,8 @@
 
                     @if ($evenement->status !== "CLOTURÉ" && $evenement->status !== "TERMINÉ" && $evenement->status !==
                     "ANNULÉ" && $evenement->status !== "EN COURS")
-                    <a title="Modiffier l'évènement" href="{{ route('locations.show', $evenement->id) }}"
-                        class="mr-1 btn btn-warning btn-md">
+                    <a data-toggle="tooltip" data-placement="left" title="Modiffier l'évènement"
+                        href="{{ route('locations.show', $evenement->id) }}" class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
                     @endif
@@ -70,26 +73,25 @@
 
                     @if ($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS" || $evenement->status
                     =="TERMINÉ" )
-                    <a title="Voir" href="{{ route('evennements.show', $evenement->id) }}"
-                        class="mr-1 btn btn-warning btn-md">
+                    <a data-toggle="tooltip" data-placement="left" data-delay='{"show": 100,"hide":100}' title="Voir"
+                        href="{{ route('evennements.show', $evenement->id) }}" class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-eye"></i>
                     </a>
                     @endif
 
                     @if ($evenement->status =="TERMINÉ")
-                    <a title="Clôturer l'évenement :
-cette action permet de retourner les articles
-dans le stock une fois l'evenement terminé"
-                       href="{{ route('locations.edit', $evenement->id) }}"
-                        class="mr-1 btn btn-dark btn-md">
+                    <a data-toggle="tooltip" data-placement="bottom" data-delay='{"show": 1000,"hide":100}'
+                        title="Clôturer l'évenement : cette action permet de retourner les articles dans le stock une fois l'evenement terminé"
+                        href="{{ route('locations.edit', $evenement->id) }}" class="mr-1 btn btn-dark btn-md">
                         <i class="fa fa-undo"></i>
                     </a>
                     @endif
 
 
 
-                    <a title="Visualiser la facture" href="{{route('facture.show',$evenement->id)}}" target="_blank"
-                        style="color:yellow" class="btn btn-dark btn-md">
+                    <a data-toggle="tooltip" data-placement="bottom" title="Visualiser la facture"
+                        href="{{route('facture.show',$evenement->id)}}" target="_blank" style="color:yellow"
+                        class="btn btn-dark btn-md">
                         <i class="fa fa-file-pdf"></i>
                     </a>
                 </td>

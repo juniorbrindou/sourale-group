@@ -59,7 +59,8 @@
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-3" data-toggle="tooltip" data-placement="top"
+                data-delay='{"show": 3000,"hide":500}' title="Nombre total des clients enregistrés">
                 <a href="<?php echo e(route('clients.index')); ?>">
 
                     <div class="mb-3 info-box">
@@ -483,6 +484,11 @@
         chart1.render();
         chart2.render();
     }
+</script>
+<script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 
 
