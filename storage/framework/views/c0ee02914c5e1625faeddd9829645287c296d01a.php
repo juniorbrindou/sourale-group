@@ -4,8 +4,8 @@
             <tr>
                 <th>#</th>
                 <th>Code</th>
-                <th>Date d'ajout</th>
                 <th>Auteur</th>
+                <th>Date d'ajout</th>
                 <th></th>
             </tr>
         </thead>
@@ -14,8 +14,8 @@
             <tr>
                 <td><?php echo e($entree->id); ?></td>
                 <td><?php echo e($entree->code); ?></td>
-                <td><?php echo e($entree->created_at); ?></td>
                 <td><?php echo e($entree->user->nom); ?> </td>
+                <td><?php echo e($entree->created_at); ?></td>
                 <td>
                     <a href="<?php echo e(route('approvisionnement.show', $entree->id)); ?>" class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-eye"></i>

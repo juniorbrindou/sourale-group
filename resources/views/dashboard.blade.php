@@ -8,13 +8,16 @@
 
         <!-- Info boxes -->
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
+
+            {{-- location en cours --}}
+            <div class="col-12 col-sm-6 col-md-3"data-delay='{"show": 1000}'
+                title="Les evenements qui ne sont pas encore terminés" data-toggle="tooltip" data-placement="top">
                 <a href="{{route('locations.index')}}">
                     <div class="info-box">
                         <span class="info-box-icon bg-danger elevation-2"><i
                                 class="fas fa-2x fa-sync-alt {{($nbrEventEnCours <1 )? "" : "fa-spin"}}"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Location En cours</span>
+                            <span class="info-box-text">Evenements En cours</span>
                             <span class="info-box-number">
                                 {{$nbrEventEnCours}}
                             </span>
@@ -26,7 +29,10 @@
                 </a>
             </div>
             <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
+
+            {{-- stock critique --}}
+            <div class="col-12 col-sm-6 col-md-3" data-delay='{"show": 1000}'
+                title="Article dont la quantité disponible est inférieur à 5" data-toggle="tooltip" data-placement="top">
                 <a href="{{url('stock')}}">
                     <div class="mb-3 info-box">
                         <span
@@ -42,12 +48,15 @@
                 </a>
                 <!-- /.info-box -->
             </div>
-            <!-- /.col -->
+            {{-- stock critique --}}
+
+
 
             <!-- fix for small devices only -->
             <div class="clearfix hidden-md-up"></div>
 
-            <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-3" data-delay='{"show": 1000}'
+            title="Total des evenements dont le re" data-toggle="tooltip" data-placement="top">
                 <div class="mb-3 info-box">
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
@@ -487,7 +496,7 @@
     }
 </script>
 <script>
-    $(function () {
+$(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 </script>

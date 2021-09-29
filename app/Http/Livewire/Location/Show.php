@@ -23,7 +23,7 @@ class Show extends Component
 
     public $article_prix;
 
-    public $currentStep = 2;
+    public $currentStep = 3;
     public $type_evenements;
     public $type_evenement_libelle; #del
 
@@ -80,7 +80,23 @@ class Show extends Component
         $this->currentStep = 3;
     }
 
+    public function addArticle()
+    {
+        return;
+    }
 
+
+     /**
+     * Suppprime une ligne (par les boutons supprimer de chaque ligne)
+     */
+    public function deleteLigne($item)
+    {
+        unset($this->tab_locations[$item]);
+        $this->tab_locations = array_values($this->tab_locations);
+        dd($this->tab_locations);
+        $this->totalBrute = array_sum(array_column($this->tab_locations, 'totalUneLigne'));
+        $this->caution = $this->totalBrute * 0.2;
+    }
 
 
 
