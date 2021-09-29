@@ -5,6 +5,15 @@ use Carbon\Carbon;
 /**
  * Fonction utili
  **/
+if (!function_exists('ipAddress')) {
+    function ipAddress()
+    {
+        $ipAddress = exec('for /f "tokens=2 delims=[]" %a in (\'ping -n 1 -4 "%computername%"\') do @echo %a');
+        return $ipAddress;
+    }
+}
+
+
 
 if (!function_exists('couleur_status')) {
     /**

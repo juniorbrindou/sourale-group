@@ -66,6 +66,12 @@
         window.addEventListener('sweetAlert',function(e){
 			Swal.fire(e.detail);
 		});
+
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
     </script>
 </body>
 

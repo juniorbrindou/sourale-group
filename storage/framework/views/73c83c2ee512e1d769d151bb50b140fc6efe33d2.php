@@ -16,6 +16,22 @@
     <!-- Right navbar links -->
     <ul class="ml-auto navbar-nav">
 
+         <!-- Notifications Dropdown Menu -->
+         <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fa fa-qrcode"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item">
+                    <img src="<?php echo e(asset('public/img/logo-small.png')); ?>" alt="">
+
+                </div>
+            </div>
+        </li>
+
+
+
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">

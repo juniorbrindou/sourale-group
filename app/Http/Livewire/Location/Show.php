@@ -80,6 +80,11 @@ class Show extends Component
         $this->currentStep = 3;
     }
 
+    public function addArticle()
+    {
+        return;
+    }
+
 
 
 
@@ -87,9 +92,18 @@ class Show extends Component
 
     public function mount(Evenements $evenement)
     {
-        $this->clients = Clients::all();
-        $this->articles = Articles::all();
-        $this->type_evenements = Type_evenements::all();
+        unset($this->tab_locations[$item]);
+        $this->tab_locations = array_values($this->tab_locations);
+        dd($this->tab_locations);
+        $this->totalBrute = array_sum(array_column($this->tab_locations, 'totalUneLigne'));
+        $this->caution = $this->totalBrute * 0.2;
+    }
+
+
+
+
+    public function mount(Evenements $evenement)
+    {
 
         # Evenement
         $this->type_evenement_libelle = $evenement->type_evenement->libelle;
