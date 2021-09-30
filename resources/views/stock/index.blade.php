@@ -11,7 +11,19 @@
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">Etat du STOCK</h3>
+
+
+                        <a href="{{ route('approvisionnement.create')}}" class="float-right ml-4 btn btn-md bg-success">
+                            <i class="fa fa-plus-circle"></i>
+                            Approvisionnement
+                        </a>
+
+                        <a href="{{ route('destockages.create')}}" class="float-right btn btn-md bg-danger">
+                            <i class="fa fa-minus-circle"></i>
+                            Destockage
+                        </a>
                     </div>
+
                     <!-- /.card-header -->
 
                     <div class="card-body">

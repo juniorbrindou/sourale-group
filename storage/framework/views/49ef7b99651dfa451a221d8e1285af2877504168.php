@@ -323,7 +323,8 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Meilleure location</span>
-                        <span class="info-box-number"><?php echo e(format_money($bestEvenement->montant_total)); ?> F <i
+                        <span class="info-box-number">
+                            <?php echo e(isset($bestEvenement->montant_total) ? format_money($bestEvenement->montant_total) : '0'); ?> F <i
                                 class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
                     </div>
                     <!-- /.info-box-content -->

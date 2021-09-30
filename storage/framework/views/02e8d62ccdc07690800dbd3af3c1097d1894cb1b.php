@@ -25,9 +25,9 @@
             <img draggable="false" src="<?php echo e(asset('dist/img/logo.png')); ?>" class="brand-image " height="150" alt="">
         </div>
         <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body" style="background-color: rgba(253, 253, 255, 0.299)">
-                <p class="login-box-msg">Connectez vous</p>
+        <div class="card" style="background: #fff0; color=#FFF">
+            <div class="card-body login-card-body" style="background: #fff0;">
+                <p class="text-lg login-box-msg text-light text-bold text-uppercase">Connectez vous</p>
 
 
                 <form method="POST" action="<?php echo e(route('login')); ?>">
@@ -102,12 +102,6 @@ unset($__errorArgs, $__bag); ?>
                         <!-- /.col -->
                     </div>
                 </form>
-
-                <p class="mb-1 text-center">
-                    <?php if(Route::has('password.request')): ?>
-                    <a class="btn btn-link" href="<?php echo e(route('password.request')); ?>">Mot de passe oublié</a>
-                    <?php endif; ?>
-                </p>
             </div>
             <!-- /.login-card-body -->
         </div>

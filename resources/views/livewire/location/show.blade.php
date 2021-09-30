@@ -20,8 +20,6 @@
 
                                 <!-- Stepper header-->
                                 <div class="bs-stepper-header" role="tablist">
-                                    <!-- Step client-->
-
                                     <!-- Step evenement-->
                                     <div class="step {{ $currentStep == 2 ? 'active' : '' }}"
                                         data-target="#information-part">
@@ -46,9 +44,6 @@
                                     </div>
                                 </div>
                                 <!-- Stepper header-->
-
-                                <!-- Client -->
-                                <!-- fin Client -->
 
                                 <!-- Evenement -->
                                 <div id="information-part"
@@ -237,7 +232,7 @@
                                 <button type="reset" class="mb-2 btn btn-warning btn-block text-light">Effacer</button>
                             </div>
                             <div class="col-md-3 col-sm-6">
-                                <button type="submit" wire:click="addArticle()"
+                                <button type="submit" wire:click="addArticle"
                                     class="btn btn-primary btn-block">Ajouter</button>
                             </div>
                         </div>
@@ -276,11 +271,15 @@
 
                                         <br>
                                         <div class="row">
+                                            {{-- informations du client --}}
                                             <div class="col-md-4">
                                                 <b>{{$client->nom ?? 'Aucun Nom'}}</b> <br>
                                                 <b>{{$client->contact1?? ''}}</b><br>
                                                 <b>{{$client->adresse ?? ''}}</b>
                                             </div>
+                                            {{-- fin --}}
+
+                                            {{-- informations sur l'évenement --}}
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
                                                     {{$tab_evenement['evenement_libelle'] ??'Aucun Nom d\'évenement'}}</b>
@@ -295,14 +294,24 @@
                                                 Durée : <b>{{ $tab_evenement['evenement_duree_evenement'] ?? '' }}
                                                     jour(s)</b>
                                             </div>
+
+                                            {{-- les prix --}}
                                             <div class="text-right col-md-4">
                                                 Caution(20%) : <b> {{$tab_evenement['evenement_caution'] ?? ''}} F
                                                     FCA</b><br>
                                                 TTC : <b>{{$tab_evenement['evenement_montant_total']?? ''}} F FCA</b>
                                             </div>
+                                            {{-- fin prix --}}
+
                                         </div>
+                                            {{-- fin evenement info --}}
                                     </div>
                                     <!-- /.card-header -->
+
+
+
+
+                                    {{-- tableau des articles loués --}}
                                     <div class="p-0 card-body table-responsive" style="height:500px;">
                                         <table class="table table-head-fixed ">
                                             <thead>
@@ -331,7 +340,7 @@
                                                     <td>
                                                         <button class="btn btn-danger btn-md" data-toggle="tooltip"
                                                             data-placement="bottom" title="Supprimer"
-                                                            wire:click="deleteLigne({{$item}})" type="submit">
+                                                            wire:click="deleteLigne" type="submit">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </td>
@@ -362,7 +371,7 @@
                             </div>
 
                             <div class="col-md-6 col-sm-12">
-                                <button type="submit" wire:click="addInBD()"
+                                <button type="submit" wire:click="addInBD"
                                     class="btn btn-primary btn-block">Valider</button>
                             </div>
                         </div>
