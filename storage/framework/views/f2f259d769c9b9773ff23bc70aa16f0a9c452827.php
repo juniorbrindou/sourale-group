@@ -59,7 +59,7 @@
 
                     <?php if($evenement->status !== "CLOTURÉ" && $evenement->status !== "TERMINÉ" && $evenement->status !==
                     "ANNULÉ" && $evenement->status !== "EN COURS"): ?>
-                    <a data-toggle="tooltip" data-placement="left" title="Modiffier l'évènement"
+                    <a data-toggle="tooltip" data-placement="left" title="Modifier l'évènement"
                         href="<?php echo e(route('locations.show', $evenement->id)); ?>" class="mr-1 btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
@@ -67,7 +67,7 @@
 
                     <?php if($evenement->status !== "CLOTURÉ" && $evenement->status !== "TERMINÉ"): ?>
                     <button data-toggle="modal" data-target="#modal-statut-<?php echo e($evenement->id); ?>"
-                        title="Modiffier le status" class="btn btn-primary btn-md">
+                        title="Modifier le status" class="btn btn-primary btn-md">
                         <i class="fa fa-cog"></i>
                     </button>
                     <?php endif; ?>
@@ -129,7 +129,7 @@ unset($__errorArgs, $__bag); ?>"
                                                 <option value=""></option>
                                                 <option value="EN COURS">EN COURS</option>
                                                 <option value="TERMINÉ">TERMINER</option>
-                                                <option value="ANNULÉ">ANNULÉ</option>
+                                                <option value="ANNULÉ">ANNULER</option>
                                             </select>
                                         </div>
                                         <!-- /.form-group -->
