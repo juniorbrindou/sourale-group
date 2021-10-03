@@ -22,11 +22,8 @@
                 <i class="fa fa-qrcode"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-item">
-                    <img src="<?php echo e(asset('public/img/logo-small.png')); ?>" alt="">
+                <?php echo QrCode::errorCorrection('H')->size(399)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000");; ?>
 
-                </div>
             </div>
         </li>
 

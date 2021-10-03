@@ -100,8 +100,8 @@
                                             <div class="form-group">
                                                 <label for="type_evenement_libelle">Type d'evenement</label>
                                                 <select class="float-right form-control"
-                                                    wire:model.defer="type_evenement_id">
-                                                    <option selected="selected">{{$evenement->type_evenement->libelle}}
+                                                    wire:model.defer="type_evenement_libelle">
+                                                    <option selected="selected">{{$type_evenement_libelle}}
                                                     </option>
                                                     @foreach ($type_evenements as $type_evenement)
                                                     <option>{{$type_evenement->libelle}}</option>
@@ -192,15 +192,15 @@
                             @enderror
                         </div>
 
-                        {{-- article_qte --}}
+                        {{-- qte_article --}}
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="article_qte">Quantité *</label>
-                                <input type="number" min="1" wire:model.defer="article_qte"
-                                    class="form-control @error('article_qte') is-invalid @enderror" id="article_qte"
+                                <label for="qte_article">Quantité *</label>
+                                <input type="number" min="1" wire:model.defer="qte_article"
+                                    class="form-control @error('qte_article') is-invalid @enderror" id="qte_article"
                                     placeholder="Entrez la quantité d'article">
                             </div>
-                            @error('article_qte')
+                            @error('qte_article')
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                 role="alert">
                                 <strong>{{ $message }}</strong>
@@ -209,15 +209,15 @@
                         </div>
 
 
-                        {{-- nbr_jours --}}
+                        {{-- nb_jour --}}
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="nbr_jours">Jours</label>
-                                <input type="number" min="1" wire:model.defer="nbr_jours"
-                                    class="form-control @error('nbr_jours') is-invalid @enderror" id="nbr_jours"
+                                <label for="nb_jour">Jours</label>
+                                <input type="number" min="1" wire:model.defer="nb_jour"
+                                    class="form-control @error('nb_jour') is-invalid @enderror" id="nb_jour"
                                     placeholder="Entrez le nombre de jours">
                             </div>
-                            @error('nbr_jours')
+                            @error('nb_jour')
                             <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
                                 role="alert">
                                 <strong>{{ $message }}</strong>
@@ -287,19 +287,19 @@
                                                 Nombre d'Invités :
                                                 <b>{{ $tab_evenement['evenement_nbr_personne'] ?? 'Inconnu'}}</b><br>
                                                 Lieu : <b>{{$tab_evenement['evenement_lieu'] ??'Inconnu' }} </b><br>
-                                                Du : <b>{{$tab_evenement['evenement_date_debut_evenement']??'' }}
+                                                Du : <b>{{isset($tab_evenement['evenement_date_debut_evenement']) ? long_date($tab_evenement['evenement_date_debut_evenement']) :'' }}
                                                     <br>
-                                                    au {{ $tab_evenement['evenement_date_fin_evenement'] ??'' }}
+                                                    au {{ isset($tab_evenement['evenement_date_fin_evenement']) ? long_date($tab_evenement['evenement_date_fin_evenement']) : '' }}
                                                 </b><br>
-                                                Durée : <b>{{ $tab_evenement['evenement_duree_evenement'] ?? '' }}
+                                                Durée : <b>{{ $tab_evenement['duree_evenement'] ?? '' }}
                                                     jour(s)</b>
                                             </div>
 
                                             {{-- les prix --}}
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> {{$tab_evenement['evenement_caution'] ?? ''}} F
+                                                Caution(20%) : <b> {{ isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''}} F
                                                     FCA</b><br>
-                                                TTC : <b>{{$tab_evenement['evenement_montant_total']?? ''}} F FCA</b>
+                                                TTC : <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
                                             </div>
                                             {{-- fin prix --}}
 
@@ -312,7 +312,7 @@
 
 
                                     {{-- tableau des articles loués --}}
-                                    <div class="p-0 card-body table-responsive" style="height:500px;">
+                                    <div class="p-0 card-body table-responsive" style="height:300px;">
                                         <table class="table table-head-fixed ">
                                             <thead>
                                                 <tr>
@@ -330,17 +330,17 @@
                                                 @forelse ($tab_locations as $item => $ligne )
                                                 <tr>
                                                     <td>{{$item+1}}</td>
-                                                    <td><b> {{$ligne->article->libelle}}</b></td>
-                                                    <td>{{$ligne->article->categorie->libelle}}</td>
-                                                    <td>{{$ligne->qte_loue}}</td>
-                                                    <td>{{$ligne->nb_jour}}</td>
-                                                    <td>{{$ligne->article->tarification->prix}}
+                                                    <td><b> {{$ligne['article_libelle']}}</b></td>
+                                                    <td>{{$ligne['article_categorie']}}</td>
+                                                    <td>{{$ligne['qte_loue']}}</td>
+                                                    <td>{{$ligne['nb_jour']}}</td>
+                                                    <td>{{$ligne['prix']}}
                                                     </td>
-                                                    <td>{{$ligne->total_une_ligne}}</td>
+                                                    <td>{{$ligne['total_une_ligne']}}</td>
                                                     <td>
                                                         <button class="btn btn-danger btn-md" data-toggle="tooltip"
                                                             data-placement="bottom" title="Supprimer"
-                                                            wire:click="deleteLigne" type="submit">
+                                                            wire:click="deleteLigne({{$item}})" type="submit">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </td>

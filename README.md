@@ -10,7 +10,17 @@ Souralè-group est une application de gestion, de stock et de location evenement
 
 ## Installation
 
+1. Installer les dépendances:
 
+```# Composer inatll```
+
+2. Dossier public pour les images
+
+```# php artisan storage:link```
+
+3. Publier les assets de livewire
+
+```# php artisan livewire:publish --assets```
 ## Laravel Sponsors
 
 

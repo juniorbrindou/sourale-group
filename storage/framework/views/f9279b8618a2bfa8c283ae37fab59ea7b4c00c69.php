@@ -20,8 +20,6 @@
 
                                 <!-- Stepper header-->
                                 <div class="bs-stepper-header" role="tablist">
-                                    <!-- Step client-->
-
                                     <!-- Step evenement-->
                                     <div class="step <?php echo e($currentStep == 2 ? 'active' : ''); ?>"
                                         data-target="#information-part">
@@ -46,9 +44,6 @@
                                     </div>
                                 </div>
                                 <!-- Stepper header-->
-
-                                <!-- Client -->
-                                <!-- fin Client -->
 
                                 <!-- Evenement -->
                                 <div id="information-part"
@@ -147,8 +142,8 @@ unset($__errorArgs, $__bag); ?>
                                             <div class="form-group">
                                                 <label for="type_evenement_libelle">Type d'evenement</label>
                                                 <select class="float-right form-control"
-                                                    wire:model.defer="type_evenement_id">
-                                                    <option selected="selected"><?php echo e($evenement->type_evenement->libelle); ?>
+                                                    wire:model.defer="type_evenement_libelle">
+                                                    <option selected="selected"><?php echo e($type_evenement_libelle); ?>
 
                                                     </option>
                                                     <?php $__currentLoopData = $type_evenements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type_evenement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -278,19 +273,19 @@ unset($__errorArgs, $__bag); ?>
                         
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="article_qte">Quantité *</label>
-                                <input type="number" min="1" wire:model.defer="article_qte"
-                                    class="form-control <?php $__errorArgs = ['article_qte'];
+                                <label for="qte_article">Quantité *</label>
+                                <input type="number" min="1" wire:model.defer="qte_article"
+                                    class="form-control <?php $__errorArgs = ['qte_article'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="article_qte"
+unset($__errorArgs, $__bag); ?>" id="qte_article"
                                     placeholder="Entrez la quantité d'article">
                             </div>
-                            <?php $__errorArgs = ['article_qte'];
+                            <?php $__errorArgs = ['qte_article'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -309,19 +304,19 @@ unset($__errorArgs, $__bag); ?>
                         
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="nbr_jours">Jours</label>
-                                <input type="number" min="1" wire:model.defer="nbr_jours"
-                                    class="form-control <?php $__errorArgs = ['nbr_jours'];
+                                <label for="nb_jour">Jours</label>
+                                <input type="number" min="1" wire:model.defer="nb_jour"
+                                    class="form-control <?php $__errorArgs = ['nb_jour'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="nbr_jours"
+unset($__errorArgs, $__bag); ?>" id="nb_jour"
                                     placeholder="Entrez le nombre de jours">
                             </div>
-                            <?php $__errorArgs = ['nbr_jours'];
+                            <?php $__errorArgs = ['nb_jour'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -343,7 +338,7 @@ unset($__errorArgs, $__bag); ?>
                                 <button type="reset" class="mb-2 btn btn-warning btn-block text-light">Effacer</button>
                             </div>
                             <div class="col-md-3 col-sm-6">
-                                <button type="submit" wire:click="addArticle()"
+                                <button type="submit" wire:click="addArticle"
                                     class="btn btn-primary btn-block">Ajouter</button>
                             </div>
                         </div>
@@ -382,11 +377,15 @@ unset($__errorArgs, $__bag); ?>
 
                                         <br>
                                         <div class="row">
+                                            
                                             <div class="col-md-4">
                                                 <b><?php echo e($client->nom ?? 'Aucun Nom'); ?></b> <br>
                                                 <b><?php echo e($client->contact1?? ''); ?></b><br>
                                                 <b><?php echo e($client->adresse ?? ''); ?></b>
                                             </div>
+                                            
+
+                                            
                                             <div class="text-center col-md-4">
                                                 Cérémonie :<b>
                                                     <?php echo e($tab_evenement['evenement_libelle'] ??'Aucun Nom d\'évenement'); ?></b>
@@ -394,25 +393,35 @@ unset($__errorArgs, $__bag); ?>
                                                 Nombre d'Invités :
                                                 <b><?php echo e($tab_evenement['evenement_nbr_personne'] ?? 'Inconnu'); ?></b><br>
                                                 Lieu : <b><?php echo e($tab_evenement['evenement_lieu'] ??'Inconnu'); ?> </b><br>
-                                                Du : <b><?php echo e($tab_evenement['evenement_date_debut_evenement']??''); ?>
+                                                Du : <b><?php echo e(isset($tab_evenement['evenement_date_debut_evenement']) ? long_date($tab_evenement['evenement_date_debut_evenement']) :''); ?>
 
                                                     <br>
-                                                    au <?php echo e($tab_evenement['evenement_date_fin_evenement'] ??''); ?>
+                                                    au <?php echo e(isset($tab_evenement['evenement_date_fin_evenement']) ? long_date($tab_evenement['evenement_date_fin_evenement']) : ''); ?>
 
                                                 </b><br>
-                                                Durée : <b><?php echo e($tab_evenement['evenement_duree_evenement'] ?? ''); ?>
+                                                Durée : <b><?php echo e($tab_evenement['duree_evenement'] ?? ''); ?>
 
                                                     jour(s)</b>
                                             </div>
+
+                                            
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> <?php echo e($tab_evenement['evenement_caution'] ?? ''); ?> F
+                                                Caution(20%) : <b> <?php echo e(isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''); ?> F
                                                     FCA</b><br>
-                                                TTC : <b><?php echo e($tab_evenement['evenement_montant_total']?? ''); ?> F FCA</b>
+                                                TTC : <b><?php echo e(isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : ''); ?> F FCA</b>
                                             </div>
+                                            
+
                                         </div>
+                                            
                                     </div>
                                     <!-- /.card-header -->
-                                    <div class="p-0 card-body table-responsive" style="height:500px;">
+
+
+
+
+                                    
+                                    <div class="p-0 card-body table-responsive" style="height:300px;">
                                         <table class="table table-head-fixed ">
                                             <thead>
                                                 <tr>
@@ -430,14 +439,14 @@ unset($__errorArgs, $__bag); ?>
                                                 <?php $__empty_1 = true; $__currentLoopData = $tab_locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item => $ligne): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                 <tr>
                                                     <td><?php echo e($item+1); ?></td>
-                                                    <td><b> <?php echo e($ligne->article->libelle); ?></b></td>
-                                                    <td><?php echo e($ligne->article->categorie->libelle); ?></td>
-                                                    <td><?php echo e($ligne->qte_loue); ?></td>
-                                                    <td><?php echo e($ligne->nb_jour); ?></td>
-                                                    <td><?php echo e($ligne->article->tarification->prix); ?>
+                                                    <td><b> <?php echo e($ligne['article_libelle']); ?></b></td>
+                                                    <td><?php echo e($ligne['article_categorie']); ?></td>
+                                                    <td><?php echo e($ligne['qte_loue']); ?></td>
+                                                    <td><?php echo e($ligne['nb_jour']); ?></td>
+                                                    <td><?php echo e($ligne['prix']); ?>
 
                                                     </td>
-                                                    <td><?php echo e($ligne->total_une_ligne); ?></td>
+                                                    <td><?php echo e($ligne['total_une_ligne']); ?></td>
                                                     <td>
                                                         <button class="btn btn-danger btn-md" data-toggle="tooltip"
                                                             data-placement="bottom" title="Supprimer"
@@ -472,7 +481,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="col-md-6 col-sm-12">
-                                <button type="submit" wire:click="addInBD()"
+                                <button type="submit" wire:click="addInBD"
                                     class="btn btn-primary btn-block">Valider</button>
                             </div>
                         </div>

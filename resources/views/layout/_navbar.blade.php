@@ -22,11 +22,7 @@
                 <i class="fa fa-qrcode"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-item">
-                    <img src="{{asset('public/img/logo-small.png')}}" alt="">
-{{-- {!! QrCode::merge("{{asset('public/img/logo-small.png')}}")->generate(Request::url()); !!} --}}
-                </div>
+                {!! QrCode::errorCorrection('H')->size(399)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000"); !!}
             </div>
         </li>
 
