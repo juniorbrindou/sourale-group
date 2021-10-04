@@ -289,12 +289,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="article">Article Concerné *</label>
-                                <select class="select2 form-control  @error('article') is-invalid @enderror"
+                                <select class="form-control  @error('article') is-invalid @enderror"
                                     wire:model.defer="article" style="width: 100%;" id="article">
                                     <option selected value="">Selectionner un article</option>
 
-                                    @foreach ($articles as $article)
-                                    <option value="{{$article->libelle}}"> {{$article->libelle}}</option>
+                                    @foreach ($articles as $key => $article)
+                                    <option value="{{$article}}"> {{$article}}</option>
                                     @endforeach
                                 </select>
                             </div>

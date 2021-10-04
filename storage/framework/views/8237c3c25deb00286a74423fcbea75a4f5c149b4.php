@@ -402,7 +402,7 @@ unset($__errorArgs, $__bag); ?>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="article">Article Concerné *</label>
-                                <select class="select2 form-control  <?php $__errorArgs = ['article'];
+                                <select class="form-control  <?php $__errorArgs = ['article'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -413,8 +413,8 @@ unset($__errorArgs, $__bag); ?>"
                                     wire:model.defer="article" style="width: 100%;" id="article">
                                     <option selected value="">Selectionner un article</option>
 
-                                    <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($article->libelle); ?>"> <?php echo e($article->libelle); ?></option>
+                                    <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($article); ?>"> <?php echo e($article); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>

@@ -4,18 +4,18 @@ namespace App\Http\Livewire\Location;
 
 use App\Articles;
 use App\Clients;
-use App\Location;
-use Carbon\Carbon;
 use App\Evenements;
 use App\Factures;
-use Livewire\Component;
+use App\Location;
 use App\Type_evenements;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
-    public $currentStep = 1;
+    public $currentStep = 3;
     public $clients;
     /*Evennement*/
     public $libelle_event;
@@ -35,7 +35,7 @@ class Create extends Component
     public $newContact1;
     /*--------------*/
     /* les articles*/
-    public $articles;
+    public $articles = [];
     public $article;
     public $article_prix;
     public $qte_article;
@@ -51,8 +51,9 @@ class Create extends Component
     public $totalBrute = 0;
     public $totalUneLigne;
 
-
-
+    #corbeille de liste d'article
+    public $trashed = [];
+    public $allArticles = [];
 
     public function addArticle()
     {
@@ -86,7 +87,17 @@ class Create extends Component
             // calcul totalBrute et caution
             $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
             $this->caution = $this->totalBrute * 0.2;
+
+            #code pour retirer l'article sélectionné de la liste des articles
+            foreach ($this->articles as $key => $value) {
+                if ($value === $this->article) {
+                    $this->trashed[$key] = $value;
+                    unset($this->articles[$key]);
+                    $key = +1;
+                }
+            }
         }
+        $this->makeEmptyFields();
     }
 
     /**
@@ -116,15 +127,14 @@ class Create extends Component
         );
     }
 
-
-
-
-
-
-
-
-
-
+    /**
+     * vide les champs de formulaire
+     * @return void
+     */
+    private function makeEmptyFields()
+    {
+        $this->article = '';
+    }
     /**
      * Insertion en bd
      * @return \Illuminate\Http\RedirectResponse
@@ -158,7 +168,7 @@ class Create extends Component
                     'type_evenement_id' => $this->type_evenement_id,
                     'montant_total' => $this->totalBrute,
                     'status' => 'ENREGISTRÉ',
-                    'nb_jour' => Carbon::parse($this->date_debut_evenement)->DiffInDays($this->date_fin_evenement)
+                    'nb_jour' => Carbon::parse($this->date_debut_evenement)->DiffInDays($this->date_fin_evenement),
                 ]
             );
 
@@ -168,7 +178,7 @@ class Create extends Component
                     "caution" => $this->caution,
                     "user_id" => Auth::user()->id,
                     "evenement_id" => $evenement->id,
-                    "libelle" => 'Facture-'.$evenement->libelle,
+                    "libelle" => 'Facture-' . $evenement->libelle,
                 ]
             );
 
@@ -203,13 +213,6 @@ class Create extends Component
         }
     }
 
-
-
-
-
-
-
-
     /**
      * Remonte les information de la liste vers le formulaire pour le update
      */
@@ -224,7 +227,6 @@ class Create extends Component
         $this->caution = $this->totalBrute * 0.2;
     }
 
-
     /**
      * Rénitialise le tableau
      * @return void
@@ -236,19 +238,24 @@ class Create extends Component
         $this->caution = $this->totalBrute * 0.2;
     }
 
-
     /**
      * Suppprime une ligne (par les boutons supprimer de chaque ligne)
      */
     public function addDeleteLigne($item)
     {
+        foreach ($this->trashed as $value) {
+            if ($value === $this->tabArticles[$item]['article']) {
+                \array_unshift($this->articles, $this->tabArticles[$item]['article']);
+            }
+        }
+
         unset($this->tabArticles[$item]);
+        $this->caution = $this->totalBrute * 0.2;
         $this->tabArticles = array_values($this->tabArticles);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * 0.2;
+
+        $this->makeEmptyFields();
     }
-
-
 
     /**
      * Write code on Method
@@ -268,21 +275,21 @@ class Create extends Component
         } elseif ($this->newNom != null && $this->oldClient == null) {
             $this->ligne =
                 [
-                    'nom' => $this->newNom,
-                    'contact1' => $this->newContact1,
-                    'adresse' => $this->newAdresse,
-                    'isNew' => true,
-                ];
+                'nom' => $this->newNom,
+                'contact1' => $this->newContact1,
+                'adresse' => $this->newAdresse,
+                'isNew' => true,
+            ];
             $this->currentStep = 2;
         } elseif ($this->newNom == null && $this->oldClient != null) {
             $oldClient = Clients::whereId($this->oldClient)->first();
             $this->ligne =
                 [
-                    'nom' => $oldClient->nom,
-                    'contact1' => $oldClient->contact1,
-                    'adresse' => $oldClient->adresse,
-                    'isNew' => false,
-                ];
+                'nom' => $oldClient->nom,
+                'contact1' => $oldClient->contact1,
+                'adresse' => $oldClient->adresse,
+                'isNew' => false,
+            ];
             $this->currentStep = 2;
         } else {
             $this->dispatchBrowserEvent('sweetAlert', [
@@ -295,8 +302,6 @@ class Create extends Component
         }
     }
 
-
-
     /**
      * @return [type]
      */
@@ -304,10 +309,6 @@ class Create extends Component
     {
         $this->currentStep = 1;
     }
-
-
-
-
 
     /**
      * Write code on Method
@@ -321,7 +322,7 @@ class Create extends Component
             'date_debut_evenement' => 'required',
             'type_evenement_id' => 'required',
             'date_fin_evenement' => 'required|after:date_debut_evenement',
-        ],['libelle_event.unique'=>'Ce nom d\'évenement existe déja']);
+        ], ['libelle_event.unique' => 'Ce nom d\'évenement existe déja']);
         $this->ligne['libelle_event'] = $this->libelle_event;
         $this->ligne['lieuEvenement'] = $this->lieuEvenement;
         $this->ligne['type_evenement_id'] = $this->type_evenement_id;
@@ -340,9 +341,13 @@ class Create extends Component
 
     public function mount()
     {
-        $this->type_evenements = Type_evenements::all();
-        $this->clients = Clients::all();
-        $this->articles = Articles::all();
+        $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
+        $this->clients = Clients::orderBy('nom', 'ASC')->get();
+        $articles = Articles::orderBy('libelle', 'ASC')->get();
+
+        foreach ($articles as $key => $value) {
+            $this->articles[$key] = $value->libelle;
+        }
     }
 
     public function render()

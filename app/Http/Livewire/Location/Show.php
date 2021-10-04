@@ -2,13 +2,11 @@
 
 namespace App\Http\Livewire\Location;
 
-use App\Clients;
 use App\Articles;
 use App\Factures;
 use App\Location;
 use Carbon\Carbon;
 use App\Evenements;
-use function _\drop;
 use function _\each;
 use Livewire\Component;
 use App\Type_evenements;
@@ -83,8 +81,13 @@ class Show extends Component
 
 
 
+    /**
+     * Ajout de nouvelle ligne
+     * @return void
+     */
     public function addArticle()
     {
+        # validation lors de l'ajout de ligne
         $this->validate(
             [
                 'article_libelle' => 'required|string|min:2',
@@ -98,9 +101,12 @@ class Show extends Component
             ]
         );
 
+        # Ajout de nouvelle ligne
         $this->add();
 
+        # Montant total de l'évènement
         $this->tab_evenement['evenement_montant_total'] = array_sum(array_column($this->tab_locations, 'total_une_ligne'));
+        # caution de l'évènement
         $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * 0.2;
     }
 
@@ -110,13 +116,18 @@ class Show extends Component
 
 
 
+    /**
+     * Action en base de données : Modifiation de l'évènement
+     * @return void
+     */
     public function addInBD()
     {
         if (!empty($this->tab_locations)) { # si tableau d'articles contient des éléments
 
+            # obtention de l'id du type de l'évènement
             $type_evenement_id = Type_evenements::where('libelle', '=', $this->tab_evenement['type_evenement_libelle'])->first()->id;
 
-            // modification des informations de l'évènement
+            # modification des informations de l'évènement
             $this->evenement->update(
                 [
                     'libelle' => $this->tab_evenement['evenement_libelle'],
@@ -131,6 +142,7 @@ class Show extends Component
                 ]
             );
 
+            # modification de la facture de l'évènement
             Factures::where('evenement_id', '=', $this->evenement->id)->update(
                 [
                     "caution" => $this->tab_evenement['evenement_caution'],
@@ -140,20 +152,19 @@ class Show extends Component
                 ]
             );
 
-            #recupération de anciennes lignes Location en bd
+            #recupération des anciennes lignes Location en bd
             $old_locations = Location::where('evenement_id', '=', $this->evenement->id)->get();
 
-            // dd($this->tab_locations);
-            #suppression de anciennes lignes Location en bd
+            #suppression des anciennes lignes Location en bd
             foreach ($old_locations as $location) {
                 Location::destroy($location->id);
             }
 
+            # creation des locations
             foreach ($this->tab_locations as $new_location) {
 
                 # Récupération de chaque article
                 $article = Articles::whereLibelle($new_location['article_libelle'])->first();
-
 
                 #creation de nouvelles lignes Location en bd
                 Location::create(
@@ -170,9 +181,11 @@ class Show extends Component
                 );
             }
 
+            # Message a afficher en cas de success
             Alert::success('Evenement Modifié', '');
+            # redirection
             return redirect()->route('locations.index');
-        } else {
+        } else { # si aucun article n'a été selectionné et que bouton enregistré est cliqué
             $this->dispatchBrowserEvent('sweetAlert', [
                 'title' => 'Aucun article choisi',
                 'timer' => 15000,
@@ -187,6 +200,7 @@ class Show extends Component
      */
     public function secondStepSubmit()
     {
+        # validation des informations saisies de l'évènement
         $this->validate([
             'evenement_libelle' => 'required',
             'evenement_nbr_personne' => 'required',
@@ -196,6 +210,7 @@ class Show extends Component
             'evenement_lieu' => 'required',
         ]);
 
+        # creation du tableau contenant les infos sur l'évènement
         $this->tab_evenement['evenement_libelle'] = $this->evenement_libelle;
         $this->tab_evenement['evenement_caution'] = $this->evenement_caution;
         $this->tab_evenement['evenement_montant_total'] = $this->evenement_montant_total;
@@ -205,24 +220,31 @@ class Show extends Component
         $this->tab_evenement['evenement_date_fin_evenement'] = $this->evenement_date_fin_evenement;
         $this->tab_evenement['type_evenement_libelle'] = $this->type_evenement_libelle;
         $this->tab_evenement['duree_evenement'] = Carbon::parse($this->evenement_date_debut_evenement)->DiffInDays($this->evenement_date_fin_evenement);
-        // 2021-09-10T17:19
-        // 2021-09-30T14:27
-        $this->client;
+
+        # passage au step 3
         $this->currentStep = 3;
     }
 
+    /**
+     * fonction d'initialisation
+     * @param Evenements $evenement
+     * @return void
+     */
     public function mount(Evenements $evenement)
     {
+        # Liste des clients
         $this->client = $evenement->client;
+        # Liste des types evenement
         $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
         #le type d'evenement préselectionné:
         $this->type_evenement_libelle = $evenement->type_evenement->libelle;
         $this->articles = Articles::orderBy('libelle', 'ASC')->get();
-        #execution de foreach
+        #execution de foreach pour creer le tableau global de la liste des locations
         $tab = each((object) Location::where('evenement_id', '=', $evenement->id)->get(), function ($value, $key) {
             echo $value;
         });
-        // dd($tab);
+
+        #creation de this->tab_location
         foreach ($tab as $key => $value) {
             $this->tab_locations[$key]['article_libelle'] = $value->article->libelle;
             $this->tab_locations[$key]['article_categorie'] = $value->article->categorie->libelle;
@@ -231,7 +253,6 @@ class Show extends Component
             $this->tab_locations[$key]['prix'] = (int) $value->article->prix_tarification;
             $this->tab_locations[$key]['total_une_ligne'] = (int) $value->total_une_ligne;
         }
-        // dd($this->tab_locations);
         $this->user = $tab[0]->user;
 
         #pour les champs de stepper evenement :
@@ -247,6 +268,7 @@ class Show extends Component
 
     /**
      * Suppprime une ligne (par les boutons supprimer de chaque ligne)
+     * @return void
      */
     public function deleteLigne($item)
     {
@@ -257,11 +279,19 @@ class Show extends Component
         $this->makeEmptyFields();
     }
 
+    /**
+     * vide les champs de formulaire
+     * @return void
+     */
     private function makeEmptyFields()
     {
         $this->article_libelle = '';
     }
 
+    /**
+     * Fonction du rendu
+     * @return Illuminate\View\View
+     */
     public function render()
     {
         return view('livewire.location.show');
