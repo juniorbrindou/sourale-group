@@ -58,12 +58,12 @@ class RoleAndPermissionSeeder extends Seeder
         // or may be done by chaining
 
         // secretaire
-        $role = Role::create(['name' => 'secretaire'])
-            ->givePermissionTo(['metier', 'stock']);
+        // $role = Role::create(['name' => 'secretaire'])
+        //     ->givePermissionTo(['metier', 'stock']);
 
         // manager
-        $role = Role::create(['name' => 'manager'])
-            ->givePermissionTo(['articles', 'parametrage']);
+        // $role = Role::create(['name' => 'manager'])
+        //     ->givePermissionTo(['articles', 'parametrage']);
 
         // admin
         $role = Role::create(['name' => 'admin']);
