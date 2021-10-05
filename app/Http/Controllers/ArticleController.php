@@ -6,6 +6,7 @@ use App\Articles;
 use App\Categories;
 use App\Tarification;
 use App\Type_articles;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -34,8 +35,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $categories = Categories::all();
-        $type_articles = Type_articles::all();
+        $categories = Categories::orderBy('libelle', 'ASC')->get();
+        $type_articles = Type_articles::orderBy('libelle', 'ASC')->get();
         return view('parametrage.articles.create', compact('categories', 'type_articles'));
     }
 
@@ -52,6 +53,7 @@ class ArticleController extends Controller
             'libelle' => 'required|string|min:3|unique:articles',
             'categorie_id' => 'required|numeric',
             'type_article_id' => 'required|numeric',
+            'prix_tarification' => 'required|numeric|min:0',
             'description' => 'nullable',
             'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
         ], [
@@ -59,11 +61,10 @@ class ArticleController extends Controller
             'libelle.unique' => 'La valeur de ce champ est déja utilisée',
             'categorie_id.required' => 'Le champ catégorie est obligatoire',
             'type_article_id.required' => 'Le champ Type est obligatoire',
+            'prix_tarification.required' => 'Le prix est obligatoire',
         ]);
 
         $data = Articles::create(array_merge($request->all(), ['user_id' => Auth::user()->id]));
-
-        $tarification = Tarification::where('categorie_article_id', '=', $request->categorie_id)->where('type_article_id', '=', $request->type_article_id)->first();
 
         if ($request->hasFile('article_photo')) {
             // stockage du nom du fichier et ses infos dans la variable file
@@ -77,14 +78,10 @@ class ArticleController extends Controller
             $data->update([
                 'code' => date("Ymd") . '0' . $data->id,
                 'article_photo' => $path,
-                'prix_tarification' => $tarification->prix,
-                'tarification_id' => $tarification->id
             ]);
         } else {
             $data->update([
                 'code' => date("Ymd") . '0' . $data->id,
-                'prix_tarification' => $tarification->prix,
-                'tarification_id' => $tarification->id
             ]);
         }
 
@@ -122,12 +119,14 @@ class ArticleController extends Controller
             'categorie_id' => 'required|numeric',
             'type_article_id' => 'required|numeric',
             'description' => 'nullable',
+            'prix_tarification' => 'required|numeric|min:0',
             'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
         ], [
             'libelle.required' => 'Le champ libéllé est obligatoire',
             'libelle.unique' => 'Ce nom d\'article existe déjà',
             'categorie_id.required' => 'Le champ catégorie est obligatoire',
             'type_article_id.required' => 'Le champ Type est obligatoire',
+            'prix_tarification.required' => 'Le prix est obligatoire',
         ]);
 
         $tarification = Tarification::where('categorie_article_id', '=', $request->categorie_id)->where('type_article_id', '=', $request->type_article_id)->first();
@@ -138,8 +137,7 @@ class ArticleController extends Controller
             'categorie_id' => $request->categorie_id,
             'type_article_id' => $request->type_article_id,
             'description' => $request->description,
-            'prix_tarification' => $tarification->prix,
-            'tarification_id' => $tarification->id
+            'prix_tarification' => $request->prix_tarification,
         ]);
 
         if ($request->hasFile('article_photo')) {
@@ -155,9 +153,6 @@ class ArticleController extends Controller
             // creation du code et ajout du lien de l'image dans la bd
             $data->update([
                 'article_photo' => $path,
-                'prix_tarification' => $tarification->prix,
-                'tarification_id' => $tarification->id
-
             ]);
         }
         toast('Article Modiffié!', 'success');
@@ -176,7 +171,7 @@ class ArticleController extends Controller
         try {
             $article->delete();
             return back()->with('success', 'Action Effectuée!');
-        } catch (Illuminate\Database\QueryException $e) {
+        } catch (Exception $e) {
             return back()->with('error', 'Impossible de Supprimer cet Article');
         }
         return back();

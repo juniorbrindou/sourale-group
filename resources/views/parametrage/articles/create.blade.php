@@ -19,7 +19,7 @@
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-12 col-xs-12">
+								<div class="col-md-9 col-xs-12">
 
 									{{-- libelle --}}
 									<div class="form-group">
@@ -29,6 +29,24 @@
 											placeholder="Entrer le nom de l'article">
 									</div>
 									@error('libelle')
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+
+
+                                <div class="col-md-3 col-xs-6">
+
+									{{-- prix_tarification --}}
+									<div class="form-group">
+										<label for="prix_tarification">Prix</label>
+										<input type="text" class="form-control @error('prix_tarification') is-invalid @enderror"
+											value="{{ old('prix_tarification') }}" name="prix_tarification" id="prix_tarification"
+											placeholder="Entrer le nom de l'article">
+									</div>
+									@error('prix_tarification')
 									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
 										role="alert">
 										<strong>{{ $message }}</strong>
@@ -102,7 +120,7 @@
 								</div>
 								<div class="col-md-3 offset-md-3">
 									{{-- libelle --}}
-									<div class="form-group mt-3">
+									<div class="mt-3 form-group">
 										<label for="switch">Enregistrer Encore</label>
 										<input type="checkbox" name="encore" checked data-bootstrap-switch
 											data-off-color="danger" data-on-color="success">
