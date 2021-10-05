@@ -15,7 +15,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
-    public $currentStep = 3;
+    public $currentStep = 1;
     public $clients;
     /*Evennement*/
     public $libelle_event;
@@ -250,9 +250,9 @@ class Create extends Component
         }
 
         unset($this->tabArticles[$item]);
-        $this->caution = $this->totalBrute * 0.2;
         $this->tabArticles = array_values($this->tabArticles);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
+        $this->caution = $this->totalBrute * 0.2;
 
         $this->makeEmptyFields();
     }

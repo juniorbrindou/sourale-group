@@ -128,10 +128,12 @@
                                         <td>{{$value['categorie']}}</td>
                                         <td>{{format_money($value['prix'])}}</td>
                                         <td>
-                                            <button wire:click="updateLigne({{$item}})" title="Modiffier"
+                                            {{-- modification de ligne --}}
+                                            {{-- <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                 class="btn btn-primary btn-md">
                                                 <i class="fa fa-pen"></i>
-                                            </button>
+                                            </button> --}}
+                                            
                                             <button class="btn btn-danger btn-md"
                                                 wire:click="addDeleteLigne({{$item}})">
                                                 <i class="fa fa-trash"></i>

@@ -83,7 +83,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-md-3 offset-md-3 col-sm-6">
-                            <button type="reset" class="btn btn-warning btn-block text-light mb-2">Effacer</button>
+                            <button type="reset" class="mb-2 btn btn-warning btn-block text-light">Effacer</button>
                         </div>
                         <div class="col-md-3 col-sm-6">
                             <button type="submit" wire:click="addLigne"
@@ -125,13 +125,13 @@
                             <h3 class="card-title">Auteur : {{Auth::user()->nom}}</h3>
 
                             <div class="card-tools">
-                                <div class="input-group input-group-sm float-right" style="width: 150px;">
+                                <div class="float-right input-group input-group-sm" style="width: 150px;">
                                     <b>Code: {{$code}}</b>
                                 </div>
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0" style="height:500px;">
+                        <div class="p-0 card-body table-responsive" style="height:500px;">
                             <table class="table table-head-fixed ">
                                 <thead>
                                     <tr>
@@ -154,10 +154,13 @@
                                         <td>{{$value['prix']}}</td>
                                         <td>{{$value['motif']}}</td>
                                         <td>
-                                            <button wire:click="updateLigne({{$item}})" title="Modiffier"
+                                            {{-- modiffication de ligne --}}
+                                            {{-- <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                 class="btn btn-primary btn-md">
                                                 <i class="fa fa-pen"></i>
-                                            </button>
+                                            </button> --}}
+
+                                            
                                             <button class="btn btn-danger btn-md"
                                                 wire:click="addDeleteLigne({{$item}})">
                                                 <i class="fa fa-trash"></i>
@@ -185,10 +188,10 @@
             <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <a href="{{route('approvisionnement.index')}}"
-                        class="btn btn-warning btn-block text-light mb-2">Retour à la liste</a>
+                        class="mb-2 btn btn-warning btn-block text-light">Retour à la liste</a>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <button wire:click="resetLigne" class="btn btn-dark btn-block text-light mb-2">Tout Effacer</button>
+                    <button wire:click="resetLigne" class="mb-2 btn btn-dark btn-block text-light">Tout Effacer</button>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <button type="submit" wire:click="addInBD()" class="btn btn-primary btn-block">Valider</button>

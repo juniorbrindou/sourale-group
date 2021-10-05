@@ -42,7 +42,7 @@
 									{{-- prix_tarification --}}
 									<div class="form-group">
 										<label for="prix_tarification">Prix</label>
-										<input type="text" class="form-control @error('prix_tarification') is-invalid @enderror"
+										<input type="number" class="form-control @error('prix_tarification') is-invalid @enderror"
 											value="{{ old('prix_tarification') }}" name="prix_tarification" id="prix_tarification"
 											placeholder="Entrer le nom de l'article">
 									</div>

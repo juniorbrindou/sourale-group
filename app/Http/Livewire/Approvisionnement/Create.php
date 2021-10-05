@@ -170,7 +170,7 @@ class Create extends Component
     {
         $this->code = date('ym') . Entrers::count();
 
-        $this->articles = Articles::all();
+        $this->articles = Articles::orderBy('libelle','ASC')->get();
         return view('livewire.approvisionnement.create');
     }
 }

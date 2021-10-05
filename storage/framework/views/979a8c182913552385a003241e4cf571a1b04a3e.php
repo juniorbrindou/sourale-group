@@ -156,10 +156,9 @@ unset($__errorArgs, $__bag); ?>
                                         <td><?php echo e($value['categorie']); ?></td>
                                         <td><?php echo e(format_money($value['prix'])); ?></td>
                                         <td>
-                                            <button wire:click="updateLigne(<?php echo e($item); ?>)" title="Modiffier"
-                                                class="btn btn-primary btn-md">
-                                                <i class="fa fa-pen"></i>
-                                            </button>
+                                            
+                                            
+                                            
                                             <button class="btn btn-danger btn-md"
                                                 wire:click="addDeleteLigne(<?php echo e($item); ?>)">
                                                 <i class="fa fa-trash"></i>

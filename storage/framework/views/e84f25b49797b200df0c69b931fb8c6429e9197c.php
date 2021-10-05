@@ -139,7 +139,7 @@
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
 		  "buttons": ["pdf", "print"],
-		   "order": [0,'desc']
+		   "order": [3,'desc']
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		$('#example2').DataTable({
 		  "paging": true,
