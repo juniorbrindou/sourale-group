@@ -22,7 +22,7 @@
 								<div class="col-md-6">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">libéllé *</label>
+										<label for="libelle">Libéllé *</label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="code"
 											placeholder="Entrer le type de l'événement" autofocus>
@@ -60,7 +60,7 @@
 						<div class="card-footer">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<a href="{{ route('typeEvenements.index') }}" class="btn btn-warning btn-block text-light mb-2">Retour</a>
+									<a href="{{ route('typeEvenements.index') }}" class="mb-2 btn btn-warning btn-block text-light">Retour</a>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>

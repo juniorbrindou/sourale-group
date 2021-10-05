@@ -41,10 +41,11 @@ class TypeEvenementsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'libelle' => 'required|string|min:1',
+            'libelle' => 'required|string|min:1|unique:type_evenements,libelle',
             'description' => 'nullable|min:0',
         ], [
-            'libelle.required' => 'Le libéllé est obligatoire'
+            'libelle.required' => 'Le libéllé est obligatoire',
+            'libelle.unique' => 'Ce type d\'évenement existe deja'
         ]);
         $data = Type_evenements::create($request->all());
 
@@ -84,10 +85,11 @@ class TypeEvenementsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'libelle' => 'required|string|min:1',
+            'libelle' => 'required|string|min:1|unique:type_evenements,libelle,'.$id,
             'description' => 'nullable|min:0',
         ], [
-            'libelle.required' => 'Le libéllé est obligatoire'
+            'libelle.required' => 'Le libéllé est obligatoire',
+            'libelle.unique' => 'Ce type existe deja'
         ]);
         Type_evenements::whereId($id)->update([
             'libelle' => $request->libelle,

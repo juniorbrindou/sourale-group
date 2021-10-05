@@ -36,15 +36,20 @@
                                     <td>{{ isset($typeEvenement->description) ? $typeEvenement->description : 'Aucune description' }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-warning btn-md" data-toggle="modal"
+                                        {{-- show --}}
+                                        {{-- <button class="btn btn-warning btn-md" data-toggle="modal"
                                             data-target="#modal-see-{{$typeEvenement->id}}">
                                             <i class="fa fa-eye"></i>
-                                        </button>
+                                        </button> --}}
+                                        
+                                        
                                         <a href="{{ route('typeEvenements.edit', $typeEvenement->id) }}"
                                             title="Modiffier" class="btn btn-primary btn-md" data-toggle="tooltip"
                                             -placement="top">
                                             <i class="fa fa-pen"></i>
                                         </a>
+
+                                        {{-- delete --}}
                                         {{-- <button type="submit" class="btn btn-danger btn-md" data-toggle="modal"
                                             data-target="#modal-danger-{{$typeEvenement->id}}">
                                         <i class="fa fa-trash"></i>
