@@ -26,12 +26,12 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="article_id"
+unset($__errorArgs, $__bag); ?>" name="article"
                                 wire:model="article" style="width: 100%;">
-                                <option selected value="">Selectionner un article</option>
+                                <option selected>Selectionner un article</option>
 
                                 <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($article->id); ?>"> <?php echo e($article->libelle); ?></option>
+                                <option value="<?php echo e($article); ?>"> <?php echo e($article); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>

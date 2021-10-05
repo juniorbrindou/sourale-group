@@ -22,6 +22,9 @@ class Create extends Component
     public $code;
     public $ligneExiste = false;
 
+    #corbeille de liste d'article
+    public $trashed = [];
+
     public function submit()
     {
         $this->validate();
@@ -46,14 +49,24 @@ class Create extends Component
     public function addLigne()
     {
         $this->validate([
-            'article' => 'required|numeric',
+            'article' => 'required|string',
             'qte' => 'required|numeric|min:1',
         ]);
         if (empty($this->ligne)) {
             $this->add();
+
+             #code pour retirer l'article sélectionné de la liste des articles
+             foreach ($this->articles as $key => $value) {
+                if ($value === $this->article) {
+                    $this->trashed[$key] = $value;
+                    unset($this->articles[$key]);
+                    $key = +1;
+                }
+            }
+
         } else {
             for ($i = 0; $i + 1 <= count($this->ligne); $i++) {
-                if ($this->ligne[$i]['article'] == Articles::find($this->article)->libelle) {
+                if ($this->ligne[$i]['article'] == Articles::where('libelle','=',$this->article)->first()->libelle) {
                     $this->dispatchBrowserEvent('sweetAlert', [
                         'title' => 'Cet article a déjà été selectionné',
                         'timer' => 5000,
@@ -62,6 +75,16 @@ class Create extends Component
                     break;
                 } else {
                     $this->add();
+
+                    #code pour retirer l'article sélectionné de la liste des articles
+                    foreach ($this->articles as $key => $value) {
+                        if ($value === $this->article) {
+                            $this->trashed[$key] = $value;
+                            unset($this->articles[$key]);
+                            $key = +1;
+                        }
+                    }
+
                     break;
                 }
             }
@@ -70,7 +93,7 @@ class Create extends Component
 
     public function add()
     {
-        $article = Articles::find($this->article);
+        $article = Articles::where('libelle','=',$this->article)->first();
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
@@ -94,6 +117,11 @@ class Create extends Component
      */
     public function addDeleteLigne($item)
     {
+        foreach ($this->trashed as $value) {
+            if ($value === $this->ligne[$item]['article']) {
+                \array_unshift($this->articles, $this->ligne[$item]['article']);
+            }
+        }
         unset($this->ligne[$item]);
         $this->ligne = array_values($this->ligne);
     }
@@ -155,22 +183,30 @@ class Create extends Component
 
     protected $rules = [
         'qte' => 'required|numeric|min:1',
-        'article' => 'required|numeric',
+        'article' => 'required|string',
     ];
     protected $messages = [
-        'article.numeric' => 'Selectionnez l\'article.',
+        'article.*' => 'Selectionnez un article.',
     ];
     protected $validationAttributes = [
         'qte' => 'quantité'
     ];
 
+    public function mount()
+    {
+        $this->code = date('ym') . Entrers::count();
+
+        $articles = Articles::orderBy('libelle','ASC')->get();
+
+        foreach ($articles as $key => $value) {
+            $this->articles[$key] = $value->libelle;
+        }
+    }
+
 
 
     public function render()
     {
-        $this->code = date('ym') . Entrers::count();
-
-        $this->articles = Articles::orderBy('libelle','ASC')->get();
         return view('livewire.approvisionnement.create');
     }
 }

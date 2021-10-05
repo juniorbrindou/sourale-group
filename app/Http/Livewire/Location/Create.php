@@ -53,7 +53,6 @@ class Create extends Component
 
     #corbeille de liste d'article
     public $trashed = [];
-    public $allArticles = [];
 
     public function addArticle()
     {
