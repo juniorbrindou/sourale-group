@@ -17,7 +17,7 @@
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-12 col-xs-12">
+								<div class="col-md-9 col-xs-12">
 
 									
 									<div class="form-group">
@@ -34,6 +34,38 @@ unset($__errorArgs, $__bag); ?>"
 											placeholder="Entrer le nom de l'article">
 									</div>
 									<?php $__errorArgs = ['libelle'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong><?php echo e($message); ?></strong>
+									</span>
+									<?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+								</div>
+
+
+                                <div class="col-md-3 col-xs-6">
+
+									
+									<div class="form-group">
+										<label for="prix_tarification">Prix</label>
+										<input type="text" class="form-control <?php $__errorArgs = ['prix_tarification'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+											value="<?php echo e(old('prix_tarification')); ?>" name="prix_tarification" id="prix_tarification"
+											placeholder="Entrer le nom de l'article">
+									</div>
+									<?php $__errorArgs = ['prix_tarification'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -123,7 +155,7 @@ unset($__errorArgs, $__bag); ?>"
 								</div>
 								<div class="col-md-3 offset-md-3">
 									
-									<div class="form-group mt-3">
+									<div class="mt-3 form-group">
 										<label for="switch">Enregistrer Encore</label>
 										<input type="checkbox" name="encore" checked data-bootstrap-switch
 											data-off-color="danger" data-on-color="success">

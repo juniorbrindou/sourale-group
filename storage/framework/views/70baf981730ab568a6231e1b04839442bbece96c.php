@@ -184,7 +184,7 @@ unset($__errorArgs, $__bag); ?>"
                                         <?php endif; ?>
                                     </td>
                                     <td><?php echo e(ucwords($article->libelle)); ?></td>
-                                    <td><?php echo e(format_money($article->tarification->prix)); ?></td>
+                                    <td><?php echo e(format_money($article->prix_tarification)); ?></td>
                                     <td><?php echo e($article->type_article->libelle); ?></td>
                                     <td><?php echo e($article->categorie->libelle); ?></td>
                                     <td>
@@ -254,6 +254,39 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                                     </div>
+
+
+                                                    <div class="col-md-12 col-xs-12">
+
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="prix_tarification">Prix</label>
+                                                            <input type="text" class="form-control <?php $__errorArgs = ['prix_tarification'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                                value="<?php echo e($article->prix_tarification); ?>" name="prix_tarification" id="prix_tarification">
+                                                        </div>
+                                                        <?php $__errorArgs = ['prix_tarification'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                        <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                                            role="alert">
+                                                            <strong><?php echo e($message); ?></strong>
+                                                        </span>
+                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                    </div>
+                                                    
+                                                    
 
                                                     <div class="col-md-12">
                                                         <div class="form-group">

@@ -35,15 +35,17 @@
 
                                     </td>
                                     <td>
-                                        <button class="btn btn-warning btn-md" data-toggle="modal"
-                                            data-target="#modal-see-<?php echo e($typeEvenement->id); ?>">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
+                                        
+                                        
+                                        
+                                        
                                         <a href="<?php echo e(route('typeEvenements.edit', $typeEvenement->id)); ?>"
                                             title="Modiffier" class="btn btn-primary btn-md" data-toggle="tooltip"
                                             -placement="top">
                                             <i class="fa fa-pen"></i>
                                         </a>
+
+                                        
                                         
                                     </td>
                                 </tr>

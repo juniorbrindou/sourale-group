@@ -22,7 +22,7 @@
 								<div class="col-md-6">
 									
 									<div class="form-group">
-										<label for="libelle">libéllé *</label>
+										<label for="libelle">Libéllé *</label>
 										<input type="text" class="form-control <?php $__errorArgs = ['libelle'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -74,7 +74,7 @@ unset($__errorArgs, $__bag); ?>
 						<div class="card-footer">
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<a href="<?php echo e(route('typeEvenements.index')); ?>" class="btn btn-warning btn-block text-light mb-2">Retour</a>
+									<a href="<?php echo e(route('typeEvenements.index')); ?>" class="mb-2 btn btn-warning btn-block text-light">Retour</a>
 								</div>
 								<div class="col-md-6 col-sm-6">
 									<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>

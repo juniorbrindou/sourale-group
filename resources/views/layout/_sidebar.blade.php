@@ -98,13 +98,13 @@
 
 
                 {{-- tarifications --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('tarifications.index')}}"
                         class="nav-link {{ request()->is('parametrage/tarification*') ? 'active' : ''}}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Tarification</p>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- categorieArticles --}}
                 <li class="nav-item">

@@ -88,13 +88,7 @@
 
 
                 
-                <li class="nav-item">
-                    <a href="<?php echo e(route('tarifications.index')); ?>"
-                        class="nav-link <?php echo e(request()->is('parametrage/tarification*') ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Tarification</p>
-                    </a>
-                </li>
+                
 
                 
                 <li class="nav-item">
