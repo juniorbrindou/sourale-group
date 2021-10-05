@@ -20,6 +20,8 @@ class Create extends Component
     public $ligne = [];
     public $item;
     public $code;
+    #corbeille de liste d'article
+    public $trashed = [];
 
     public function submit()
     {
@@ -47,7 +49,7 @@ class Create extends Component
         // verified la validation
         $this->validate();
         // renvoie dans this→article le model article
-        $article = Articles::whereId($this->article)->first();
+        $article = Articles::where('libelle','=',$this->article)->first();
         $this->article_prix = $article->prix_tarification;
         $this->article = $article->libelle;
         $this->article_categorie = $article->categorie->libelle;
@@ -65,6 +67,16 @@ class Create extends Component
                     'motif' => $this->motif,
                 ]
             );
+
+  
+              #code pour retirer l'article sélectionné de la liste des articles
+              foreach ($this->articles as $key => $value) {
+                  if ($value === $this->article) {
+                      $this->trashed[$key] = $value;
+                      unset($this->articles[$key]);
+                      $key = +1;
+                  }
+              }
         } else {
             $this->dispatchBrowserEvent(
                 'sweetAlert',
@@ -84,6 +96,11 @@ class Create extends Component
      */
     public function addDeleteLigne($item)
     {
+        foreach ($this->trashed as $value) {
+            if ($value === $this->ligne[$item]['article']) {
+                \array_unshift($this->articles, $this->ligne[$item]['article']);
+            }
+        }
         unset($this->ligne[$item]);
         $this->ligne = array_values($this->ligne);
     }
@@ -137,25 +154,30 @@ class Create extends Component
 
     protected $rules = [
         'qte' => 'required|numeric|min:1',
-        'article' => 'required|numeric',
+        'article' => 'required|string',
         'motif' => 'required',
     ];
     protected $messages = [
-        'article.numeric' => 'Selectionnez l\'article.',
+        'article.*' => 'Selectionnez l\'article.',
     ];
     protected $validationAttributes = [
         'qte' => 'quantité'
     ];
 
+    public function mount()
+    {
+        $this->code = date('ym') . Destockage::count();
 
+        $articles = Articles::orderBy('libelle','ASC')->get();
 
+        foreach ($articles as $key => $value) {
+            $this->articles[$key] = $value->libelle;
+        }
+    }
 
 
     public function render()
     {
-        $this->code = date('ym') . Destockage::count();
-
-        $this->articles = Articles::orderBy('libelle','ASC')->get();
         return view('livewire.destockage.create');
     }
 }
