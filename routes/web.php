@@ -14,7 +14,7 @@ Route::group(
         Route::resource('utilisateurs', 'UserController');
         Route::resource('approvisionnement', 'EntrersController');
         Route::resource('destockages', 'DestockageController');
-        Route::get('stock', 'StockController@index');
+        Route::get('/stock', 'StockController@index')->name('stock');
         Route::post('locationsCreateClient', 'LocationController@locationsCreateClient')->name('locationsCreateClient');
 //        Route::resource('locations', 'LocationController');
         Route::post('locations', 'LocationController@store')->name('locations');
