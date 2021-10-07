@@ -10,7 +10,7 @@
 
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title">Liste des Approvisionnements de stock</h3>
+                        <h3 class="card-title">Liste des Entrées de stock</h3>
 
                         <a href="{{ route('approvisionnement.create')}}" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>

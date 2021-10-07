@@ -7,7 +7,7 @@
 
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Liste des Catégorie d'articles</h3>
+                        <h3 class="card-title">Liste des Catégories d'articles</h3>
 
                         <button data-toggle="modal" data-target="#modal-create" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>
@@ -125,8 +125,8 @@ unset($__errorArgs, $__bag); ?>
                                     </td>
                                     <td>
                                         <button data-toggle="modal"
-                                            data-target="#modal-update-<?php echo e($categorieArticle->id); ?>" data-toggle="tooltip"
-                                            data-placement="top" title="Modiffier" class="btn btn-primary btn-md">
+                                            data-target="#modal-update-<?php echo e($categorieArticle->id); ?>" title="Modiffier"
+                                            class="btn btn-primary btn-md">
                                             <i class="fa fa-pen"></i>
                                         </button>
 
@@ -350,11 +350,6 @@ unset($__errorArgs, $__bag); ?>
 			"responsive": true,
 			});
 		});
-</script>
-<script>
-    $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
 </script>
 
 <?php if(session('success')): ?>

@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
@@ -10,7 +8,7 @@
 
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title">Liste des Approvisionnements de stock</h3>
+                        <h3 class="card-title">Liste des Entrées de stock</h3>
 
                         <a href="<?php echo e(route('approvisionnement.create')); ?>" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>
@@ -22,15 +20,15 @@
                     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('approvisionnement.index', [])->html();
-} elseif ($_instance->childHasBeenRendered('lIVLEvv')) {
-    $componentId = $_instance->getRenderedChildComponentId('lIVLEvv');
-    $componentTag = $_instance->getRenderedChildComponentTagName('lIVLEvv');
+} elseif ($_instance->childHasBeenRendered('Q4zWxEn')) {
+    $componentId = $_instance->getRenderedChildComponentId('Q4zWxEn');
+    $componentTag = $_instance->getRenderedChildComponentTagName('Q4zWxEn');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('lIVLEvv');
+    $_instance->preserveRenderedChild('Q4zWxEn');
 } else {
     $response = \Livewire\Livewire::mount('approvisionnement.index', []);
     $html = $response->html();
-    $_instance->logRenderedChild('lIVLEvv', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('Q4zWxEn', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

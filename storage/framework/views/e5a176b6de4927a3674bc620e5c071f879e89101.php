@@ -1,4 +1,3 @@
-
 <div class="content-header">
 	<div class="container-fluid">
 		<div class="mb-2 row">
@@ -9,7 +8,7 @@
 
                             <?php if(!is_null($breadcrumb->url) && !$loop->last): ?>
                                 <li class="breadcrumb-item active">
-                                    <a class="btn btn-secondary" href="<?php echo e($breadcrumb->url); ?>">
+                                    <a class="btn btn-primary" href="<?php echo e($breadcrumb->url); ?>">
                                         <?php echo e($breadcrumb->title); ?>
 
                                     </a>
