@@ -1,7 +1,7 @@
 <div>
     <div class="card card-success box-perso">
         <div class="card-header">
-            <h3 class="card-title">Entrée de Stock</h3>
+            <h3 class="card-title">Nouvelle Entrée de Stock</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -133,7 +133,7 @@
                                                 class="btn btn-primary btn-md">
                                                 <i class="fa fa-pen"></i>
                                             </button> --}}
-                                            
+
                                             <button class="btn btn-danger btn-md"
                                                 wire:click="addDeleteLigne({{$item}})">
                                                 <i class="fa fa-trash"></i>

@@ -1,30 +1,27 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <section class="content">
 	<div class="container-fluid">
 		<div class="row">
 			<!-- left column -->
-			<div class="col-md-12 ">
+			<div class="col-md-12">
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Nouvel Article</h3>
+						<h3 class="card-title">Nouvel Utilisateur</h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form method="POST" action="<?php echo e(route('articles.store')); ?>" enctype="multipart/form-data">
+					<form method="POST" action="<?php echo e(route('users.store')); ?>">
 						<?php echo csrf_field(); ?>
 						<div class="card-body">
 
 							<div class="row">
-								<div class="col-md-9 col-xs-12">
-
+								<div class="col-md-6">
 									
 									<div class="form-group">
-										<label for="libelle">Nom de l'article</label>
-										<input type="text" class="form-control <?php $__errorArgs = ['libelle'];
+										<label for="login">login *</label>
+										<input type="text" class="form-control <?php $__errorArgs = ['login'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -32,10 +29,10 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-											value="<?php echo e(old('libelle')); ?>" name="libelle" id="libelle"
-											placeholder="Entrer le nom de l'article">
+											value="<?php echo e(old('login')); ?>" name="login" id="login"
+											placeholder="Entrer le type de l'article" autofocus required>
 									</div>
-									<?php $__errorArgs = ['libelle'];
+									<?php $__errorArgs = ['login'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -50,13 +47,11 @@ endif;
 unset($__errorArgs, $__bag); ?>
 								</div>
 
-
-                                <div class="col-md-3 col-xs-6">
-
+								<div class="col-md-6">
 									
 									<div class="form-group">
-										<label for="prix_tarification">Prix</label>
-										<input type="number" class="form-control <?php $__errorArgs = ['prix_tarification'];
+										<label for="nom">Nom *</label>
+										<input type="text" class="form-control <?php $__errorArgs = ['nom'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -64,10 +59,10 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-											value="<?php echo e(old('prix_tarification')); ?>" name="prix_tarification" id="prix_tarification"
-											placeholder="Entrer le nom de l'article">
+											value="<?php echo e(old('nom')); ?>" name="nom" id="nom"
+											placeholder="Entrez le nom de famille" required>
 									</div>
-									<?php $__errorArgs = ['prix_tarification'];
+									<?php $__errorArgs = ['nom'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -83,18 +78,46 @@ unset($__errorArgs, $__bag); ?>
 								</div>
 							</div>
 
-
-
 							<div class="row">
+								<div class="col-md-3">
+									
+									<div class="form-group">
+										<label for="password">Mot de passe *</label>
+										<input type="password"
+											class="form-control <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+											value="<?php echo e(old('password')); ?>" required name="password" id="password"
+											placeholder="Entrez un mot de passe initial">
+									</div>
+									<?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+									<span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+										role="alert">
+										<strong><?php echo e($message); ?></strong>
+									</span>
+									<?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+								</div>
+
 								<div class="col-md-3 ">
 									<div class="form-group">
-										<label>Type d'article</label>
-										<select class="form-control select2" name="type_article_id"
-											style="width: 100%;">
+										<label for="role">Role</label>
+										<select required class="form-control select2" name="role" style="width: 100%;">
 
-											<?php $__currentLoopData = $type_articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type_article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+											<?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 											<option <?php if($loop->first): ?> selected="selected" <?php endif; ?>
-												value="<?php echo e($type_article->id); ?>"> <?php echo e($type_article->libelle); ?>
+												value="<?php echo e($role->name); ?>"> <?php echo e($role->name); ?>
 
 											</option> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -104,60 +127,62 @@ unset($__errorArgs, $__bag); ?>
 								</div>
 
 
+							</div>
 
+
+
+							<div class="row">
 								
 								<div class="col-md-3 ">
 									<div class="form-group">
-										<label>Catégorie d'article</label>
-										<select class="form-control select2" style="width: 100%;"
-											name="categorie_id">
-
-											<?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categorie): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-											<option <?php if($loop->first): ?> selected="selected" <?php endif; ?>
-												value="<?php echo e($categorie->id); ?>"> <?php echo e($categorie->libelle); ?>
-
-											</option>
-											<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
+										<label>Titre</label>
+										<select class="form-control select2" style="width: 100%;" name="genre">
+											<option selected="selected" value="Mlle">Mademoiselle</option>
+											<option value="M">Monsieur</option>
+											<option value="Mme">Madame</option>
 										</select>
 									</div>
 								</div>
 
 
-
 								
-								<div class="col-md-6 ">
+								<div class="col-md-2">
 									<div class="form-group">
-										<label>Ajouter une description à l'article</label>
-										<textarea class="form-control <?php $__errorArgs = ['description'];
+										<label for="tel1">Téléphone</label>
+
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fas fa-phone"></i></span>
+											</div>
+											<input type="text" class="form-control" value="<?php echo e(old('tel1')); ?>"
+												data-inputmask='"mask": "99-99-99-99-99"' name="tel1" data-mask>
+										</div>
+										<?php $__errorArgs = ['tel1'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?>
+										<span class="text-danger"
+											style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+											<strong><?php echo e($message); ?></strong>
+										</span>
+										<?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>"
-											name="description" rows="3" placeholder="Ecrivez ici..."></textarea>
+unset($__errorArgs, $__bag); ?>
+										<!-- /.input group -->
 									</div>
 								</div>
 
 
-								
-								<div class="col-md-3 ">
-									<div class="form-group">
-										<label for="exampleInputFile">J'ai une photo de l'article</label>
-										<div class="input-group">
-											<div>
-												<input type="file" accept="image/gif, image/jpeg, image/png"
-													name="article_photo" id="article_photo">
-											</div>
-										</div>
-									</div>
+							</div>
 
-								</div>
-								<div class="col-md-3 offset-md-3">
+
+							<div class="row">
+
+								<div class="col-md-4">
 									
-									<div class="mt-3 form-group">
+									<div class="form-group">
 										<label for="switch">Enregistrer Encore</label>
 										<input type="checkbox" name="encore" checked data-bootstrap-switch
 											data-off-color="danger" data-on-color="success">
@@ -166,9 +191,16 @@ unset($__errorArgs, $__bag); ?>"
 
 							</div>
 							<!-- /.card-body -->
-
 							<div class="card-footer">
-								<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<a href="<?php echo e(route('users.index')); ?>"
+											class="btn btn-warning btn-block text-light mb-2">Retour</a>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+									</div>
+								</div>
 							</div>
 					</form>
 				</div>
@@ -186,6 +218,7 @@ unset($__errorArgs, $__bag); ?>"
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('styles'); ?>
+
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -208,6 +241,11 @@ unset($__errorArgs, $__bag); ?>"
 <link rel="stylesheet" href="<?php echo e(asset('plugins/bs-stepper/css/bs-stepper.min.css')); ?>">
 <!-- dropzonejs -->
 <link rel="stylesheet" href="<?php echo e(asset('plugins/dropzone/min/dropzone.min.css')); ?>">
+
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="<?php echo e(asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')); ?>">
+<!-- Toastr -->
+<link rel="stylesheet" href="<?php echo e(asset('plugins/toastr/toastr.min.css')); ?>">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
 <?php $__env->stopPush(); ?>
@@ -238,6 +276,13 @@ unset($__errorArgs, $__bag); ?>"
 <script src="<?php echo e(asset('plugins/bs-stepper/js/bs-stepper.min.js')); ?>"></script>
 <!-- dropzonejs -->
 <script src="<?php echo e(asset('plugins/dropzone/min/dropzone.min.js')); ?>"></script>
+
+<!-- SweetAlert2 -->
+<script src="<?php echo e(asset('plugins/sweetalert2/sweetalert2.min.js')); ?>"></script>
+<!-- Toastr -->
+<script src="<?php echo e(asset('plugins/toastr/toastr.min.js')); ?>"></script>
+
+
 <!-- AdminLTE App -->
 <script src="<?php echo e(asset('dist/js/adminlte.min.js')); ?>"></script>
 <!-- AdminLTE for demo purposes -->
@@ -377,6 +422,29 @@ unset($__errorArgs, $__bag); ?>"
   }
   // DropzoneJS Demo Code End
 </script>
+
+
+<?php if(session('success')): ?>
+<script>
+	$(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			'timerProgressBar':true,
+			timer: 4000
+		});
+
+		$(function() {
+			Toast.fire({
+				icon: 'success',
+				title: 'Action Effectuée!'
+			})
+		});
+	});
+</script>
+<?php endif; ?>
+
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\resources\views/parametrage/articles/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\resources\views/parametrage/users/create.blade.php ENDPATH**/ ?>

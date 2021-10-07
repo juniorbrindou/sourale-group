@@ -9,7 +9,7 @@
 
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Liste des Catégorie d'articles</h3>
+                        <h3 class="card-title">Liste des Catégories d'articles</h3>
 
                         <button data-toggle="modal" data-target="#modal-create" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>

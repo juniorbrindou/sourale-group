@@ -1,41 +1,29 @@
-<!-- Content Header (Page header) -->
 <div class="content-header">
 	<div class="container-fluid">
+		<div class="mb-2 row">
+            <div class="col-sm-6">
+                <?php if (! ($breadcrumbs->isEmpty())): ?>
+                    <ol class="breadcrumb">
+                        <?php $__currentLoopData = $breadcrumbs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $breadcrumb): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-		<div class="row mb-2">
+                            <?php if(!is_null($breadcrumb->url) && !$loop->last): ?>
+                                <li class="breadcrumb-item active">
+                                    <a class="btn btn-primary" href="<?php echo e($breadcrumb->url); ?>">
+                                        <?php echo e($breadcrumb->title); ?>
 
+                                    </a>
+                                </li>
+                            <?php else: ?>
+                                <li class="breadcrumb-item active">
+                                    <button class="btn btn-secondary"><?php echo e($breadcrumb->title); ?></button>
+                                </li>
+                            <?php endif; ?>
 
-			<div class="col-sm-6">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item active">
-						<a class="btn btn-secondary" href="<?php echo e(url('/')); ?>">Tableau de Bord</a>
-					</li>
-
-					<?php if(str_contains(request()->getPathInfo(),'edit')): ?>
-
-					<?php endif; ?>
-
-					<?php $__currentLoopData = $segments = request()->segments(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $segment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-					<?php if(last($segments) != 'dashboard'): ?>
-
-					<li class="breadcrumb-item">
-						<a href="<?php echo e(url(implode('/', array_slice($segments, 0, $index +1 )))); ?>"
-							class="btn btn-primary"><?php echo e(Str::title($segment)); ?></a>
-					</li>
-					<?php endif; ?>
-					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-				</ol>
-			</div><!-- /.col -->
-			<div class="col-sm-6">
-				<div class="float-sm-right">
-
-					<h1 class="m-0 text-capitalize"><?php echo e(page_title()); ?></h1>
-				</div>
-			</div><!-- /.col -->
-
-
-		</div><!-- /.row -->
-	</div><!-- /.container-fluid -->
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ol>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header --><?php /**PATH C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\resources\views/layout/_breadcrumbs.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\resources\views/layout/_breadcrumbs.blade.php ENDPATH**/ ?>

@@ -31,7 +31,8 @@
 
 
             {{-- Breadcrumbs --}}
-            @include('layout._breadcrumbs')
+            {{-- @include('layout._breadcrumbs') --}}
+            {{ Breadcrumbs::render() }}
             {{-- /.breadcrumbs --}}
 
 

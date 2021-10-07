@@ -1,7 +1,7 @@
 <div>
     <div class="card card-danger box-perso">
         <div class="card-header">
-            <h3 class="card-title">Sortie de Stock</h3>
+            <h3 class="card-title">Nouvelle Sortie de Stock</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -199,7 +199,7 @@ unset($__errorArgs, $__bag); ?>
                                             
                                             
 
-                                            
+
                                             <button class="btn btn-danger btn-md"
                                                 wire:click="addDeleteLigne(<?php echo e($item); ?>)">
                                                 <i class="fa fa-trash"></i>
