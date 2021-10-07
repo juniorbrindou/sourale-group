@@ -21,8 +21,8 @@
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-qrcode"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <?php echo QrCode::errorCorrection('H')->size(399)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000");; ?>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="height: 0 !important;">
+                <?php echo QrCode::errorCorrection('H')->size(199)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000");; ?>
 
             </div>
         </li>

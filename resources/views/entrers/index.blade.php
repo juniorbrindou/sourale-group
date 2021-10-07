@@ -93,6 +93,7 @@
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
 		  "buttons": ["excel", "pdf", "print"],
           "order": [0,'desc'],
+          "pageLength": 15,
           "paging": true,
           "searching": true,
 		  "ordering": true,
