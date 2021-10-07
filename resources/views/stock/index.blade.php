@@ -138,7 +138,33 @@
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
 		  "buttons": ["pdf", "print"],
-		   "order": [3,'desc']
+		   "order": [3,'desc'],
+           "pageLength": 15,
+          "paging": true,
+          "searching": true,
+		  "ordering": true,
+		  "info": true,
+		  "autoWidth": true,
+		  "responsive": true,
+		  "language":
+            {
+                "decimal":        ".",
+                "emptyTable":     "Aucune donnée disponible",
+                "info":           "Afficher  _START_ à _END_ sur _TOTAL_ lignes",
+                "infoEmpty":      "Aucune information à afficher",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "thousands":      ".",
+                "loadingRecords": "chargement...",
+                "processing":     "Enregistrement...",
+                "search":         "Recherche:",
+                "zeroRecords":    "Aucun résultat trouvé",
+                "paginate": {
+                    "first":      "Premier",
+                    "last":       "Dernier",
+                    "next":       "Suivant",
+                    "previous":   "Précedent"
+                },
+            },
 		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 		$('#example2').DataTable({
 		  "paging": true,

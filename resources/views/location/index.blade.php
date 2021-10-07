@@ -89,10 +89,37 @@
 <!-- Page specific script -->
 <script>
     $(function () {
-            $("#example1").DataTable({
-                "responsive": true, "lengthChange": true, "autoWidth": true,
-                "buttons": ["pdf", "print"],
-                "order": [0, 'desc']
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": true, "autoWidth": true,
+            "buttons": ["pdf", "print"],
+            "pageLength": 15,
+            "order": [0, 'desc'],
+            "pageLength": 15,
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,
+            "language":
+                {
+                    "decimal":        ".",
+                    "emptyTable":     "Aucune donnée disponible",
+                    "info":           "Afficher  _START_ à _END_ sur _TOTAL_ lignes",
+                    "infoEmpty":      "Aucune information à afficher",
+                    "infoFiltered":   "(filtered from _MAX_ total entries)",
+                    "thousands":      ".",
+                    "loadingRecords": "chargement...",
+                    "processing":     "Enregistrement...",
+                    "search":         "Recherche:",
+                    "zeroRecords":    "Aucun résultat trouvé",
+                    "paginate": {
+                        "first":      "Premier",
+                        "last":       "Dernier",
+                        "next":       "Suivant",
+                        "previous":   "Précedent"
+                },
+            },
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
@@ -111,25 +138,25 @@
 @if (session('success'))
 <script>
     $(function () {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    'timerProgressBar': true,
-                    timer: 4000
-                });
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            'timerProgressBar': true,
+            timer: 4000
+        });
 
-                $(function () {
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Action Effectuée!'
-                    })
-                });
-            });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
+        $(function () {
+            Toast.fire({
+                icon: 'success',
+                title: 'Action Effectuée!'
             })
+        });
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>
 
 @elseif(session('error'))

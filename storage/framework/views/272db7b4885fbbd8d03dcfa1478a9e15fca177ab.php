@@ -1,19 +1,17 @@
-
-
 <?php $__env->startSection('main'); ?>
 <!-- Main content -->
 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('clients.client', [])->html();
-} elseif ($_instance->childHasBeenRendered('zcBjn3x')) {
-    $componentId = $_instance->getRenderedChildComponentId('zcBjn3x');
-    $componentTag = $_instance->getRenderedChildComponentTagName('zcBjn3x');
+} elseif ($_instance->childHasBeenRendered('JwZBWiu')) {
+    $componentId = $_instance->getRenderedChildComponentId('JwZBWiu');
+    $componentTag = $_instance->getRenderedChildComponentTagName('JwZBWiu');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('zcBjn3x');
+    $_instance->preserveRenderedChild('JwZBWiu');
 } else {
     $response = \Livewire\Livewire::mount('clients.client', []);
     $html = $response->html();
-    $_instance->logRenderedChild('zcBjn3x', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('JwZBWiu', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -70,10 +68,36 @@ echo $html;
 <!-- Page specific script -->
 <script>
     $(function () {
-			$("#example1").DataTable({
-			"responsive": true, "lengthChange": true, "autoWidth": true,
-			"buttons": ["print"],
-            "order":[0,'desc']
+        $("#example1").DataTable({
+        "responsive": true, "lengthChange": true, "autoWidth": true,
+        "buttons": ["print"],
+        "pageLength": 15,
+        "order":[0,'desc'],
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "language":
+            {
+            "decimal":        ".",
+            "emptyTable":     "Aucune donnée disponible",
+            "info":           "Afficher  _START_ à _END_ sur _TOTAL_ lignes",
+            "infoEmpty":      "Aucune information à afficher",
+            "infoFiltered":   "(filtered from _MAX_ total entries)",
+            "thousands":      ".",
+            "loadingRecords": "chargement...",
+            "processing":     "Enregistrement...",
+            "search":         "Recherche:",
+            "zeroRecords":    "Aucun résultat trouvé",
+            "paginate": {
+                "first":      "Premier",
+                "last":       "Dernier",
+                "next":       "Suivant",
+                "previous":   "Précedent"
+            },
+        },
 			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 			$('#example2').DataTable({
 			"paging": true,

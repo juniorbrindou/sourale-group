@@ -285,8 +285,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                                     </div>
-                                                    
-                                                    
+
+
 
                                                     <div class="col-md-12">
                                                         <div class="form-group">
@@ -558,7 +558,33 @@ unset($__errorArgs, $__bag); ?>"
 			$("#example1").DataTable({
 			"responsive": true, "lengthChange": true, "autoWidth": false,
 			"buttons": ["pdf", "print"],
-            "order": [0,'desc']
+            "pageLength": 15,
+            "order": [0,'desc'],
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,
+            "language":
+                {
+                    "decimal":        ".",
+                    "emptyTable":     "Aucune donnée disponible",
+                    "info":           "Afficher  _START_ à _END_ sur _TOTAL_ lignes",
+                    "infoEmpty":      "Aucune information à afficher",
+                    "infoFiltered":   "(filtered from _MAX_ total entries)",
+                    "thousands":      ".",
+                    "loadingRecords": "chargement...",
+                    "processing":     "Enregistrement...",
+                    "search":         "Recherche:",
+                    "zeroRecords":    "Aucun résultat trouvé",
+                    "paginate": {
+                        "first":      "Premier",
+                        "last":       "Dernier",
+                        "next":       "Suivant",
+                        "previous":   "Précedent"
+                    },
+            },
 			}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 			$('#example2').DataTable({
 			"paging": true,

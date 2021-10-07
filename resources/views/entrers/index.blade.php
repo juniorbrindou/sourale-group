@@ -92,15 +92,12 @@
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
 		  "buttons": ["excel", "pdf", "print"],
-          "order": [0,'desc']
-		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-		$('#example2').DataTable({
-		  "paging": true,
-		  "lengthChange": false,
-		  "searching": false,
+          "order": [0,'desc'],
+          "paging": true,
+          "searching": true,
 		  "ordering": true,
 		  "info": true,
-		  "autoWidth": false,
+		  "autoWidth": true,
 		  "responsive": true,
 		  "language":
             {
@@ -112,7 +109,7 @@
                     "thousands":      ".",
                     "loadingRecords": "chargement...",
                     "processing":     "Enregistrement...",
-                    "search":         "Search:",
+                    "search":         "Recherche:",
                     "zeroRecords":    "Aucun résultat trouvé",
                     "paginate": {
                         "first":      "Premier",
@@ -121,6 +118,9 @@
                         "previous":   "Précedent"
                     },
             },
+		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+		$('#example2').DataTable({
+
 		});
 	  });
 </script>
