@@ -27,15 +27,15 @@ if (!function_exists('couleur_status')) {
         if ($status == 'EN COURS') {
             $color = 'primary';
         } elseif ($status == 'TERMINÉ') {
-            $color = 'success';
-        } elseif ($status == 'ANNULÉ') {
             $color = 'info';
-        } elseif ($status == 'ENREGISTRÉ') {
+        } elseif ($status == 'ANNULÉ') {
             $color = 'danger';
-        } elseif ($status == 'CLOTURÉ') {
+        } elseif ($status == 'ENREGISTRÉ') {
             $color = 'secondary';
+        } elseif ($status == 'CLOTURÉ') {
+            $color = 'success';
         } else {
-            $color = 'warning';
+            $color = 'dark';
         }
 
         return $color;
