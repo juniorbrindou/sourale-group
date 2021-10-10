@@ -43,6 +43,8 @@ class Show extends Component
     public $qte_article;
     public $nb_jour;
 
+    #corbeille de liste d'article
+    public $trashed = [];
     /**
      * Ajout de nouvelle ligne dans le tableau frontend
      * @return void
@@ -73,6 +75,15 @@ class Show extends Component
                 "total_une_ligne" => $total_une_ligne,
             ]
         );
+
+        # Code pour retirer l'article sélectionné de la liste des articles
+        foreach ($this->articles as $key => $value) {
+            if ($value === $this->article_libelle) {
+                $this->trashed[$key] = $value;
+                unset($this->articles[$key]);
+                $key = +1;
+            }
+        }
 
         # vidage des champs du formulaire
         $this->makeEmptyFields();
@@ -238,7 +249,23 @@ class Show extends Component
         $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
         #le type d'evenement préselectionné:
         $this->type_evenement_libelle = $evenement->type_evenement->libelle;
-        $this->articles = Articles::orderBy('libelle', 'ASC')->get();
+
+        # creation du tableau des articles de la liste
+        $articles = Articles::orderBy('libelle', 'ASC')->get();
+        # convertion de la liste des articles tableau
+        foreach ($articles as $key => $value) {
+            $this->articles[$key] = $value->libelle;
+        }
+        \array_values($this->articles);
+
+        // foreach ($this->trashed as $value) {
+        //     if ($value === $this->tabArticles[$item]['article']) {
+        //         \array_unshift($this->articles, $this->tabArticles[$item]['article']);
+        //     }
+        // }
+
+
+
         #execution de foreach pour creer le tableau global de la liste des locations
         $tab = each((object) Location::where('evenement_id', '=', $evenement->id)->get(), function ($value, $key) {
             echo $value;
@@ -253,6 +280,11 @@ class Show extends Component
             $this->tab_locations[$key]['prix'] = (int) $value->article->prix_tarification;
             $this->tab_locations[$key]['total_une_ligne'] = (int) $value->total_une_ligne;
         }
+
+        $tab_articles_presents = (array_column($this->tab_locations,'article_libelle'));
+
+        $this->articles = array_diff($this->articles, $tab_articles_presents);
+
         $this->user = $tab[0]->user;
 
         #pour les champs de stepper evenement :

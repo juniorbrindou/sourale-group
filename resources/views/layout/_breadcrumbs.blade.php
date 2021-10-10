@@ -14,7 +14,7 @@
                                 </li>
                             @else
                                 <li class="breadcrumb-item active">
-                                    <button class="btn btn-secondary">{{ $breadcrumb->title }}</button>
+                                    {{ $breadcrumb->title }}
                                 </li>
                             @endif
 

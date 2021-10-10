@@ -80,7 +80,7 @@ class Create extends Component
         } else {
             // si la quantité saisie est inférieur ou égale à celle en bd
 
-            // si le tableau est vide l'onclic sur ajouter
+            // si le tableau est vide l'on clic sur ajouter
             // ajout dans la liste frontend
             $this->add();
             // calcul totalBrute et caution
@@ -242,6 +242,7 @@ class Create extends Component
      */
     public function addDeleteLigne($item)
     {
+        # Faire remonter l'article dans la liste des articles
         foreach ($this->trashed as $value) {
             if ($value === $this->tabArticles[$item]['article']) {
                 \array_unshift($this->articles, $this->tabArticles[$item]['article']);
@@ -342,8 +343,10 @@ class Create extends Component
     {
         $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
         $this->clients = Clients::orderBy('nom', 'ASC')->get();
+        # liste des articles from database type collection
         $articles = Articles::orderBy('libelle', 'ASC')->get();
 
+        # list des articles transformés en array pour le select
         foreach ($articles as $key => $value) {
             $this->articles[$key] = $value->libelle;
         }

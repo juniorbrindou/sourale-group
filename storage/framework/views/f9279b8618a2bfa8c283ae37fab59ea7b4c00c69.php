@@ -251,7 +251,7 @@ unset($__errorArgs, $__bag); ?>"
                                     <option selected value="">Selectionner un article</option>
 
                                     <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($article->libelle); ?>"> <?php echo e($article->libelle); ?></option>
+                                    <option value="<?php echo e($article); ?>"> <?php echo e($article); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
