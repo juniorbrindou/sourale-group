@@ -258,20 +258,12 @@ class Show extends Component
         }
         \array_values($this->articles);
 
-        // foreach ($this->trashed as $value) {
-        //     if ($value === $this->tabArticles[$item]['article']) {
-        //         \array_unshift($this->articles, $this->tabArticles[$item]['article']);
-        //     }
-        // }
-
-
-
         #execution de foreach pour creer le tableau global de la liste des locations
         $tab = each((object) Location::where('evenement_id', '=', $evenement->id)->get(), function ($value, $key) {
             echo $value;
         });
 
-        #creation de this->tab_location
+        #creation de this->tab_location a partir des données en BD
         foreach ($tab as $key => $value) {
             $this->tab_locations[$key]['article_libelle'] = $value->article->libelle;
             $this->tab_locations[$key]['article_categorie'] = $value->article->categorie->libelle;
@@ -280,6 +272,10 @@ class Show extends Component
             $this->tab_locations[$key]['prix'] = (int) $value->article->prix_tarification;
             $this->tab_locations[$key]['total_une_ligne'] = (int) $value->total_une_ligne;
         }
+
+        # trashed est une copie de tab location pour une verification : les articles doivent quitter dans
+        # trshed pour remonter dans la liste des articles
+        $this->trashed=$this->tab_locations;
 
         $tab_articles_presents = (array_column($this->tab_locations,'article_libelle'));
 
@@ -304,6 +300,22 @@ class Show extends Component
      */
     public function deleteLigne($item)
     {
+        foreach ($this->trashed as $value) {
+            if ($value['article_libelle'] === $this->tab_locations[$item]['article_libelle']) {
+                \array_unshift($this->articles, $this->tab_locations[$item]['article_libelle']);
+            }
+        }
+
+
+         # Code pour retirer l'article sélectionné de la liste des articles
+         foreach ($this->articles as $key => $value) {
+            if ($value === $this->article_libelle) {
+                $this->trashed[$key] = $value;
+                unset($this->articles[$key]);
+                $key = +1;
+            }
+        }
+        
         $this->tab_evenement['evenement_montant_total'] = $this->tab_evenement['evenement_montant_total'] - $this->tab_locations[$item]['total_une_ligne'];
         $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * 0.2;
         unset($this->tab_locations[$item]);
