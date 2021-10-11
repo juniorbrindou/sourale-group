@@ -150,6 +150,10 @@ Breadcrumbs::for('typeArticles.index', function ($trail) {
     $trail->push('Liste Type Article', route('typeArticles.index'));
 });
 
+Breadcrumbs::for('typeEvenements.edit', function ($trail) {
+    $trail->parent('typeEvenements.edit');
+    $trail->push('Détails', route('typeEvenements.edit'));
+});
 
 
 # Categorie d'article
@@ -172,7 +176,7 @@ Breadcrumbs::for('typeArticles.index', function ($trail) {
     # liste des type d'évènements
     Breadcrumbs::for('typeEvenements.index', function ($trail) {
         $trail->parent('dashboard');
-        $trail->push('Liste Type Evenement', route('typeEvenements.index'));
+        $trail->push('Liste des Type d\'Evenement', route('typeEvenements.index'));
     });
 
     # creation de type d'évènements

@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('main'); ?>
 <!-- Main content -->
 <section class="content">
@@ -188,8 +190,9 @@ unset($__errorArgs, $__bag); ?>
                                                 </button>
                                             </div>
 
-                                            <form method="POST" action="<?php echo e(route('categorieArticles.store')); ?>">
+                                            <form method="POST" action="<?php echo e(route('categorieArticles.update',$categorieArticle->id)); ?>">
                                                 <?php echo csrf_field(); ?>
+                                                <?php echo method_field("PUT"); ?>
                                                 <div class="card-body">
 
                                                     <div class="row">
@@ -206,7 +209,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                                    value="<?php echo e(old('libelle')); ?>" name="libelle"
+                                                                    value="<?php echo e($categorieArticle->libelle); ?>" name="libelle"
                                                                     id="code"
                                                                     placeholder="Entrer la catégorie de l'article"
                                                                     autofocus required>
@@ -233,7 +236,7 @@ unset($__errorArgs, $__bag); ?>
                                                                 <label for="description">Description</label>
                                                                 <textarea class="form-control" rows="3"
                                                                     name="description"
-                                                                    placeholder="Ecrivez ici ..."></textarea>
+                                                                    placeholder="Ecrivez ici ..."><?php echo e($categorieArticle->description); ?></textarea>
                                                             </div>
 
                                                         </div>

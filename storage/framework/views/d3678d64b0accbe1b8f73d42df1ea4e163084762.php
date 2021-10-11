@@ -22,15 +22,15 @@
                     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('approvisionnement.index', [])->html();
-} elseif ($_instance->childHasBeenRendered('6ickxgL')) {
-    $componentId = $_instance->getRenderedChildComponentId('6ickxgL');
-    $componentTag = $_instance->getRenderedChildComponentTagName('6ickxgL');
+} elseif ($_instance->childHasBeenRendered('EChwPox')) {
+    $componentId = $_instance->getRenderedChildComponentId('EChwPox');
+    $componentTag = $_instance->getRenderedChildComponentTagName('EChwPox');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('6ickxgL');
+    $_instance->preserveRenderedChild('EChwPox');
 } else {
     $response = \Livewire\Livewire::mount('approvisionnement.index', []);
     $html = $response->html();
-    $_instance->logRenderedChild('6ickxgL', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('EChwPox', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -107,15 +107,13 @@ echo $html;
 		$("#example1").DataTable({
 		  "responsive": true, "lengthChange": true, "autoWidth": true,
 		  "buttons": ["excel", "pdf", "print"],
-          "order": [0,'desc']
-		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-		$('#example2').DataTable({
-		  "paging": true,
-		  "lengthChange": false,
-		  "searching": false,
+          "order": [0,'desc'],
+          "pageLength": 15,
+          "paging": true,
+          "searching": true,
 		  "ordering": true,
 		  "info": true,
-		  "autoWidth": false,
+		  "autoWidth": true,
 		  "responsive": true,
 		  "language":
             {
@@ -127,7 +125,7 @@ echo $html;
                     "thousands":      ".",
                     "loadingRecords": "chargement...",
                     "processing":     "Enregistrement...",
-                    "search":         "Search:",
+                    "search":         "Recherche:",
                     "zeroRecords":    "Aucun résultat trouvé",
                     "paginate": {
                         "first":      "Premier",
@@ -136,6 +134,9 @@ echo $html;
                         "previous":   "Précedent"
                     },
             },
+		}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+		$('#example2').DataTable({
+
 		});
 	  });
 </script>

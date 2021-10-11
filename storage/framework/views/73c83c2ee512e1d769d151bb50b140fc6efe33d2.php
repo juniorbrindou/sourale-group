@@ -24,6 +24,8 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="height: 0 !important;">
                 <?php echo QrCode::errorCorrection('H')->size(199)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000");; ?>
 
+                <br>
+                <span class="text-center text-muted"><?php echo e(ipAddress().':8000'); ?></span>
             </div>
         </li>
 

@@ -52,7 +52,7 @@ class Create extends Component
     public $totalUneLigne;
 
     #corbeille de liste d'article
-    public $trashed = [];
+    private $trashed = [];
 
     public function addArticle()
     {
@@ -232,7 +232,13 @@ class Create extends Component
      */
     public function resetLigne()
     {
+        # Faire remonter l'article dans la liste des articles
+        foreach ($this->tabArticles as $value) {
+            \array_push( $this->articles, $value['article']);
+        }
         $this->tabArticles = [];
+
+
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
         $this->caution = $this->totalBrute * 0.2;
     }

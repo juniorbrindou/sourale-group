@@ -178,8 +178,9 @@
                                                 </button>
                                             </div>
 
-                                            <form method="POST" action="{{ route('categorieArticles.store')}}">
+                                            <form method="POST" action="{{ route('categorieArticles.update',$categorieArticle->id)}}">
                                                 @csrf
+                                                @method("PUT")
                                                 <div class="card-body">
 
                                                     <div class="row">
@@ -189,7 +190,7 @@
                                                                 <label for="libelle">Nom de la catégorie *</label>
                                                                 <input type="text"
                                                                     class="form-control @error('libelle') is-invalid @enderror"
-                                                                    value="{{ old('libelle') }}" name="libelle"
+                                                                    value="{{$categorieArticle->libelle}}" name="libelle"
                                                                     id="code"
                                                                     placeholder="Entrer la catégorie de l'article"
                                                                     autofocus required>
@@ -209,7 +210,7 @@
                                                                 <label for="description">Description</label>
                                                                 <textarea class="form-control" rows="3"
                                                                     name="description"
-                                                                    placeholder="Ecrivez ici ..."></textarea>
+                                                                    placeholder="Ecrivez ici ...">{{$categorieArticle->description}}</textarea>
                                                             </div>
 
                                                         </div>
