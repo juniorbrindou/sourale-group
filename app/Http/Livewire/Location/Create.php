@@ -80,7 +80,7 @@ class Create extends Component
         } else {
             // si la quantité saisie est inférieur ou égale à celle en bd
 
-            // si le tableau est vide l'onclic sur ajouter
+            // si le tableau est vide l'on clic sur ajouter
             // ajout dans la liste frontend
             $this->add();
             // calcul totalBrute et caution
@@ -242,6 +242,7 @@ class Create extends Component
      */
     public function addDeleteLigne($item)
     {
+        # Faire remonter l'article dans la liste des articles
         foreach ($this->trashed as $value) {
             if ($value === $this->tabArticles[$item]['article']) {
                 \array_unshift($this->articles, $this->tabArticles[$item]['article']);
@@ -328,8 +329,14 @@ class Create extends Component
         $this->ligne['nbr_personne'] = $this->nbr_personne;
         $this->ligne['date_debut_evenement'] = $this->date_debut_evenement;
         $this->ligne['date_fin_evenement'] = $this->date_fin_evenement;
-        $this->ligne['duree_evenement'] = Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
 
+        # Traitement de la durée: si elle contient heure ou minutes convertir affecter 1 jour à la place
+        $containDuree = Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
+        if (\str_contains($containDuree,' heure') || (\str_contains($containDuree,' minute'))){
+            $containDuree = '1 Jour';
+        }
+
+        $this->ligne['duree_evenement'] = $containDuree;
         $this->currentStep = 3;
     }
 
@@ -342,8 +349,10 @@ class Create extends Component
     {
         $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
         $this->clients = Clients::orderBy('nom', 'ASC')->get();
+        # liste des articles from database type collection
         $articles = Articles::orderBy('libelle', 'ASC')->get();
 
+        # list des articles transformés en array pour le select
         foreach ($articles as $key => $value) {
             $this->articles[$key] = $value->libelle;
         }

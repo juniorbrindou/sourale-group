@@ -180,7 +180,7 @@
                                     <option selected value="">Selectionner un article</option>
 
                                     @foreach ($articles as $article)
-                                    <option value="{{$article->libelle}}"> {{$article->libelle}}</option>
+                                    <option value="{{$article}}"> {{$article}}</option>
                                     @endforeach
                                 </select>
                             </div>

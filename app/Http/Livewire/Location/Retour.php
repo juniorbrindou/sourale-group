@@ -110,7 +110,14 @@ class Retour extends Component
         $this->ligne['date_fin_evenement'] = $evenement->date_fin_evenement;
         $this->ligne['caution'] = $evenement->caution;
         $this->ligne['date_fin_evenement'] = $evenement->date_fin_evenement;
-        $this->ligne['duree_evenement'] = Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
+
+        #Gestion de la durée d'evenement
+        $containDuree =  Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
+        if (\str_contains($containDuree, 'secon') || \str_contains($containDuree, 'heure') || (\str_contains($containDuree, 'minute'))) {
+            $containDuree = '1 Jour';
+        }
+
+        $this->ligne['duree_evenement'] = $containDuree;
         $this->ligne['montant_total'] = $evenement->montant_total;
 
         $this->evenement = $evenement;

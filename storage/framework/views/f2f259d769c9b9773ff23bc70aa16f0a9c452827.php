@@ -13,7 +13,7 @@
             <col style="width: 5%" />
             <col style="width: 19%" />
             <col style="width: 5%" />
-            <col style="width: auto" />
+            <col style="width: 15%" />
         </colgroup>
         <thead>
             <tr>
@@ -60,7 +60,7 @@
                     <?php if($evenement->status !== "CLOTURÉ" && $evenement->status !== "TERMINÉ" && $evenement->status !==
                     "ANNULÉ" && $evenement->status !== "EN COURS"): ?>
                     <a data-toggle="tooltip" data-placement="left" title="Modifier l'évènement"
-                        href="<?php echo e(route('locations.show', $evenement->id)); ?>" class="mr-1 btn btn-warning btn-md">
+                        href="<?php echo e(route('locations.show', $evenement->id)); ?>" class="btn btn-warning btn-md">
                         <i class="fa fa-pen"></i>
                     </a>
                     <?php endif; ?>
@@ -75,7 +75,7 @@
                     <?php if($evenement->status == "CLOTURÉ" || $evenement->status == "EN COURS" || $evenement->status
                     =="TERMINÉ" ): ?>
                     <a data-toggle="tooltip" data-placement="left" data-delay='{"show": 100,"hide":100}' title="Voir"
-                        href="<?php echo e(route('evennements.show', $evenement->id)); ?>" class="mr-1 btn btn-warning btn-md">
+                        href="<?php echo e(route('evennements.show', $evenement->id)); ?>" class="btn btn-warning btn-md">
                         <i class="fa fa-eye"></i>
                     </a>
                     <?php endif; ?>
@@ -83,7 +83,7 @@
                     <?php if($evenement->status =="TERMINÉ"): ?>
                     <a data-toggle="tooltip" data-placement="bottom" data-delay='{"show": 1000,"hide":100}'
                         title="Clôturer l'évenement : cette action permet de retourner les articles dans le stock une fois l'evenement terminé"
-                        href="<?php echo e(route('locations.edit', $evenement->id)); ?>" class="mr-1 btn btn-dark btn-md">
+                        href="<?php echo e(route('locations.edit', $evenement->id)); ?>" class="btn btn-dark btn-md">
                         <i class="fa fa-undo"></i>
                     </a>
                     <?php endif; ?>

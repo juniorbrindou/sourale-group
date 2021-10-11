@@ -42,7 +42,10 @@ class Show extends Component
     public $article_libelle;
     public $qte_article;
     public $nb_jour;
+    public $containDuree;
 
+    #corbeille de liste d'article
+    public $trashed = [];
     /**
      * Ajout de nouvelle ligne dans le tableau frontend
      * @return void
@@ -73,6 +76,15 @@ class Show extends Component
                 "total_une_ligne" => $total_une_ligne,
             ]
         );
+
+        # Code pour retirer l'article sélectionné de la liste des articles
+        foreach ($this->articles as $key => $value) {
+            if ($value === $this->article_libelle) {
+                $this->trashed[$key] = $value;
+                unset($this->articles[$key]);
+                $key = +1;
+            }
+        }
 
         # vidage des champs du formulaire
         $this->makeEmptyFields();
@@ -219,7 +231,14 @@ class Show extends Component
         $this->tab_evenement['evenement_date_debut_evenement'] = $this->evenement_date_debut_evenement;
         $this->tab_evenement['evenement_date_fin_evenement'] = $this->evenement_date_fin_evenement;
         $this->tab_evenement['type_evenement_libelle'] = $this->type_evenement_libelle;
-        $this->tab_evenement['duree_evenement'] = Carbon::parse($this->evenement_date_debut_evenement)->DiffInDays($this->evenement_date_fin_evenement);
+        $containDuree = Carbon::parse($this->evenement_date_debut_evenement)->DiffInDays($this->evenement_date_fin_evenement);
+
+        # Traitement de la durée: si elle contient heure ou minutes alors convertir affecter 1 jour à la place
+        if ($containDuree <= 1){
+            $containDuree = 1;
+        }
+
+        $this->tab_evenement['duree_evenement'] = $containDuree;
 
         # passage au step 3
         $this->currentStep = 3;
@@ -238,13 +257,21 @@ class Show extends Component
         $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
         #le type d'evenement préselectionné:
         $this->type_evenement_libelle = $evenement->type_evenement->libelle;
-        $this->articles = Articles::orderBy('libelle', 'ASC')->get();
+
+        # creation du tableau des articles de la liste
+        $articles = Articles::orderBy('libelle', 'ASC')->get();
+        # convertion de la liste des articles tableau
+        foreach ($articles as $key => $value) {
+            $this->articles[$key] = $value->libelle;
+        }
+        \array_values($this->articles);
+
         #execution de foreach pour creer le tableau global de la liste des locations
         $tab = each((object) Location::where('evenement_id', '=', $evenement->id)->get(), function ($value, $key) {
             echo $value;
         });
 
-        #creation de this->tab_location
+        #creation de this->tab_location a partir des données en BD
         foreach ($tab as $key => $value) {
             $this->tab_locations[$key]['article_libelle'] = $value->article->libelle;
             $this->tab_locations[$key]['article_categorie'] = $value->article->categorie->libelle;
@@ -253,6 +280,15 @@ class Show extends Component
             $this->tab_locations[$key]['prix'] = (int) $value->article->prix_tarification;
             $this->tab_locations[$key]['total_une_ligne'] = (int) $value->total_une_ligne;
         }
+
+        # trashed est une copie de tab location pour une verification : les articles doivent quitter dans
+        # trshed pour remonter dans la liste des articles
+        $this->trashed=$this->tab_locations;
+
+        $tab_articles_presents = (array_column($this->tab_locations,'article_libelle'));
+
+        $this->articles = array_diff($this->articles, $tab_articles_presents);
+
         $this->user = $tab[0]->user;
 
         #pour les champs de stepper evenement :
@@ -272,6 +308,22 @@ class Show extends Component
      */
     public function deleteLigne($item)
     {
+        foreach ($this->trashed as $value) {
+            if ($value['article_libelle'] === $this->tab_locations[$item]['article_libelle']) {
+                \array_unshift($this->articles, $this->tab_locations[$item]['article_libelle']);
+            }
+        }
+
+
+         # Code pour retirer l'article sélectionné de la liste des articles
+         foreach ($this->articles as $key => $value) {
+            if ($value === $this->article_libelle) {
+                $this->trashed[$key] = $value;
+                unset($this->articles[$key]);
+                $key = +1;
+            }
+        }
+        
         $this->tab_evenement['evenement_montant_total'] = $this->tab_evenement['evenement_montant_total'] - $this->tab_locations[$item]['total_une_ligne'];
         $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * 0.2;
         unset($this->tab_locations[$item]);

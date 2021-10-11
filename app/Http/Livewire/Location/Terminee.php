@@ -21,7 +21,13 @@ class Terminee extends Component
         $this->tab_locations = Location::where('evenement_id', '=', $evenement->id)->get();
         $this->client = $this->tab_locations[0]->client;
         $this->user = $this->tab_locations[0]->user;
-        $this->duree_evenement =  Carbon::parse($this->evenement->date_debut_evenement)->DiffForHumans($this->evenement->date_fin_evenement, true);
+
+        #Gestion de la durée d'evenement
+        $containDuree =  Carbon::parse($this->evenement->date_debut_evenement)->DiffForHumans($this->evenement->date_fin_evenement, true);
+        if (\str_contains($containDuree, 'secon') || \str_contains($containDuree, 'heure') || (\str_contains($containDuree, 'minute'))) {
+            $containDuree = '1 Jour';
+        }
+        $this->duree_evenement = $containDuree;
     }
 
 

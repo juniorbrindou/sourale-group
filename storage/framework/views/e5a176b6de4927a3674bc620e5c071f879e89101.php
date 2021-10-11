@@ -15,7 +15,8 @@
                                 </li>
                             <?php else: ?>
                                 <li class="breadcrumb-item active">
-                                    <button class="btn btn-secondary"><?php echo e($breadcrumb->title); ?></button>
+                                    <?php echo e($breadcrumb->title); ?>
+
                                 </li>
                             <?php endif; ?>
 
