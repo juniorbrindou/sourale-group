@@ -329,8 +329,14 @@ class Create extends Component
         $this->ligne['nbr_personne'] = $this->nbr_personne;
         $this->ligne['date_debut_evenement'] = $this->date_debut_evenement;
         $this->ligne['date_fin_evenement'] = $this->date_fin_evenement;
-        $this->ligne['duree_evenement'] = Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
 
+        # Traitement de la durée: si elle contient heure ou minutes convertir affecter 1 jour à la place
+        $containDuree = Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
+        if (\str_contains($containDuree,' heure') || (\str_contains($containDuree,' minute'))){
+            $containDuree = '1 Jour';
+        }
+
+        $this->ligne['duree_evenement'] = $containDuree;
         $this->currentStep = 3;
     }
 

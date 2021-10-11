@@ -42,6 +42,7 @@ class Show extends Component
     public $article_libelle;
     public $qte_article;
     public $nb_jour;
+    public $containDuree;
 
     #corbeille de liste d'article
     public $trashed = [];
@@ -230,7 +231,14 @@ class Show extends Component
         $this->tab_evenement['evenement_date_debut_evenement'] = $this->evenement_date_debut_evenement;
         $this->tab_evenement['evenement_date_fin_evenement'] = $this->evenement_date_fin_evenement;
         $this->tab_evenement['type_evenement_libelle'] = $this->type_evenement_libelle;
-        $this->tab_evenement['duree_evenement'] = Carbon::parse($this->evenement_date_debut_evenement)->DiffInDays($this->evenement_date_fin_evenement);
+        $containDuree = Carbon::parse($this->evenement_date_debut_evenement)->DiffInDays($this->evenement_date_fin_evenement);
+
+        # Traitement de la durée: si elle contient heure ou minutes alors convertir affecter 1 jour à la place
+        if ($containDuree <= 1){
+            $containDuree = 1;
+        }
+
+        $this->tab_evenement['duree_evenement'] = $containDuree;
 
         # passage au step 3
         $this->currentStep = 3;
