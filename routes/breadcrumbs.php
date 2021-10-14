@@ -150,10 +150,6 @@ Breadcrumbs::for('typeArticles.index', function ($trail) {
     $trail->push('Liste Type Article', route('typeArticles.index'));
 });
 
-Breadcrumbs::for('typeEvenements.edit', function ($trail) {
-    $trail->parent('typeEvenements.edit');
-    $trail->push('Détails', route('typeEvenements.edit'));
-});
 
 
 # Categorie d'article
@@ -183,6 +179,11 @@ Breadcrumbs::for('typeEvenements.edit', function ($trail) {
     Breadcrumbs::for('typeEvenements.create', function ($trail) {
         $trail->parent('typeEvenements.index');
         $trail->push('Nouveau', route('typeEvenements.create'));
+    });
+
+    Breadcrumbs::for('typeEvenements.edit', function ($trail, $typeEvenement) {
+        $trail->parent('typeEvenements.index');
+        $trail->push('Détails', route('typeEvenements.edit', $typeEvenement));
     });
 # fin type d'evenemements
 

@@ -10,7 +10,7 @@
 				<!-- general form elements -->
 				<div class="card card-primary box-perso">
 					<div class="card-header">
-						<h3 class="card-title">Modification Catégorie : <b>{{ $typeEvenement->libelle }}</b> </h3>
+						<h3 class="card-title">Modification Type d'évenement : <b>{{ $typeEvenement->libelle }}</b> </h3>
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
@@ -51,7 +51,7 @@
 
 						<div class="card-footer">
 							<div class="row">
-								<div class="col-md-6 col-sm-6 mb-2">
+								<div class="mb-2 col-md-6 col-sm-6">
 									<a href="{{ route('typeEvenements.index') }}" class="btn btn-warning btn-block text-light">Retour</a>
 								</div>
 								<div class="col-md-6 col-sm-6">
