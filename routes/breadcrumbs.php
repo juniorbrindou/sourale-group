@@ -79,6 +79,12 @@ Breadcrumbs::for('dashboard', function ($trail) {
         $trail->parent('dashboard');
         $trail->push('Entrée de stock', route('approvisionnement.index'));
     });
+
+    # détails d'un Approvisionnements
+    Breadcrumbs::for('approvisionnement.show', function ($trail, $approvisionnnement) {
+        $trail->parent('approvisionnement.index');
+        $trail->push('Détails', route('approvisionnement.show', $approvisionnnement));
+    });
 # fin Stock
 
 
