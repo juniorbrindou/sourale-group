@@ -75,10 +75,17 @@
                                                     Caution : {{$evenement->caution}} F CFA <br>
                                                     Montant Total : {{$evenement->montant_total}} F CFA
                                                 </p>
+                                                {{$evenement->status}}
                                             </div>
+
                                             <div class="timeline-footer">
-                                                <a href="{{route('locations.show',$evenement->id)}}"
+                                                @if ($evenement->status == "ENREGISTRÉ")
+                                                    <a href="{{route('locations.show',$evenement->id)}}"
                                                     class="btn btn-primary btn-sm">Voir l'évènement</a>
+                                                @else
+                                                    <a href="{{route('evennements.show', $evenement->id)}}"
+                                                    class="btn btn-primary btn-sm">Voir l'évènement</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
@@ -76,10 +74,18 @@
                                                     Caution : <?php echo e($evenement->caution); ?> F CFA <br>
                                                     Montant Total : <?php echo e($evenement->montant_total); ?> F CFA
                                                 </p>
+                                                <?php echo e($evenement->status); ?>
+
                                             </div>
+
                                             <div class="timeline-footer">
-                                                <a href="<?php echo e(route('locations.show',$evenement->id)); ?>"
+                                                <?php if($evenement->status == "ENREGISTRÉ"): ?>
+                                                    <a href="<?php echo e(route('locations.show',$evenement->id)); ?>"
                                                     class="btn btn-primary btn-sm">Voir l'évènement</a>
+                                                <?php else: ?>
+                                                    <a href="<?php echo e(route('evennements.show', $evenement->id)); ?>"
+                                                    class="btn btn-primary btn-sm">Voir l'évènement</a>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
