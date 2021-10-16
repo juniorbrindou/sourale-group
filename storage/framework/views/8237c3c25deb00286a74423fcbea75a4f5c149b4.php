@@ -204,9 +204,7 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
 
 
-                                        <div class="col-md-1">
-                                            <a class="btn btn-primary" wire:click="firstStepSubmit">Suivant</a>
-                                        </div>
+                                        <a class="btn btn-warning col-6" wire:click="firstStepSubmit">Suivant</a>
                                     </div>
                                 </div>
                                 <!-- fin Client -->
@@ -311,8 +309,9 @@ unset($__errorArgs, $__bag); ?>
                                                 <label>Type d'evenement</label>
                                                 <select class="float-right select2 form-control"
                                                     wire:model.defer="type_evenement_id">
+                                                    <option selected="selected">Choisir un type</option>
                                                     <?php $__currentLoopData = $type_evenements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type_evenement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option selected="selected"><?php echo e($type_evenement->libelle); ?></option>
+                                                    <option><?php echo e($type_evenement->libelle); ?></option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
@@ -373,11 +372,40 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                         </div>
+
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="caution"
+                                                    class="form-control <?php $__errorArgs = ['caution'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                    name="caution" id="caution">
+                                            </div>
+                                            <?php $__errorArgs = ['caution'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong><?php echo e($message); ?></strong>
+                                            </span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        </div>
                                     </div>
 
 
-                                    <a class="btn btn-primary" wire:click="gotToBeforeStepSubmit">Precedant</a>
-                                    <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
+                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Precedant</a>
+                                    <a class="btn btn-warning col-4 offset-2" wire:click="secondStepSubmit">Suivant</a>
                                 </div>
                             </div>
                         </div>
@@ -558,7 +586,7 @@ unset($__errorArgs, $__bag); ?>
                                                 Durée : <b><?php echo e($ligne['duree_evenement'] ?? ''); ?></b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b><?php echo e(format_money($caution)); ?>F FCA</b><br>
+                                                Caution(<?php echo e($ligne['caution']?? ''); ?>%) : <b><?php echo e(format_money($caution)); ?>F FCA</b><br>
                                                 TTC : <b><?php echo e(format_money($totalBrute)); ?>F FCA</b>
                                             </div>
                                         </div>

@@ -154,9 +154,7 @@
                                         </div>
 
 
-                                        <div class="col-md-1">
-                                            <a class="btn btn-primary" wire:click="firstStepSubmit">Suivant</a>
-                                        </div>
+                                        <a class="btn btn-warning col-6" wire:click="firstStepSubmit">Suivant</a>
                                     </div>
                                 </div>
                                 <!-- fin Client -->
@@ -219,8 +217,9 @@
                                                 <label>Type d'evenement</label>
                                                 <select class="float-right select2 form-control"
                                                     wire:model.defer="type_evenement_id">
+                                                    <option selected="selected">Choisir un type</option>
                                                     @foreach ($type_evenements as $type_evenement)
-                                                    <option selected="selected">{{$type_evenement->libelle}}</option>
+                                                    <option>{{$type_evenement->libelle}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -260,11 +259,26 @@
                                             </span>
                                             @enderror
                                         </div>
+
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="caution"
+                                                    class="form-control @error('caution') is-invalid @enderror"
+                                                    name="caution" id="caution">
+                                            </div>
+                                            @error('caution')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </div>
 
 
-                                    <a class="btn btn-primary" wire:click="gotToBeforeStepSubmit">Precedant</a>
-                                    <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
+                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Precedant</a>
+                                    <a class="btn btn-warning col-4 offset-2" wire:click="secondStepSubmit">Suivant</a>
                                 </div>
                             </div>
                         </div>
@@ -402,7 +416,7 @@
                                                 Durée : <b>{{ $ligne['duree_evenement'] ?? '' }}</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b>{{ format_money($caution) }}F FCA</b><br>
+                                                Caution({{$ligne['caution']?? ''}}%) : <b>{{ format_money($caution) }}F FCA</b><br>
                                                 TTC : <b>{{ format_money($totalBrute) }}F FCA</b>
                                             </div>
                                         </div>

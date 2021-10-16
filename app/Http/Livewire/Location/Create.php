@@ -15,7 +15,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
-    public $currentStep = 1;
+    public $currentStep = 2;
     public $clients;
     /*Evennement*/
     public $libelle_event;
@@ -85,7 +85,7 @@ class Create extends Component
             $this->add();
             // calcul totalBrute et caution
             $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-            $this->caution = $this->totalBrute * 0.2;
+            $this->caution = $this->totalBrute * ($this->ligne['caution'] /100);
 
             #code pour retirer l'article sélectionné de la liste des articles
             foreach ($this->articles as $key => $value) {
@@ -223,7 +223,7 @@ class Create extends Component
         $this->nb_jour = $data['nb_jour'];
         $this->addDeleteLigne($item);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * 0.2;
+        $this->caution = $this->totalBrute * ($this->ligne['caution'] /100);
     }
 
     /**
@@ -240,7 +240,7 @@ class Create extends Component
 
 
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * 0.2;
+        $this->caution = $this->totalBrute * $this->ligne['caution'] /100;
     }
 
     /**
@@ -258,7 +258,7 @@ class Create extends Component
         unset($this->tabArticles[$item]);
         $this->tabArticles = array_values($this->tabArticles);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * 0.2;
+        $this->caution = $this->totalBrute * $this->ligne['caution'] /100;
 
         $this->makeEmptyFields();
     }
@@ -324,12 +324,25 @@ class Create extends Component
     {
         $this->validate([
             'libelle_event' => 'required|unique:evenements,libelle',
-            'nbr_personne' => 'required',
+            'nbr_personne' => 'nullable|numeric|min:0',
             'date_debut_evenement' => 'required',
             'type_evenement_id' => 'required',
+            'caution' => 'required|min:0|max:100|numeric',
             'date_fin_evenement' => 'required|after:date_debut_evenement',
-        ], ['libelle_event.unique' => 'Ce nom d\'évenement existe déja']);
+        ], [
+            'libelle_event.unique' => 'Ce existe déja',
+            'libelle_event.*' => 'Veuillez remplir ce champs',
+            'nbr_personne.*' => 'Ce champs doit comporter un nombre',
+            'type_evenement_id.*' => 'Veuillez choisir un type',
+            'date_debut_evenement.required' => 'Veuillez choisir une date',
+            'date_fin_evenement.required' => 'Veuillez choisir une date',
+            'date_fin_evenement.after' => 'La date de fin doit être superieure à la date de début',
+        ]);
+
+
         $this->ligne['libelle_event'] = $this->libelle_event;
+        $this->ligne['caution'] = $this->caution;
+        $this->caution = 0;
         $this->ligne['lieuEvenement'] = $this->lieuEvenement;
         $this->ligne['type_evenement_id'] = $this->type_evenement_id;
         $this->ligne['nbr_personne'] = $this->nbr_personne;
