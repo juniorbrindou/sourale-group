@@ -109,6 +109,7 @@ class Retour extends Component
         $this->ligne['date_debut_evenement'] = $evenement->date_debut_evenement;
         $this->ligne['date_fin_evenement'] = $evenement->date_fin_evenement;
         $this->ligne['caution'] = $evenement->caution;
+        $this->ligne['percentage_caution'] = $evenement->percentage_caution;
         $this->ligne['date_fin_evenement'] = $evenement->date_fin_evenement;
 
         #Gestion de la durée d'evenement
