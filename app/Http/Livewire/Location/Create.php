@@ -15,7 +15,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Create extends Component
 {
-    public $currentStep = 2;
+    public $currentStep = 1;
     public $clients;
     /*Evennement*/
     public $libelle_event;
@@ -48,11 +48,31 @@ class Create extends Component
     public $tabArticles = [];
     public $totalNet;
     public $caution = 0;
+    public $percentage_caution;
     public $totalBrute = 0;
     public $totalUneLigne;
 
     #corbeille de liste d'article
-    private $trashed = [];
+    public $trashed = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function addArticle()
     {
@@ -85,7 +105,7 @@ class Create extends Component
             $this->add();
             // calcul totalBrute et caution
             $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-            $this->caution = $this->totalBrute * ($this->ligne['caution'] /100);
+            $this->caution = $this->totalBrute * ($this->ligne['percentage_caution'] /100);
 
             #code pour retirer l'article sélectionné de la liste des articles
             foreach ($this->articles as $key => $value) {
@@ -98,6 +118,32 @@ class Create extends Component
         }
         $this->makeEmptyFields();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @return [type]
@@ -126,6 +172,33 @@ class Create extends Component
         );
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * vide les champs de formulaire
      * @return void
@@ -134,6 +207,31 @@ class Create extends Component
     {
         $this->article = '';
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Insertion en bd
      * @return \Illuminate\Http\RedirectResponse
@@ -160,6 +258,7 @@ class Create extends Component
                     'libelle' => $this->ligne['libelle_event'],
                     'lieu' => $this->ligne['lieuEvenement'],
                     'caution' => $this->caution,
+                    'percentage_caution' => $this->percentage_caution,
                     'date_debut_evenement' => $this->ligne['date_debut_evenement'],
                     'date_fin_evenement' => $this->ligne['date_fin_evenement'],
                     'nbr_personne' => $this->ligne['nbr_personne'],
@@ -212,6 +311,39 @@ class Create extends Component
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Remonte les information de la liste vers le formulaire pour le update
      */
@@ -223,8 +355,32 @@ class Create extends Component
         $this->nb_jour = $data['nb_jour'];
         $this->addDeleteLigne($item);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * ($this->ligne['caution'] /100);
+        $this->caution = $this->totalBrute * ($this->ligne['percentage_caution'] /100);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Rénitialise le tableau
@@ -240,8 +396,34 @@ class Create extends Component
 
 
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * $this->ligne['caution'] /100;
+        $this->caution = $this->totalBrute * $this->ligne['percentage_caution'] /100;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Suppprime une ligne (par les boutons supprimer de chaque ligne)
@@ -258,10 +440,28 @@ class Create extends Component
         unset($this->tabArticles[$item]);
         $this->tabArticles = array_values($this->tabArticles);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
-        $this->caution = $this->totalBrute * $this->ligne['caution'] /100;
+        $this->caution = $this->totalBrute * $this->ligne['percentage_caution'] /100;
 
         $this->makeEmptyFields();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Write code on Method
@@ -327,7 +527,7 @@ class Create extends Component
             'nbr_personne' => 'nullable|numeric|min:0',
             'date_debut_evenement' => 'required',
             'type_evenement_id' => 'required',
-            'caution' => 'required|min:0|max:100|numeric',
+            'percentage_caution' => 'required|min:0|max:100|numeric',
             'date_fin_evenement' => 'required|after:date_debut_evenement',
         ], [
             'libelle_event.unique' => 'Ce existe déja',
@@ -341,8 +541,7 @@ class Create extends Component
 
 
         $this->ligne['libelle_event'] = $this->libelle_event;
-        $this->ligne['caution'] = $this->caution;
-        $this->caution = 0;
+        $this->ligne['percentage_caution'] = $this->percentage_caution;
         $this->ligne['lieuEvenement'] = $this->lieuEvenement;
         $this->ligne['type_evenement_id'] = $this->type_evenement_id;
         $this->ligne['nbr_personne'] = $this->nbr_personne;

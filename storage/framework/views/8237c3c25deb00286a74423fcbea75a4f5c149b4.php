@@ -375,9 +375,9 @@ unset($__errorArgs, $__bag); ?>
 
                                         <div class="col-md-1">
                                             <div class="form-group">
-                                                <label for="caution">Caution</label>
-                                                <input type="number" min="0" max="100" wire:model.defer="caution"
-                                                    class="form-control <?php $__errorArgs = ['caution'];
+                                                <label for="percentage_caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="percentage_caution"
+                                                    class="form-control <?php $__errorArgs = ['percentage_caution'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -385,9 +385,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                    name="caution" id="caution">
+                                                    name="percentage_caution" id="percentage_caution">
                                             </div>
-                                            <?php $__errorArgs = ['caution'];
+                                            <?php $__errorArgs = ['percentage_caution'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -404,7 +404,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
 
 
-                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Precedant</a>
+                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Précedent</a>
                                     <a class="btn btn-warning col-4 offset-2" wire:click="secondStepSubmit">Suivant</a>
                                 </div>
                             </div>
@@ -586,7 +586,7 @@ unset($__errorArgs, $__bag); ?>
                                                 Durée : <b><?php echo e($ligne['duree_evenement'] ?? ''); ?></b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution(<?php echo e($ligne['caution']?? ''); ?>%) : <b><?php echo e(format_money($caution)); ?>F FCA</b><br>
+                                                Caution(<?php echo e($ligne['percentage_caution']?? ''); ?>%) : <b><?php echo e(format_money($caution)); ?>F FCA</b><br>
                                                 TTC : <b><?php echo e(format_money($totalBrute)); ?>F FCA</b>
                                             </div>
                                         </div>
@@ -619,10 +619,7 @@ unset($__errorArgs, $__bag); ?>
                                                     <td><?php echo e(format_money($value['prix'])); ?></td>
                                                     <td><b> <?php echo e(format_money($value['totalUneLigne'])); ?> </b></td>
                                                     <td>
-                                                        <button wire:click="updateLigne(<?php echo e($item); ?>)" title="Modiffier"
-                                                            class="btn btn-primary btn-md">
-                                                            <i class="fa fa-pen"></i>
-                                                        </button>
+                                                        
                                                         <button class="btn btn-danger btn-md"
                                                             wire:click="addDeleteLigne(<?php echo e($item); ?>)">
                                                             <i class="fa fa-trash"></i>

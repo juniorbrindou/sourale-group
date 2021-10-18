@@ -147,6 +147,21 @@
                                             </span>
                                             @enderror
                                         </div>
+
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="evenement_caution"
+                                                    class="form-control @error('caution') is-invalid @enderror"
+                                                    name="caution" id="caution">
+                                            </div>
+                                            @error('caution')
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </div>
 
 

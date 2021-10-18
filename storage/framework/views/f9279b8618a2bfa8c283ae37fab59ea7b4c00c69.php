@@ -211,6 +211,35 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                         </div>
+
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="evenement_caution"
+                                                    class="form-control <?php $__errorArgs = ['caution'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                    name="caution" id="caution">
+                                            </div>
+                                            <?php $__errorArgs = ['caution'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"
+                                                style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
+                                                <strong><?php echo e($message); ?></strong>
+                                            </span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        </div>
                                     </div>
 
 

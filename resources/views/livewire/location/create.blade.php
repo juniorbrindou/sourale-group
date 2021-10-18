@@ -262,12 +262,12 @@
 
                                         <div class="col-md-1">
                                             <div class="form-group">
-                                                <label for="caution">Caution</label>
-                                                <input type="number" min="0" max="100" wire:model.defer="caution"
-                                                    class="form-control @error('caution') is-invalid @enderror"
-                                                    name="caution" id="caution">
+                                                <label for="percentage_caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="percentage_caution"
+                                                    class="form-control @error('percentage_caution') is-invalid @enderror"
+                                                    name="percentage_caution" id="percentage_caution">
                                             </div>
-                                            @error('caution')
+                                            @error('percentage_caution')
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -277,7 +277,7 @@
                                     </div>
 
 
-                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Precedant</a>
+                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Précedent</a>
                                     <a class="btn btn-warning col-4 offset-2" wire:click="secondStepSubmit">Suivant</a>
                                 </div>
                             </div>
@@ -416,7 +416,7 @@
                                                 Durée : <b>{{ $ligne['duree_evenement'] ?? '' }}</b>
                                             </div>
                                             <div class="text-right col-md-4">
-                                                Caution({{$ligne['caution']?? ''}}%) : <b>{{ format_money($caution) }}F FCA</b><br>
+                                                Caution({{$ligne['percentage_caution']?? ''}}%) : <b>{{ format_money($caution) }}F FCA</b><br>
                                                 TTC : <b>{{ format_money($totalBrute) }}F FCA</b>
                                             </div>
                                         </div>
@@ -448,10 +448,10 @@
                                                     <td>{{ format_money($value['prix']) }}</td>
                                                     <td><b> {{ format_money($value['totalUneLigne']) }} </b></td>
                                                     <td>
-                                                        <button wire:click="updateLigne({{$item}})" title="Modiffier"
+                                                        {{-- <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                             class="btn btn-primary btn-md">
                                                             <i class="fa fa-pen"></i>
-                                                        </button>
+                                                        </button> --}}
                                                         <button class="btn btn-danger btn-md"
                                                             wire:click="addDeleteLigne({{$item}})">
                                                             <i class="fa fa-trash"></i>
