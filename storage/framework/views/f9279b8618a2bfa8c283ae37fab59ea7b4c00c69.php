@@ -214,9 +214,9 @@ unset($__errorArgs, $__bag); ?>
 
                                         <div class="col-md-1">
                                             <div class="form-group">
-                                                <label for="caution">Caution</label>
-                                                <input type="number" min="0" max="100" wire:model.defer="evenement_caution"
-                                                    class="form-control <?php $__errorArgs = ['caution'];
+                                                <label for="evenement_percentage_caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="evenement_percentage_caution"
+                                                    class="form-control <?php $__errorArgs = ['evenement_percentage_caution'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -224,9 +224,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                    name="caution" id="caution">
+                                                    name="evenement_percentage_caution" id="evenement_percentage_caution">
                                             </div>
-                                            <?php $__errorArgs = ['caution'];
+                                            <?php $__errorArgs = ['evenement_percentage_caution'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -435,7 +435,7 @@ unset($__errorArgs, $__bag); ?>
 
                                             
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> <?php echo e(isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''); ?> F
+                                                Caution(<?php echo e($evenement_percentage_caution); ?>%) : <b> <?php echo e(isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''); ?> F
                                                     FCA</b><br>
                                                 TTC : <b><?php echo e(isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : ''); ?> F FCA</b>
                                             </div>

@@ -41,7 +41,10 @@
                     <b>{{ format_money($evenement->montant_total) }}</b>
                 </td>
 
-                <td><b>{{ format_money($evenement->caution) }}</b></td>
+                <td style="cursor:pointer" data-toggle="tooltip" data-placement="right"
+                title="{{ format_money($evenement->percentage_caution) }}%">
+                    <b>{{ format_money($evenement->caution) }}</b>
+                </td>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
                     title="Date de Fin : {{ long_date($evenement->date_fin_evenement) }}">

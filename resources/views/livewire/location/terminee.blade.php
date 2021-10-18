@@ -6,7 +6,7 @@
             <b>{{long_date($evenement->date_debut_evenement)}}</b> par
             <b>{{ $user->nom}}</b>
         </h3>
-        <h3 class="card-title float-right">
+        <h3 class="float-right card-title">
             Clôturé le {{long_date($tab_locations[0]['date_retour'])}}
         </h3>
 
@@ -42,7 +42,7 @@
                                 Durée : <b>{{ $duree_evenement ?? '' }}</b>
                             </div>
                             <div class="text-right col-md-4">
-                                Caution(20%) : <b>{{ format_money($evenement->caution) }}F FCA</b><br>
+                                Caution({{$evenement->percentage_caution}}%) : <b>{{ format_money($evenement->caution) }}F FCA</b><br>
                                 TTC : <b>{{ format_money($evenement->montant_total) }}F FCA</b>
                             </div>
                         </div>

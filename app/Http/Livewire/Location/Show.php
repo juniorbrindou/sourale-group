@@ -37,6 +37,7 @@ class Show extends Component
     public $evenement_caution;
     public $evenement_date_debut_evenement;
     public $evenement_date_fin_evenement;
+    public $evenement_percentage_caution;
     public $tab_evenement = [];
     public $duree_evenement;
     public $article_libelle;
@@ -46,6 +47,16 @@ class Show extends Component
 
     #corbeille de liste d'article
     public $trashed = [];
+
+
+
+
+
+
+
+
+
+
     /**
      * Ajout de nouvelle ligne dans le tableau frontend
      * @return void
@@ -93,6 +104,12 @@ class Show extends Component
 
 
 
+
+
+
+
+
+
     /**
      * Ajout de nouvelle ligne
      * @return void
@@ -119,8 +136,11 @@ class Show extends Component
         # Montant total de l'évènement
         $this->tab_evenement['evenement_montant_total'] = array_sum(array_column($this->tab_locations, 'total_une_ligne'));
         # caution de l'évènement
-        $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * 0.2;
+        $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * $this->evenement_percentage_caution / 100;
     }
+
+
+
 
 
 
@@ -144,6 +164,7 @@ class Show extends Component
                 [
                     'libelle' => $this->tab_evenement['evenement_libelle'],
                     'caution' => $this->tab_evenement['evenement_caution'],
+                    'percentage_caution'=> $this->evenement_percentage_caution,
                     'type_evenement_id' => $type_evenement_id,
                     'montant_total' => $this->tab_evenement['evenement_montant_total'],
                     'lieu' => $this->tab_evenement['evenement_lieu'],
@@ -206,6 +227,15 @@ class Show extends Component
         }
     }
 
+
+
+
+
+
+
+
+
+
     /**
      * Passage de la saisie des informations de l'évènement à la page de selection des articles
      * @return response()
@@ -214,17 +244,27 @@ class Show extends Component
     {
         # validation des informations saisies de l'évènement
         $this->validate([
-            'evenement_libelle' => 'required',
-            'evenement_nbr_personne' => 'required',
+            'evenement_libelle' => 'required|unique:evenements,libelle,'.$this->evenement->id,
+            'evenement_nbr_personne' => 'required|numeric',
             'evenement_date_debut_evenement' => 'required',
             'type_evenement_libelle' => 'required',
             'evenement_date_fin_evenement' => 'required',
-            'evenement_lieu' => 'required',
+            'evenement_percentage_caution' => 'required|min:0|max:100|numeric',
+        ],[
+            'evenement_libelle.unique' => 'Ce nom d\'evenement existe déja',
+            'evenement_libelle.*' => 'Saisissez un nom valide',
+            'evenement_nbr_personne.*' => 'Ce champs doit comporter un nombre',
+            'evenement_date_debut_evenement.required' => 'Veuillez choisir une date',
+            'type_evenement_libelle.*' => 'Veuillez remplir ce champs',
+            'evenement_date_fin_evenement.*' => 'Veuillez choisir une date',
+            'evenement_percentage_caution.*' => 'La date de fin doit être superieure à la date de début',
         ]);
 
         # creation du tableau contenant les infos sur l'évènement
         $this->tab_evenement['evenement_libelle'] = $this->evenement_libelle;
-        $this->tab_evenement['evenement_caution'] = $this->evenement_caution;
+
+        # calcul de la caution : premier affichage
+        $this->tab_evenement['evenement_caution'] = $this->evenement_montant_total * $this->evenement_percentage_caution / 100;
         $this->tab_evenement['evenement_montant_total'] = $this->evenement_montant_total;
         $this->tab_evenement['evenement_lieu'] = $this->evenement_lieu;
         $this->tab_evenement['evenement_nbr_personne'] = $this->evenement_nbr_personne;
@@ -295,12 +335,22 @@ class Show extends Component
         $this->evenement_lieu = $evenement->lieu;
         $this->evenement_caution = $evenement->caution;
         $this->evenement_libelle = $evenement->libelle;
+        $this->evenement_percentage_caution = $evenement->percentage_caution;
         $this->evenement_nbr_personne = $evenement->nbr_personne;
         $this->evenement_montant_total = $evenement->montant_total;
         $this->evenement_date_debut_evenement = \str_replace(' ', 'T', $evenement->date_debut_evenement);
         $this->evenement_date_fin_evenement = \str_replace(' ', 'T', $evenement->date_fin_evenement);
         $this->duree_evenement = Carbon::parse($this->evenement->date_debut_evenement)->DiffForHumans($this->evenement->date_fin_evenement, true);
     }
+
+
+
+
+
+
+
+
+
 
     /**
      * Suppprime une ligne (par les boutons supprimer de chaque ligne)
@@ -323,13 +373,22 @@ class Show extends Component
                 $key = +1;
             }
         }
-        
+
         $this->tab_evenement['evenement_montant_total'] = $this->tab_evenement['evenement_montant_total'] - $this->tab_locations[$item]['total_une_ligne'];
-        $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * 0.2;
+        $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * $this->evenement_percentage_caution / 100;
         unset($this->tab_locations[$item]);
         $this->tab_locations = array_values($this->tab_locations);
         $this->makeEmptyFields();
     }
+
+
+
+
+
+
+
+
+
 
     /**
      * vide les champs de formulaire
@@ -339,6 +398,15 @@ class Show extends Component
     {
         $this->article_libelle = '';
     }
+
+
+
+
+
+
+
+
+
 
     /**
      * Fonction du rendu

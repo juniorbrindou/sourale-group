@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameDescriptionToPercentageCautionToEvenementsTable extends Migration
+class AddPercentageCautionToEvenementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class RenameDescriptionToPercentageCautionToEvenementsTable extends Migration
     public function up()
     {
         Schema::table('evenements', function (Blueprint $table) {
-            $table->renameColumn('desciption','percentage_caution');
+
+            $table->float('percentage_caution')->after('caution')->default(20);
+
         });
     }
 
@@ -26,7 +28,7 @@ class RenameDescriptionToPercentageCautionToEvenementsTable extends Migration
     public function down()
     {
         Schema::table('evenements', function (Blueprint $table) {
-            $table->renameColumn('percentage_caution','desciption');
+            $table->dropColumn('percentage_caution');
         });
     }
 }

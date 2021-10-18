@@ -41,7 +41,10 @@
                     <b><?php echo e(format_money($evenement->montant_total)); ?></b>
                 </td>
 
-                <td><b><?php echo e(format_money($evenement->caution)); ?></b></td>
+                <td style="cursor:pointer" data-toggle="tooltip" data-placement="right"
+                title="<?php echo e(format_money($evenement->percentage_caution)); ?>%">
+                    <b><?php echo e(format_money($evenement->caution)); ?></b>
+                </td>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
                     title="Date de Fin : <?php echo e(long_date($evenement->date_fin_evenement)); ?>">

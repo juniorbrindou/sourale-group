@@ -45,7 +45,7 @@
                                     Durée : <b>{{ $ligne['duree_evenement'] ?? '' }}</b>
                                 </div>
                                 <div class="text-right col-md-4">
-                                    Caution(20%) : <b>{{ format_money($ligne['caution']) }}F FCA</b><br>
+                                    Caution({{$ligne['percentage_caution']}}%) : <b>{{ format_money($ligne['caution']) }}F FCA</b><br>
                                     TTC : <b>{{ format_money($ligne['montant_total']) }}F FCA</b>
                                 </div>
                             </div>

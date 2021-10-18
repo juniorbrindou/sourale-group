@@ -150,12 +150,12 @@
 
                                         <div class="col-md-1">
                                             <div class="form-group">
-                                                <label for="caution">Caution</label>
-                                                <input type="number" min="0" max="100" wire:model.defer="evenement_caution"
-                                                    class="form-control @error('caution') is-invalid @enderror"
-                                                    name="caution" id="caution">
+                                                <label for="evenement_percentage_caution">Caution</label>
+                                                <input type="number" min="0" max="100" wire:model.defer="evenement_percentage_caution"
+                                                    class="form-control @error('evenement_percentage_caution') is-invalid @enderror"
+                                                    name="evenement_percentage_caution" id="evenement_percentage_caution">
                                             </div>
-                                            @error('caution')
+                                            @error('evenement_percentage_caution')
                                             <span class="text-danger"
                                                 style="margin-top: -1.25rem;display: block; font-size:80%" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -312,7 +312,7 @@
 
                                             {{-- les prix --}}
                                             <div class="text-right col-md-4">
-                                                Caution(20%) : <b> {{ isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''}} F
+                                                Caution({{ $evenement_percentage_caution }}%) : <b> {{ isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''}} F
                                                     FCA</b><br>
                                                 TTC : <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
                                             </div>
