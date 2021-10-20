@@ -263,10 +263,11 @@
                                     <?php $__empty_1 = true; $__currentLoopData = $latestFiveEvents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $last): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
                                         <td><a href="<?php echo e(route('evennements.show',$last->id)); ?>"><?php echo e($last->libelle); ?></a></td>
-                                        <td><?php echo e($last->client->nom); ?></td>
+                                        <td><a href="<?php echo e(route('clients.show',$last->client->id)); ?>"><?php echo e($last->client->nom); ?></a></td>
                                         <td><span class="badge badge-danger"><?php echo e($last->status); ?></span></td>
                                         <td>
-                                            <div class="sparkbar" data-color="#f56954" data-height="20">
+                                            <div class="sparkbar" data-toggle="tooltip" data-placement="left"
+                                            title="Caution : <?php echo e(format_money($last->caution)); ?> F CFA (<?php echo e($last->percentage_caution); ?>%)">
                                                 <?php echo e($last->montant_total); ?>
 
                                             </div>

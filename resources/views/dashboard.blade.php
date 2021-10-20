@@ -264,10 +264,11 @@
                                     @forelse ( $latestFiveEvents as $last )
                                     <tr>
                                         <td><a href="{{route('evennements.show',$last->id)}}">{{$last->libelle}}</a></td>
-                                        <td>{{$last->client->nom}}</td>
+                                        <td><a href="{{route('clients.show',$last->client->id)}}">{{$last->client->nom}}</a></td>
                                         <td><span class="badge badge-danger">{{$last->status}}</span></td>
                                         <td>
-                                            <div class="sparkbar" data-color="#f56954" data-height="20">
+                                            <div class="sparkbar" data-toggle="tooltip" data-placement="left"
+                                            title="Caution : {{ format_money($last->caution) }} F CFA ({{$last->percentage_caution}}%)">
                                                 {{$last->montant_total}}
                                             </div>
                                         </td>
