@@ -6,7 +6,7 @@
             <b><?php echo e(long_date($evenement->date_debut_evenement)); ?></b> par
             <b><?php echo e($user->nom); ?></b>
         </h3>
-        <h3 class="card-title float-right">
+        <h3 class="float-right card-title">
             Clôturé le <?php echo e(long_date($tab_locations[0]['date_retour'])); ?>
 
         </h3>
@@ -44,7 +44,7 @@
                                 Durée : <b><?php echo e($duree_evenement ?? ''); ?></b>
                             </div>
                             <div class="text-right col-md-4">
-                                Caution(20%) : <b><?php echo e(format_money($evenement->caution)); ?>F FCA</b><br>
+                                Caution(<?php echo e($evenement->percentage_caution); ?>%) : <b><?php echo e(format_money($evenement->caution)); ?>F FCA</b><br>
                                 TTC : <b><?php echo e(format_money($evenement->montant_total)); ?>F FCA</b>
                             </div>
                         </div>

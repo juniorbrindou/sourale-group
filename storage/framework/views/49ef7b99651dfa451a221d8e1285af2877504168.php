@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
@@ -253,53 +251,32 @@
                             <table class="table m-0">
                                 <thead>
                                     <tr>
-                                        <th>numéro de commande </th>
-                                        <th>Article</th>
+                                        <th>Evenements</th>
+                                        <th>Client</th>
                                         <th>Statut</th>
-                                        <th>Autres</th>
+                                        <th>Montants</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    
+                                    <?php $__empty_1 = true; $__currentLoopData = $latestFiveEvents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $last): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
-                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="badge badge-success">Shipped</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                90,80,90,-70,61,-83,63
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-warning">Pending</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                90,80,-90,70,61,-83,68
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="badge badge-danger">Delivered</span></td>
+                                        <td><a href="<?php echo e(route('evennements.show',$last->id)); ?>"><?php echo e($last->libelle); ?></a></td>
+                                        <td><?php echo e($last->client->nom); ?></td>
+                                        <td><span class="badge badge-danger"><?php echo e($last->status); ?></span></td>
                                         <td>
                                             <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                90,-80,90,70,-61,83,63
+                                                <?php echo e($last->montant_total); ?>
+
                                             </div>
                                         </td>
                                     </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-info">Processing</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00c0ef" data-height="20">
-                                                90,80,-90,70,-61,83,63
-                                            </div>
-                                        </td>
+                                        <td colspan="5"></td>
                                     </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -307,9 +284,9 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="clearfix card-footer">
-                        <a href="javascript:void(0)" class="float-left btn btn-sm btn-info">Passer une nouvelle
+                        <a href="<?php echo e(route('locations.create')); ?>" class="float-left btn btn-sm btn-info">Passer une nouvelle
                             commande</a>
-                        <a href="javascript:void(0)" class="float-right btn btn-sm btn-secondary">Voir toutes les
+                        <a href="<?php echo e(route('evennements.index')); ?>" class="float-right btn btn-sm btn-secondary">Voir toutes les
                             commandes</a>
                     </div>
                     <!-- /.card-footer -->

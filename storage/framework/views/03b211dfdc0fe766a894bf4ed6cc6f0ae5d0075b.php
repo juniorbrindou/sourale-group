@@ -454,7 +454,7 @@
                     <td><?php echo e($totalBrute); ?></td>
                 </tr>
                 <tr>
-                    <td>Caution (20%)</td>
+                    <td>Caution (<?php echo e($evenement->percentage_caution); ?>%)</td>
                     <td><?php echo e(format_money($evenement->caution) ?? ''); ?></td>
                 </tr>
                 <tr>
@@ -478,7 +478,7 @@
                 <li>Toute réservation doit être confirmée 48h avant le jour de la livraison en versant la valeur
                     totale de la commande plus une caution
                 </li>
-                <li>La caution remboursable de 20% de la valeur soit <span
+                <li>La caution remboursable de <?php echo e($evenement->percentage_caution); ?>% de la valeur soit <span
                         style="color: red;"><b><?php echo e(format_money($evenement->caution) ?? ''); ?> F CFA est
                                 obligatoire</b></span></li>
                 <li>La caution est rembousable en 24h après le retour du matériel</li>

@@ -1,31 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sourale-Group</title>
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <style>
     * {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
     }
-
     body {
         padding: 0;
         margin: 0;
     }
-
     #notfound {
         position: relative;
         height: 100vh;
-        /* background-color: #222; */
     }
-
     #notfound .notfound {
         position: absolute;
         left: 50%;
@@ -34,19 +27,16 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
-
     .notfound {
         /* max-width: 90vw; */
         width: 90vw;
         text-align: center;
         line-height: 1.4;
     }
-
     .notfound .notfound-404 {
         height: 158px;
         line-height: 153px;
     }
-
     .notfound .notfound-404 h1 {
         font-family: 'Josefin Sans', sans-serif;
         color: #222;
@@ -56,11 +46,9 @@
         font-weight: 700;
         text-shadow: 2px 2px 0px #c9c9c9, -2px -2px 0px #c9c9c9;
     }
-
     .notfound .notfound-404 h1>span {
         text-shadow: 2px 2px 0px #ffab00, -2px -2px 0px #ffab00, 0px 0px 8px #ff8700;
     }
-
     .notfound p {
         font-family: 'Josefin Sans', sans-serif;
         color: #c9c9c9;
@@ -69,7 +57,6 @@
         margin-top: 0px;
         margin-bottom: 15px;
     }
-
     .notfound a {
         font-family: 'Josefin Sans', sans-serif;
         font-size: 14px;

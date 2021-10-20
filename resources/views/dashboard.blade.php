@@ -252,53 +252,31 @@
                             <table class="table m-0">
                                 <thead>
                                     <tr>
-                                        <th>numéro de commande </th>
-                                        <th>Article</th>
+                                        <th>Evenements</th>
+                                        <th>Client</th>
                                         <th>Statut</th>
-                                        <th>Autres</th>
+                                        <th>Montants</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    {{-- latestFiveEvents --}}
+                                    @forelse ( $latestFiveEvents as $last )
                                     <tr>
-                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="badge badge-success">Shipped</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                90,80,90,-70,61,-83,63
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-warning">Pending</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                90,80,-90,70,61,-83,68
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="badge badge-danger">Delivered</span></td>
+                                        <td><a href="{{route('evennements.show',$last->id)}}">{{$last->libelle}}</a></td>
+                                        <td>{{$last->client->nom}}</td>
+                                        <td><span class="badge badge-danger">{{$last->status}}</span></td>
                                         <td>
                                             <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                90,-80,90,70,-61,83,63
+                                                {{$last->montant_total}}
                                             </div>
                                         </td>
                                     </tr>
+                                    @empty
                                     <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="badge badge-info">Processing</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#00c0ef" data-height="20">
-                                                90,80,-90,70,-61,83,63
-                                            </div>
-                                        </td>
+                                        <td colspan="5"></td>
                                     </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -306,9 +284,9 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="clearfix card-footer">
-                        <a href="javascript:void(0)" class="float-left btn btn-sm btn-info">Passer une nouvelle
+                        <a href="{{route('locations.create')}}" class="float-left btn btn-sm btn-info">Passer une nouvelle
                             commande</a>
-                        <a href="javascript:void(0)" class="float-right btn btn-sm btn-secondary">Voir toutes les
+                        <a href="{{route('evennements.index')}}" class="float-right btn btn-sm btn-secondary">Voir toutes les
                             commandes</a>
                     </div>
                     <!-- /.card-footer -->

@@ -27,6 +27,9 @@ class DashboardController extends Controller
         # Evenement avec le max d'argent
         $bestEvenement = Evenements::where('montant_total','=',Evenements::max('montant_total'))->first();
 
+        # Les 5  derniers evenements
+        $latestFiveEvents = Evenements::orderBy('id','DESC')->limit(5)->get();
+
 
 
 
@@ -41,7 +44,7 @@ class DashboardController extends Controller
         // $data = json_encode($dataPoints);
         return view(
             'dashboard',
-            compact('dataPoints', 'nbrEventEnCours', 'nbrClients','nbrNiveauCritique','nbrEventCloturer','bestEvenement')
+            compact('latestFiveEvents','dataPoints', 'nbrEventEnCours', 'nbrClients','nbrNiveauCritique','nbrEventCloturer','bestEvenement')
         );
     }
 }
