@@ -1,6 +1,5 @@
 <?php
 use App\Clients;
-use App\Evenements;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
@@ -128,6 +127,11 @@ Breadcrumbs::for('dashboard', function ($trail) {
     Breadcrumbs::for('users.show', function ($trail, $user) {
         $trail->parent('dashboard');
         $trail->push('Utilisateur', route('users.show',$user));
+    });
+
+    Breadcrumbs::for('utilisateurs.show', function ($trail, $user) {
+        $trail->parent('dashboard');
+        $trail->push('Détail Utilisateur', route('utilisateurs.show',$user));
     });
 # fin Utilisateurs
 
