@@ -55,8 +55,7 @@
             <!-- fix for small devices only -->
             <div class="clearfix hidden-md-up"></div>
 
-            <div class="col-12 col-sm-6 col-md-3" data-delay='{"show": 1000}'
-            title="Total des evenements dont le re" data-toggle="tooltip" data-placement="top">
+            <div class="col-12 col-sm-6 col-md-3">
                 <div class="mb-3 info-box">
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
@@ -91,7 +90,7 @@
 
         {{-- rapport mensuel --}}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 {{-- debut du card pour les charts --}}
                 <div class="card">
                     <div class="card-header">
@@ -106,18 +105,15 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-5">
                                 <p class="text-center">
-                                    <strong>Zoé: 1 Jan, 2021 - 16 Juil, 2021</strong>
+                                    <strong>Etat des Locations</strong>
                                 </p>
 
                                 {{-- debut de chart --}}
                                 <div class="chart row">
                                     <div class="col-md-6">
                                         <div id="chartContainer1" style="height: 180px;"></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div id="chartContainer2" style="height: 180px;"></div>
                                     </div>
                                 </div>
 
@@ -126,7 +122,7 @@
                             <!-- /.col -->
 
                             {{-- objectif et accomplissements --}}
-                            <div class="col-md-4">
+                            <div class="col-md-7">
                                 <p class="text-center">
                                     <strong>Objectifs et accomplissements</strong>
                                 </p>
@@ -169,22 +165,13 @@
                             </div>
                             <!-- /.col -->
                         </div>
+                    </div>
                         <!-- /.row -->
                     </div>
                     <!-- ./card-body -->
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
-                                        17%</span>
-                                    <h5 class="description-header">12.315.100 F CFA</h5>
-                                    <span class="description-text">TOTAL REVENU</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
+                            <div class="col-sm-3 col-6 offset-3">
                                 <div class="description-block border-right">
                                     <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>
                                         0%</span>
@@ -201,17 +188,6 @@
                                     <h5 class="description-header">12.000.000F CFA</h5>
                                     <span class="description-text">BÉNÉFICE BRUT</span>
                                 </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block">
-                                    <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i>
-                                        18%</span>
-                                    <h5 class="description-header">1200</h5>
-                                    <span class="description-text">GOAL COMPLETIONS</span>
-                                </div>
-                                <!-- /.description-block -->
                             </div>
                         </div>
                         <!-- /.row -->
@@ -219,6 +195,59 @@
                     <!-- /.card-footer -->
                 </div>
                 <!-- /.card -->
+
+
+
+            <div class="col-md-4">
+                <!-- Info Boxes Style 2 -->
+                <div class="mb-3 info-box bg-danger">
+                    <span class="info-box-icon"><i class="fa fa-glass-cheers"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Meilleure location</span>
+                        <span class="info-box-number">
+                            {{ isset($bestEvenement->montant_total) ? format_money($bestEvenement->montant_total) : '0'}} F <i
+                                class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="mb-3 info-box bg-warning">
+                    <span class="info-box-icon"><i class="far fa-heart"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Package doré</span>
+                        <span class="info-box-number">52 <i class="fa fa-truck"></i> sur 122 <i
+                                class="fas fa-archive"></i></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+
+                <!-- /.info-box -->
+                <div class="mb-3 info-box bg-default">
+                    <span class="info-box-icon"><i class="fa fa-feather-alt"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Package plume</span>
+                        <span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i
+                                class="fas fa-archive"></i></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+
+                <!-- /.info-box -->
+                <div class="mb-3 info-box bg-success">
+                    <span class="info-box-icon"><i class="far fa-comment"></i></span>
+
+                    <div class="info-box-content ">
+                        <span class="info-box-text">Commande sans Package</span>
+                        <span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i
+                                class="fas fa-archive"></i></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
             </div>
             <!-- /.col -->
         </div>
@@ -226,11 +255,8 @@
 
 
         <!-- Main row -->
-        <div class="row">
-            <!-- Left col -->
-            <div class="col-md-8">
-
-
+        <div class="mt-2 row">
+            <div class="col-md-6">
                 <!-- tableau des dernieres commandes -->
                 <div class="card">
                     {{-- card header --}}
@@ -296,58 +322,73 @@
             </div>
             <!-- /.col -->
 
-            <div class="col-md-4">
-                <!-- Info Boxes Style 2 -->
-                <div class="mb-3 info-box bg-danger">
-                    <span class="info-box-icon"><i class="fa fa-glass-cheers"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Meilleure location</span>
-                        <span class="info-box-number">
-                            {{ isset($bestEvenement->montant_total) ? format_money($bestEvenement->montant_total) : '0'}} F <i
-                                class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
+            <div class="col-md-6">
+                <!-- tableau des dernieres commandes -->
+                <div class="card">
+                    {{-- card header --}}
+                    <div class="border-transparent card-header">
+
+                        <h3 class="card-title">Dernières Locations </h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-                <div class="mb-3 info-box bg-warning">
-                    <span class="info-box-icon"><i class="far fa-heart"></i></span>
+                    {{-- /.card-header  --}}
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Package doré</span>
-                        <span class="info-box-number">52 <i class="fa fa-truck"></i> sur 122 <i
-                                class="fas fa-archive"></i></span>
+                    {{-- card body --}}
+                    <div class="p-0 card-body">
+                        <div class="table-responsive">
+                            <table class="table m-0">
+                                <thead>
+                                    <tr>
+                                        <th>Evenements</th>
+                                        <th>Client</th>
+                                        <th>Statut</th>
+                                        <th>Montants</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {{-- latestFiveEvents --}}
+                                    @forelse ( $latestFiveEvents as $last )
+                                    <tr>
+                                        <td><a href="{{route('evennements.show',$last->id)}}">{{$last->libelle}}</a></td>
+                                        <td><a href="{{route('clients.show',$last->client->id)}}">{{$last->client->nom}}</a></td>
+                                        <td><span class="badge badge-danger">{{$last->status}}</span></td>
+                                        <td>
+                                            <div class="sparkbar" data-toggle="tooltip" data-placement="left"
+                                            title="Caution : {{ format_money($last->caution) }} F CFA ({{$last->percentage_caution}}%)">
+                                                {{$last->montant_total}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="5"></td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-
-                <!-- /.info-box -->
-                <div class="mb-3 info-box bg-default">
-                    <span class="info-box-icon"><i class="fa fa-feather-alt"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Package plume</span>
-                        <span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i
-                                class="fas fa-archive"></i></span>
+                    <!-- /.card-body -->
+                    <div class="clearfix card-footer">
+                        <a href="{{route('locations.create')}}" class="float-left btn btn-sm btn-info">Passer une nouvelle
+                            commande</a>
+                        <a href="{{route('evennements.index')}}" class="float-right btn btn-sm btn-secondary">Voir toutes les
+                            commandes</a>
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.card-footer -->
                 </div>
-                <!-- /.info-box -->
-
-                <!-- /.info-box -->
-                <div class="mb-3 info-box bg-success">
-                    <span class="info-box-icon"><i class="far fa-comment"></i></span>
-
-                    <div class="info-box-content ">
-                        <span class="info-box-text">Commande sans Package</span>
-                        <span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i
-                                class="fas fa-archive"></i></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                <!-- /.card -->
             </div>
             <!-- /.col -->
+
         </div>
         <!-- /.row -->
     </div>
@@ -450,29 +491,7 @@
             ]
         });
 
-                var chart2 = new CanvasJS.Chart("chartContainer2", {
-            animationEnabled: true,
-            exportEnabled: true,
-            theme: "light1", // "light1", "light2", "dark1", "dark2"
-            // title:{
-            //     text: "indexLabel at dataSeries",
-            //     fontSize: 20
-            // },
-            toolTip: {
-                cornerRadius: 15,
-                borderThickness:3
-            },
-
-            data: [
-            {
-                type: "doughnut",// bar, bubble, column, pie, spline,doughnut
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-            }
-            ]
-        });
-
         chart1.render();
-        chart2.render();
     }
 </script>
 <script>
