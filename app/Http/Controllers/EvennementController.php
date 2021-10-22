@@ -121,7 +121,7 @@ class EvennementController extends Controller
                     toast('Action Effectuée avec succes!', 'success');
                     return redirect()->route('locations.index');
                 } else {
-                    alert()->warning('Articles Indisponible', 'Action Impossible! la quantité d\'article disponible est insifisante pour démarer cet evenement : pensez a cloturer les evenements terminer pour rendre les articles disponibles');
+                    alert()->warning('Articles Indisponible', 'Action Impossible! la quantité d\'article disponible est insuffisante pour démarrer cet evenement : pensez a cloturer les evenements terminés pour rendre les articles disponibles');
                     return redirect()->route('locations.index');
                 }
             } elseif ($request->statut_evenement == 'ANNULÉ') {
@@ -145,20 +145,10 @@ class EvennementController extends Controller
         } elseif ($evenement->status == 'ANNULÉ') {
             // EN COURS
             // todo : reflechir sur l'evenement annulé peut passer a enregistrer ou a en cour directement
-            /*            if ($request->statut_evenement =='EN COURS')
-                        {
-                            $evenement->update(['status'=>'TERMINÉ']);
-                        }else{
-                            // todo: gerer les erreurs flash (action impossible)
-                            dd('impossibles');
-                        }*/
         } elseif ($evenement->status == 'TERMINÉ') {
+
             //TERMINÉ -> CLOTURÉ
             if ($request->statut_evenement == 'CLOTURÉ') {
-                toast('Action éffectuée avec succes!', 'success');
-                // todo : traitement du passage de terminé vers cloturé (les quantité doivnt etre rétablis)
-                // je  a une redirection vers une page pour effectuer les operation : je peu me baser sur destockage
-
                 $evenement->update(['status' => 'CLOTURÉ']);
                 return redirect()->route('locations.index');
             } else {
@@ -166,7 +156,7 @@ class EvennementController extends Controller
                 return redirect()->route('locations.index');
             }
         } else {
-            dd('nothing');
+            return;
         }
     }
 
