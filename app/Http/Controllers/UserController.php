@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::where('name', '<>', 'super-admin')->get();
+        $roles = Role::where('name', '=', 'admin')->get();
         return view('parametrage.users.create', compact('roles'));
     }
 

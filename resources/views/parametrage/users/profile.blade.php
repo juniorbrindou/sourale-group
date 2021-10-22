@@ -250,24 +250,24 @@
                                             class="col-sm-2 col-form-label @error('role_id') is-invalid @enderror">Role</label>
                                         <div class="col-sm-10">
                                             {{-- name="role_id" --}}
-                                            @if (Auth::user()->login === $user->login)
+                                            {{-- @if (Auth::user()->login === $user->login)
                                             <input type="hidden" name="role"
-                                                value="{{format_no_array($user->roles->pluck('name'))}}">
+                                                value="{{format_no_array($user->roles->pluck('name'))}}"> --}}
 
                                             <input type="text" class="form-control"
                                                 value="{{format_no_array($user->roles->pluck('name'))}}"
                                                 id="inputSkills" disabled>
-                                            @endif
-                                            @role('admin|super-admin')
-                                            <select required class="form-control select2" name="role"
+                                            {{-- @endif --}}
+                                            {{-- @role('admin|super-admin') --}}
+                                            {{-- <select required class="form-control select2" name="role"
                                                 style="width: 100%;">
                                                 @foreach ($roles as $role)
                                                 <option @if ($loop->first) selected="selected" @endif
                                                     value="{{$role->name}}"> {{$role->name}}
                                                 </option> @endforeach
 
-                                            </select>
-                                            @endrole
+                                            </select> --}}
+                                            {{-- @endrole --}}
 
                                         </div>
                                     </div>
