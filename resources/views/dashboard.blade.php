@@ -90,7 +90,7 @@
 
         {{-- rapport mensuel --}}
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 {{-- debut du card pour les charts --}}
                 <div class="card">
                     <div class="card-header">
@@ -169,68 +169,31 @@
                         <!-- /.row -->
                     </div>
                     <!-- ./card-body -->
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-sm-3 col-6 offset-3">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>
-                                        0%</span>
-                                    <h5 class="description-header">315.100F CFA</h5>
-                                    <span class="description-text">TOTAL PERTES</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
-                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i>
-                                        20%</span>
-                                    <h5 class="description-header">12.000.000F CFA</h5>
-                                    <span class="description-text">BÉNÉFICE BRUT</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.card-footer -->
                 </div>
                 <!-- /.card -->
 
 
 
-            <div class="col-md-4">
-                <!-- Info Boxes Style 2 -->
-                <div class="mb-3 info-box bg-danger">
+            <div class="col-md-2">
+                <!-- /.info-box -->
+                <div class="mb-3 info-box bg-success">
+                    <span class="info-box-icon"><i class="fa fa-money-bill-wave-alt"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total des Gains</span>
+                        <span class="info-box-number">52 </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+
+                <div class="mb-1 info-box bg-primary">
                     <span class="info-box-icon"><i class="fa fa-glass-cheers"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">Meilleure location</span>
                         <span class="info-box-number">
-                            {{ isset($bestEvenement->montant_total) ? format_money($bestEvenement->montant_total) : '0'}} F <i
-                                class="fas fa-truck"></i> sur 122 <i class="fas fa-archive"></i></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-                <div class="mb-3 info-box bg-warning">
-                    <span class="info-box-icon"><i class="far fa-heart"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Package doré</span>
-                        <span class="info-box-number">52 <i class="fa fa-truck"></i> sur 122 <i
-                                class="fas fa-archive"></i></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-
-                <!-- /.info-box -->
-                <div class="mb-3 info-box bg-default">
-                    <span class="info-box-icon"><i class="fa fa-feather-alt"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Package plume</span>
-                        <span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i
-                                class="fas fa-archive"></i></span>
+                            {{ isset($bestEvenement->montant_total) ? format_money($bestEvenement->montant_total) : '0'}} F
+                        </span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -238,12 +201,12 @@
 
                 <!-- /.info-box -->
                 <div class="mb-3 info-box bg-success">
-                    <span class="info-box-icon"><i class="far fa-comment"></i></span>
+                    <span class="info-box-icon"><i class="fa fa-user-graduate"></i></span>
 
                     <div class="info-box-content ">
-                        <span class="info-box-text">Commande sans Package</span>
-                        <span class="info-box-number">52 <i class="fas fa-truck"></i> sur 122 <i
-                                class="fas fa-archive"></i></span>
+                        <span class="info-box-text">Meilleur Client</span>
+                        <span class="info-box-number">
+                            {{ isset($bestEvenement->client) ? $bestEvenement->client->nom : ''}}</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -291,7 +254,7 @@
                                     <tr>
                                         <td><a href="{{route('evennements.show',$last->id)}}">{{$last->libelle}}</a></td>
                                         <td><a href="{{route('clients.show',$last->client->id)}}">{{$last->client->nom}}</a></td>
-                                        <td><span class="badge badge-danger">{{$last->status}}</span></td>
+                                        <td><span class="badge badge-info">{{$last->status}}</span></td>
                                         <td>
                                             <div class="sparkbar" data-toggle="tooltip" data-placement="left"
                                             title="Caution : {{ format_money($last->caution) }} F CFA ({{$last->percentage_caution}}%)">
@@ -432,9 +395,6 @@
         animation: blinking 1s infinite;
     }
 </style>
-
-
-
 
 @endpush
 

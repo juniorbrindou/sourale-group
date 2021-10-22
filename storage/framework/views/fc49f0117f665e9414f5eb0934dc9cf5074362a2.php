@@ -367,25 +367,15 @@ endif;
 unset($__errorArgs, $__bag); ?>">Role</label>
                                         <div class="col-sm-10">
                                             
-                                            <?php if(Auth::user()->login === $user->login): ?>
-                                            <input type="hidden" name="role"
-                                                value="<?php echo e(format_no_array($user->roles->pluck('name'))); ?>">
+                                            
 
                                             <input type="text" class="form-control"
                                                 value="<?php echo e(format_no_array($user->roles->pluck('name'))); ?>"
                                                 id="inputSkills" disabled>
-                                            <?php endif; ?>
-                                            <?php if(auth()->check() && auth()->user()->hasRole('admin|super-admin')): ?>
-                                            <select required class="form-control select2" name="role"
-                                                style="width: 100%;">
-                                                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option <?php if($loop->first): ?> selected="selected" <?php endif; ?>
-                                                    value="<?php echo e($role->name); ?>"> <?php echo e($role->name); ?>
-
-                                                </option> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                                            </select>
-                                            <?php endif; ?>
+                                            
+                                            
+                                            
+                                            
 
                                         </div>
                                     </div>
