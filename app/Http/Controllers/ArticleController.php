@@ -55,7 +55,7 @@ class ArticleController extends Controller
             'type_article_id' => 'required|numeric',
             'prix_tarification' => 'required|numeric|min:0',
             'description' => 'nullable',
-            'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
+            'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg',
         ], [
             'libelle.required' => 'Le champ libéllé est obligatoire',
             'libelle.unique' => 'La valeur de ce champ est déja utilisée',
@@ -120,7 +120,7 @@ class ArticleController extends Controller
             'type_article_id' => 'required|numeric',
             'description' => 'nullable',
             'prix_tarification' => 'required|numeric|min:0',
-            'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg|max:2048',
+            'article_photo' => 'nullable|file|image|mimes:jpeg,png,gif,jpg',
         ], [
             'libelle.required' => 'Le champ libéllé est obligatoire',
             'libelle.unique' => 'Ce nom d\'article existe déjà',
