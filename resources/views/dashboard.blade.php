@@ -90,7 +90,7 @@
 
         {{-- rapport mensuel --}}
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-6">
                 {{-- debut du card pour les charts --}}
                 <div class="card">
                     <div class="card-header">
@@ -105,60 +105,56 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-5">
-                                <p class="text-center">
+                            {{-- <div class="col-md-5"> --}}
+                                {{-- <p class="text-center">
                                     <strong>Etat des Locations</strong>
-                                </p>
+                                </p> --}}
 
                                 {{-- debut de chart --}}
-                                <div class="chart row">
+                                {{-- <div class="chart row">
                                     <div class="col-md-6">
                                         <div id="chartContainer1" style="height: 180px;"></div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- /.chart-responsive -->
-                            </div>
+                            {{-- </div> --}}
                             <!-- /.col -->
 
                             {{-- objectif et accomplissements --}}
-                            <div class="col-md-7">
-                                <p class="text-center">
-                                    <strong>Objectifs et accomplissements</strong>
-                                </p>
-
+                            <div class="col-md-12">
                                 <div class="progress-group">
-                                    Arcticles Ajoutés
-                                    <span class="float-right"><b>160</b>/200</span>
+                                    Locations en Cours
+                                    <span class="float-right"><b>{{($totalEvenementsEnCours->count())?? $totalEvenementsEnCours->count() }}</b>/ {{$allEvents->count()}}</span>
                                     <div class="progress progress-sm">
-                                        <div class="progress-bar bg-primary" style="width: 80%"></div>
-                                    </div>
-                                </div>
-                                <!-- /.progress-group -->
-
-                                <div class="progress-group">
-                                    Articles perdus/dégradés en location
-                                    <span class="float-right"><b>310</b></span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                        <div class="progress-bar bg-primary" style="width: {{($pcTotalEvenementsEnCours)?? $pcTotalEvenementsEnCours}}%"></div>
                                     </div>
                                 </div>
 
                                 <!-- /.progress-group -->
                                 <div class="progress-group">
-                                    <span class="progress-text">Visit Premium Page</span>
-                                    <span class="float-right"><b>480</b>/800</span>
+                                    <span class="progress-text">
+                                        Locations Terminées</span>
+                                    <span class="float-right"><b>{{($totalEvenementsTerminer->count())?? $totalEvenementsTerminer->count() }}</b>/ {{$allEvents->count()}}</span>
                                     <div class="progress progress-sm">
-                                        <div class="progress-bar bg-success" style="width: 60%"></div>
+                                        <div class="progress-bar bg-success" style="width: {{($pcTotalEvenementsTerminer)?? $pcTotalEvenementsTerminer}}%"></div>
                                     </div>
                                 </div>
 
                                 <!-- /.progress-group -->
                                 <div class="progress-group">
-                                    Articles perdus/dégradés en location
-                                    <span class="float-right"><b>250</b></span>
+                                    Location Cloturées
+                                    <span class="float-right"><b>{{($totalEvenements->count())?? $totalEvenements->count() }}</b>/ {{$allEvents->count()}}</span>
                                     <div class="progress progress-sm">
-                                        <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                        <div class="progress-bar bg-warning" style="width: {{($pcTotalEvenements)?? $pcTotalEvenements }}%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="progress-group">
+                                    Locations Enregistrés
+                                    <span class="float-right"><b>{{($totalEvenementsAnnuler->count())?? $totalEvenementsAnnuler->count()  }}</b>/ {{$allEvents->count()}}</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-danger" style="width: {{($pcTotalEvenementsAnnuler)?? $pcTotalEvenementsAnnuler}}%"></div>
                                     </div>
                                 </div>
                                 <!-- /.progress-group -->
@@ -174,14 +170,14 @@
 
 
 
-            <div class="col-md-2">
+            <div class="col-md-6">
                 <!-- /.info-box -->
                 <div class="mb-3 info-box bg-success">
                     <span class="info-box-icon"><i class="fa fa-money-bill-wave-alt"></i></span>
 
                     <div class="info-box-content">
                         <span class="info-box-text">Total des Gains</span>
-                        <span class="info-box-number">52 </span>
+                        <span class="info-box-number">{{format_money($sommeTotalEvenements)}} F CFA</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -200,7 +196,7 @@
                 <!-- /.info-box -->
 
                 <!-- /.info-box -->
-                <div class="mb-3 info-box bg-success">
+                <div class="mb-3 info-box bg-warning">
                     <span class="info-box-icon"><i class="fa fa-user-graduate"></i></span>
 
                     <div class="info-box-content ">
@@ -225,7 +221,7 @@
                     {{-- card header --}}
                     <div class="border-transparent card-header">
 
-                        <h3 class="card-title">Dernières Locations </h3>
+                        <h3 class="card-title">5 Dernières Locations </h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -258,7 +254,7 @@
                                         <td>
                                             <div class="sparkbar" data-toggle="tooltip" data-placement="left"
                                             title="Caution : {{ format_money($last->caution) }} F CFA ({{$last->percentage_caution}}%)">
-                                                {{$last->montant_total}}
+                                                {{format_money($last->montant_total)}}
                                             </div>
                                         </td>
                                     </tr>
@@ -292,7 +288,7 @@
                     {{-- card header --}}
                     <div class="border-transparent card-header">
 
-                        <h3 class="card-title">Dernières Locations </h3>
+                        <h3 class="card-title">5 Dernières Locations Non Cloturées </h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -317,7 +313,7 @@
                                 <tbody>
 
                                     {{-- latestFiveEvents --}}
-                                    @forelse ( $latestFiveEvents as $last )
+                                    @forelse ( $derniersEvenentsNonCloturer as $last )
                                     <tr>
                                         <td><a href="{{route('evennements.show',$last->id)}}">{{$last->libelle}}</a></td>
                                         <td><a href="{{route('clients.show',$last->client->id)}}">{{$last->client->nom}}</a></td>
@@ -325,7 +321,7 @@
                                         <td>
                                             <div class="sparkbar" data-toggle="tooltip" data-placement="left"
                                             title="Caution : {{ format_money($last->caution) }} F CFA ({{$last->percentage_caution}}%)">
-                                                {{$last->montant_total}}
+                                                {{format_money($last->montant_total)}}
                                             </div>
                                         </td>
                                     </tr>
@@ -339,14 +335,6 @@
                         </div>
                         <!-- /.table-responsive -->
                     </div>
-                    <!-- /.card-body -->
-                    <div class="clearfix card-footer">
-                        <a href="{{route('locations.create')}}" class="float-left btn btn-sm btn-info">Passer une nouvelle
-                            commande</a>
-                        <a href="{{route('evennements.index')}}" class="float-right btn btn-sm btn-secondary">Voir toutes les
-                            commandes</a>
-                    </div>
-                    <!-- /.card-footer -->
                 </div>
                 <!-- /.card -->
             </div>
@@ -428,7 +416,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard2.js')}}"></script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     window.onload = function () {
         var chart1 = new CanvasJS.Chart("chartContainer1", {
             animationEnabled: true,
@@ -451,9 +439,9 @@
             ]
         });
 
-        chart1.render();
+        // chart1.render();
     }
-</script>
+</script> --}}
 <script>
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
