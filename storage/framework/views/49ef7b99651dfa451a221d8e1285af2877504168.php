@@ -144,7 +144,7 @@
                                 </div>
 
                                 <div class="progress-group">
-                                    Locations Enregistrés
+                                    Locations En Mode de Dévis
                                     <span class="float-right"><b><?php echo e(($totalEvenementsAnnuler->count())?? $totalEvenementsAnnuler->count()); ?></b>/ <?php echo e($allEvents->count()); ?></span>
                                     <div class="progress progress-sm">
                                         <div class="progress-bar bg-danger" style="width: <?php echo e(($pcTotalEvenementsAnnuler)?? $pcTotalEvenementsAnnuler); ?>%"></div>

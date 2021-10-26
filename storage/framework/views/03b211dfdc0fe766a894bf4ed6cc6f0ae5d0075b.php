@@ -346,7 +346,7 @@
 <body>
 <div id="container">
     <div class="banner">
-        <img src="<?php echo e(asset('img/545x150&text=SOURALE-GROUP.png')); ?>" alt="banniere" class="img-banner">
+        <img src="<?php echo e(asset('img/545x150&text=SOURALE-GROUP.PNG')); ?>" alt="banniere" class="img-banner">
     </div>
     <div id="header">
         <div id="reference">

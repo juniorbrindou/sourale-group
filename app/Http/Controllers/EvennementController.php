@@ -88,7 +88,7 @@ class EvennementController extends Controller
             $ligne[$key] = $location;
         }
 
-        if ($evenement->status == 'ENREGISTRÉ') {
+        if ($evenement->status == 'DEVIS') {
             //En cours et annulé
             if ($request->statut_evenement == 'EN COURS') {
                 //nombre d'articles ou nombre d'itérations
@@ -144,7 +144,7 @@ class EvennementController extends Controller
             }
         } elseif ($evenement->status == 'ANNULÉ') {
             // EN COURS
-            // todo : reflechir sur l'evenement annulé peut passer a enregistrer ou a en cour directement
+            // todo : reflechir sur l'evenement annulé peut passer a DEVIS ou a en cour directement
         } elseif ($evenement->status == 'TERMINÉ') {
 
             //TERMINÉ -> CLOTURÉ

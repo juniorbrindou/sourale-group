@@ -7,7 +7,7 @@
     </div>
     <div class="card card-warning box-perso">
         <div class="card-header">
-            <h3 class="card-title">Enregistrement de location</h3>
+            <h3 class="card-title">Création de devis de location</h3>
         </div>
         <form wire:submit.prevent="submit">
             @csrf

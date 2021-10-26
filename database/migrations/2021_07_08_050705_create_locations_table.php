@@ -19,7 +19,7 @@ class CreateLocationsTable extends Migration
             $table->integer('qte_retour')->nullable();
             $table->integer('nb_jour')->default(1);
             $table->integer('total_une_ligne')->default(0);
-            $table->string('status')->default('Enregistré')->comment('0:Enregistré, 1:En Cours, 2:Terminé');
+            $table->string('status')->default('DEVIS')->comment('0:DEVIS, 1:En Cours, 2:Terminé');
             $table->string('etat_article')->default('BON ETAT')->nullable();
             $table->timestamp('date_location')->nullable();
             $table->timestamp('date_retour')->nullable();

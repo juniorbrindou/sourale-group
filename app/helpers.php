@@ -30,7 +30,7 @@ if (!function_exists('couleur_status')) {
             $color = 'info';
         } elseif ($status == 'ANNULÉ') {
             $color = 'danger';
-        } elseif ($status == 'ENREGISTRÉ') {
+        } elseif ($status == 'DEVIS') { //ENREGISTRÉ
             $color = 'secondary';
         } elseif ($status == 'CLOTURÉ') {
             $color = 'success';

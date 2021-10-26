@@ -79,7 +79,7 @@
                                             </div>
 
                                             <div class="timeline-footer">
-                                                @if ($evenement->status == "ENREGISTRÉ")
+                                                @if ($evenement->status == "DEVIS")
                                                     <a href="{{route('locations.show',$evenement->id)}}"
                                                     class="btn btn-primary btn-sm">Voir l'évènement</a>
                                                 @else

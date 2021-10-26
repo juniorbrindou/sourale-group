@@ -43,8 +43,8 @@ class DashboardController extends Controller
 
 
 
-        #Total Enregistré
-        $totalEvenementsEnregistrer = Evenements::where('status','=','ENREGISTRÉ')->get();
+        #Total DEVIS
+        $totalEvenementsDevis = Evenements::where('status','=','DEVIS')->get();
 
         #Total en cours
         $totalEvenementsEnCours = Evenements::where('status','=','EN COURS')->get();
@@ -57,14 +57,14 @@ class DashboardController extends Controller
 
         if ($allEvents->count() <= 0) {
             $pcTotalEvenements = 0;
-            $pcTotalEvenementsEnregistrer = 0;
+            $pcTotalEvenementsDevis = 0;
             $pcTotalEvenementsEnCours = 0;
             $pcTotalEvenementsAnnuler = 0;
             $pcTotalEvenementsTerminer = 0;
 
         }else{
             $pcTotalEvenements = $totalEvenements->count() * 100 / $allEvents->count();
-            $pcTotalEvenementsEnregistrer = $totalEvenementsEnregistrer->count() *  100 / $allEvents->count();
+            $pcTotalEvenementsDevis = $totalEvenementsDevis->count() *  100 / $allEvents->count();
             $pcTotalEvenementsEnCours = $totalEvenementsEnCours->count() * 100 / $allEvents->count();
             $pcTotalEvenementsAnnuler = $totalEvenementsAnnuler->count() * 100 / $allEvents->count();
             $pcTotalEvenementsTerminer = $totalEvenementsTerminer->count() * 100 / $allEvents->count();
@@ -91,10 +91,10 @@ class DashboardController extends Controller
             'pcTotalEvenements',
             'totalEvenementsTerminer',
             'pcTotalEvenementsTerminer',
-            'totalEvenementsEnregistrer',
-            'pcTotalEvenementsEnregistrer',
-            'pcTotalEvenementsEnCours',
+            'totalEvenementsDevis',
+            'pcTotalEvenementsDevis',
             'totalEvenementsEnCours',
+            'pcTotalEvenementsEnCours',
             'totalEvenementsAnnuler',
             'pcTotalEvenementsAnnuler',
             'allEvents',
