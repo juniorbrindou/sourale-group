@@ -33,8 +33,6 @@ class DashboardController extends Controller
         # Les 5  derniers evenements
         $latestFiveEvents = Evenements::orderBy('id','DESC')->limit(5)->get();
 
-        $t = 0;
-
         $totalEvenements = Evenements::where('status','=','CLOTURÉ')->get();
 
         $sommeTotalEvenements = $totalEvenements->sum('montant_total');

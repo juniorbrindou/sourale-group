@@ -152,7 +152,7 @@
 
                                 <div class="progress-group">
                                     Locations En Mode de Dévis
-                                    <span class="float-right"><b>{{($totalEvenementsDevis->count())?? $totalEvenementsAnnuler->count()  }}</b>/ {{$allEvents->count()}}</span>
+                                    <span class="float-right"><b>{{($totalEvenementsAnnuler->count())?? $totalEvenementsAnnuler->count()  }}</b>/ {{$allEvents->count()}}</span>
                                     <div class="progress progress-sm">
                                         <div class="progress-bar bg-danger" style="width: {{($pcTotalEvenementsAnnuler)?? $pcTotalEvenementsAnnuler}}%"></div>
                                     </div>

@@ -21,19 +21,16 @@ class FactureController extends Controller
         $tab_locations = Location::where('evenement_id', '=', $evenement->id)->get();
         $client = $tab_locations[0]->client;
         $facture = Factures::where('evenement_id', '=', $id)->firstOrFail();
-        $totalBrute = 0;
 
+        $ttc = $evenement->montant_total + $evenement->caution;
 
-        foreach ($tab_locations as $value) {
-            $totalBrute = $totalBrute + $value->total_une_ligne;
-        }
-
-
-        // ($tab_locations, 'total_une_ligne'));
-
-        // $caution = $this->totalBrute * 0.2;
-
-
-        return view('facture.invoice', compact('evenement', 'client', 'tab_locations', 'totalBrute', 'facture'));
+        return view('facture.invoice',
+        compact(
+            'evenement',
+            'client',
+            'tab_locations',
+            'facture',
+            'ttc'
+        ));
     }
 }

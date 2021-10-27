@@ -444,7 +444,7 @@
             <table class="border-1">
                 <tr>
                     <td>Total HT</td>
-                    <td>{{$totalBrute}}</td>
+                    <td>{{format_money($evenement->montant_total)}}</td>
                 </tr>
                 <tr>
                     <td>Caution ({{$evenement->percentage_caution}}%)</td>
@@ -452,7 +452,7 @@
                 </tr>
                 <tr>
                     <td>Total TTC</td>
-                    <td>{{ format_money($evenement->montant_total)}}</td>
+                    <td>{{ format_money($ttc)}}</td>
                 </tr>
             </table>
         </div>

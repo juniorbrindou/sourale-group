@@ -451,7 +451,7 @@
             <table class="border-1">
                 <tr>
                     <td>Total HT</td>
-                    <td><?php echo e($totalBrute); ?></td>
+                    <td><?php echo e(format_money($evenement->montant_total)); ?></td>
                 </tr>
                 <tr>
                     <td>Caution (<?php echo e($evenement->percentage_caution); ?>%)</td>
@@ -459,7 +459,7 @@
                 </tr>
                 <tr>
                     <td>Total TTC</td>
-                    <td><?php echo e(format_money($evenement->montant_total)); ?></td>
+                    <td><?php echo e(format_money($ttc)); ?></td>
                 </tr>
             </table>
         </div>
