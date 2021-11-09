@@ -56,7 +56,6 @@ class Show extends Component
 
 
 
-
     /**
      * Ajout de nouvelle ligne dans le tableau frontend
      * @return void
@@ -109,7 +108,6 @@ class Show extends Component
 
 
 
-
     /**
      * Ajout de nouvelle ligne
      * @return void
@@ -138,7 +136,6 @@ class Show extends Component
         # caution de l'évènement
         $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * $this->evenement_percentage_caution / 100;
     }
-
 
 
 
@@ -235,7 +232,6 @@ class Show extends Component
 
 
 
-
     /**
      * Passage de la saisie des informations de l'évènement à la page de selection des articles
      * @return response()
@@ -283,6 +279,14 @@ class Show extends Component
         # passage au step 3
         $this->currentStep = 3;
     }
+
+
+
+
+
+
+
+
 
     /**
      * fonction d'initialisation
@@ -342,7 +346,6 @@ class Show extends Component
         $this->evenement_date_fin_evenement = \str_replace(' ', 'T', $evenement->date_fin_evenement);
         $this->duree_evenement = Carbon::parse($this->evenement->date_debut_evenement)->DiffForHumans($this->evenement->date_fin_evenement, true);
     }
-
 
 
 

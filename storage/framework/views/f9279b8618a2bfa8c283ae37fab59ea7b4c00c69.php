@@ -212,7 +212,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                         </div>
 
-                                        <div class="col-md-1">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="evenement_percentage_caution">Caution</label>
                                                 <input type="number" min="0" max="100" wire:model.defer="evenement_percentage_caution"
@@ -438,6 +438,8 @@ unset($__errorArgs, $__bag); ?>
                                                 Caution(<?php echo e($evenement_percentage_caution); ?>%) : <b> <?php echo e(isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''); ?> F
                                                     FCA</b><br>
                                                 TTC : <b><?php echo e(isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : ''); ?> F FCA</b>
+                                                <br>
+                                                Remise <input type="number" wire:model.defer="remise" style="width: 25%"/>
                                             </div>
                                             
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Location;
 use App\Evenements;
 use App\Factures;
-use Illuminate\Http\Request;
 
 class FactureController extends Controller
 {
