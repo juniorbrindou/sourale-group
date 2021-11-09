@@ -36,14 +36,24 @@
 
                 <td>{{$evenement->client->nom}}</td>
 
+                @if ($evenement->remise>0)
+
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
-                    title="Sans la caution: {{ format_money($evenement->montant_total - $evenement->caution) }} F CFA">
-                    <b>{{ format_money($evenement->montant_total) }}</b>
+                    title="TTC: {{ format_money($evenement->montant_total) }} F CFA">
+                    <span class="badge badge-warning">Remise</span> <b>{{ format_money($evenement->remise) }}</b>
                 </td>
+                @else
+
+                <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
+                    title="Sans la caution: {{ format_money($evenement->montant_total) }} F CFA">
+                    <b>{{ format_money($evenement->montant_total + $evenement->caution) }} F CFA</b>
+               </td>
+
+                @endif
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="right"
                 title="{{ format_money($evenement->percentage_caution) }}%">
-                    <b>{{ format_money($evenement->caution) }}</b>
+                    <b>{{ format_money($evenement->caution) }} F CFA</b>
                 </td>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"

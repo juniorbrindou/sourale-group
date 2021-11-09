@@ -36,14 +36,24 @@
 
                 <td><?php echo e($evenement->client->nom); ?></td>
 
+                <?php if($evenement->remise>0): ?>
+
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
-                    title="Sans la caution: <?php echo e(format_money($evenement->montant_total - $evenement->caution)); ?> F CFA">
-                    <b><?php echo e(format_money($evenement->montant_total)); ?></b>
+                    title="TTC: <?php echo e(format_money($evenement->montant_total)); ?> F CFA">
+                    <span class="badge badge-warning">Remise</span> <b><?php echo e(format_money($evenement->remise)); ?></b>
                 </td>
+                <?php else: ?>
+
+                <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
+                    title="Sans la caution: <?php echo e(format_money($evenement->montant_total)); ?> F CFA">
+                    <b><?php echo e(format_money($evenement->montant_total + $evenement->caution)); ?> F CFA</b>
+               </td>
+
+                <?php endif; ?>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="right"
                 title="<?php echo e(format_money($evenement->percentage_caution)); ?>%">
-                    <b><?php echo e(format_money($evenement->caution)); ?></b>
+                    <b><?php echo e(format_money($evenement->caution)); ?> F CFA</b>
                 </td>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
