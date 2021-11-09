@@ -48,6 +48,9 @@ class Show extends Component
     #corbeille de liste d'article
     public $trashed = [];
 
+    # Nouveau champ remise
+    public $remise=0;
+
 
 
 
@@ -156,6 +159,17 @@ class Show extends Component
             # obtention de l'id du type de l'évènement
             $type_evenement_id = Type_evenements::where('libelle', '=', $this->tab_evenement['type_evenement_libelle'])->first()->id;
 
+            #recuperation de la remise
+            if (isset($this->remise)) {
+                if ($this->remise > 0 ) {
+                    $this->tab_evenement['remise'] = $this->remise;
+                }else{
+                    $this->tab_evenement['remise'] = 0;
+                }
+            }else{
+                $this->tab_evenement['remise'] = 0;
+            }
+
             # modification des informations de l'évènement
             $this->evenement->update(
                 [
@@ -168,6 +182,7 @@ class Show extends Component
                     'date_debut_evenement' => $this->tab_evenement['evenement_date_debut_evenement'],
                     'date_fin_evenement' => $this->tab_evenement['evenement_date_fin_evenement'],
                     'nbr_personne' => $this->tab_evenement['evenement_nbr_personne'],
+                    'remise' => $this->tab_evenement['remise'],
                     'nb_jour' => Carbon::parse($this->tab_evenement['evenement_date_debut_evenement'])->DiffInDays($this->tab_evenement['evenement_date_fin_evenement']),
                 ]
             );
@@ -301,6 +316,9 @@ class Show extends Component
         $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
         #le type d'evenement préselectionné:
         $this->type_evenement_libelle = $evenement->type_evenement->libelle;
+
+         # Recuperation de la remise en BD
+         $this->remise = $this->evenement->remise;
 
         # creation du tableau des articles de la liste
         $articles = Articles::orderBy('libelle', 'ASC')->get();
