@@ -75,7 +75,7 @@
                                     <td>{{$tab_location->qte_loue}}</td>
                                     <td>{{$tab_location->nb_jour}}</td>
                                     <td>{{ format_money($tab_location->article->prix_tarification)}}</td>
-                                    <td>{{total_ligne($tab_location->qte_loue,$tab_location->nb_jour,$tab_location->article->prix_tarification)}}
+                                    <td>{{format_money(total_ligne($tab_location->qte_loue,$tab_location->nb_jour,$tab_location->article->prix_tarification)) }}
                                 </tr>
                                 @empty
                                 Aucune information...

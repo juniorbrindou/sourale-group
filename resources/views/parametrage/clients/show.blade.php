@@ -23,7 +23,7 @@
                             <li class="list-group-item">
                                 <b>Meilleur gain</b>
                                 <a class="float-right text-bold">
-                                    {{ $bestEvenement->montant_total ?? '0' }} F CFA
+                                    {{ format_money($bestEvenement->montant_total) ?? '0' }} F CFA
                                 </a>
                             </li>
                             <li class="list-group-item">
@@ -72,8 +72,8 @@
                                             <div class="timeline-body">
                                                 <p>{{$evenement->libelle}} à {{$evenement->lieu}}</p>
                                                 <p>
-                                                    Caution : {{$evenement->caution}} F CFA <br>
-                                                    Montant Total : {{$evenement->montant_total}} F CFA
+                                                    Caution : {{ format_money($evenement->caution) }} F CFA <br>
+                                                    Montant Total : {{format_money($evenement->montant_total)}} F CFA
                                                 </p>
                                                 {{$evenement->status}}
                                             </div>
