@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne, secondStepSubmit, addArticle">
+        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne, secondStepSubmit, addArticle, activeReductionField">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -312,11 +312,33 @@
 
                                             {{-- les prix --}}
                                             <div class="text-right col-md-4">
-                                                Caution({{ $evenement_percentage_caution }}%) : <b> {{ isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''}} F
-                                                    FCA</b><br>
-                                                TTC : <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
+                                                Total HT <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
                                                 <br>
-                                                Remise <input type="number" wire:model.defer="remise" style="width: 25%"/>
+                                                @if ($reductible)
+                                                    Remise <input type="number" wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Modiffier" wire:click="activeReductionField"
+                                                        class="btn btn-success btn-xs">
+                                                        <i class="fa fa-save"></i>
+                                                    </button>
+                                                @else
+                                                    Remise <input type="number" disabled wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Enregistrer" wire:click="activeReductionField"
+                                                        class="btn btn-primary btn-xs">
+                                                        <i class="fa fa-pen"></i>
+                                                    </button>
+                                                @endif
+
+
+                                                {{-- <button wire:click="startEdit({{$item}})" title="Modiffier"
+                                                    class="btn btn-dark ">
+                                                    <i class="fa fa-pen"></i>
+                                                </button> --}}
+
+                                                <br>
+                                                Caution({{ $evenement_percentage_caution }}%) : <b> {{ isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''}} F
+                                                FCA</b>
+                                                <br>
+                                                TTC : <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
                                             </div>
                                             {{-- fin prix --}}
 

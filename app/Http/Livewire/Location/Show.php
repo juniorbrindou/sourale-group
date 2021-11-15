@@ -51,9 +51,27 @@ class Show extends Component
     # Nouveau champ remise
     public $remise=0;
 
+    # Booleen pour caution Modifiable
+    public $reductible = false;
 
 
 
+
+    /**
+     * Rendre la caution modifiable
+     * @return [bolean]
+     */
+    public function activeReductionField()
+    {
+        if ($this->reductible == true) {
+
+            return $this->reductible = false;
+
+        }else {
+
+            return $this->reductible = true;
+        }
+    }
 
 
 
