@@ -164,8 +164,9 @@
                                         </div>
                                     </div>
 
-
-                                    <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
+                                    <div class="mx-auto col-md-3">
+                                        <a class="btn btn-block btn-primary " wire:click="secondStepSubmit">Suivant <i class="fa fa-arrow-alt-circle-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -248,7 +249,9 @@
                             </div>
                             <div class="col-md-3 col-sm-6">
                                 <button type="submit" wire:click="addArticle"
-                                    class="btn btn-primary btn-block">Ajouter</button>
+                                    class="btn btn-primary btn-block">
+                                    <i class="fa fa-plus-circle"></i>
+                                    Ajouter</button>
                             </div>
                         </div>
                     </div>
@@ -315,7 +318,7 @@
                                                 Total HT <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
                                                 <br>
                                                 @if ($reductible)
-                                                    Remise <input type="number" wire:model.defer="remise" style="width: 25%"/>
+                                                    Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
                                                     <button title="Modiffier" wire:click="activeReductionField"
                                                         class="btn btn-success btn-xs">
                                                         <i class="fa fa-save"></i>
@@ -329,16 +332,11 @@
                                                 @endif
 
 
-                                                {{-- <button wire:click="startEdit({{$item}})" title="Modiffier"
-                                                    class="btn btn-dark ">
-                                                    <i class="fa fa-pen"></i>
-                                                </button> --}}
-
                                                 <br>
                                                 Caution({{ $evenement_percentage_caution }}%) : <b> {{ isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''}} F
                                                 FCA</b>
                                                 <br>
-                                                TTC : <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
+                                                TTC : <b>{{ isset($tab_evenement['ttc']) ? format_money($tab_evenement['ttc']) : '' }} F FCA</b>
                                             </div>
                                             {{-- fin prix --}}
 
@@ -405,13 +403,13 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
-                                <a href="{{url('locations')}}" class="mb-2 btn btn-warning btn-block text-light">Retour
+                                <a href="{{url('locations')}}" class="mb-2 btn btn-warning btn-block text-light"><i class="fa fa-arrow-circle-left"></i> Retour
                                     à la liste</a>
                             </div>
 
                             <div class="col-md-6 col-sm-12">
                                 <button type="submit" wire:click="addInBD"
-                                    class="btn btn-primary btn-block">Valider</button>
+                                    class="btn btn-primary btn-block"><i class="fa fa-save"></i> Valider</button>
                             </div>
                         </div>
                     </div>

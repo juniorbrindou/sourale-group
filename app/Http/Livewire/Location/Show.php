@@ -43,7 +43,6 @@ class Show extends Component
     public $article_libelle;
     public $qte_article;
     public $nb_jour;
-    public $containDuree;
 
     #corbeille de liste d'article
     public $trashed = [];
@@ -64,6 +63,9 @@ class Show extends Component
     public function activeReductionField()
     {
         if ($this->reductible == true) {
+
+            $this->tab_evenement['evenement_caution'] = ($this->tab_evenement['evenement_montant_total'] - $this->remise) * $this->evenement_percentage_caution / 100;
+            $this->tab_evenement['ttc'] = $this->ttcCalcul($this->tab_evenement['evenement_montant_total'],$this->remise,$this->tab_evenement['evenement_caution']);
 
             return $this->reductible = false;
 
@@ -154,8 +156,16 @@ class Show extends Component
 
         # Montant total de l'évènement
         $this->tab_evenement['evenement_montant_total'] = array_sum(array_column($this->tab_locations, 'total_une_ligne'));
+
         # caution de l'évènement
-        $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * $this->evenement_percentage_caution / 100;
+        if ($this->tab_evenement['evenement_montant_total'] >= $this->remise)
+            $this->tab_evenement['evenement_caution'] = ($this->tab_evenement['evenement_montant_total'] - $this->remise) * $this->evenement_percentage_caution / 100;
+        else
+            $this->tab_evenement['evenement_caution'] = 0;
+
+        # TTC
+        $this->tab_evenement['ttc'] = $this->tab_evenement['evenement_caution'] + $this->tab_evenement['evenement_montant_total'] - $this->remise;
+
     }
 
 
@@ -295,6 +305,8 @@ class Show extends Component
         # calcul de la caution : premier affichage
         $this->tab_evenement['evenement_caution'] = $this->evenement_montant_total * $this->evenement_percentage_caution / 100;
         $this->tab_evenement['evenement_montant_total'] = $this->evenement_montant_total;
+        #calcul  de ttc : ttc  = ht - remise + caution
+        $this->tab_evenement['ttc'] = $this->ttcCalcul($this->evenement_montant_total,$this->evenement->remise,$this->tab_evenement['evenement_caution']);
         $this->tab_evenement['evenement_lieu'] = $this->evenement_lieu;
         $this->tab_evenement['evenement_nbr_personne'] = $this->evenement_nbr_personne;
         $this->tab_evenement['evenement_date_debut_evenement'] = $this->evenement_date_debut_evenement;
@@ -314,6 +326,17 @@ class Show extends Component
     }
 
 
+    /**
+     * Fonctions de calculs
+     * @param $ht
+     * @param $remise
+     * @param $caution
+     * @return
+     */
+    public function ttcCalcul($ht, $remise, $caution)
+    {
+        return  ($ht - $remise +$caution);
+    }
 
 
 
@@ -414,7 +437,20 @@ class Show extends Component
         }
 
         $this->tab_evenement['evenement_montant_total'] = $this->tab_evenement['evenement_montant_total'] - $this->tab_locations[$item]['total_une_ligne'];
-        $this->tab_evenement['evenement_caution'] = $this->tab_evenement['evenement_montant_total'] * $this->evenement_percentage_caution / 100;
+        # caution de l'évènement
+        if ($this->tab_evenement['evenement_montant_total'] >= $this->remise)
+        {
+            $this->tab_evenement['evenement_caution'] = ($this->tab_evenement['evenement_montant_total'] - $this->remise) * $this->evenement_percentage_caution / 100;
+        }else{
+
+            $this->tab_evenement['evenement_caution'] = 0;
+//            $this->tab_evenement['ttc'] = 0;
+
+        }
+
+
+        # TTC
+
         unset($this->tab_locations[$item]);
         $this->tab_locations = array_values($this->tab_locations);
         $this->makeEmptyFields();
@@ -449,7 +485,7 @@ class Show extends Component
 
     /**
      * Fonction du rendu
-     * @return Illuminate\View\View
+     * @return Factory|View
      */
     public function render()
     {
