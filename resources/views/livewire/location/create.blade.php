@@ -153,8 +153,9 @@
                                             </div>
                                         </div>
 
-
-                                        <a class="btn btn-warning col-6" wire:click="firstStepSubmit">Suivant</a>
+                                        <div class="mx-auto col-md-6">
+                                            <a class="btn btn-warning btn-block" wire:click="firstStepSubmit">Suivant <i class="fa fa-arrow-alt-circle-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- fin Client -->
@@ -260,7 +261,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-1">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="percentage_caution">Caution</label>
                                                 <input type="number" min="0" max="100" wire:model.defer="percentage_caution"
@@ -277,8 +278,16 @@
                                     </div>
 
 
-                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Précedent</a>
-                                    <a class="btn btn-warning col-4 offset-2" wire:click="secondStepSubmit">Suivant</a>
+                                    <a class="btn btn-secondary col-4 offset-1"
+                                        wire:click="gotToBeforeStepSubmit">
+                                        <i class="fa fa-arrow-alt-circle-left"></i>
+                                        Précedent
+                                    </a>
+                                    <a class="btn btn-warning col-4 offset-2"
+                                        wire:click="secondStepSubmit">
+                                        Suivant
+                                        <i class="fa fa-arrow-alt-circle-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -361,7 +370,9 @@
                             </div>
                             <div class="col-md-3 col-sm-6">
                                 <button type="submit" wire:click="addArticle"
-                                    class="btn btn-primary btn-block">Ajouter</button>
+                                    class="btn btn-primary btn-block">
+                                    <b>Ajouter <i class="fa fa-plus"></i></b>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -415,9 +426,26 @@
                                                 </b><br>
                                                 Durée : <b>{{ $ligne['duree_evenement'] ?? '' }}</b>
                                             </div>
+
+                                            {{-- les prix --}}
                                             <div class="text-right col-md-4">
+                                                Total HT : <b>{{ format_money($totalBrute) }}F FCA</b>
+                                                <br>
+                                                @if ($reductible)
+                                                    Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Modiffier" wire:click="activeReductionField"
+                                                        class="btn btn-success btn-xs">
+                                                        <i class="fa fa-save"></i>
+                                                    </button>
+                                                @else
+                                                    Remise <input type="number" disabled wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Enregistrer" wire:click="activeReductionField"
+                                                        class="btn btn-primary btn-xs">
+                                                        <i class="fa fa-pen"></i>
+                                                    </button>
+                                                @endif
+                                                <br>
                                                 Caution({{$ligne['percentage_caution']?? ''}}%) : <b>{{ format_money($caution) }}F FCA</b><br>
-                                                TTC : <b>{{ format_money($totalBrute) }}F FCA</b>
                                             </div>
                                         </div>
                                     </div>

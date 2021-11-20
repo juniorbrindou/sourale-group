@@ -21,7 +21,7 @@
                             <li class="list-group-item">
                                 <b>Meilleur gain</b>
                                 <a class="float-right text-bold">
-                                    <?php echo e($bestEvenement->montant_total ?? '0'); ?> F CFA
+                                    <?php echo e(format_money($bestEvenement->montant_total) ?? '0'); ?> F CFA
                                 </a>
                             </li>
                             <li class="list-group-item">
@@ -71,15 +71,15 @@
                                             <div class="timeline-body">
                                                 <p><?php echo e($evenement->libelle); ?> à <?php echo e($evenement->lieu); ?></p>
                                                 <p>
-                                                    Caution : <?php echo e($evenement->caution); ?> F CFA <br>
-                                                    Montant Total : <?php echo e($evenement->montant_total); ?> F CFA
+                                                    Caution : <?php echo e(format_money($evenement->caution)); ?> F CFA <br>
+                                                    Montant Total : <?php echo e(format_money($evenement->montant_total)); ?> F CFA
                                                 </p>
                                                 <?php echo e($evenement->status); ?>
 
                                             </div>
 
                                             <div class="timeline-footer">
-                                                <?php if($evenement->status == "ENREGISTRÉ"): ?>
+                                                <?php if($evenement->status == "DEVIS"): ?>
                                                     <a href="<?php echo e(route('locations.show',$evenement->id)); ?>"
                                                     class="btn btn-primary btn-sm">Voir l'évènement</a>
                                                 <?php else: ?>

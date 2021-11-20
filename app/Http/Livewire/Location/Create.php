@@ -55,8 +55,41 @@ class Create extends Component
     #corbeille de liste d'article
     public $trashed = [];
 
+    # Booleen pour caution Modifiable
+    public $reductible = false;
+
+     # Nouveau champ remise
+     public $remise=0;
 
 
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Rendre la caution modifiable
+     * @return [bolean]
+     */
+    public function activeReductionField()
+    {
+        if ($this->reductible == true) {
+
+            $this->caution = ($this->tab_evenement['evenement_montant_total'] - $this->remise) * $this->ligne['percentage_caution'] / 100;
+            $this->tab_evenement['ttc'] = $this->ttcCalcul($this->tab_evenement['evenement_montant_total'],$this->remise,$this->tab_evenement['evenement_caution']);
+
+            return $this->reductible = false;
+
+        }else {
+
+            return $this->reductible = true;
+        }
+    }
 
 
 

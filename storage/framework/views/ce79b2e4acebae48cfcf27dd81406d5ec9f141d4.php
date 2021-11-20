@@ -77,7 +77,7 @@
                                     <td><?php echo e($tab_location->qte_loue); ?></td>
                                     <td><?php echo e($tab_location->nb_jour); ?></td>
                                     <td><?php echo e(format_money($tab_location->article->prix_tarification)); ?></td>
-                                    <td><?php echo e(total_ligne($tab_location->qte_loue,$tab_location->nb_jour,$tab_location->article->prix_tarification)); ?>
+                                    <td><?php echo e(format_money(total_ligne($tab_location->qte_loue,$tab_location->nb_jour,$tab_location->article->prix_tarification))); ?>
 
                                 </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>

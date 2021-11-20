@@ -165,7 +165,11 @@
                                     </div>
 
                                     <div class="mx-auto col-md-3">
-                                        <a class="btn btn-block btn-primary " wire:click="secondStepSubmit">Suivant <i class="fa fa-arrow-alt-circle-right"></i></a>
+                                        <a class="btn btn-block btn-primary"
+                                            wire:click="secondStepSubmit">
+                                            Suivant
+                                            <i class="fa fa-arrow-alt-circle-right"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

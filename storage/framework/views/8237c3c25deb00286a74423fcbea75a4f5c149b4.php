@@ -203,8 +203,9 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
                                         </div>
 
-
-                                        <a class="btn btn-warning col-6" wire:click="firstStepSubmit">Suivant</a>
+                                        <div class="mx-auto col-md-6">
+                                            <a class="btn btn-warning btn-block" wire:click="firstStepSubmit">Suivant <i class="fa fa-arrow-alt-circle-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- fin Client -->
@@ -373,7 +374,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                         </div>
 
-                                        <div class="col-md-1">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="percentage_caution">Caution</label>
                                                 <input type="number" min="0" max="100" wire:model.defer="percentage_caution"
@@ -404,8 +405,16 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
 
 
-                                    <a class="btn btn-secondary col-4 offset-1" wire:click="gotToBeforeStepSubmit">Précedent</a>
-                                    <a class="btn btn-warning col-4 offset-2" wire:click="secondStepSubmit">Suivant</a>
+                                    <a class="btn btn-secondary col-4 offset-1"
+                                        wire:click="gotToBeforeStepSubmit">
+                                        <i class="fa fa-arrow-alt-circle-left"></i>
+                                        Précedent
+                                    </a>
+                                    <a class="btn btn-warning col-4 offset-2"
+                                        wire:click="secondStepSubmit">
+                                        Suivant
+                                        <i class="fa fa-arrow-alt-circle-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -530,7 +539,9 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-md-3 col-sm-6">
                                 <button type="submit" wire:click="addArticle"
-                                    class="btn btn-primary btn-block">Ajouter</button>
+                                    class="btn btn-primary btn-block">
+                                    <b>Ajouter <i class="fa fa-plus"></i></b>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -585,9 +596,26 @@ unset($__errorArgs, $__bag); ?>
                                                 </b><br>
                                                 Durée : <b><?php echo e($ligne['duree_evenement'] ?? ''); ?></b>
                                             </div>
+
+                                            
                                             <div class="text-right col-md-4">
+                                                Total HT : <b><?php echo e(format_money($totalBrute)); ?>F FCA</b>
+                                                <br>
+                                                <?php if($reductible): ?>
+                                                    Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Modiffier" wire:click="activeReductionField"
+                                                        class="btn btn-success btn-xs">
+                                                        <i class="fa fa-save"></i>
+                                                    </button>
+                                                <?php else: ?>
+                                                    Remise <input type="number" disabled wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Enregistrer" wire:click="activeReductionField"
+                                                        class="btn btn-primary btn-xs">
+                                                        <i class="fa fa-pen"></i>
+                                                    </button>
+                                                <?php endif; ?>
+                                                <br>
                                                 Caution(<?php echo e($ligne['percentage_caution']?? ''); ?>%) : <b><?php echo e(format_money($caution)); ?>F FCA</b><br>
-                                                TTC : <b><?php echo e(format_money($totalBrute)); ?>F FCA</b>
                                             </div>
                                         </div>
                                     </div>

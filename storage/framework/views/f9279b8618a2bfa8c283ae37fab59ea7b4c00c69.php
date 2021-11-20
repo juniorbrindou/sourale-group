@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne, secondStepSubmit, addArticle">
+        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,deleteligne, secondStepSubmit, addArticle, activeReductionField">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -242,8 +242,13 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
 
-
-                                    <a class="btn btn-primary" wire:click="secondStepSubmit">Suivant</a>
+                                    <div class="mx-auto col-md-3">
+                                        <a class="btn btn-block btn-primary"
+                                            wire:click="secondStepSubmit">
+                                            Suivant
+                                            <i class="fa fa-arrow-alt-circle-right"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -368,7 +373,9 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-md-3 col-sm-6">
                                 <button type="submit" wire:click="addArticle"
-                                    class="btn btn-primary btn-block">Ajouter</button>
+                                    class="btn btn-primary btn-block">
+                                    <i class="fa fa-plus-circle"></i>
+                                    Ajouter</button>
                             </div>
                         </div>
                     </div>
@@ -435,11 +442,28 @@ unset($__errorArgs, $__bag); ?>
 
                                             
                                             <div class="text-right col-md-4">
-                                                Caution(<?php echo e($evenement_percentage_caution); ?>%) : <b> <?php echo e(isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''); ?> F
-                                                    FCA</b><br>
-                                                TTC : <b><?php echo e(isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : ''); ?> F FCA</b>
+                                                Total HT <b><?php echo e(isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : ''); ?> F FCA</b>
                                                 <br>
-                                                Remise <input type="number" wire:model.defer="remise" style="width: 25%"/>
+                                                <?php if($reductible): ?>
+                                                    Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Modiffier" wire:click="activeReductionField"
+                                                        class="btn btn-success btn-xs">
+                                                        <i class="fa fa-save"></i>
+                                                    </button>
+                                                <?php else: ?>
+                                                    Remise <input type="number" disabled wire:model.defer="remise" style="width: 25%"/>
+                                                    <button title="Enregistrer" wire:click="activeReductionField"
+                                                        class="btn btn-primary btn-xs">
+                                                        <i class="fa fa-pen"></i>
+                                                    </button>
+                                                <?php endif; ?>
+
+
+                                                <br>
+                                                Caution(<?php echo e($evenement_percentage_caution); ?>%) : <b> <?php echo e(isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''); ?> F
+                                                FCA</b>
+                                                <br>
+                                                TTC : <b><?php echo e(isset($tab_evenement['ttc']) ? format_money($tab_evenement['ttc']) : ''); ?> F FCA</b>
                                             </div>
                                             
 
@@ -507,13 +531,13 @@ unset($__errorArgs, $__bag); ?>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
-                                <a href="<?php echo e(url('locations')); ?>" class="mb-2 btn btn-warning btn-block text-light">Retour
+                                <a href="<?php echo e(url('locations')); ?>" class="mb-2 btn btn-warning btn-block text-light"><i class="fa fa-arrow-circle-left"></i> Retour
                                     à la liste</a>
                             </div>
 
                             <div class="col-md-6 col-sm-12">
                                 <button type="submit" wire:click="addInBD"
-                                    class="btn btn-primary btn-block">Valider</button>
+                                    class="btn btn-primary btn-block"><i class="fa fa-save"></i> Valider</button>
                             </div>
                         </div>
                     </div>
