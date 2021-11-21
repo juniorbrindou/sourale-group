@@ -63,7 +63,9 @@ class Show extends Component
     public function activeReductionField()
     {
         if ($this->reductible == true) {
-
+            if ($this->remise == '' || $this->remise == null) {
+                $this->remise = 0;
+            }
             $this->tab_evenement['evenement_caution'] = ($this->tab_evenement['evenement_montant_total'] - $this->remise) * $this->evenement_percentage_caution / 100;
             $this->tab_evenement['ttc'] = $this->ttcCalcul($this->tab_evenement['evenement_montant_total'],$this->remise,$this->tab_evenement['evenement_caution']);
 
