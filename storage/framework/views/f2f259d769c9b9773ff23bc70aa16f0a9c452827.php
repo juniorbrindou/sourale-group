@@ -39,27 +39,26 @@
                 <?php if($evenement->remise>0): ?>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
-                    title="TTC: <?php echo e(format_money($evenement->montant_total)); ?> F CFA">
-                    <span class="badge badge-warning">Remise</span> <b><?php echo e(format_money($evenement->remise)); ?></b>
+                    title="REMISE: <?php echo e(format_money($evenement->remise)); ?> F ">
+                    <span class="badge badge-warning">R</span> <b><?php echo e(format_money($evenement->montant_total + $evenement->caution)); ?> F </b>
                 </td>
                 <?php else: ?>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
-                    title="Sans la caution: <?php echo e(format_money($evenement->montant_total)); ?> F CFA">
-                    <b><?php echo e(format_money($evenement->montant_total + $evenement->caution)); ?> F CFA</b>
+                    title="Sans la caution: <?php echo e(format_money($evenement->montant_total)); ?> F ">
+                    <b><?php echo e(format_money($evenement->montant_total + $evenement->caution)); ?> F</b>
                </td>
 
                 <?php endif; ?>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="right"
                 title="<?php echo e(format_money($evenement->percentage_caution)); ?>%">
-                    <b><?php echo e(format_money($evenement->caution)); ?> F CFA</b>
+                    <b><?php echo e(format_money($evenement->caution)); ?> F </b>
                 </td>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
                     title="Date de Fin : <?php echo e(long_date($evenement->date_fin_evenement)); ?>">
                     <?php echo e(long_date($evenement->date_debut_evenement)); ?> </td>
-
                 <td>
                     <span class="badge badge-<?php echo e(couleur_status($evenement->status)); ?> text-lg"><?php echo e($evenement->status); ?>
 

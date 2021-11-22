@@ -39,27 +39,26 @@
                 @if ($evenement->remise>0)
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
-                    title="TTC: {{ format_money($evenement->montant_total) }} F CFA">
-                    <span class="badge badge-warning">Remise</span> <b>{{ format_money($evenement->remise) }}</b>
+                    title="REMISE: {{ format_money($evenement->remise) }} F ">
+                    <span class="badge badge-warning">R</span> <b>{{ format_money($evenement->montant_total + $evenement->caution) }} F </b>
                 </td>
                 @else
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
-                    title="Sans la caution: {{ format_money($evenement->montant_total) }} F CFA">
-                    <b>{{ format_money($evenement->montant_total + $evenement->caution) }} F CFA</b>
+                    title="Sans la caution: {{ format_money($evenement->montant_total) }} F ">
+                    <b>{{ format_money($evenement->montant_total + $evenement->caution) }} F</b>
                </td>
 
                 @endif
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="right"
                 title="{{ format_money($evenement->percentage_caution) }}%">
-                    <b>{{ format_money($evenement->caution) }} F CFA</b>
+                    <b>{{ format_money($evenement->caution) }} F </b>
                 </td>
 
                 <td style="cursor:pointer" data-toggle="tooltip" data-placement="top"
                     title="Date de Fin : {{ long_date($evenement->date_fin_evenement) }}">
                     {{ long_date($evenement->date_debut_evenement) }} </td>
-
                 <td>
                     <span class="badge badge-{{couleur_status($evenement->status)}} text-lg">{{$evenement->status}}
                         @if ($evenement->status === "EN COURS")

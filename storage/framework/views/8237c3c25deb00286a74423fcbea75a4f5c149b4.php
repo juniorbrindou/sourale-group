@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
+        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle, activeReductionField">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -599,7 +599,8 @@ unset($__errorArgs, $__bag); ?>
 
                                             
                                             <div class="text-right col-md-4">
-                                                Total HT : <b><?php echo e(format_money($totalBrute)); ?>F FCA</b>
+                                                
+                                                Total HT : <b><?php echo e(format_money($totalBrute)); ?> F FCA</b>
                                                 <br>
                                                 <?php if($reductible): ?>
                                                     Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
@@ -615,7 +616,8 @@ unset($__errorArgs, $__bag); ?>
                                                     </button>
                                                 <?php endif; ?>
                                                 <br>
-                                                Caution(<?php echo e($ligne['percentage_caution']?? ''); ?>%) : <b><?php echo e(format_money($caution)); ?>F FCA</b><br>
+                                                Caution(<?php echo e($ligne['percentage_caution']?? ''); ?>%) : <b><?php echo e(format_money($caution)); ?> F FCA</b><br>
+                                                TTC : <b><?php echo e($ligne['ttc']?? ''); ?> F FCA</b><br>
                                             </div>
                                         </div>
                                     </div>

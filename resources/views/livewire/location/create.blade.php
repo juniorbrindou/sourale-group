@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.delay
-        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle">
+        wire:target="gotToBeforeStepSubmit,addInBD,resetLigne,addDeleteLigne,firstStepSubmit, secondStepSubmit, addArticle, activeReductionField">
         <div class="custom-loading-spinner">
             Patientez...
         </div>
@@ -429,7 +429,8 @@
 
                                             {{-- les prix --}}
                                             <div class="text-right col-md-4">
-                                                Total HT : <b>{{ format_money($totalBrute) }}F FCA</b>
+                                                {{-- total brute = montant total --}}
+                                                Total HT : <b>{{ format_money($totalBrute) }} F FCA</b>
                                                 <br>
                                                 @if ($reductible)
                                                     Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
@@ -445,7 +446,8 @@
                                                     </button>
                                                 @endif
                                                 <br>
-                                                Caution({{$ligne['percentage_caution']?? ''}}%) : <b>{{ format_money($caution) }}F FCA</b><br>
+                                                Caution({{$ligne['percentage_caution']?? ''}}%) : <b>{{ format_money($caution) }} F FCA</b><br>
+                                                TTC : <b>{{$ligne['ttc']?? ''}} F FCA</b><br>
                                             </div>
                                         </div>
                                     </div>

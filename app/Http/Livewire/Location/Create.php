@@ -79,9 +79,11 @@ class Create extends Component
     public function activeReductionField()
     {
         if ($this->reductible == true) {
-
-            $this->caution = ($this->tab_evenement['evenement_montant_total'] - $this->remise) * $this->ligne['percentage_caution'] / 100;
-            $this->tab_evenement['ttc'] = $this->ttcCalcul($this->tab_evenement['evenement_montant_total'],$this->remise,$this->tab_evenement['evenement_caution']);
+            if ($this->remise == '' || $this->remise == null) {
+                $this->remise = 0;
+            }
+            $this->caution = ($this->totalBrute - $this->remise) * $this->ligne['percentage_caution'] / 100;
+            $this->ligne['ttc'] = $this->ttcCalcul($this->totalBrute,$this->remise,$this->caution);
 
             return $this->reductible = false;
 
@@ -92,6 +94,22 @@ class Create extends Component
     }
 
 
+
+
+
+
+
+     /**
+     * Fonctions de calculs
+     * @param $ht
+     * @param $remise
+     * @param $caution
+     * @return float
+     */
+    public function ttcCalcul($ht, $remise, $caution)
+    {
+        return  ($ht - $remise +$caution);
+    }
 
 
 
@@ -139,6 +157,8 @@ class Create extends Component
             // calcul totalBrute et caution
             $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
             $this->caution = $this->totalBrute * ($this->ligne['percentage_caution'] /100);
+            $this->ligne['ttc'] = $this->ttcCalcul($this->totalBrute,$this->remise,$this->caution);
+
 
             #code pour retirer l'article sélectionné de la liste des articles
             foreach ($this->articles as $key => $value) {
@@ -300,6 +320,7 @@ class Create extends Component
                     'montant_total' => $this->totalBrute,
                     'status' => 'DEVIS',
                     'nb_jour' => Carbon::parse($this->date_debut_evenement)->DiffInDays($this->date_fin_evenement),
+                    'remise' => $this->remise,
                 ]
             );
 
@@ -474,6 +495,7 @@ class Create extends Component
         $this->tabArticles = array_values($this->tabArticles);
         $this->totalBrute = array_sum(array_column($this->tabArticles, 'totalUneLigne'));
         $this->caution = $this->totalBrute * $this->ligne['percentage_caution'] /100;
+        $this->ligne['ttc'] = $this->ttcCalcul($this->totalBrute,$this->remise,$this->caution);
 
         $this->makeEmptyFields();
     }
