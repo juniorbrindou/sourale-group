@@ -457,6 +457,12 @@
                     <td>Caution (<?php echo e($evenement->percentage_caution); ?>%)</td>
                     <td><?php echo e(format_money($evenement->caution) ?? ''); ?></td>
                 </tr>
+                <?php if($evenement->remise > 0): ?>
+                    <tr>
+                        <td>Remise</td>
+                        <td><?php echo e(format_money($evenement->remise)); ?></td>
+                    </tr>
+                <?php endif; ?>
                 <tr>
                     <td>Total TTC</td>
                     <td><?php echo e(format_money($ttc)); ?></td>
