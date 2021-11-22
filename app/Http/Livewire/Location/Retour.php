@@ -53,6 +53,8 @@ class Retour extends Component
 
     public $edit_id;
 
+    public $ttc;
+
 
     public function cloturer()
     {
@@ -111,6 +113,7 @@ class Retour extends Component
         $this->ligne['caution'] = $evenement->caution;
         $this->ligne['percentage_caution'] = $evenement->percentage_caution;
         $this->ligne['date_fin_evenement'] = $evenement->date_fin_evenement;
+        $this->ttc = $this->ttcCalcul($evenement->montant_total, $evenement->remise, $evenement->caution);
 
         #Gestion de la durée d'evenement
         $containDuree =  Carbon::parse($this->date_debut_evenement)->DiffForHumans($this->date_fin_evenement, true);
@@ -123,6 +126,19 @@ class Retour extends Component
 
         $this->evenement = $evenement;
         $this->type_evenements = Evenements::all();
+    }
+
+
+        /**
+     * Fonctions de calculs
+     * @param $ht
+     * @param $remise
+     * @param $caution
+     * @return
+     */
+    public function ttcCalcul($ht, $remise, $caution)
+    {
+        return  ($ht - $remise +$caution);
     }
 
     public function render()

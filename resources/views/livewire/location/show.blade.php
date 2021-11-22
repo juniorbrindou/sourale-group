@@ -335,7 +335,6 @@
                                                     </button>
                                                 @endif
 
-
                                                 <br>
                                                 Caution({{ $evenement_percentage_caution }}%) : <b> {{ isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''}} F
                                                 FCA</b>

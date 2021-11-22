@@ -42,8 +42,12 @@
                                 Durée : <b>{{ $duree_evenement ?? '' }}</b>
                             </div>
                             <div class="text-right col-md-4">
+                                Total HT({{$evenement->percentage_caution}}%) : <b>{{ format_money($evenement->caution) }}F FCA</b><br>
+                                @if ($evenement->remise > 0)
+                                Remise : <b>{{ format_money($evenement->remise) }}F FCA</b> <br>
+                                @endif
                                 Caution({{$evenement->percentage_caution}}%) : <b>{{ format_money($evenement->caution) }}F FCA</b><br>
-                                TTC : <b>{{ format_money($evenement->montant_total) }}F FCA</b>
+                                TTC : <b>{{ format_money($ttc) }}F FCA</b>
                             </div>
                         </div>
 

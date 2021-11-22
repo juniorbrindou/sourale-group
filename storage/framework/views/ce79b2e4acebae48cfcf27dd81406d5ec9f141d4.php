@@ -44,8 +44,12 @@
                                 Durée : <b><?php echo e($duree_evenement ?? ''); ?></b>
                             </div>
                             <div class="text-right col-md-4">
+                                Total HT(<?php echo e($evenement->percentage_caution); ?>%) : <b><?php echo e(format_money($evenement->caution)); ?>F FCA</b><br>
+                                <?php if($evenement->remise > 0): ?>
+                                Remise : <b><?php echo e(format_money($evenement->remise)); ?>F FCA</b> <br>
+                                <?php endif; ?>
                                 Caution(<?php echo e($evenement->percentage_caution); ?>%) : <b><?php echo e(format_money($evenement->caution)); ?>F FCA</b><br>
-                                TTC : <b><?php echo e(format_money($evenement->montant_total)); ?>F FCA</b>
+                                TTC : <b><?php echo e(format_money($ttc)); ?>F FCA</b>
                             </div>
                         </div>
 
