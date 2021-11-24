@@ -275,7 +275,7 @@
         text-align: right
     }
 
-    #summary #total table tr:nth-child(3) {
+    #summary #total table tr:last-child {
         background: #efefef;
         font-weight: 600
     }

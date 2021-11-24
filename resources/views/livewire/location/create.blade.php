@@ -317,7 +317,7 @@
                                     <option selected value="">Selectionner un article</option>
 
                                     @foreach ($articles as $key => $article)
-                                    <option value="{{$article}}"> {{$article}}</option>
+                                    <option value="{{$article}}"> {{$article}} </option>
                                     @endforeach
                                 </select>
                             </div>
