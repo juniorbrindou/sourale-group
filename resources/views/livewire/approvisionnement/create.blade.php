@@ -115,7 +115,7 @@
                                         <th>Quantité</th>
                                         <th>Catégorie</th>
                                         <th>Prix</th>
-                                        <th>Ation</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -62,6 +62,7 @@ class Show extends Component
      */
     public function activeReductionField()
     {
+        if($this->remise <= $this->tab_evenement['evenement_montant_total'] )
         if ($this->reductible == true) {
             if ($this->remise == '' || $this->remise == null) {
                 $this->remise = 0;
@@ -452,9 +453,9 @@ class Show extends Component
 
 
         # TTC
-
         unset($this->tab_locations[$item]);
         $this->tab_locations = array_values($this->tab_locations);
+        $this->tab_evenement['ttc'] = $this->ttcCalcul($this->tab_evenement['evenement_montant_total'],$this->remise,$this->tab_evenement['evenement_caution']);
         $this->makeEmptyFields();
     }
 

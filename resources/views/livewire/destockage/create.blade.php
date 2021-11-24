@@ -141,7 +141,7 @@
                                         <th>Catégorie</th>
                                         <th>Prix</th>
                                         <th>Motif</th>
-                                        <th>Ation</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

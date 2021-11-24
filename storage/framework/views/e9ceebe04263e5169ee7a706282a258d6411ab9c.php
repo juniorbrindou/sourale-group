@@ -81,7 +81,7 @@
                 <li class="nav-item">
                     <a href="<?php echo e(route('clients.index')); ?>"
                         class="nav-link <?php echo e(request()->is('parametrage/clients*') ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fa fa-user-plus nav-icon"></i>
                         <p>Clients</p>
                     </a>
                 </li>
@@ -94,7 +94,7 @@
                 <li class="nav-item">
                     <a href="<?php echo e(route('articles.index')); ?>"
                         class="nav-link <?php echo e(request()->is('parametrage/articles*') ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fa fa-hryvnia nav-icon"></i>
                         <p>Articles</p>
                     </a>
                 </li>
@@ -103,7 +103,7 @@
                 <li class="nav-item">
                     <a href="<?php echo e(route('typeArticles.index')); ?>"
                         class="nav-link <?php echo e(request()->is('parametrage/typeArticles*') ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fa fa-cogs nav-icon"></i>
                         <p>Type d'articles</p>
                     </a>
                 </li>
@@ -111,7 +111,7 @@
                 <li class="nav-item">
                     <a href="<?php echo e(route('categorieArticles.index')); ?>"
                         class="nav-link <?php echo e(request()->is('parametrage/categorieArticles*') ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fa fa-hot-tub nav-icon"></i>
                         <p>Catégorie d'articles</p>
                     </a>
                 </li>
@@ -134,7 +134,7 @@
                 <li class="nav-item">
                     <a href="<?php echo e(route('typeEvenements.index')); ?>"
                         class="nav-link <?php echo e(request()->is('parametrage/typeEvenements*') ? 'active' : ''); ?>">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fa fa-cogs nav-icon"></i>
                         <p>Types d'événements</p>
                     </a>
                 </li>

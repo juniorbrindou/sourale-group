@@ -445,7 +445,7 @@ unset($__errorArgs, $__bag); ?>
                                                 Total HT <b><?php echo e(isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : ''); ?> F FCA</b>
                                                 <br>
                                                 <?php if($reductible): ?>
-                                                    Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
+                                                    Remise <input type="number" min="0" max="<?php echo e($tab_evenement['evenement_montant_total']); ?>" wire:model.defer="remise" style="width: 25%"/>
                                                     <button title="Modiffier" wire:click="activeReductionField"
                                                         class="btn btn-success btn-xs">
                                                         <i class="fa fa-save"></i>
@@ -457,7 +457,6 @@ unset($__errorArgs, $__bag); ?>
                                                         <i class="fa fa-pen"></i>
                                                     </button>
                                                 <?php endif; ?>
-
 
                                                 <br>
                                                 Caution(<?php echo e($evenement_percentage_caution); ?>%) : <b> <?php echo e(isset($tab_evenement['evenement_caution']) ? format_money($tab_evenement['evenement_caution']) : ''); ?> F
@@ -487,7 +486,7 @@ unset($__errorArgs, $__bag); ?>
                                                     <th>jours</th>
                                                     <th>Prix U</th>
                                                     <th>Total</th>
-                                                    <th>Ation</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

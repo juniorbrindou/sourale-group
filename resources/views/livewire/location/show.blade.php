@@ -322,7 +322,7 @@
                                                 Total HT <b>{{ isset($tab_evenement['evenement_montant_total']) ? format_money($tab_evenement['evenement_montant_total']) : '' }} F FCA</b>
                                                 <br>
                                                 @if ($reductible)
-                                                    Remise <input type="number" min="0" wire:model.defer="remise" style="width: 25%"/>
+                                                    Remise <input type="number" min="0" max="{{$tab_evenement['evenement_montant_total']}}" wire:model.defer="remise" style="width: 25%"/>
                                                     <button title="Modiffier" wire:click="activeReductionField"
                                                         class="btn btn-success btn-xs">
                                                         <i class="fa fa-save"></i>
@@ -363,7 +363,7 @@
                                                     <th>jours</th>
                                                     <th>Prix U</th>
                                                     <th>Total</th>
-                                                    <th>Ation</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
