@@ -110,7 +110,7 @@
                 <li class="nav-item">
                     <a href="{{route('articles.index')}}"
                         class="nav-link {{ request()->is('parametrage/articles*') ? 'active' : ''}}">
-                        <i class="fa fa-hryvnia nav-icon"></i>
+                        <i class="fa fa-tags nav-icon"></i>
                         <p>Articles</p>
                     </a>
                 </li>
@@ -127,7 +127,7 @@
                 <li class="nav-item">
                     <a href="{{route('categorieArticles.index')}}"
                         class="nav-link {{ request()->is('parametrage/categorieArticles*') ? 'active' : ''}}">
-                        <i class="fa fa-hot-tub nav-icon"></i>
+                        <i class="fa fa-list nav-icon"></i>
                         <p>Catégorie d'articles</p>
                     </a>
                 </li>

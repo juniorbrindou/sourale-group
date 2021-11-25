@@ -21,7 +21,7 @@ class FactureController extends Controller
         $client = $tab_locations[0]->client;
         $facture = Factures::where('evenement_id', '=', $id)->firstOrFail();
 
-        $ttc = $evenement->montant_total + $evenement->caution;
+        $ttc = ($evenement->montant_total - $evenement->remise) + $evenement->caution ;
 
         return view('facture.invoice',
         compact(
