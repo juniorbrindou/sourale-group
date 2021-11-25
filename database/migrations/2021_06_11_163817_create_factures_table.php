@@ -18,7 +18,7 @@ class CreateFacturesTable extends Migration
 			$table->string('code')->nullable();
 			$table->string('libelle');
 			$table->date('date_creation');
-			$table->integer('caution')->nullable();
+			$table->float('caution')->nullable();
 			// $table->integer('prix_location_recu');
 			// $table->integer('client_id');
 			// $table->integer('total')->nullable();

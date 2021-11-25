@@ -24,7 +24,7 @@ class CreateEvenementsTable extends Migration
             $table->string('lieu')->nullable();
             $table->string('status')->nullable()->comment('A venir, En Cours, Terminé, Cloturé, À Confirmer');
             $table->string('description')->nullable();
-            $table->integer('caution')->nullable();
+            $table->float('caution')->nullable();
             $table->timestamp('date_debut_evenement')->nullable();
             $table->timestamp('date_fin_evenement');
             $table->integer('type_evenement_id')->nullable()->unsigned();
