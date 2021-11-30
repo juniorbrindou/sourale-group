@@ -6,7 +6,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ url('locations/create')}}" class="nav-link">Nouvelle Location</a>
+            <a href="<?php echo e(url('locations/create')); ?>" class="nav-link">Nouvelle Location</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link"> </a>
@@ -22,9 +22,10 @@
                 <i class="fa fa-qrcode"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="height: 0 !important;">
-                {!! QrCode::errorCorrection('H')->size(199)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000"); !!}
+                <?php echo QrCode::errorCorrection('H')->size(199)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000");; ?>
+
                 <br>
-                <span class="text-center text-muted">{{ipAddress().':8000'}}</span>
+                <span class="text-center text-muted"><?php echo e(ipAddress().':8000'); ?></span>
             </div>
         </li>
 
@@ -68,3 +69,4 @@
     </ul>
 </nav>
 <!-- /.navbar -->
+<?php /**PATH C:\SouraleApp\last-project\resources\views/layout/_navbar.blade.php ENDPATH**/ ?>
