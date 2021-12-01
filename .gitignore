@@ -14,3 +14,4 @@ text.txt
 /resources/AdminLTE-3.1.0
 .vscode/*
 .vscode/settings.json
+.env
