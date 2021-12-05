@@ -48,7 +48,7 @@
   z-index: 10001;
   overflow: hidden;
   background: #0b0b0b;
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 .custom-loading-spinner::after {
