@@ -9,6 +9,9 @@ Route::group(
     ['middleware' => 'auth'],
     function () {
 
+        # Agenda
+         Route::get('/agenda', 'AgendaController@index')->name('agenda.index');
+
         # Dashboard
         Route::get('/', 'DashboardController@dashboard')->name('dashboard');
         Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');

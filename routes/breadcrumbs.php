@@ -11,6 +11,11 @@ Breadcrumbs::for('dashboard', function ($trail) {
 
 
 
+# Agenda
+Breadcrumbs::for('agenda.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Agenda', route('agenda.index'));
+});
 
 # Locations
     # locations.index
