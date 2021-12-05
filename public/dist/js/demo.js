@@ -104,7 +104,7 @@
       $('.main-header').removeClass('dropdown-legacy')
     }
   })
- 
+
   var $no_border_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
@@ -176,8 +176,8 @@
 
 
 
-  var $text_sm_body_container = $('<div />', { class: 'mb-1' }).append($text_sm_body_checkbox).append('<span>Tout Réduire</span>')
-  $container.append($text_sm_body_container)
+//   var $text_sm_body_container = $('<div />', { class: 'mb-1' }).append($text_sm_body_checkbox).append('<span>Tout Réduire</span>')
+//   $container.append($text_sm_body_container)
 
   var $text_sm_header_checkbox = $('<input />', {
     type: 'checkbox',
@@ -192,5 +192,5 @@
     }
   })
 
-  
+
 })(jQuery)
