@@ -2,6 +2,33 @@
 
 use Carbon\Carbon;
 
+ /**
+     * Recupere "2021-12-23T12:02"
+     * retourne les composante de la date ($year,$month,$day,$heure,$minute)
+     *
+     * @param string $date
+     *
+     * @return [array]
+     */
+if (!function_exists('getDatefromTextField')) {
+
+    function getDatefromTextField(string $date)
+    {
+        $tabDate = [
+            'year' => explode('-', $date)[0],
+            'month' => explode('-', $date)[1],
+            'day' => explode('T', explode('-', $date)[2])[0],
+            'heure' => explode(':', explode('T', explode('-', $date)[2])[1])[0],
+            'minute' => explode(':', explode('T', explode('-', $date)[2])[1])[1],
+        ];
+
+        return $tabDate;
+    }
+}
+
+
+
+
 /**
  * Fonction utili
  **/
