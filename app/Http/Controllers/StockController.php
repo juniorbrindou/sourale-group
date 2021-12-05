@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Articles;
-use Illuminate\Http\Request;
-
 class StockController extends Controller
 {
     /**
@@ -14,8 +10,6 @@ class StockController extends Controller
      */
     public function index()
     {
-
-        $articles = Articles::all();
-        return view('stock.index', compact('articles'));
+        return view('stock.index');
     }
 }

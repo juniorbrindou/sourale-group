@@ -14,7 +14,6 @@
             <div class="{{ $currentStep == 3 ? 'd-none' : '' }}">
                 <div class="card-body">
                     <div class="row">
-
                         <div class="col-md-12">
                             <div class="bs-stepper linear">
 
@@ -178,7 +177,6 @@
                     </div>
                 </div>
                 {{-- end card body--}}
-
             </div>
 
 
@@ -420,6 +418,6 @@
 
             </div>
             {{-- for display none on step 3 --}}
+        </form>
     </div>
-</div>
 </div>
