@@ -33,7 +33,7 @@ class Index extends Component
         }
 
 
-        dd($test);
+        // dd($test);
     }
 
 

@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
@@ -92,11 +94,11 @@
             <div class="col-md-6">
                 
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">Rapport récapitulatif</h5>
+                    <div class="card-header bg-warning">
+                        <h5 class="card-title text-bold">Rapport récapitulatif</h5>
 
                         <div class="card-tools">
-                            <button type="button" title="Réduire" class="btn btn-tool" data-card-widget="collapse">
+                            <button type="button" title="Réduire" class="btn btn-tool text-dark" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
                         </div>
@@ -212,12 +214,12 @@
                 <!-- tableau des dernieres commandes -->
                 <div class="card">
                     
-                    <div class="border-transparent card-header">
+                    <div class="border-transparent card-header bg-warning">
 
-                        <h3 class="card-title">5 Dernières Locations </h3>
+                        <h3 class="card-title text-bold">5 Dernières Locations </h3>
 
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <button type="button" class="btn btn-tool text-dark" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
                         </div>
@@ -227,7 +229,7 @@
                     
                     <div class="p-0 card-body">
                         <div class="table-responsive">
-                            <table class="table m-0">
+                            <table class="table m-0 table-striped">
                                 <thead>
                                     <tr>
                                         <th>Evenements</th>
@@ -264,9 +266,9 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="clearfix card-footer">
-                        <a href="<?php echo e(route('locations.create')); ?>" class="float-left btn btn-sm btn-info">Passer une nouvelle
+                        <a href="<?php echo e(route('locations.create')); ?>" class="float-left btn btn-sm btn-info col-ms-12 col-md-4">Passer une nouvelle
                             commande</a>
-                        <a href="<?php echo e(route('evennements.index')); ?>" class="float-right btn btn-sm btn-secondary">Voir toutes les
+                        <a href="<?php echo e(route('evennements.index')); ?>" class="float-right mt-1 btn btn-sm btn-secondary col-ms-12 col-md-4">Voir toutes les
                             commandes</a>
                     </div>
                     <!-- /.card-footer -->
@@ -280,12 +282,12 @@
                 <!-- tableau des dernieres commandes -->
                 <div class="card">
                     
-                    <div class="border-transparent card-header">
+                    <div class="border-transparent card-header bg-success">
 
-                        <h3 class="card-title">5 Dernières Locations Non Cloturées </h3>
+                        <h3 class="card-title text-bold">5 Dernières Locations Non Cloturées </h3>
 
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <button type="button" class="btn text-dark btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
                         </div>
