@@ -350,6 +350,7 @@ class Create extends Component
                         'client_id' => $client->id,
                         'nb_jour' => $value['nb_jour'],
                         'total_une_ligne' => $value['totalUneLigne'],
+                        'date_location' =>  $this->ligne['date_debut_evenement'],
                     ]
                 );
             }

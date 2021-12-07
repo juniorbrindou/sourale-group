@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 
 <!-- Main content -->
@@ -8,66 +6,26 @@
         <div class="row">
             <div class="col-12">
 
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">Etat du STOCK</h3>
-
-
-                        <a href="<?php echo e(route('approvisionnement.create')); ?>" class="float-right ml-4 btn btn-md bg-success">
-                            <i class="fa fa-plus-circle"></i>
-                            Approvisionnement
-                        </a>
-
-                        <a href="<?php echo e(route('destockages.create')); ?>" class="float-right btn btn-md bg-danger">
-                            <i class="fa fa-minus-circle"></i>
-                            Destockage
-                        </a>
-                    </div>
 
                     <!-- /.card-header -->
 
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Image</th>
-                                    <th>Article</th>
-                                    <th title="Le nombre d'aticle disponible actuellement">
-                                        Stock Disponible
-                                    </th>
-
-                                    <th title="Nombre d'article Enregistré">
-                                        Stock Global Enregistré
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr>
-                                    <td><?php echo e($article->code); ?></td>
-                                    <td>
-                                        <?php if($article->article_photo): ?>
-                                        <img alt="Avatar" class="img-perso"
-                                            src="<?php echo e(asset('storage/'.$article->article_photo)); ?>">
-                                        <?php else: ?>
-                                        <img alt="Avatar" class="img-perso"
-                                            src="<?php echo e(asset('img/default_article100x100.png')); ?>">
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?php echo e($article->libelle); ?> </td>
-                                    <td><?php echo e($article->qte_en_stock); ?></td>
-                                    <td><?php echo e($article->qte_stocker); ?> </td>
-                                </tr>
-
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                            </tbody>
-                        </table>
-                    </div>
+                    <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('stock.index', [])->html();
+} elseif ($_instance->childHasBeenRendered('VfVhV98')) {
+    $componentId = $_instance->getRenderedChildComponentId('VfVhV98');
+    $componentTag = $_instance->getRenderedChildComponentTagName('VfVhV98');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('VfVhV98');
+} else {
+    $response = \Livewire\Livewire::mount('stock.index', []);
+    $html = $response->html();
+    $_instance->logRenderedChild('VfVhV98', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
                     <!-- /.card-body -->
 
-                </div>
                 <!-- /.card -->
             </div>
             <!-- /.col -->
@@ -137,17 +95,17 @@
 <script>
     $(function () {
 		$("#example1").DataTable({
-		  "responsive": true, "lengthChange": true, "autoWidth": true,
-		  "buttons": ["pdf", "print"],
-		   "order": [3,'desc'],
-           "pageLength": 15,
-          "paging": true,
-          "searching": true,
-		  "ordering": true,
-		  "info": true,
-		  "autoWidth": true,
-		  "responsive": true,
-		  "language":
+		    "responsive": true, "lengthChange": true, "autoWidth": true,
+		    "buttons": ["pdf", "print"],
+		    "order": [3,'desc'],
+            "pageLength": 15,
+            "paging": true,
+            "searching": true,
+		    "ordering": true,
+		    "info": true,
+		    "autoWidth": true,
+		    "responsive": true,
+		    "language":
             {
                 "decimal":        ".",
                 "emptyTable":     "Aucune donnée disponible",

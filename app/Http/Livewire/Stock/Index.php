@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Stock;
 
 use App\Articles;
+use App\Location;
 use Livewire\Component;
 
 class Index extends Component
@@ -16,7 +17,12 @@ class Index extends Component
      */
     public function formPrevisionStock()
     {
-        // dd('sfs');
+        $this->datePrevisionStock;
+
+        // $this->articles =
+        $test = Location::whereDate('date_location','2021-12-08 23:43:00')->get();
+
+        dd($test);
     }
 
 
