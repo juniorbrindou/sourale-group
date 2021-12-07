@@ -187,8 +187,12 @@ class Show extends Component
     {
         if (!empty($this->tab_locations)) { # si tableau d'articles contient des éléments
 
-            # obtention de l'id du type de l'évènement
-            $type_evenement_id = Type_evenements::where('libelle', '=', $this->tab_evenement['type_evenement_libelle'])->first()->id;
+            if ($this->tab_evenement['type_evenement_libelle']) {
+                # obtention de l'id du type de l'évènement
+                $type_evenement_id = Type_evenements::where('libelle', '=', $this->tab_evenement['type_evenement_libelle'])->first()->id;
+            }else{
+                $type_evenement_id = null;
+            }
 
             #recuperation de la remise
             if (isset($this->remise)) {
@@ -289,7 +293,7 @@ class Show extends Component
             'evenement_libelle' => 'required|unique:evenements,libelle,'.$this->evenement->id,
             'evenement_nbr_personne' => 'required|numeric',
             'evenement_date_debut_evenement' => 'required',
-            'type_evenement_libelle' => 'required',
+            'type_evenement_libelle' => 'nullable',
             'evenement_date_fin_evenement' => 'required',
             'evenement_percentage_caution' => 'required|min:0|max:100|numeric',
         ],[
@@ -358,9 +362,11 @@ class Show extends Component
         $this->client = $evenement->client;
         # Liste des types evenement
         $this->type_evenements = Type_evenements::orderBy('libelle', 'ASC')->get();
-        #le type d'evenement préselectionné:
-        $this->type_evenement_libelle = $evenement->type_evenement->libelle;
 
+        #le type d'evenement préselectionné:
+        if ($evenement->type_evenement) {
+            $this->type_evenement_libelle = $evenement->type_evenement->libelle;
+        }
          # Recuperation de la remise en BD
          $this->remise = $this->evenement->remise;
 

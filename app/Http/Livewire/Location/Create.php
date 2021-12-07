@@ -304,7 +304,10 @@ class Create extends Component
             } else {
                 $client = Clients::whereId($this->oldClient)->first();
             }
-            $this->type_evenement_id = Type_evenements::where('libelle', '=', $this->ligne['type_evenement_id'])->first()->id;
+
+            if ($this->type_evenement_id) {
+                $this->type_evenement_id = Type_evenements::where('libelle', '=', $this->ligne['type_evenement_id'])->first()->id;
+            }
             // creation de l'évenement
             $evenement = Evenements::create(
                 [
@@ -582,7 +585,7 @@ class Create extends Component
             'libelle_event' => 'required|unique:evenements,libelle',
             'nbr_personne' => 'nullable|numeric|min:0',
             'date_debut_evenement' => 'required',
-            'type_evenement_id' => 'required',
+            'type_evenement_id' => 'nullable',
             'percentage_caution' => 'required|min:0|max:100|numeric',
             'date_fin_evenement' => 'required|after:date_debut_evenement',
         ], [

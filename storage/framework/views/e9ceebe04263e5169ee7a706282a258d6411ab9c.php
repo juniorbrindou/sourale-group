@@ -44,6 +44,14 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="<?php echo e(route('agenda.index')); ?>"
+                        class="nav-link <?php echo e(request()->is('agenda*') ? 'bg-primary active' : ''); ?>">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>Agenda</p>
+                    </a>
+                </li>
+
                 <li class="nav-header">FLUX DE STOCK</li>
 
                 <li class="nav-item">

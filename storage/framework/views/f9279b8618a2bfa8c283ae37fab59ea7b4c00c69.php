@@ -14,7 +14,6 @@
             <div class="<?php echo e($currentStep == 3 ? 'd-none' : ''); ?>">
                 <div class="card-body">
                     <div class="row">
-
                         <div class="col-md-12">
                             <div class="bs-stepper linear">
 
@@ -256,7 +255,6 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
                 
-
             </div>
 
 
@@ -544,7 +542,7 @@ unset($__errorArgs, $__bag); ?>
 
             </div>
             
+        </form>
     </div>
-</div>
 </div>
 <?php /**PATH C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\resources\views/livewire/location/show.blade.php ENDPATH**/ ?>

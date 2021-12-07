@@ -17,10 +17,21 @@ class Index extends Component
      */
     public function formPrevisionStock()
     {
-        $this->datePrevisionStock;
 
+        // '2021-12-08 23:43'
         // $this->articles =
-        $test = Location::whereDate('date_location','2021-12-08 23:43:00')->get();
+        try {
+            //"2021-12-23T12:02"
+            $test = Location::whereDate('date_location',$this->datePrevisionStock)->get();
+
+        } catch (\Throwable $th) {
+            return $this->dispatchBrowserEvent('sweetAlert', [
+                'title' => 'Erreur de saisie',
+                'icon' => 'error',
+                'text' => 'Veuillez remplir tous les champs: Jour, mois, année, heure, minutes',
+            ]);
+        }
+
 
         dd($test);
     }
