@@ -10,9 +10,9 @@
                   <div class="card-body">
                     <!-- the events -->
                     <div id="external-events">
-                      <div class="external-event bg-success">Lunch</div>
+                      {{-- <div class="external-event bg-success">Lunch</div>
                       <div class="external-event bg-warning">Go home</div>
-                      <div class="external-event bg-info">Do homework</div>
+                      <div class="external-event bg-info">Do homework</div> --}}
                       <div class="external-event bg-primary">Rendez-vous client</div>
                       <div class="external-event bg-danger">Retour de Marchandise</div>
                       <div class="checkbox">

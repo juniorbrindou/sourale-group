@@ -37,7 +37,7 @@
 								<div class="col-md-2">
 									<div class="form-group">
 										<label>Téléphone</label>
-					
+
 										<div class="input-group">
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -47,7 +47,7 @@
 										<!-- /.input group -->
 									</div>
 								</div>
-								
+
 								<div class="col-md-6">
 									{{-- libelle --}}
 									<div class="form-group">
@@ -55,12 +55,12 @@
 										<textarea class="form-control" rows="3" name="adresse" placeholder="Ecrivez ici ..."></textarea>
 									</div>
 								</div>
-								
+
 							</div>
 
 
 							<div class="row">
-								
+
 								<div class="col-md-4">
 									{{-- libelle --}}
 									<div class="form-group">
@@ -101,8 +101,6 @@
 @push('styles')
 
 
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
 <!-- daterange picker -->
@@ -315,8 +313,8 @@
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',

@@ -140,24 +140,25 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                themeSystem: 'bootstrap',
+                // themeSystem: 'bootstrap',
                 //Random default events
-                events: [{
+                events: [
+                    /*{
                         title: 'All Day Event',
                         start: new Date(m, y, 1),
                         backgroundColor: '#f56954', //red
                         borderColor: '#f56954', //red
                         allDay: true
-                    },
-                    {
+                    },*/
+                    /*{
                         title: 'Long Event',
                         start: new Date(y, m, d - 5),
                         end: new Date(y, m, d - 2),
                         backgroundColor: '#f39c12', //yellow
                         borderColor: '#f39c12' //yellow
-                    },
+                    },*/
                     {
-                        title: 'Meeting',
+                        title: 'Rendez-vous client Albert',
                         start: new Date(y, m, d, 10, 30),
                         allDay: false,
                         backgroundColor: '#0073b7', //Blue
@@ -177,15 +178,7 @@
                         end: new Date(y, m, d + 1, 22, 30),
                         allDay: false,
                         backgroundColor: '#00a65a', //Success (green)
-                        borderColor: '#00a65a' //Success (green)
-                    },
-                    {
-                        title: 'Click for Google',
-                        start: new Date(y, m, 28),
-                        end: new Date(y, m, 29),
-                        url: 'https://www.google.com/',
-                        backgroundColor: '#3c8dbc', //Primary (light-blue)
-                        borderColor: '#3c8dbc' //Primary (light-blue)
+                        borderColor: '#000' //Success (green)
                     }
                 ],
                 editable: true,
@@ -201,7 +194,6 @@
 
             calendar.on('dateClick', function(info) {
                 console.log(info);
-                console.log(calendar.view.type);
 
                 console.log(calendar.view.type);
             });

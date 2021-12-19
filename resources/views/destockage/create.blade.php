@@ -20,8 +20,6 @@
 @endsection
 
 @push('styles')
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
 <!-- daterange picker -->
@@ -108,8 +106,8 @@
 	$(function () {
 	//Date and time picker
 	moment.locale('fr_fr')
-	$('#reservationdatetime').datetimepicker({ 
-		icons: { time: 'far fa-clock', 
+	$('#reservationdatetime').datetimepicker({
+		icons: { time: 'far fa-clock',
 		format:'DD/MM/YYYY HH:mm:ss',
 		format: 'LT'
 	}
@@ -189,8 +187,8 @@
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'success',
@@ -209,8 +207,8 @@
 			showConfirmButton: false,
 			'timerProgressBar':true,
 			timer: 4000
-		}); 
-		
+		});
+
 		$(function() {
 			Toast.fire({
 				icon: 'error',

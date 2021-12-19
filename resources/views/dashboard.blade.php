@@ -358,8 +358,6 @@
 {{-- les styles et les scripts spécifiques a cette page --}}
 
 @push('styles')
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.css')}}">
 <!-- overlayScrollbars -->
@@ -388,7 +386,7 @@
 
 @push('scripts')
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script> -->
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- canva -->
 <script src="{{asset('plugins/canvasjs-3.4.1/canvasjs.min.js')}}"></script>
 

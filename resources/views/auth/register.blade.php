@@ -7,9 +7,6 @@
 	<link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
 	<title>{{config('app.name')}} | Nouveau compte</title>
 
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 	<!-- icheck bootstrap -->
@@ -89,7 +86,7 @@
 					</div>
 				</form>
 
-				
+
 				<p class="mb-0 text-center">
 					<a href="{{route('login')}}" class="text-center">J'ai déja un compte</a>
 				</p>
