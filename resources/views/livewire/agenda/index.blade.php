@@ -13,12 +13,12 @@
                       <div class="external-event bg-success">Lunch</div>
                       <div class="external-event bg-warning">Go home</div>
                       <div class="external-event bg-info">Do homework</div>
-                      <div class="external-event bg-primary">Work on UI design</div>
-                      <div class="external-event bg-danger">Sleep tight</div>
+                      <div class="external-event bg-primary">Rendez-vous client</div>
+                      <div class="external-event bg-danger">Retour de Marchandise</div>
                       <div class="checkbox">
                         <label for="drop-remove">
                           <input type="checkbox" id="drop-remove">
-                          remove after drop
+                          Supprimer après déplacement
                         </label>
                       </div>
                     </div>
