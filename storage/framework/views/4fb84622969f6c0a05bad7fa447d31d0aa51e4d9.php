@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('main'); ?>
 <!-- Main content -->
 <section class="content">
@@ -39,7 +37,7 @@
                                                 
                                                 <div class="form-group">
                                                     <label for="libelle">Non du Type</label>
-                                                    <input type="text"
+                                                    <input type="text" required
                                                         class="form-control <?php $__errorArgs = ['libelle'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -188,7 +186,7 @@ unset($__errorArgs, $__bag); ?>"
                                                 
                                                 <div class="form-group">
                                                     <label for="libelle">Type d'article</label>
-                                                    <input type="text"
+                                                    <input type="text" required
                                                         class="form-control <?php $__errorArgs = ['libelle'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -284,8 +282,7 @@ unset($__errorArgs, $__bag); ?>"
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('styles'); ?>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
+
 <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
 <!-- DataTables -->
 <link rel="stylesheet" href="<?php echo e(asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')); ?>">

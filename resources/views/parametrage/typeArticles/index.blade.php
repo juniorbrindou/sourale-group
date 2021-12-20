@@ -251,6 +251,7 @@
 @endsection
 
 @push('styles')
+{{-- important --}}
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">

@@ -23,7 +23,9 @@
                             <li class="list-group-item">
                                 <b>Meilleur gain</b>
                                 <a class="float-right text-bold">
+                                    @if ($bestEvenement)
                                     {{ format_money($bestEvenement->montant_total) ?? '0' }} F CFA
+                                    @endif
                                 </a>
                             </li>
                             <li class="list-group-item">
