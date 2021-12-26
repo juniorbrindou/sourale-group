@@ -2,7 +2,7 @@
 
 return [
 
-	'failed' => "Ces informations d'identification ne correspondent pas à nos enregistrements.",
+	'failed' => "Erreur login ou mot de passe.",
 	'throttle' => 'Trop de tentatives. Veuillez réessayer dans :seconds secondes.',
 
 ];
