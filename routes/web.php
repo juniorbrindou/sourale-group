@@ -11,6 +11,8 @@ Route::group(
 
         # Agenda
          Route::get('/agenda', 'AgendaController@index')->name('agenda.index');
+         Route::get('/JsonAgenda', 'AgendaController@JsonIndex');
+        //  Route::get('/agenda', 'AgendaController@index')->name('agenda.index');
 
         # Dashboard
         Route::get('/', 'DashboardController@dashboard')->name('dashboard');

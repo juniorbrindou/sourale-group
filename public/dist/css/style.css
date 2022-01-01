@@ -1,3 +1,8 @@
+@media (max-width: 576px) {
+    .sm-hidden-perso{
+        display:none!important;
+    }
+}
 .unactiveLocation{
     background-color: #ffc1073d !important;
 }

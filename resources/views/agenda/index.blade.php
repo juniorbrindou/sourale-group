@@ -140,47 +140,8 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                // themeSystem: 'bootstrap',
-                //Random default events
-                events: [
-                    /*{
-                        title: 'All Day Event',
-                        start: new Date(m, y, 1),
-                        backgroundColor: '#f56954', //red
-                        borderColor: '#f56954', //red
-                        allDay: true
-                    },*/
-                    /*{
-                        title: 'Long Event',
-                        start: new Date(y, m, d - 5),
-                        end: new Date(y, m, d - 2),
-                        backgroundColor: '#f39c12', //yellow
-                        borderColor: '#f39c12' //yellow
-                    },*/
-                    {
-                        title: 'Rendez-vous client Albert',
-                        start: new Date(y, m, d, 10, 30),
-                        allDay: false,
-                        backgroundColor: '#0073b7', //Blue
-                        borderColor: '#0073b7' //Blue
-                    },
-                    {
-                        title: 'Lunch',
-                        start: new Date(y, m, d, 12, 0),
-                        end: new Date(y, m, d, 14, 0),
-                        allDay: false,
-                        backgroundColor: '#00c0ef', //Info (aqua)
-                        borderColor: '#00c0ef' //Info (aqua)
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: new Date(y, m, d + 1, 19, 0),
-                        end: new Date(y, m, d + 1, 22, 30),
-                        allDay: false,
-                        backgroundColor: '#00a65a', //Success (green)
-                        borderColor: '#000' //Success (green)
-                    }
-                ],
+                themeSystem: 'bootstrap',
+                events:'/JsonAgenda',
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function(info) {
@@ -189,14 +150,25 @@
                         // if so, remove the element from the "Draggable Events" list
                         info.draggedEl.parentNode.removeChild(info.draggedEl);
                     }
+                },
+                eventClick: function(info) {
+                    var resp = confirm("Voulez-vous aller à l'évenement ?");
+                    if(resp){
+                        var base = info.el.baseURI.slice(0,-6);
+                        console.log("base+'locations/'+info.event.id", base+'locations/'+info.event.id);
+                        window.location.replace(base+'locantions/'+info.event.id);
+                    }
+
+                    // change the border color just for fun
+                    info.el.style.borderColor = 'red';
                 }
             });
 
-            calendar.on('dateClick', function(info) {
-                console.log(info);
+            // calendar.on('dateClick', function(info) {
+            //     console.log(info);
 
-                console.log(calendar.view.type);
-            });
+            //     console.log(calendar.view.type);
+            // });
 
             // date en français
             calendar.setOption('locale', 'fr');

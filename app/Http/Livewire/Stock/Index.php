@@ -31,9 +31,6 @@ class Index extends Component
                 'text' => 'Veuillez remplir tous les champs: Jour, mois, année, heure, minutes',
             ]);
         }
-
-
-        // dd($test);
     }
 
 

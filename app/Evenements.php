@@ -43,6 +43,15 @@ class Evenements extends Model
 
 
     /**
+     * Nouveau champs factices pour l'agenda
+     */
+    public function getDateDebutEvenementAttribute()
+    {
+        return $this->attributes['date_debut_evenement'];
+    }
+
+
+    /**
      * les attributs qui doivent etre converties en type natif.
      * @var array
      */
