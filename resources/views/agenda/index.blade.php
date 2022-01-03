@@ -151,24 +151,20 @@
                         info.draggedEl.parentNode.removeChild(info.draggedEl);
                     }
                 },
-                eventClick: function(info) {
-                    var resp = confirm("Voulez-vous aller à l'évenement ?");
-                    if(resp){
-                        var base = info.el.baseURI.slice(0,-6);
-                        console.log("base+'locations/'+info.event.id", base+'locations/'+info.event.id);
-                        window.location.replace(base+'locantions/'+info.event.id);
-                    }
 
-                    // change the border color just for fun
-                    info.el.style.borderColor = 'red';
-                }
+                // eventClick: function(info) {
+                //     var resp = confirm("Voulez-vous aller à l'évenement "+ info.event.title+" ?");
+                //     if(resp){
+                //         var base = info.el.baseURI.slice(0,-6);
+                //         console.log("base+'locations/'+info.event.id", base+'locations/'+info.event.id);
+                //         // window.open(base+'locantions/'+info.event.id);
+                //         window.location.replace('{{route("locations.show",', info.event.id ,')}}');
+                //     }
+
+                //     // change the border color just for fun
+                //     info.el.style.borderColor = 'red';
+                // }
             });
-
-            // calendar.on('dateClick', function(info) {
-            //     console.log(info);
-
-            //     console.log(calendar.view.type);
-            // });
 
             // date en français
             calendar.setOption('locale', 'fr');
