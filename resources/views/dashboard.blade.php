@@ -12,7 +12,7 @@
             {{-- location en cours --}}
             <div class="col-12 col-sm-6 col-md-3"data-delay='{"show": 1000}'
                 title="Les evenements qui ne sont pas encore terminés" data-toggle="tooltip" data-placement="top">
-                <a href="{{route('locations.index')}}">
+                <a href="{{route('locations.inCourse')}}">
                     <div class="info-box">
                         <span class="info-box-icon bg-danger elevation-2"><i
                                 class="fas fa-2x fa-sync-alt {{($nbrEventEnCours <1 )? "" : "fa-spin"}}"></i></span>

@@ -170,7 +170,6 @@
             calendar.setOption('locale', 'fr');
 
             calendar.render();
-            // $('#calendar').fullCalendar()
 
             /* ADDING EVENTS */
             var currColor = '#3c8dbc' //Red by default

@@ -100,4 +100,13 @@ class LocationController extends Controller
     {
         //
     }
+
+    /**
+     * Return All the events in course
+     * @return [type]
+     */
+    public function inCourse(){
+        $evenement = Evenements::whereStatus('EN COURS')->get();
+        return view('location.incourse', compact('evenement'));
+    }
 }

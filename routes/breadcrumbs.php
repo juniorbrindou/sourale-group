@@ -3,12 +3,16 @@ use App\Clients;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-// Home
-Breadcrumbs::for('dashboard', function ($trail) {
-    $trail->push('Tableau de Bord', route('home'));
+# Location En cours
+Breadcrumbs::for('locations.inCourse', function ($trail) {
+    $trail->push('Title Here', route('locations.inCourse'));
 });
 
 
+# Home
+Breadcrumbs::for('dashboard', function ($trail) {
+    $trail->push('Tableau de Bord', route('home'));
+});
 
 
 # Agenda

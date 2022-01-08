@@ -12,7 +12,6 @@ Route::group(
         # Agenda
          Route::get('/agenda', 'AgendaController@index')->name('agenda.index');
          Route::get('/JsonAgenda', 'AgendaController@JsonIndex');
-        //  Route::get('/agenda', 'AgendaController@index')->name('agenda.index');
 
         # Dashboard
         Route::get('/', 'DashboardController@dashboard')->name('dashboard');
@@ -36,6 +35,9 @@ Route::group(
         # Location
         Route::post('locations', 'LocationController@store')->name('locations');
         Route::resource('locations', 'LocationController');
+
+        #Location en cours
+        Route::get('locationsIncourse', 'LocationController@inCourse')->name('locations.inCourse');
 
         # Evenements
         Route::resource('evennements', 'EvennementController');
