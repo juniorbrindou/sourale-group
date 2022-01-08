@@ -2,5 +2,6 @@
   "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
   "intelephense.phpdoc.useFullyQualifiedNames": true,
   "files.exclude": {
-  }
+  },
+  "editor.fontFamily": "NovaMono",
 }
