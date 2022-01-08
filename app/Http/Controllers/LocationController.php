@@ -102,11 +102,10 @@ class LocationController extends Controller
     }
 
     /**
-     * Return All the events in course
+     * Retourne la vue; les données sont gérées par livewire
      * @return [type]
      */
     public function inCourse(){
-        $evenement = Evenements::whereStatus('EN COURS')->get();
-        return view('location.incourse', compact('evenement'));
+        return view('location.incourse');
     }
 }

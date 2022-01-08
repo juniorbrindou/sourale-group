@@ -37,7 +37,7 @@ Route::group(
         Route::resource('locations', 'LocationController');
 
         #Location en cours
-        Route::get('locationsIncourse', 'LocationController@inCourse')->name('locations.inCourse');
+        Route::get('locationsincourse', 'LocationController@incourse')->name('locations.incourse');
 
         # Evenements
         Route::resource('evennements', 'EvennementController');

@@ -137,12 +137,13 @@ class EvennementController extends Controller
             if ($request->statut_evenement == 'TERMINÉ') {
                 toast('Action éffectuée avec succes!', 'success');
                 $evenement->update(['status' => 'TERMINÉ']);
-                return redirect()->route('locations.index');
+                return redirect()->back();
             } else {
                 alert()->warning('Attention!', 'L\'évenement en cours ne peut être marqué que comme terminé.');
                 return redirect()->route('locations.index');
             }
         } elseif ($evenement->status == 'ANNULÉ') {
+            return redirect()->back();
             // EN COURS
             // todo : reflechir sur l'evenement annulé peut passer a DEVIS ou a en cour directement
         } elseif ($evenement->status == 'TERMINÉ') {
@@ -153,10 +154,10 @@ class EvennementController extends Controller
                 return redirect()->route('locations.index');
             } else {
                 alert()->warning('Attention!', 'L\'évenement terminé ne peut être marqué que comme cloturé.');
-                return redirect()->route('locations.index');
+                return redirect()->back();
             }
         } else {
-            return;
+            return 'ghfh';
         }
     }
 

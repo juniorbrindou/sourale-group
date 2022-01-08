@@ -589,7 +589,7 @@ class Create extends Component
             'percentage_caution' => 'required|min:0|max:100|numeric',
             'date_fin_evenement' => 'required|after:date_debut_evenement',
         ], [
-            'libelle_event.unique' => 'Ce existe déja',
+            'libelle_event.unique' => 'Cet evenement existe déja',
             'libelle_event.*' => 'Veuillez remplir ce champs',
             'nbr_personne.*' => 'Ce champs doit comporter un nombre',
             'type_evenement_id.*' => 'Veuillez choisir un type',

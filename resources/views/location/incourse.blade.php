@@ -10,7 +10,7 @@
 
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title">Liste des locations</h3>
+                        <h3 class="card-title">Liste des locations en cours</h3>
 
                         <a href="{{ route('locations.create')}}" class="float-right btn btn-md bg-dark">
                             <i class="fa fa-plus-circle"></i>
@@ -19,7 +19,7 @@
                     </div>
                     <!-- /.card-header -->
 
-                    <livewire:location.index />
+                    <livewire:location.incourse />
 
                 </div>
                 <!-- /.card -->

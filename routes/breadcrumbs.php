@@ -4,8 +4,8 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 # Location En cours
-Breadcrumbs::for('locations.inCourse', function ($trail) {
-    $trail->push('Title Here', route('locations.inCourse'));
+Breadcrumbs::for('locations.incourse', function ($trail) {
+    $trail->push('Liste des Evenements en cours', route('locations.incourse'));
 });
 
 
