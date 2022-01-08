@@ -23,7 +23,7 @@
 								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="nom">Nom </label>
+										<label for="nom">Nom<span class="text-danger">*</span></label>
 										<input type="text" class="form-control @error('nom') is-invalid @enderror"
 											value="{{ $client->nom }}" name="nom" autofocus id="nom">
 									</div>

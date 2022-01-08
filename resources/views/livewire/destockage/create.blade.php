@@ -19,10 +19,10 @@
                     {{-- articles --}}
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Article Concerné *</label>
+                            <label>Article Concerné<span class="text-danger">*</span></label>
                             <select class="form-control @error('article') is-invalid @enderror" name="article"
                                 wire:model="article" style="width: 100%;">
-                                <option selected value="">Selectionnez un article</option>
+                                <option selected value="">--selectionnez un article--</option>
 
                                 @foreach ($articles as $article)
                                 <option value="{{$article}}"> {{$article}}</option>
@@ -43,7 +43,7 @@
                     {{-- motif --}}
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Motif de Sortie*</label>
+                            <label>Motif de Sortie<span class="text-danger">*</span></label>
                             <select class="form-control @error('motif') is-invalid @enderror" name="motif"
                                 wire:model="motif" style="width: 100%;">
                                 <option>Selectionnez un motif</option>
@@ -66,7 +66,7 @@
                     {{-- qte --}}
                     <div class="col-md-3 col-xs-12">
                         <div class="form-group">
-                            <label for="qte">Quantité *</label>
+                            <label for="qte">Quantité<span class="text-danger">*</span></label>
                             <input type="number" wire:model="qte"
                                 class="form-control @error('qte') is-invalid @enderror" name="qte" id="qte"
                                 placeholder="Entrer la quantité d'article" min="1">

@@ -38,7 +38,7 @@
                                         <div class="col-md-12">
                                             {{-- libelle --}}
                                             <div class="form-group">
-                                                <label for="libelle">Nom de la catégorie *</label>
+                                                <label for="libelle">Nom de la catégorie<span class="text-danger">*</span></label>
                                                 <input type="text"
                                                     class="form-control @error('libelle') is-invalid @enderror"
                                                     value="{{ old('libelle') }}" name="libelle" id="code"
@@ -187,7 +187,7 @@
                                                         <div class="col-md-12">
                                                             {{-- libelle --}}
                                                             <div class="form-group">
-                                                                <label for="libelle">Nom de la catégorie *</label>
+                                                                <label for="libelle">Nom de la catégorie<span class="text-danger">*</span></label>
                                                                 <input type="text"
                                                                     class="form-control @error('libelle') is-invalid @enderror"
                                                                     value="{{$categorieArticle->libelle}}" name="libelle"

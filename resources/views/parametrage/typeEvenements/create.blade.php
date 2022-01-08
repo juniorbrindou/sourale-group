@@ -22,7 +22,7 @@
 								<div class="col-md-6">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Libéllé *</label>
+										<label for="libelle">Libéllé<span class="text-danger">*</span></label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ old('libelle') }}" name="libelle" id="code"
 											placeholder="Entrer le type de l'événement" autofocus>

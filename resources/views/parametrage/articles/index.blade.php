@@ -40,7 +40,7 @@
 
                                             {{-- libelle --}}
                                             <div class="form-group">
-                                                <label for="libelle">Nom de l'article *</label>
+                                                <label for="libelle">Nom de l'article<span class="text-danger">*</span></label>
                                                 <input type="text" required
                                                     class="form-control @error('libelle') is-invalid @enderror"
                                                     value="{{ old('libelle') }}" name="libelle" id="libelle"
@@ -211,7 +211,7 @@
 
                                                         {{-- libelle --}}
                                                         <div class="form-group">
-                                                            <label for="libelle">Nom de l'article</label>
+                                                            <label for="libelle">Nom de l'article<span class="text-danger">*</span></label>
                                                             <input type="text"
                                                                 class="form-control @error('libelle') is-invalid @enderror"
                                                                 value="{{ $article->libelle }}" name="libelle"
@@ -231,7 +231,7 @@
 
                                                         {{-- prix_tarification --}}
                                                         <div class="form-group">
-                                                            <label for="prix_tarification">Prix</label>
+                                                            <label for="prix_tarification">Prix<span class="text-danger">*</span></label>
                                                             <input type="number" class="form-control @error('prix_tarification') is-invalid @enderror"
                                                                 value="{{ $article->prix_tarification }}" name="prix_tarification" id="prix_tarification">
                                                         </div>

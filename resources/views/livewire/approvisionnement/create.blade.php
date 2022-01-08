@@ -18,10 +18,10 @@
                     {{-- articles --}}
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label>Article Concerné *</label>
+                            <label>Article Concerné<span class="text-danger">*</span></label>
                             <select class="form-control @error('article') is-invalid @enderror" name="article"
                                 wire:model="article" style="width: 100%;">
-                                <option selected>Selectionner un article</option>
+                                <option selected>--selectionner un article--</option>
 
                                 @foreach ($articles as $article)
                                 <option value="{{$article}}"> {{$article}}</option>

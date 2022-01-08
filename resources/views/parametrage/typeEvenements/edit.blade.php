@@ -23,7 +23,7 @@
 								<div class="col-md-12">
 									{{-- libelle --}}
 									<div class="form-group">
-										<label for="libelle">Libéllé</label>
+										<label for="libelle">Libéllé<span class="text-danger">*</span></label>
 										<input type="text" class="form-control @error('libelle') is-invalid @enderror"
 											value="{{ $typeEvenement->libelle }}" name="libelle" id="libelle">
 									</div>

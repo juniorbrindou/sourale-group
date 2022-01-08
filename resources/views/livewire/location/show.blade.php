@@ -51,7 +51,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="evenement_libelle">Nom de l'evenement *</label>
+                                                <label for="evenement_libelle">Nom de l'evenement<span class="text-danger">*</span></label>
                                                 <input type="text" wire:model.defer="evenement_libelle"
                                                     class="form-control @error('evenement_libelle') is-invalid @enderror"
                                                     name="evenement_libelle" id="evenement_libelle"
@@ -120,7 +120,7 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="evenement_date_debut_evenement">Date début</label>
+                                                <label for="evenement_date_debut_evenement">Date début<span class="text-danger">*</span></label>
                                                 <input type="datetime-local" required class="form-control"
                                                     wire:model.defer="evenement_date_debut_evenement"
                                                     name="evenement_date_debut_evenement">
@@ -134,7 +134,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="evenement_date_fin_evenement">Date fin</label>
+                                                <label for="evenement_date_fin_evenement">Date fin<span class="text-danger">*</span></label>
                                                 <input type="datetime-local" required class="form-control"
                                                     wire:model.defer="evenement_date_fin_evenement"
                                                     name="evenement_date_fin_evenement" value="">
@@ -149,7 +149,7 @@
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="evenement_percentage_caution">Caution</label>
+                                                <label for="evenement_percentage_caution">Caution<span class="text-danger">*</span></label>
                                                 <input type="number" min="0" max="100" wire:model.defer="evenement_percentage_caution"
                                                     class="form-control @error('evenement_percentage_caution') is-invalid @enderror"
                                                     name="evenement_percentage_caution" id="evenement_percentage_caution">
@@ -192,10 +192,10 @@
                         {{-- articles --}}
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="article_libelle">Article Concerné *</label>
+                                <label for="article_libelle">Article Concerné<span class="text-danger">*</span></label>
                                 <select class="form-control  @error('article_libelle') is-invalid @enderror"
                                     wire:model.defer="article_libelle" style="width: 100%;" id="article_libelle">
-                                    <option selected value="">Selectionner un article</option>
+                                    <option selected value="">--selectionner un article--</option>
 
                                     @foreach ($articles as $article)
                                     <option value="{{$article}}"> {{$article}}</option>
@@ -213,7 +213,7 @@
                         {{-- qte_article --}}
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="qte_article">Quantité *</label>
+                                <label for="qte_article">Quantité<span class="text-danger">*</span></label>
                                 <input type="number" min="1" wire:model.defer="qte_article"
                                     class="form-control @error('qte_article') is-invalid @enderror" id="qte_article"
                                     placeholder="Entrez la quantité d'article">
@@ -230,7 +230,7 @@
                         {{-- nb_jour --}}
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="nb_jour">Jours</label>
+                                <label for="nb_jour">Jours<span class="text-danger">*</span></label>
                                 <input type="number" min="1" wire:model.defer="nb_jour"
                                     class="form-control @error('nb_jour') is-invalid @enderror" id="nb_jour"
                                     placeholder="Entrez le nombre de jours">

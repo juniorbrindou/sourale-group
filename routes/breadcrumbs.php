@@ -110,6 +110,12 @@ Breadcrumbs::for('agenda.index', function ($trail) {
         $trail->push($client->nom, route('clients.show',$client));
     });
 
+    # update client
+    Breadcrumbs::for('clients.edit', function ($trail,$client) {
+        $trail->parent('clients.index');
+        $trail->push('Détails', route('clients.edit',$client));
+    });
+
     # liste des clients
     Breadcrumbs::for('clients.index', function ($trail) {
         $trail->parent('dashboard');

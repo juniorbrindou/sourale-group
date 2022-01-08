@@ -66,7 +66,7 @@
                                                 <fieldset>
                                                     <legend>Client Existant:</legend>
                                                     <div class="form-group">
-                                                        <label>Selectionnez le client *</label>
+                                                        <label>Selectionnez le client <span class="text-danger">*</span></label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">
@@ -76,7 +76,7 @@
                                                             <select name="oldClient" required
                                                                 class="float-right form-control"
                                                                 wire:model.defer="oldClient">
-                                                                <option value="">Coisissez un client existant</option>
+                                                                <option value="">--choisissez un client existant--</option>
                                                                 @foreach ($clients as $client)
                                                                 <option value="{{$client->id}}">
                                                                     {{$client->nom}}
@@ -102,7 +102,7 @@
                                                     <legend>Nouveau Client:</legend>
 
                                                     <div class="form-group">
-                                                        <label for="newNom">Nom du nouveau client *</label>
+                                                        <label for="newNom">Nom du nouveau client <span class="text-danger">*</span></label>
                                                         <input type="text"
                                                             class="form-control @error('newNom') is-invalid @enderror"
                                                             wire:model.defer="newNom" id="newNom">
@@ -169,7 +169,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="libelle_event">Nom de l'evenement *</label>
+                                                <label for="libelle_event">Nom de l'evenement <span class="text-danger">*</span></label>
                                                 <input type="text" wire:model.defer="libelle_event"
                                                     class="form-control @error('libelle_event') is-invalid @enderror"
                                                     name="libelle_event" id="libelle_event"
@@ -218,7 +218,7 @@
                                                 <label>Type d'evenement</label>
                                                 <select class="float-right select2 form-control"
                                                     wire:model.defer="type_evenement_id">
-                                                    <option selected="selected">Choisir un type</option>
+                                                    <option selected="selected">--choisir un type--</option>
                                                     @foreach ($type_evenements as $type_evenement)
                                                     <option>{{$type_evenement->libelle}}</option>
                                                     @endforeach
@@ -236,7 +236,7 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Date début</label>
+                                                <label>Date début<span class="text-danger">*</span></label>
                                                 <input type="datetime-local" required class="form-control"
                                                     wire:model.defer="date_debut_evenement">
                                             </div>
@@ -249,7 +249,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Date fin</label>
+                                                <label>Date fin<span class="text-danger">*</span></label>
                                                 <input type="datetime-local" required class="form-control"
                                                     wire:model.defer="date_fin_evenement">
                                             </div>
@@ -263,10 +263,10 @@
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="percentage_caution">Caution</label>
+                                                <label for="percentage_caution">Caution<span class="text-danger">*</span></label>
                                                 <input type="number" min="0" max="100" wire:model.defer="percentage_caution"
                                                     class="form-control @error('percentage_caution') is-invalid @enderror"
-                                                    name="percentage_caution" id="percentage_caution">
+                                                    name="percentage_caution" id="percentage_caution" value="0">
                                             </div>
                                             @error('percentage_caution')
                                             <span class="text-danger"
@@ -311,10 +311,10 @@
                         {{-- articles --}}
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="article">Article Concerné *</label>
+                                <label for="article">Article Concerné<span class="text-danger">*</span></label>
                                 <select class="form-control  @error('article') is-invalid @enderror"
                                     wire:model.defer="article" style="width: 100%;" id="article">
-                                    <option selected value="">Selectionner un article</option>
+                                    <option selected value="">--selectionner un article--</option>
 
                                     @foreach ($articles as $key => $article)
                                     <option value="{{$article}}"> {{$article}} </option>
@@ -332,7 +332,7 @@
                         {{-- qte_article --}}
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="qte_article">Quantité *</label>
+                                <label for="qte_article">Quantité <span class="text-danger">*</span></label>
                                 <input type="number" min="1" wire:model.defer="qte_article"
                                     class="form-control @error('qte_article') is-invalid @enderror" id="qte_article"
                                     placeholder="Entrez la quantité d'article">
@@ -349,7 +349,7 @@
                         {{-- nb_jour --}}
                         <div class="col-md-3 col-xs-12">
                             <div class="form-group">
-                                <label for="nb_jour">Jours</label>
+                                <label for="nb_jour">Jours<span class="text-danger">*</span></label>
                                 <input type="number" min="1" wire:model.defer="nb_jour"
                                     class="form-control @error('nb_jour') is-invalid @enderror" id="nb_jour"
                                     placeholder="Entrez le nombre de jours">
