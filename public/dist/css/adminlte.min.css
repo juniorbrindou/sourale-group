@@ -17,10 +17,10 @@
   .img-perso{
     height: 40px;
     width:100px;
-    transition-duration: .3s
+    transition-duration: .2s
   }
   .img-perso:hover {
-    transform: scale(3, 4);
+  transform: scale(2, 3);
   }
 
   

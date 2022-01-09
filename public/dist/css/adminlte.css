@@ -52423,10 +52423,10 @@ a.text-muted:hover {
 }
 .img-perso{
   height: 50px;
-  transition-duration: .3s
+  transition-duration: .2s
 }
 .img-perso:hover {
-  transform: scale(3, 4);
+  transform: scale(2, 3);
 }
 
 /* pour le spinner */
