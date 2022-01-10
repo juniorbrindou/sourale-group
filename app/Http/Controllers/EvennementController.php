@@ -6,12 +6,13 @@ use App\Articles;
 use App\Location;
 use App\Evenements;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EvennementController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * ne retourne pas la vue des locations
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -91,14 +92,14 @@ class EvennementController extends Controller
         if ($evenement->status == 'DEVIS') {
             //En cours et annulé
             if ($request->statut_evenement == 'EN COURS') {
-                //nombre d'articles ou nombre d'itérations
+                //nombre d'articles ou nombre d'itérations ou nombre de locations
                 $nbr_article = count($ligne);
 
-                // utiliser pour verifier si l'operation de soustration es possible (article dispo doit etre supp a article commandé)
+                # utiliser pour verifier si l'operation de soustration es possible (article dispo doit etre supp a article commandé)
                 $test = 0;
 
-                // garder pour chaque ligne la qte article loué et l'id de l'article.
-                // pour chaque ligne si la difference qte article dispo et commandé est est favorable test recois 1
+                # garder pour chaque ligne la qte article loué et l'id de l'article.
+                # pour chaque ligne si la difference qte article dispo et commandé est est favorable test recois 1
                 foreach ($ligne as $item => $value) {
                     $articles_and_qte_loue[$item]['qte_loue'] = $value->qte_loue;
                     $articles_and_qte_loue[$item]['article_id_loue'] = $value->article_id;
@@ -110,14 +111,21 @@ class EvennementController extends Controller
                     }
                 }
 
-                //si au final test est egal au nombre diteration (nombre de reussite est total)
-                // alors le status de vient update et la soustration s'éffectue
+                #si au final test est egal au nombre diteration (nombre de reussite est total)
+                # alors le status devient update et la soustration s'éffectue
                 if ($test === $nbr_article) {
+
                     $evenement->update(['status' => 'EN COURS']);
+
                     foreach ($ligne as $item => $value) {
                         $article_en_bd = Articles::whereId($value->article_id)->first();
                         $article_en_bd->update(['qte_en_stock' => $article_en_bd->qte_en_stock - $value->qte_loue]);
                     }
+                    # Correction : le status des locations ne changeait pas: DEVIS->ENCOURS
+                    foreach ($locations as $location => $value) {
+                        $value->update(['status' => 'EN COURS']);
+                    }
+
                     toast('Action Effectuée avec succes!', 'success');
                     return redirect()->route('locations.index');
                 } else {
@@ -126,6 +134,12 @@ class EvennementController extends Controller
                 }
             } elseif ($request->statut_evenement == 'ANNULÉ') {
                 $evenement->update(['status' => 'ANNULÉ']);
+
+                # Correction : le status des locations ne changeait pas: DEVIS->ANNULÉ
+                foreach ($locations as $location => $value) {
+                    $value->update(['status' => 'ANNULÉ']);
+                }
+
                 toast('L\'evenement a été annulé avec succes!', 'success');
                 return redirect()->route('locations.index');
             } else {
@@ -137,6 +151,12 @@ class EvennementController extends Controller
             if ($request->statut_evenement == 'TERMINÉ') {
                 toast('Action éffectuée avec succes!', 'success');
                 $evenement->update(['status' => 'TERMINÉ']);
+
+                # Correction : le status des locations ne changeait pas: ENCOURS->TERMINÉ
+                foreach ($locations as $location => $value) {
+                    $value->update(['status' => 'ANNULÉ']);
+                }
+
                 return redirect()->back();
             } else {
                 alert()->warning('Attention!', 'L\'évenement en cours ne peut être marqué que comme terminé.');
@@ -151,13 +171,19 @@ class EvennementController extends Controller
             //TERMINÉ -> CLOTURÉ
             if ($request->statut_evenement == 'CLOTURÉ') {
                 $evenement->update(['status' => 'CLOTURÉ']);
+
+                # Correction : le status des locations ne changeait pas: DEVIS->TERMINÉ
+                foreach ($locations as $location => $value) {
+                    $value->update(['status' => 'ANNULÉ']);
+                }
+
                 return redirect()->route('locations.index');
             } else {
                 alert()->warning('Attention!', 'L\'évenement terminé ne peut être marqué que comme cloturé.');
                 return redirect()->back();
             }
         } else {
-            return 'ghfh';
+            return redirect()->back();
         }
     }
 

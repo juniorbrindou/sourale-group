@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Articles;
 use App\Clients;
+use App\Articles;
 use App\Evenements;
 
 class DashboardController extends Controller
