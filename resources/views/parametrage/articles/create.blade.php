@@ -60,7 +60,7 @@
 							<div class="row">
 								<div class="col-md-3 ">
 									<div class="form-group">
-										<label>Type d'article</label>
+										<label>Type d'article<span class="text-danger">*</span></label>
 										<select class="form-control select2" name="type_article_id"
 											style="width: 100%;">
 
@@ -79,7 +79,7 @@
 								{{-- categorie_article_id --}}
 								<div class="col-md-3 ">
 									<div class="form-group">
-										<label>Catégorie d'article</label>
+										<label>Catégorie d'article<span class="text-danger">*</span></label>
 										<select class="form-control select2" style="width: 100%;"
 											name="categorie_id">
 

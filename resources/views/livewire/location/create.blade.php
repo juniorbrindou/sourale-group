@@ -66,7 +66,7 @@
                                                 <fieldset>
                                                     <legend>Client Existant:</legend>
                                                     <div class="form-group">
-                                                        <label>Selectionnez le client <span class="text-danger">*</span></label>
+                                                        <label>Selectionnez le client<span class="text-danger">*</span></label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">
