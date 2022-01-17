@@ -154,7 +154,7 @@ class EvennementController extends Controller
 
                 # Correction : le status des locations ne changeait pas: ENCOURS->TERMINÉ
                 foreach ($locations as $location => $value) {
-                    $value->update(['status' => 'ANNULÉ']);
+                    $value->update(['status' => 'TERMINÉ']);
                 }
 
                 return redirect()->back();
@@ -170,11 +170,13 @@ class EvennementController extends Controller
 
             //TERMINÉ -> CLOTURÉ
             if ($request->statut_evenement == 'CLOTURÉ') {
-                $evenement->update(['status' => 'CLOTURÉ']);
 
+                $evenement->update(['status' => 'CLOTURÉ']);
+                Log::debug('passage');
                 # Correction : le status des locations ne changeait pas: DEVIS->TERMINÉ
                 foreach ($locations as $location => $value) {
-                    $value->update(['status' => 'ANNULÉ']);
+                    Log::debug('value: '.$value);
+                    $value->update(['status' => 'CLOTURÉ']);
                 }
 
                 return redirect()->route('locations.index');
