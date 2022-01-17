@@ -13,15 +13,15 @@
                 Approvisionnement
             </a>
 
-            <form wire:submit.prevent="formPrevisionStock" class="mt-1 col-sm-12 col-md-3">
+            {{-- <form wire:submit.prevent="formPrevisionStock" class="mt-1 col-sm-12 col-md-3">
                 @csrf
                 <div class="input-group">
                     <input type="datetime-local" wire:model.defer="datePrevisionStock" title="Selectionnez une date" class="form-control" #openDate name="" id="">
                     <span class="input-group-append"><button class="btn btn-md bg-dark btn-flat" wire:click="previsionStock">Ok</button></span>
                 </div>
-            </form>
+            </form> --}}
 
-            <a href="{{ route('destockages.create') }}" class="mt-1 btn btn-md bg-danger col-sm-12 col-md-2">
+            <a href="{{ route('destockages.create') }}" class="mt-1 btn btn-md bg-danger col-sm-12 col-md-2 offset-3">
                 <i class="fa fa-minus-circle"></i>
                 Destockage
             </a>
