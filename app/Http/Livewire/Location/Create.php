@@ -142,10 +142,9 @@ class Create extends Component
 
         // si la quantité saisie est supperieur à celle en bd de l'article
         $article = Articles::where('libelle', '=', $this->article)->first();
-        if ($article->qte_en_stock < \intval($this->qte_article)) {
+        if ($article->qte_stocker < \intval($this->qte_article)) {
             $this->dispatchBrowserEvent('sweetAlert', [
-                'title' => 'La quantité saisie est suppérieure à celle disponible <br>' . $article->libelle . ' = ' . $article->qte_en_stock,
-                'timer' => 5000,
+                'title' => 'La quantité saisie est suppérieure à celle enregistrée <br>Nous avons '.$article->qte_stocker.' '.$article->libelle.' enregistré(e)s et vous en demandez '.$this->qte_article,
                 'icon' => 'error',
             ]);
         } else {

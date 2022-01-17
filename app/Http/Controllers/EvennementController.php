@@ -129,7 +129,7 @@ class EvennementController extends Controller
                     toast('Action Effectuée avec succes!', 'success');
                     return redirect()->route('locations.index');
                 } else {
-                    alert()->warning('Articles Indisponible', 'Action Impossible! la quantité d\'article disponible est insuffisante pour démarrer cet evenement : pensez a cloturer les evenements terminés pour rendre les articles disponibles');
+                    alert()->warning('Articles Indisponible', 'La quantité d\'article disponible est insuffisante pour démarrer cet evenement : pensez a cloturer les evenements terminés pour rendre les articles disponibles');
                     return redirect()->route('locations.index');
                 }
             } elseif ($request->statut_evenement == 'ANNULÉ') {
