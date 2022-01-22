@@ -25,7 +25,6 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="height: 0 !important;">
                 {!! QrCode::errorCorrection('H')->size(199)->color(40,40,40)->eye('circle')->generate("http://sourale-group.herokuapp.com/"); !!}
             </div>
-            @endif
         </li>
 
 
