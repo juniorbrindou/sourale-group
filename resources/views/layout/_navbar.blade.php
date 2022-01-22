@@ -21,18 +21,9 @@
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-qrcode"></i>
             </a>
-            @if (ipAdress() != "")
 
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="height: 0 !important;">
-                {!! QrCode::errorCorrection('H')->size(199)->color(40,40,40)->eye('circle')->generate(ipAddress().":8000"); !!}
-                <br>
-                <span class="text-center text-muted">{{'http://'.ipAddress().':8000/'}}</span>
-            </div>
-            @else
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="height: 0 !important;">
                 {!! QrCode::errorCorrection('H')->size(199)->color(40,40,40)->eye('circle')->generate("http://sourale-group.herokuapp.com/"); !!}
-                <br>
-                <span class="text-center text-muted">{{'http://'.ipAddress().':8000/'}}</span>
             </div>
             @endif
         </li>
