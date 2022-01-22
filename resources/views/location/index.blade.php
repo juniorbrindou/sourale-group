@@ -92,7 +92,6 @@
             "buttons": ["pdf", "print"],
             "pageLength": 15,
             "order": [0, 'desc'],
-            "pageLength": 15,
             "paging": true,
             "searching": true,
             "ordering": true,
