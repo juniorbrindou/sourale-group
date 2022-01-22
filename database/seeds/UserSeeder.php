@@ -13,10 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create('fr_FR');
-
         User::truncate();
-        
+
         User::create([
             'login' => 'administrateur',
             'nom' => 'administrateur',
