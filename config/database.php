@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Str;
 
+# Pour heroku
+$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
+$DB_CONNECTION = parse_url(getenv("DB_CONNECTION"));
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -65,17 +69,23 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
+            'host' => $DATABASE_URL["host"],
+            // 'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => $DATABASE_URL["port"],
+            // 'port' => env('DB_PORT', '5432'),
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            // 'database' => env('DB_DATABASE', 'forge'),
             'dump' => [
                 'excludeTables' => [
                     'table_to_exclude_from_backup',
                     'another_table_to_exclude'
                 ]
             ],
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+
+            'username' => $DATABASE_URL["user"],
+            // 'username' => env('DB_USERNAME', 'forge'),
+            'password' => $DATABASE_URL["pass"],
+            // 'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
