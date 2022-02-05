@@ -97,6 +97,7 @@ class EvennementController extends Controller
 
                 # utiliser pour verifier si l'operation de soustration es possible (article dispo doit etre supp a article commandé)
                 $test = 0;
+                $a = '';
 
                 # garder pour chaque ligne la qte article loué et l'id de l'article.
                 # pour chaque ligne si la difference qte article dispo et commandé est est favorable test recois 1
@@ -107,6 +108,7 @@ class EvennementController extends Controller
                     if ($article_en_bd->qte_en_stock >= $value->qte_loue) {
                         $test++;
                     } else {
+                        $a =  $article_en_bd->libelle;
                         $test--;
                     }
                 }
@@ -129,8 +131,14 @@ class EvennementController extends Controller
                     toast('Action Effectuée avec succes!', 'success');
                     return redirect()->route('locations.index');
                 } else {
-                    alert()->warning('Articles Indisponible', 'La quantité d\'article disponible est insuffisante pour démarrer cet evenement : pensez a cloturer les evenements terminés pour rendre les articles disponibles');
+
+                    # Passage de devis  à en Cours  : si apres verification le passage n'est pas possible
+                    alert()->warning('Articles Indisponible ',
+                        "La quantité d'article disponible est insuffisante pour démarrer cet evenement : pensez a cloturer les evenements terminés pour rendre les articles disponibles
+                         ". $a ."
+                        ");
                     return redirect()->route('locations.index');
+
                 }
             } elseif ($request->statut_evenement == 'ANNULÉ') {
                 $evenement->update(['status' => 'ANNULÉ']);

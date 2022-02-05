@@ -4,4 +4,5 @@
   "files.exclude": {
   },
   "editor.fontFamily": "NovaMono",
+  "workbench.colorTheme": "Brogrammer",
 }
