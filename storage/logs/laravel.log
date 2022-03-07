@@ -1,0 +1,132 @@
+[2022-02-25 17:28:29] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (Error(code: 0): Class \"Illuminate\\Support\\Collection\" not found at C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php:110)
+[stacktrace]
+#0 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(240): collect(Array)
+#1 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(202): Illuminate\\Log\\LogManager->createStackDriver(Array)
+#2 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(118): Illuminate\\Log\\LogManager->resolve('stack')
+#3 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(98): Illuminate\\Log\\LogManager->get('stack')
+#4 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(547): Illuminate\\Log\\LogManager->driver()
+#5 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(123): Illuminate\\Log\\LogManager->error('During inherita...', Array)
+#6 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\app\\Exceptions\\Handler.php(39): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#7 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(88): App\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#8 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(130): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#9 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#10 {main}
+"} 
+[2022-02-25 17:28:29] laravel.ERROR: During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\Collection.php:1349
+Stack trace:
+#0 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8192, 'Return type of ...', 'C:\\Users\\Brindo...', 1349)
+#1 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\composer\ClassLoader.php(571): include('C:\\Users\\Brindo...')
+#2 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\Users\\Brindo...')
+#3 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\helpers.php(110): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\PackageManifest.php(89): collect(Array)
+#5 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config('aliases')
+#6 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#8 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(310): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(127): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\artisan(37): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 {main} {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\\Support\\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php:1349
+Stack trace:
+#0 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php(11): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8192, 'Return type of ...', 'C:\\\\Users\\\\Brindo...', 1349)
+#1 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\composer\\ClassLoader.php(571): include('C:\\\\Users\\\\Brindo...')
+#2 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('C:\\\\Users\\\\Brindo...')
+#3 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php(110): Composer\\Autoload\\ClassLoader->loadClass('Illuminate\\\\Supp...')
+#4 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(89): collect(Array)
+#5 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(78): Illuminate\\Foundation\\PackageManifest->config('aliases')
+#6 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#7 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(230): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap(Object(Illuminate\\Foundation\\Application))
+#8 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#9 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#10 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 {main} at C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2022-02-26 20:43:39] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (Error(code: 0): Class \"Illuminate\\Support\\Collection\" not found at C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php:110)
+[stacktrace]
+#0 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(240): collect(Array)
+#1 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(202): Illuminate\\Log\\LogManager->createStackDriver(Array)
+#2 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(118): Illuminate\\Log\\LogManager->resolve('stack')
+#3 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(98): Illuminate\\Log\\LogManager->get('stack')
+#4 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(547): Illuminate\\Log\\LogManager->driver()
+#5 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(123): Illuminate\\Log\\LogManager->error('During inherita...', Array)
+#6 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\app\\Exceptions\\Handler.php(39): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#7 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(88): App\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#8 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(130): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#9 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#10 {main}
+"} 
+[2022-02-26 20:43:39] laravel.ERROR: During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\Collection.php:1349
+Stack trace:
+#0 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8192, 'Return type of ...', 'C:\\Users\\Brindo...', 1349)
+#1 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\composer\ClassLoader.php(571): include('C:\\Users\\Brindo...')
+#2 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\Users\\Brindo...')
+#3 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\helpers.php(110): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\PackageManifest.php(89): collect(Array)
+#5 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config('aliases')
+#6 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#8 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(310): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(127): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\artisan(37): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 {main} {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\\Support\\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php:1349
+Stack trace:
+#0 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php(11): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8192, 'Return type of ...', 'C:\\\\Users\\\\Brindo...', 1349)
+#1 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\composer\\ClassLoader.php(571): include('C:\\\\Users\\\\Brindo...')
+#2 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('C:\\\\Users\\\\Brindo...')
+#3 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php(110): Composer\\Autoload\\ClassLoader->loadClass('Illuminate\\\\Supp...')
+#4 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(89): collect(Array)
+#5 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(78): Illuminate\\Foundation\\PackageManifest->config('aliases')
+#6 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#7 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(230): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap(Object(Illuminate\\Foundation\\Application))
+#8 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#9 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#10 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 {main} at C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2022-02-27 08:27:40] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (Error(code: 0): Class \"Illuminate\\Support\\Collection\" not found at C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php:110)
+[stacktrace]
+#0 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(240): collect(Array)
+#1 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(202): Illuminate\\Log\\LogManager->createStackDriver(Array)
+#2 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(118): Illuminate\\Log\\LogManager->resolve('stack')
+#3 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(98): Illuminate\\Log\\LogManager->get('stack')
+#4 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(547): Illuminate\\Log\\LogManager->driver()
+#5 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(123): Illuminate\\Log\\LogManager->error('During inherita...', Array)
+#6 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\app\\Exceptions\\Handler.php(39): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#7 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(88): App\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#8 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(130): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#9 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#10 {main}
+"} 
+[2022-02-27 08:27:40] laravel.ERROR: During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\Collection.php:1349
+Stack trace:
+#0 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8192, 'Return type of ...', 'C:\\Users\\Brindo...', 1349)
+#1 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\composer\ClassLoader.php(571): include('C:\\Users\\Brindo...')
+#2 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\Users\\Brindo...')
+#3 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Support\helpers.php(110): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Supp...')
+#4 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\PackageManifest.php(89): collect(Array)
+#5 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config('aliases')
+#6 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#8 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(310): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(127): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 C:\Users\Brindou\OneDrive\Documents\GitHub\sourale-group\artisan(37): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 {main} {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\\Support\\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php:1349
+Stack trace:
+#0 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php(11): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8192, 'Return type of ...', 'C:\\\\Users\\\\Brindo...', 1349)
+#1 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\composer\\ClassLoader.php(571): include('C:\\\\Users\\\\Brindo...')
+#2 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('C:\\\\Users\\\\Brindo...')
+#3 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php(110): Composer\\Autoload\\ClassLoader->loadClass('Illuminate\\\\Supp...')
+#4 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(89): collect(Array)
+#5 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\PackageManifest.php(78): Illuminate\\Foundation\\PackageManifest->config('aliases')
+#6 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterFacades.php(26): Illuminate\\Foundation\\PackageManifest->aliases()
+#7 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(230): Illuminate\\Foundation\\Bootstrap\\RegisterFacades->bootstrap(Object(Illuminate\\Foundation\\Application))
+#8 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#9 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#10 C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 {main} at C:\\Users\\Brindou\\OneDrive\\Documents\\GitHub\\sourale-group\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Collection.php:11)
+[stacktrace]
+#0 {main}
+"} 
