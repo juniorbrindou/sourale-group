@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name= "author" lang="fr" content= "Brindou Gnépa Junior">
     <link rel="icon" href="{{ asset('dist/img/favicon.ico')}}" />
     <title>{{config('app.name')}} | Connexion</title>
 
@@ -20,7 +21,7 @@
             <img draggable="false" src="{{asset('dist/img/logo.png')}}" class="brand-image " height="150" alt="">
         </div>
         <!-- /.login-logo -->
-        <div class="card" style="background: #fff0; color=#FFF">
+        <div class="card" style="background: #fff0;">
             <div class="card-body login-card-body" style="background: #fff0;">
                 <p class="text-lg login-box-msg text-light text-bold text-uppercase">Connectez vous</p>
 
