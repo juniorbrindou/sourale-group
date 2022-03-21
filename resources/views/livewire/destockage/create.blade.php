@@ -23,17 +23,19 @@
                             <select class="form-control @error('article') is-invalid @enderror" name="article"
                                 wire:model="article" style="width: 100%;">
                                 <option selected value="">--selectionnez un article--</option>
+                                @if ($articles)
+                                    @foreach ($articles as $article)
+                                        <option value="{{ $article }}"> {{ $article }}</option>
+                                    @endforeach
+                                @endif
 
-                                @foreach ($articles as $article)
-                                <option value="{{$article}}"> {{$article}}</option>
-                                @endforeach
                             </select>
                         </div>
                         @error('article')
-                        <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-                            role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                            <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
 
@@ -54,10 +56,10 @@
                             </select>
                         </div>
                         @error('motif')
-                        <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-                            role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                            <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
 
@@ -72,10 +74,10 @@
                                 placeholder="Entrer la quantité d'article" min="1">
                         </div>
                         @error('qte')
-                        <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
-                            role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                            <span class="text-danger" style="margin-top: -1.25rem;display: block; font-size:80%"
+                                role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
                 </div>
@@ -109,7 +111,7 @@
 
     <div class="card bg-light">
         <div class="card-header">
-            <h3 class="card-title">Sortie de stock {{date('Y-m-d')}} </h3>
+            <h3 class="card-title">Sortie de stock {{ date('Y-m-d') }} </h3>
         </div>
         <div class="card-body">
             <div wire:loading.delay wire:target="submit, addDeleteLigne, resetLigne, addInBD">
@@ -122,11 +124,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Auteur : {{Auth::user()->nom}}</h3>
+                            <h3 class="card-title">Auteur : {{ Auth::user()->nom }}</h3>
 
                             <div class="card-tools">
                                 <div class="float-right input-group input-group-sm" style="width: 150px;">
-                                    <b>Code: {{$code}}</b>
+                                    <b>Code: {{ $code }}</b>
                                 </div>
                             </div>
                         </div>
@@ -146,32 +148,33 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($ligne as $item=>$value)
-                                    <tr>
-                                        <td>{{$value['code']}}</td>
-                                        <td>{{$value['article']}}</td>
-                                        <td>{{$value['qte']}}</td>
-                                        <td>{{$value['categorie']}}</td>
-                                        <td>{{$value['prix']}}</td>
-                                        <td>{{$value['motif']}}</td>
-                                        <td>
-                                            {{-- modiffication de ligne --}}
-                                            {{-- <button wire:click="updateLigne({{$item}})" title="Modiffier"
+                                        <tr>
+                                            <td>{{ $value['code'] }}</td>
+                                            <td>{{ $value['article'] }}</td>
+                                            <td>{{ $value['qte'] }}</td>
+                                            <td>{{ $value['categorie'] }}</td>
+                                            <td>{{ $value['prix'] }}</td>
+                                            <td>{{ $value['motif'] }}</td>
+                                            <td>
+                                                {{-- modiffication de ligne --}}
+                                                {{-- <button wire:click="updateLigne({{$item}})" title="Modiffier"
                                                 class="btn btn-primary btn-md">
                                                 <i class="fa fa-pen"></i>
                                             </button> --}}
 
 
-                                            <button class="btn btn-danger btn-md"
-                                                wire:click="addDeleteLigne({{$item}})">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                <button class="btn btn-danger btn-md"
+                                                    wire:click="addDeleteLigne({{ $item }})">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center" style="background-color: darkgrey">Aucun
-                                            enregistrement</td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="7" class="text-center" style="background-color: darkgrey">
+                                                Aucun
+                                                enregistrement</td>
+                                        </tr>
                                     @endforelse
 
                                 </tbody>
@@ -187,7 +190,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-4 col-sm-12">
-                    <a href="{{route('approvisionnement.index')}}"
+                    <a href="{{ route('approvisionnement.index') }}"
                         class="mb-2 btn btn-warning btn-block text-light">Retour à la liste</a>
                 </div>
                 <div class="col-md-4 col-sm-12">
