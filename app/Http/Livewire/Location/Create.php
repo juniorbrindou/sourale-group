@@ -328,7 +328,7 @@ class Create extends Component
 
             $facture = Factures::create(
                 [
-                    "date_creation" => date('d-m-Y'),
+                    "date_creation" => date('Y-m-d'),
                     "caution" => $this->caution,
                     "user_id" => Auth::user()->id,
                     "evenement_id" => $evenement->id,
