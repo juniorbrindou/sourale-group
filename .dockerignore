@@ -1,0 +1,13 @@
+.git
+Dockerfile.app
+docker-compose.yml
+.env
+.dockerignore
+/vendor
+/node_modules
+/storage/*.key
+/storage/logs/*.log
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*.php
+/bootstrap/cache/*.php
