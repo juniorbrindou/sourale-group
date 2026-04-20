@@ -1,25 +1,26 @@
-version: '3.8'
-
 services:
   # Laravel App with PHP-FPM
   app:
     build:
       context: .
       dockerfile: Dockerfile.app
-    container_name: gestok-app
+      args:
+        PHP_VERSION: ${PHP_VERSION:-7.4}
     restart: always
     working_dir: /var/www
     volumes:
       - .:/var/www
+    env_file:
+      - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - gestok-network
 
   # Nginx
   web:
     image: nginx:alpine
-    container_name: gestok-web
     restart: always
     ports:
       - "8082:80"
@@ -33,17 +34,21 @@ services:
 
   # Postgres
   db:
-    image: postgres:alpine
-    container_name: gestok-db
+    image: postgres:14-alpine
     restart: always
     environment:
-      POSTGRES_DB: sourale
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ${DB_DATABASE:-gestok}
+      POSTGRES_USER: ${DB_USERNAME:-gestok}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-gestok_change_me}
     ports:
-      - "5433:5432"
+      - "127.0.0.1:5433:5432"
     volumes:
       - gestok-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-gestok} -d ${DB_DATABASE:-gestok}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - gestok-network
 

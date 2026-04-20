@@ -1,5 +1,6 @@
-# Use image with PHP 7.4 and FPM (Alpine for lightweight)
-FROM php:7.4-fpm-alpine
+# Use image with configurable PHP version and FPM (Alpine for lightweight)
+ARG PHP_VERSION=7.4
+FROM php:${PHP_VERSION}-fpm-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \

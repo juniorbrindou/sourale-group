@@ -357,12 +357,12 @@
     <div id="fromto">
         <div id="from">
             <p>
-                <strong style="color: red;font-size:medium">SOURALÈ GROUP</strong><br>
+                <strong style="color: red;font-size:medium">GESTOCK</strong><br>
                 Treichville Zone 3 <br>
                 <br>
                 Tél.: 07 08 08 49 48 <br>
                 Tél.: 05 04 67 23 23 <br>
-                Email: contact@souralegroup.ci <br>
+                Email: contact@gestock.ci <br>
 
             </p>
         </div>
@@ -487,8 +487,8 @@
 
     <div id="footer">
         <hr width="545">
-        <p>SOURALÈ-GROUP - Sise à Treichville Zone 3 - Angré - N°RC CI-ABJ-2018-8-17766 / N° CC. 1835258A <br>
-            07 08 08 49 48 - contact@souralegroup.ci</p>
+        <p>GESTOCK - Sise à Treichville Zone 3 - Angré - N°RC CI-ABJ-2018-8-17766 / N° CC. 1835258A <br>
+            07 08 08 49 48 - contact@gestock.ci</p>
     </div>
 </div>
 
