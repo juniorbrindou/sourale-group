@@ -17,7 +17,7 @@
                         <span class="info-box-icon bg-danger elevation-2"><i
                                 class="fas fa-2x fa-sync-alt {{($nbrEventEnCours <1 )? "" : "fa-spin"}}"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Evenements En cours</span>
+                            <span class="info-box-text">Events En cours</span>
                             <span class="info-box-number">
                                 {{$nbrEventEnCours}}
                             </span>
@@ -60,7 +60,7 @@
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Total des Locations Clôturées</span>
+                        <span class="info-box-text">Locations Clôturées</span>
                         <span class="info-box-number">{{$nbrEventCloturer}}</span>
                     </div>
                     <!-- /.info-box-content -->
@@ -76,7 +76,7 @@
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total des Clients</span>
+                            <span class="info-box-text">Clients</span>
                             <span class="info-box-number">{{$nbrClients}}</span>
                         </div>
                         <!-- /.info-box-content -->
