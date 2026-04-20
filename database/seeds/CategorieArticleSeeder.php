@@ -12,14 +12,13 @@ class CategorieArticleSeeder extends Seeder
      */
     public function run()
     {
-        $datas = ['Bronze', 'Silver', 'Millénium'];
-        Categories::truncate();
+        $datas = ['Essentiel', 'Privilège', 'Prestige'];
 
         foreach ($datas as $data => $value) {
-            Categories::create([
-                'code' =>  date("Ymd") . '0' . $data,
-                'libelle' => $value,
-            ]);
+            Categories::firstOrCreate(
+                ['libelle' => $value],
+                ['code' =>  date("Ymd") . '0' . $data]
+            );
         }
     }
 }

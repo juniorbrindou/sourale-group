@@ -13,19 +13,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        User::firstOrCreate(
+            ['login' => 'administrateur'],
+            [
+                'nom' => 'administrateur',
+                'password' => Hash::make('sourale-group'),
+            ]
+        );
 
-        User::create([
-            'login' => 'administrateur',
-            'nom' => 'administrateur',
-            'password' => Hash::make('sourale-group'),
-        ]);
-
-
-        User::create([
-            'login' => 'root',
-            'nom' => 'Dev',
-            'password' => Hash::make('Inges@2021'),
-        ]);
+        User::firstOrCreate(
+            ['login' => 'root'],
+            [
+                'nom' => 'Dev',
+                'password' => Hash::make('Inges@2021'),
+            ]
+        );
     }
 }

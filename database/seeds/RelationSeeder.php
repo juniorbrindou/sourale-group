@@ -13,48 +13,52 @@ class RelationSeeder extends Seeder
      */
     public function run()
     {
-        Tarification::create(
+        Tarification::firstOrCreate(
             [
-                'prix' => 200,
                 'categorie_article_id' => 1,
                 'type_article_id' => 1,
-            ]
+            ],
+            ['prix' => 200]
         );
 
-        Tarification::create(
+        Tarification::firstOrCreate(
             [
-                'prix' => 700,
                 'categorie_article_id' => 2,
                 'type_article_id' => 1,
-            ]
+            ],
+            ['prix' => 700]
         );
-        Tarification::create(
+
+        Tarification::firstOrCreate(
             [
-                'prix' => 1200,
                 'categorie_article_id' => 3,
                 'type_article_id' => 1,
-            ]
+            ],
+            ['prix' => 1200]
         );
-        Tarification::create(
+
+        Tarification::firstOrCreate(
             [
-                'prix' => 350,
                 'categorie_article_id' => 1,
                 'type_article_id' => 2,
-            ]
+            ],
+            ['prix' => 350]
         );
-        Tarification::create(
+
+        Tarification::firstOrCreate(
             [
-                'prix' => 600,
                 'categorie_article_id' => 2,
                 'type_article_id' => 2,
-            ]
+            ],
+            ['prix' => 600]
         );
-        Tarification::create(
+
+        Tarification::firstOrCreate(
             [
-                'prix' => 800,
                 'categorie_article_id' => 3,
                 'type_article_id' => 2,
-            ]
+            ],
+            ['prix' => 800]
         );
     }
 }

@@ -12,6 +12,10 @@ class ClientSeeder extends Seeder
 	 */
 	public function run()
 	{
+		if (Clients::count() > 0) {
+			return;
+		}
+
 		$faker = Faker\Factory::create('fr_FR');
 
 		for ($i = 0; $i < 25; $i++) {

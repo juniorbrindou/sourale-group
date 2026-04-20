@@ -12,9 +12,11 @@ class FournisseurSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create('fr_FR');
+        if (Fournisseurs::count() > 0) {
+            return;
+        }
 
-        Fournisseurs::truncate();
+        $faker = Faker\Factory::create('fr_FR');
 
         for ($i = 0; $i < 10; $i++) {
             Fournisseurs::create([

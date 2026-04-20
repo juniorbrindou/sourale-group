@@ -16,13 +16,11 @@ class TypeEvenementSeeder extends Seeder
 
         $datas = ['Mariage', 'Bapteme', 'Divorce', 'Fête de la Musique', 'Conférence', 'Sortie de bébé'];
 
-        Type_evenements::truncate();
-
         foreach ($datas as $data => $value) {
-            Type_evenements::create([
-                'code' =>  date("Ymd") . '0' . $data,
-                'libelle' => $value,
-            ]);
+            Type_evenements::firstOrCreate(
+                ['libelle' => $value],
+                ['code' =>  date("Ymd") . '0' . $data]
+            );
         }
     }
 }

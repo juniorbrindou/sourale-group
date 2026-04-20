@@ -17,61 +17,59 @@ class RoleAndPermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create parametrage permissions
-        Permission::truncate();
-        Role::truncate();
-        Permission::create(['name' => 'edit parametrage']);
-        Permission::create(['name' => 'delete parametrage']);
-        Permission::create(['name' => 'create parametrage']);
-        Permission::create(['name' => 'show parametrage']);
-        Permission::create(['name' => 'parametrage']);
+        Permission::firstOrCreate(['name' => 'edit parametrage']);
+        Permission::firstOrCreate(['name' => 'delete parametrage']);
+        Permission::firstOrCreate(['name' => 'create parametrage']);
+        Permission::firstOrCreate(['name' => 'show parametrage']);
+        Permission::firstOrCreate(['name' => 'parametrage']);
 
         // create articles permissions
-        Permission::create(['name' => 'create articles']);
-        Permission::create(['name' => 'edit articles']);
-        Permission::create(['name' => 'delete articles']);
-        Permission::create(['name' => 'show articles']);
-        Permission::create(['name' => 'articles']);
+        Permission::firstOrCreate(['name' => 'create articles']);
+        Permission::firstOrCreate(['name' => 'edit articles']);
+        Permission::firstOrCreate(['name' => 'delete articles']);
+        Permission::firstOrCreate(['name' => 'show articles']);
+        Permission::firstOrCreate(['name' => 'articles']);
 
         // create articles permissions
-        Permission::create(['name' => 'create users']);
-        Permission::create(['name' => 'edit users']);
-        Permission::create(['name' => 'delete users']);
-        Permission::create(['name' => 'show users']);
-        Permission::create(['name' => 'users']);
+        Permission::firstOrCreate(['name' => 'create users']);
+        Permission::firstOrCreate(['name' => 'edit users']);
+        Permission::firstOrCreate(['name' => 'delete users']);
+        Permission::firstOrCreate(['name' => 'show users']);
+        Permission::firstOrCreate(['name' => 'users']);
 
         // tableau de bord et location (metier)
-        Permission::create(['name' => 'dashboard']);
-        Permission::create(['name' => 'location']);
-        Permission::create(['name' => 'metier']);
+        Permission::firstOrCreate(['name' => 'dashboard']);
+        Permission::firstOrCreate(['name' => 'location']);
+        Permission::firstOrCreate(['name' => 'metier']);
 
         //flux de stock
-        Permission::create(['name' => 'stock']);
-        Permission::create(['name' => 'entree stock']);
-        Permission::create(['name' => 'sortie stock']);
+        Permission::firstOrCreate(['name' => 'stock']);
+        Permission::firstOrCreate(['name' => 'entree stock']);
+        Permission::firstOrCreate(['name' => 'sortie stock']);
 
 
         // create roles and assign created permissions
 
         // this can be done as separate statements
-        $role = Role::create(['name' => 'utilisateur']);
+        $role = Role::firstOrCreate(['name' => 'utilisateur']);
 
         // or may be done by chaining
 
         // secretaire
-        // $role = Role::create(['name' => 'secretaire'])
+        // $role = Role::firstOrCreate(['name' => 'secretaire'])
         //     ->givePermissionTo(['metier', 'stock']);
 
         // manager
-        // $role = Role::create(['name' => 'manager'])
+        // $role = Role::firstOrCreate(['name' => 'manager'])
         //     ->givePermissionTo(['articles', 'parametrage']);
 
         // admin
-        $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo(Permission::all());
+        $role = Role::firstOrCreate(['name' => 'admin']);
+        $role->syncPermissions(Permission::all());
 
 
         // super-admin
-        $role = Role::create(['name' => 'super-admin']);
-        $role->givePermissionTo(Permission::all());
+        $role = Role::firstOrCreate(['name' => 'super-admin']);
+        $role->syncPermissions(Permission::all());
     }
 }
